@@ -1,0 +1,12 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+parameters:
+    symfony:
+        container_xml_path: %rootDir%/../../../var/cache/dev/srcDevDebugProjectContainer.xml
+    fileExtensions:
+        # Standard php files and .dist config files
+        - php
+        - dist
+    reportUnmatchedIgnoredErrors: true
+    ignoreErrors:
+    	- '#Call to an undefined method [a-zA-Z0-9\\_]+::readModel\(\)#'

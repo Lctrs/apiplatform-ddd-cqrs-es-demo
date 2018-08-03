@@ -1,0 +1,51 @@
+prooph_event_store:
+    stores:
+        book_store:
+            event_store: Prooph\EventStore\EventStore
+            repositories:
+                book_list:
+                    repository_class: Book\Infrastructure\Persistence\EventStore\EventStoreBookList
+                    aggregate_type: Book\Domain\Model\Book\Book
+                    aggregate_translator: Prooph\EventSourcing\Aggregate\AggregateTranslator
+                    stream_name: !php/const Core\Infrastructure\EventSourcing\Prooph\Stream\Streams::BOOK
+                review_list:
+                    repository_class: Book\Infrastructure\Persistence\EventStore\EventStoreReviewList
+                    aggregate_type: Book\Domain\Model\Review\Review
+                    aggregate_translator: Prooph\EventSourcing\Aggregate\AggregateTranslator
+                    stream_name: !php/const Core\Infrastructure\EventSourcing\Prooph\Stream\Streams::REVIEW
+    projection_managers:
+        book_projection_manager:
+            event_store: Prooph\EventStore\EventStore
+            connection: PDO
+            projections:
+                book_projection:
+                    read_model: Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
+                    projection: Book\Infrastructure\Projection\BookProjection
+                review_projection:
+                    read_model: Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
+                    projection: Book\Infrastructure\Projection\ReviewProjection
+
+services:
+    PDO:
+        class: PDO
+        factory: ['@database_connection', getWrappedConnection]
+
+    Prooph\EventStore\TransactionalEventStore:
+        class: Prooph\EventStore\Pdo\PostgresEventStore
+        arguments:
+            - '@prooph_event_store.message_factory'
+            - '@PDO'
+            - !service
+              class: Prooph\EventStore\Pdo\PersistenceStrategy\PostgresSingleStreamStrategy
+    Prooph\EventStore\EventStore:
+        alias: Prooph\EventStore\TransactionalEventStore
+            
+    Prooph\EventSourcing\Aggregate\AggregateTranslator:
+        class: Prooph\EventSourcing\EventStoreIntegration\AggregateTranslator
+        
+    Prooph\EventStoreBusBridge\TransactionManager:
+        class: Prooph\EventStoreBusBridge\TransactionManager
+        arguments:
+            - '@Prooph\EventStore\TransactionalEventStore'
+        tags:
+            - name: prooph_event_store.plugin

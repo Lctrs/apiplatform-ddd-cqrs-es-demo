@@ -1,0 +1,2 @@
+framework:
+    serializer: { enable_annotations: true }

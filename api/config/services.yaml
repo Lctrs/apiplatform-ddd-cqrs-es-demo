@@ -1,0 +1,66 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+
+    Core\Infrastructure\Cli\Command\CreateEventStreamCommand:
+        class: Core\Infrastructure\Cli\Command\CreateEventStreamCommand
+        arguments:
+            - '@Prooph\EventStore\EventStore'
+
+    Book\Domain\Model\Book\Handler\CreateBookHandler:
+        class: Book\Domain\Model\Book\Handler\CreateBookHandler
+        public: true
+        arguments:
+            - '@book_list'
+        tags:
+            - name: 'prooph_service_bus.main_command_bus.route_target'
+              message_detection: true
+    Book\Infrastructure\Api\ApiPlatform\DataPersister\BookDataPersister:
+        class: Book\Infrastructure\Api\ApiPlatform\DataPersister\BookDataPersister
+        arguments:
+            - '@prooph_service_bus.main_command_bus'
+            - '@prooph_service_bus.message_factory.main_command_bus'
+    Book\Infrastructure\Api\ApiPlatform\DataProvider\BookDataProvider:
+        class: Book\Infrastructure\Api\ApiPlatform\DataProvider\BookDataProvider
+        arguments:
+            - '@Book\Infrastructure\Projection\Doctrine\Orm\BookFinder'
+            - !service
+              class: Book\Infrastructure\Api\ApiPlatform\DataProvider\Assembler\BookAssembler
+    Book\Infrastructure\Projection\BookProjection: ~
+    Book\Infrastructure\Projection\Doctrine\Orm\BookFinder:
+        class: Book\Infrastructure\Projection\Doctrine\Orm\BookFinder
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+    Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel:
+        class: Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    Book\Domain\Model\Review\Handler\PostReviewHandler:
+        class: Book\Domain\Model\Review\Handler\PostReviewHandler
+        public: true
+        arguments:
+            - '@review_list'
+        tags:
+            - name: 'prooph_service_bus.main_command_bus.route_target'
+              message_detection: true
+    Book\Infrastructure\Projection\ReviewProjection: ~
+    Book\Infrastructure\Projection\Doctrine\Orm\ReviewFinder:
+        class: Book\Infrastructure\Projection\Doctrine\Orm\ReviewFinder
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+    Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel:
+        class: Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
+        arguments:
+            - '@doctrine.orm.default_entity_manager'

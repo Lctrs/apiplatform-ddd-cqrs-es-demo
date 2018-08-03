@@ -1,0 +1,95 @@
+{
+    "name": "lctrs/apiplatform-ddd-cqrs-es-demo",
+    "description": "",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.1.3",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "api-platform/core": "^2.1",
+        "doctrine/annotations": "^1.0",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/orm": "^2.4.5",
+        "guzzlehttp/guzzle": "^6.3",
+        "marc-mabe/php-enum": "^3.0",
+        "nelmio/cors-bundle": "^1.5",
+        "phpdocumentor/reflection-docblock": "^4.3",
+        "prooph/common": "^4.2",
+        "prooph/event-sourcing": "^5.6",
+        "prooph/event-store": "^7.3",
+        "prooph/event-store-bus-bridge": "^3.2",
+        "prooph/event-store-symfony-bundle": "^0.5.0",
+        "prooph/pdo-event-store": "^1.9",
+        "prooph/service-bus": "^6.2",
+        "prooph/service-bus-symfony-bundle": "^0.7.0",
+        "ramsey/uuid": "^3.8",
+        "symfony/asset": "^4.1",
+        "symfony/config": "^4.1",
+        "symfony/console": "^4.1",
+        "symfony/dependency-injection": "^4.1",
+        "symfony/doctrine-bridge": "^4.1",
+        "symfony/flex": "^1.0",
+        "symfony/framework-bundle": "^4.1",
+        "symfony/http-kernel": "^4.1",
+        "symfony/lts": "^4@dev",
+        "symfony/routing": "^4.1",
+        "symfony/serializer": "^4.1",
+        "symfony/twig-bundle": "^4.1",
+        "symfony/yaml": "^4.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.12",
+        "phpstan/phpstan": "^0.10.2",
+        "phpstan/phpstan-symfony": "^0.10.0",
+        "prolic/fpp": "dev-master",
+        "symfony/dotenv": "^4.1",
+        "symfony/profiler-pack": "^1.0"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Book\\": "src/Book",
+            "Core\\": "src/Core"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "check": [
+            "@cs-check",
+            "@analyze"
+        ],
+        "analyze": "phpstan analyze -l max -c ./phpstan.neon ./src ./config",
+        "cs-check": "php-cs-fixer fix --dry-run --diff",
+        "cs-fix": "php-cs-fixer fix"
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false
+        }
+    }
+}

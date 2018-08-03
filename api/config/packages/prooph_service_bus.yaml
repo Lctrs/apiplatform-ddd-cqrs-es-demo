@@ -1,0 +1,5 @@
+prooph_service_bus:
+    command_buses:
+        main_command_bus:
+            router:
+                type: 'prooph_service_bus.command_bus_router'
