@@ -11,7 +11,7 @@ Demo application wiring up some concepts and libraries :
 Install
 =======
 
-    $ git clone https://github.com/Lctrs/lctrs/apiplatform-ddd-es-demo.git
+    $ git clone https://github.com/Lctrs/apiplatform-ddd-cqrs-es-demo.git
     $ composer install
     $ docker-compose run php bin/console event-store:event-stream:create
     $ docker-compose up -d
