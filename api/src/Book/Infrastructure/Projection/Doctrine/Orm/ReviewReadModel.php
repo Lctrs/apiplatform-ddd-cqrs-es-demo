@@ -17,11 +17,12 @@ final class ReviewReadModel extends AbstractDoctrineOrmReadModel
 
     protected function insert(array $data)
     {
-        $this->entityManager->persist(new Review(
-            $data['id'],
-            $data['body'],
-            $data['rating'],
-            $data['author']
-        ));
+        $review = new Review();
+        $review->id = $data['id'];
+        $review->body = $data['body'];
+        $review->rating = $data['rating'];
+        $review->author = $data['author'];
+
+        $this->entityManager->persist($review);
     }
 }

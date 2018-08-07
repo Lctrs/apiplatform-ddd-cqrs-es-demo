@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping
+        http://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book">
+        <attribute name="isbn">
+            <group>Book:read</group>
+        </attribute>
+        <attribute name="title">
+            <group>Book:read</group>
+        </attribute>
+        <attribute name="description">
+            <group>Book:read</group>
+        </attribute>
+        <attribute name="author">
+            <group>Book:read</group>
+        </attribute>
+    </class>
+
+    <class name="Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review">
+        <attribute name="body">
+            <group>Review:read</group>
+        </attribute>
+        <attribute name="rating">
+            <group>Review:read</group>
+        </attribute>
+        <attribute name="author">
+            <group>Review:read</group>
+        </attribute>
+    </class>
+</serializer>

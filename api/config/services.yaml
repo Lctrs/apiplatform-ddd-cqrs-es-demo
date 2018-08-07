@@ -31,17 +31,6 @@ services:
         arguments:
             - '@prooph_service_bus.main_command_bus'
             - '@prooph_service_bus.message_factory.main_command_bus'
-    Book\Infrastructure\Api\ApiPlatform\DataProvider\BookDataProvider:
-        class: Book\Infrastructure\Api\ApiPlatform\DataProvider\BookDataProvider
-        arguments:
-            - '@Book\Infrastructure\Projection\Doctrine\Orm\BookFinder'
-            - !service
-              class: Book\Infrastructure\Api\ApiPlatform\DataProvider\Assembler\BookAssembler
-    Book\Infrastructure\Projection\BookProjection: ~
-    Book\Infrastructure\Projection\Doctrine\Orm\BookFinder:
-        class: Book\Infrastructure\Projection\Doctrine\Orm\BookFinder
-        arguments:
-            - '@doctrine.orm.default_entity_manager'
     Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel:
         class: Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
         arguments:
@@ -56,10 +45,6 @@ services:
             - name: 'prooph_service_bus.main_command_bus.route_target'
               message_detection: true
     Book\Infrastructure\Projection\ReviewProjection: ~
-    Book\Infrastructure\Projection\Doctrine\Orm\ReviewFinder:
-        class: Book\Infrastructure\Projection\Doctrine\Orm\ReviewFinder
-        arguments:
-            - '@doctrine.orm.default_entity_manager'
     Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel:
         class: Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
         arguments:

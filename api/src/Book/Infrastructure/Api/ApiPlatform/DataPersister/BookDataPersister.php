@@ -7,7 +7,7 @@ namespace Book\Infrastructure\Api\ApiPlatform\DataPersister;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use Book\Domain\Model\Book\BookId;
 use Book\Domain\Model\Book\Command\CreateBook;
-use Book\Infrastructure\Api\ApiPlatform\Resource\Book;
+use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
 use Prooph\Common\Messaging\MessageFactory;
 use Prooph\ServiceBus\CommandBus;
 

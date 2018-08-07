@@ -7,7 +7,7 @@ namespace Book\Infrastructure\Api\ApiPlatform\DataPersister;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use Book\Domain\Model\Review\Command\PostReview;
 use Book\Domain\Model\Review\ReviewId;
-use Book\Infrastructure\Api\ApiPlatform\Resource\Review;
+use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review;
 use Prooph\Common\Messaging\MessageFactory;
 use Prooph\ServiceBus\CommandBus;
 
