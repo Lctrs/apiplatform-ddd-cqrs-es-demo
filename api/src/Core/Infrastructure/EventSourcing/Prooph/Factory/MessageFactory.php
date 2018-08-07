@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Infrastructure\EventSourcing\Prooph\Factory;
 
-use Book\App\Command\CreateBook;
-use Book\App\Command\PostReview;
+use Book\Domain\Model\Book\Command\CreateBook;
+use Book\Domain\Model\Review\Command\PostReview;
 use Prooph\Common\Messaging\FQCNMessageFactory;
 use Prooph\Common\Messaging\Message;
 
