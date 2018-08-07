@@ -278,12 +278,6 @@
     "symfony/options-resolver": {
         "version": "v4.1.2"
     },
-    "symfony/polyfill-mbstring": {
-        "version": "v1.8.0"
-    },
-    "symfony/polyfill-php72": {
-        "version": "v1.8.0"
-    },
     "symfony/process": {
         "version": "v4.1.2"
     },
