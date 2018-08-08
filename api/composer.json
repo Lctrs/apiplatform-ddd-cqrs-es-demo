@@ -39,7 +39,8 @@
         "symfony/routing": "^4.1",
         "symfony/serializer": "^4.1",
         "symfony/twig-bundle": "^4.1",
-        "symfony/yaml": "^4.1"
+        "symfony/yaml": "^4.1",
+        "webonyx/graphql-php": "^0.12.5"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.12",
