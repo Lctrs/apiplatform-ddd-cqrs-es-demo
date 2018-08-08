@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Book\Infrastructure\Projection\Doctrine\Orm\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,7 +21,7 @@ class Book
     public $id;
 
     /**
-     * @ORM\Column(type="string", length=13)
+     * @ORM\Column(type="string", length=13, nullable=true)
      */
     public $isbn;
 
@@ -37,4 +39,36 @@ class Book
      * @ORM\Column(type="text")
      */
     public $author;
+
+    /**
+     * @var Collection|Review[]
+     *
+     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="book", orphanRemoval=true, cascade={"persist", "remove"})
+     */
+    private $reviews;
+
+    public function __construct()
+    {
+        $this->reviews = new ArrayCollection();
+    }
+
+    public function addReview(Review $review, bool $updateRelation = true): void
+    {
+        if ($this->reviews->contains($review)) {
+            return;
+        }
+
+        $this->reviews->add($review);
+        if ($updateRelation) {
+            $review->setBook($this, false);
+        }
+    }
+
+    /**
+     * @return Review[]
+     */
+    public function getReviews(): iterable
+    {
+        return $this->reviews;
+    }
 }

@@ -6,7 +6,7 @@ namespace Core\Infrastructure\EventSourcing\Prooph\Stream;
 
 use MabeEnum\Enum;
 
-class Streams extends Enum
+final class Streams extends Enum
 {
     public const BOOK = 'book_stream';
     public const REVIEW = 'review_stream';

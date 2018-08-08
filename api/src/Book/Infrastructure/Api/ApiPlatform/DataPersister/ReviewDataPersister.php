@@ -42,6 +42,7 @@ final class ReviewDataPersister implements DataPersisterInterface
         $this->commandBus->dispatch($this->messageFactory->createMessageFromArray(PostReview::MESSAGE_NAME, [
             'payload' => [
                 'id' => $id,
+                'bookId' => $data->getBook()->id,
                 'body' => $data->body,
                 'rating' => $data->rating,
                 'author' => $data->author,

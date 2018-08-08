@@ -13,11 +13,6 @@ services:
                             # fetching services directly from the container via $container->get() won't work.
                             # The best practice is to be explicit about your dependencies anyway.
 
-    Core\Infrastructure\Cli\Command\CreateEventStreamCommand:
-        class: Core\Infrastructure\Cli\Command\CreateEventStreamCommand
-        arguments:
-            - '@Prooph\EventStore\EventStore'
-
     Book\Domain\Model\Book\Handler\CreateBookHandler:
         class: Book\Domain\Model\Book\Handler\CreateBookHandler
         public: true
@@ -31,6 +26,7 @@ services:
         arguments:
             - '@prooph_service_bus.main_command_bus'
             - '@prooph_service_bus.message_factory.main_command_bus'
+    Book\Infrastructure\Projection\BookProjection: ~
     Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel:
         class: Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
         arguments:
@@ -44,6 +40,11 @@ services:
         tags:
             - name: 'prooph_service_bus.main_command_bus.route_target'
               message_detection: true
+    Book\Infrastructure\Api\ApiPlatform\DataPersister\ReviewDataPersister:
+        class: Book\Infrastructure\Api\ApiPlatform\DataPersister\ReviewDataPersister
+        arguments:
+        - '@prooph_service_bus.main_command_bus'
+        - '@prooph_service_bus.message_factory.main_command_bus'
     Book\Infrastructure\Projection\ReviewProjection: ~
     Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel:
         class: Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel

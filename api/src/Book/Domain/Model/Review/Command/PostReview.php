@@ -20,6 +20,11 @@ final class PostReview extends \Prooph\Common\Messaging\Command
         return \Book\Domain\Model\Review\ReviewId::fromString($this->payload['id']);
     }
 
+    public function bookId(): \Book\Domain\Model\Book\BookId
+    {
+        return \Book\Domain\Model\Book\BookId::fromString($this->payload['bookId']);
+    }
+
     public function body(): ?\Book\Domain\Model\Review\Body
     {
         return isset($this->payload['body']) ? \Book\Domain\Model\Review\Body::fromString($this->payload['body']) : null;
@@ -30,18 +35,19 @@ final class PostReview extends \Prooph\Common\Messaging\Command
         return \Book\Domain\Model\Review\Rating::fromScalar($this->payload['rating']);
     }
 
-    public function author(): \Book\Domain\Model\Review\Author
+    public function author(): ?\Book\Domain\Model\Review\Author
     {
-        return \Book\Domain\Model\Review\Author::fromString($this->payload['author']);
+        return isset($this->payload['author']) ? \Book\Domain\Model\Review\Author::fromString($this->payload['author']) : null;
     }
 
-    public static function with(\Book\Domain\Model\Review\ReviewId $id, ?\Book\Domain\Model\Review\Body $body, \Book\Domain\Model\Review\Rating $rating, \Book\Domain\Model\Review\Author $author): self
+    public static function with(\Book\Domain\Model\Review\ReviewId $id, \Book\Domain\Model\Book\BookId $bookId, ?\Book\Domain\Model\Review\Body $body, \Book\Domain\Model\Review\Rating $rating, ?\Book\Domain\Model\Review\Author $author): self
     {
         return new self([
             'id' => $id->toString(),
+            'bookId' => $bookId->toString(),
             'body' => null === $body ? null : $body->toString(),
             'rating' => $rating->toScalar(),
-            'author' => $author->toString(),
+            'author' => null === $author ? null : $author->toString(),
         ]);
     }
 
@@ -49,6 +55,10 @@ final class PostReview extends \Prooph\Common\Messaging\Command
     {
         if (!isset($payload['id']) || !\is_string($payload['id'])) {
             throw new \InvalidArgumentException("Key 'id' is missing in payload or is not a string");
+        }
+
+        if (!isset($payload['bookId']) || !\is_string($payload['bookId'])) {
+            throw new \InvalidArgumentException("Key 'bookId' is missing in payload or is not a string");
         }
 
         if (isset($payload['body']) && !\is_string($payload['body'])) {
@@ -59,8 +69,8 @@ final class PostReview extends \Prooph\Common\Messaging\Command
             throw new \InvalidArgumentException("Key 'rating' is missing in payload or is not a int");
         }
 
-        if (!isset($payload['author']) || !\is_string($payload['author'])) {
-            throw new \InvalidArgumentException("Key 'author' is missing in payload or is not a string");
+        if (isset($payload['author']) && !\is_string($payload['author'])) {
+            throw new \InvalidArgumentException("Value for 'author' is not a string in payload");
         }
 
         $this->payload = $payload;

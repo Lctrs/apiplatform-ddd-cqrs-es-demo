@@ -22,7 +22,7 @@ final class BookProjection implements ReadModelProjection
 
                     $readModel->stack('insert', [
                         'id' => $event->id()->toString(),
-                        'isbn' => $event->isbn()->toString(),
+                        'isbn' => null === $event->isbn() ? null : $event->isbn()->toString(),
                         'title' => $event->title()->toString(),
                         'description' => $event->description()->toString(),
                         'author' => $event->author()->toString(),

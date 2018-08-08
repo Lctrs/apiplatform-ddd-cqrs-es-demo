@@ -22,9 +22,10 @@ final class ReviewProjection implements ReadModelProjection
 
                     $readModel->stack('insert', [
                         'id' => $event->id()->toString(),
+                        'bookId' => $event->bookId()->toString(),
                         'body' => null === $event->body() ? null : $event->body()->toString(),
                         'rating' => $event->rating()->toScalar(),
-                        'author' => $event->author()->toString(),
+                        'author' => null === $event->author() ? null : $event->author()->toString(),
                     ]);
                 },
             ]);

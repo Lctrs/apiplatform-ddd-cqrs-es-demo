@@ -29,7 +29,28 @@ class Review
     public $rating;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     public $author;
+
+    /**
+     * @var Book
+     *
+     * @ORM\ManyToOne(targetEntity=Book::class, inversedBy="reviews")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $book;
+
+    public function setBook(Book $book, bool $updateRelation = true): void
+    {
+        $this->book = $book;
+        if ($updateRelation) {
+            $book->addReview($this, false);
+        }
+    }
+
+    public function getBook(): ?Book
+    {
+        return $this->book;
+    }
 }

@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Book\Domain\Model\Review;
 
+use Book\Domain\Model\Book\BookId;
 use Book\Domain\Model\Review\Event\ReviewWasPosted;
 use Prooph\EventSourcing\AggregateChanged;
 use Prooph\EventSourcing\AggregateRoot;
@@ -14,15 +15,16 @@ use Prooph\EventSourcing\AggregateRoot;
 final class Review extends AggregateRoot
 {
     private $id;
+    private $bookId;
     private $body;
     private $rating;
     private $author;
 
-    public static function post(ReviewId $id, ?Body $body, Rating $rating, Author $author)
+    public static function post(ReviewId $id, BookId $bookId, ?Body $body, Rating $rating, ?Author $author)
     {
         $self = new self();
 
-        $self->recordThat(ReviewWasPosted::with($id, $body, $rating, $author));
+        $self->recordThat(ReviewWasPosted::with($id, $bookId, $body, $rating, $author));
 
         return $self;
     }
@@ -30,6 +32,11 @@ final class Review extends AggregateRoot
     public function id(): ReviewId
     {
         return $this->id;
+    }
+
+    public function bookId(): BookId
+    {
+        return $this->bookId;
     }
 
     public function body(): ?Body
@@ -42,7 +49,7 @@ final class Review extends AggregateRoot
         return $this->rating;
     }
 
-    public function author(): Author
+    public function author(): ?Author
     {
         return $this->author;
     }
@@ -70,6 +77,7 @@ final class Review extends AggregateRoot
     private function whenReviewWasPosted(ReviewWasPosted $event): void
     {
         $this->id = $event->id();
+        $this->bookId = $event->bookId();
         $this->body = $event->body();
         $this->rating = $event->rating();
         $this->author = $event->author();

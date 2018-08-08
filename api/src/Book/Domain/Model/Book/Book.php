@@ -16,7 +16,7 @@ final class Book extends AggregateRoot
     private $description;
     private $author;
 
-    public static function create(BookId $id, Isbn $isbn, Title $title, Description $description, Author $author): self
+    public static function create(BookId $id, ?Isbn $isbn, Title $title, Description $description, Author $author): self
     {
         $book = new self();
 
@@ -30,7 +30,7 @@ final class Book extends AggregateRoot
         return $this->id;
     }
 
-    public function isbn(): Isbn
+    public function isbn(): ?Isbn
     {
         return $this->isbn;
     }

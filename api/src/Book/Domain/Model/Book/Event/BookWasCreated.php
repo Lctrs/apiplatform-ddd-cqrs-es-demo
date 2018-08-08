@@ -30,10 +30,10 @@ final class BookWasCreated extends \Prooph\EventSourcing\AggregateChanged
         return $this->id;
     }
 
-    public function isbn(): \Book\Domain\Model\Book\Isbn
+    public function isbn(): ?\Book\Domain\Model\Book\Isbn
     {
-        if (null === $this->isbn) {
-            $this->isbn = \Book\Domain\Model\Book\Isbn::fromString($this->payload['isbn']);
+        if (null === $this->isbn && isset($this->payload['isbn'])) {
+            $this->isbn = isset($this->payload['isbn']) ? \Book\Domain\Model\Book\Isbn::fromString($this->payload['isbn']) : null;
         }
 
         return $this->isbn;
@@ -66,10 +66,10 @@ final class BookWasCreated extends \Prooph\EventSourcing\AggregateChanged
         return $this->author;
     }
 
-    public static function with(\Book\Domain\Model\Book\BookId $id, \Book\Domain\Model\Book\Isbn $isbn, \Book\Domain\Model\Book\Title $title, \Book\Domain\Model\Book\Description $description, \Book\Domain\Model\Book\Author $author): self
+    public static function with(\Book\Domain\Model\Book\BookId $id, ?\Book\Domain\Model\Book\Isbn $isbn, \Book\Domain\Model\Book\Title $title, \Book\Domain\Model\Book\Description $description, \Book\Domain\Model\Book\Author $author): self
     {
         return new self($id->toString(), [
-            'isbn' => $isbn->toString(),
+            'isbn' => null === $isbn ? null : $isbn->toString(),
             'title' => $title->toString(),
             'description' => $description->toString(),
             'author' => $author->toString(),
@@ -78,8 +78,8 @@ final class BookWasCreated extends \Prooph\EventSourcing\AggregateChanged
 
     protected function setPayload(array $payload): void
     {
-        if (!isset($payload['isbn']) || !\is_string($payload['isbn'])) {
-            throw new \InvalidArgumentException("Key 'isbn' is missing in payload or is not a string");
+        if (isset($payload['isbn']) && !\is_string($payload['isbn'])) {
+            throw new \InvalidArgumentException("Value for 'isbn' is not a string in payload");
         }
 
         if (!isset($payload['title']) || !\is_string($payload['title'])) {

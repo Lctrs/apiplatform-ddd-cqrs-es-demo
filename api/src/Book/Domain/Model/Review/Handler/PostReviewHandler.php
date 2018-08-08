@@ -21,6 +21,7 @@ final class PostReviewHandler
     {
         $this->reviewList->save(Review::post(
             $command->id(),
+            $command->bookId(),
             $command->body(),
             $command->rating(),
             $command->author()
