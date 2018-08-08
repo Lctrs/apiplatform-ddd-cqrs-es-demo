@@ -2,7 +2,9 @@ includes:
     - vendor/phpstan/phpstan-symfony/extension.neon
 parameters:
     symfony:
-        container_xml_path: %rootDir%/../../../var/cache/dev/SymfonyDevDebugProjectContainer.xml
+        container_xml_path: var/cache/dev/SymfonyDevDebugProjectContainer.xml
+    excludes_analyse:
+    	- src/Core/Infrastructure/Migrations
     fileExtensions:
         # Standard php files and .dist config files
         - php

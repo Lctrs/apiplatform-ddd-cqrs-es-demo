@@ -12,8 +12,6 @@ Install
 =======
 
     $ git clone https://github.com/Lctrs/apiplatform-ddd-cqrs-es-demo.git
-    $ composer install
-    $ docker-compose run php bin/console event-store:event-stream:create
     $ docker-compose up -d
 
 And go to https://localhost.

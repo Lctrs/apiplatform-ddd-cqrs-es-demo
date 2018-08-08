@@ -39,6 +39,7 @@ services:
               class: Prooph\EventStore\Pdo\PersistenceStrategy\PostgresSingleStreamStrategy
     Prooph\EventStore\EventStore:
         alias: Prooph\EventStore\TransactionalEventStore
+        public: true
             
     Prooph\EventSourcing\Aggregate\AggregateTranslator:
         class: Prooph\EventSourcing\EventStoreIntegration\AggregateTranslator

@@ -20,6 +20,10 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'bin/console' ]; then
 		until pg_isready --timeout=0 --dbname="${DATABASE_URL}"; do
 			sleep 1
 		done
+
+		if  [ "$1" = 'php-fpm' ]; then
+			bin/console doctrine:migrations:migrate --no-interaction
+		fi
 	fi
 fi
 
