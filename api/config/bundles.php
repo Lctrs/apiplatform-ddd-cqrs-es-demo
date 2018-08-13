@@ -13,4 +13,6 @@ return [
     Prooph\Bundle\EventStore\ProophEventStoreBundle::class => ['all' => true],
     Prooph\Bundle\ServiceBus\ProophServiceBusBundle::class => ['all' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
+    Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle::class => ['dev' => true, 'test' => true],
+    Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle::class => ['dev' => true, 'test' => true],
 ];

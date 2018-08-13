@@ -15,3 +15,8 @@ Install
     $ docker-compose up -d
 
 And go to https://localhost.
+
+Loading Fixtures
+================
+
+    $ docker-compose exec php bin/console app:fixtures:load ./fixtures

@@ -1,0 +1,15 @@
+'Book\Domain\Model\Book\Command\CreateBook':
+    book_{1..100}:
+        id (unique): <uuid()>
+        isbn: <isbn13()>
+        title: <sentence()>
+        description: <paragraph()>
+        author: <name()>
+
+'Book\Domain\Model\Review\Command\PostReview':
+    review_{1..500}:
+        id (unique): <uuid()>
+        body: <paragraph()>
+        rating: <numberBetween(0, 5)>
+        bookId: '@book_*->id'
+        author: <name()>

@@ -95,6 +95,9 @@
             "ref": "81dee417d2cc60cd1c9d6208dff2ec22a1103e93"
         }
     },
+    "fzaninotto/faker": {
+        "version": "v1.8.0"
+    },
     "guzzlehttp/guzzle": {
         "version": "6.3.3"
     },
@@ -112,6 +115,18 @@
     },
     "marc-mabe/php-enum": {
         "version": "v3.0.1"
+    },
+    "myclabs/deep-copy": {
+        "version": "1.8.1"
+    },
+    "nelmio/alice": {
+        "version": "3.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.2",
+            "ref": "5ef2976310e8f9621c1a722a73bfbe115c1559a3"
+        }
     },
     "nelmio/cors-bundle": {
         "version": "1.5",
@@ -346,6 +361,15 @@
     },
     "symfony/yaml": {
         "version": "v4.1.2"
+    },
+    "theofidry/alice-data-fixtures": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fe5a50faf580eb58f08ada2abe8afbd2d4941e05"
+        }
     },
     "twig/twig": {
         "version": "v2.5.0"

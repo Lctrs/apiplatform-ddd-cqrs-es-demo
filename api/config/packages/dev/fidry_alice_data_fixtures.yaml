@@ -1,0 +1,25 @@
+fidry_alice_data_fixtures:
+    db_drivers:
+        doctrine_orm: false
+
+services:
+    _defaults:
+        autoconfigure: true
+        public: false
+
+    Core\Infrastructure\Fixtures\Command\LoadDataFixturesCommand:
+        class: Core\Infrastructure\Fixtures\Command\LoadDataFixturesCommand
+        arguments:
+            - '@Fidry\AliceDataFixtures\LoaderInterface'
+    
+    Core\Infrastructure\Fixtures\Persistence\CommandBusPersister:
+        class: Core\Infrastructure\Fixtures\Persistence\CommandBusPersister
+        arguments:
+            - '@prooph_service_bus.main_command_bus'
+
+    Fidry\AliceDataFixtures\LoaderInterface:
+        class: Fidry\AliceDataFixtures\Loader\PersisterLoader
+        arguments:
+            - '@fidry_alice_data_fixtures.loader.simple'
+            - '@Core\Infrastructure\Fixtures\Persistence\CommandBusPersister'
+            - '@?logger'
