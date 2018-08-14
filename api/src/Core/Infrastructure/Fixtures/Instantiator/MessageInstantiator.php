@@ -35,7 +35,7 @@ final class MessageInstantiator implements ChainableInstantiatorInterface, Value
         $this->resolver = $resolver;
     }
 
-    public function withValueResolver(ValueResolverInterface $resolver)
+    public function withValueResolver(ValueResolverInterface $resolver): self
     {
         return new self($this->messageFactory, $resolver);
     }

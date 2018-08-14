@@ -35,7 +35,7 @@ final class BookDataPersister implements DataPersisterInterface
      *
      * @param Book $data
      */
-    public function persist($data)
+    public function persist($data): Book
     {
         $id = BookId::generate()->toString();
 
@@ -57,7 +57,7 @@ final class BookDataPersister implements DataPersisterInterface
     /**
      * {@inheritdoc}
      */
-    public function remove($data)
+    public function remove($data): void
     {
         // TODO: Implement remove() method.
     }

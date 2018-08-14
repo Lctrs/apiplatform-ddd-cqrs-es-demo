@@ -25,7 +25,7 @@ final class LoadDataFixturesCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName(self::$defaultName)
@@ -37,7 +37,7 @@ final class LoadDataFixturesCommand extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $fixturesFiles = $this->resolvePath($input->getArgument('path'));
 

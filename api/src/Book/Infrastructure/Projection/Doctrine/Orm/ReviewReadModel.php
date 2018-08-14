@@ -16,7 +16,7 @@ final class ReviewReadModel extends AbstractDoctrineOrmReadModel
         parent::__construct($entityManager, Review::class);
     }
 
-    protected function insert(array $data)
+    protected function insert(array $data): void
     {
         $review = new Review();
         $review->id = $data['id'];

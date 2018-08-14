@@ -15,7 +15,7 @@ final class BookReadModel extends AbstractDoctrineOrmReadModel
         parent::__construct($entityManager, Book::class);
     }
 
-    protected function insert(array $data)
+    protected function insert(array $data): void
     {
         $book = new Book();
         $book->id = $data['id'];

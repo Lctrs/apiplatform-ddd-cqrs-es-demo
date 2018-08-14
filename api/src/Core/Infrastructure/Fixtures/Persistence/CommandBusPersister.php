@@ -25,7 +25,7 @@ final class CommandBusPersister implements PersisterInterface
      *
      * @param object $object
      */
-    public function persist($object)
+    public function persist($object): void
     {
         if (!$object instanceof Command) {
             return;
@@ -34,7 +34,7 @@ final class CommandBusPersister implements PersisterInterface
         $this->commandBus->dispatch($object);
     }
 
-    public function flush()
+    public function flush(): void
     {
         // No-op
     }

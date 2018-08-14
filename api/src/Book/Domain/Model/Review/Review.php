@@ -20,7 +20,7 @@ final class Review extends AggregateRoot
     private $rating;
     private $author;
 
-    public static function post(ReviewId $id, BookId $bookId, ?Body $body, Rating $rating, ?Author $author)
+    public static function post(ReviewId $id, BookId $bookId, ?Body $body, Rating $rating, ?Author $author): self
     {
         $self = new self();
 

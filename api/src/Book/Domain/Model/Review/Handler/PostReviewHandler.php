@@ -17,7 +17,7 @@ final class PostReviewHandler
         $this->reviewList = $bookList;
     }
 
-    public function __invoke(PostReview $command)
+    public function __invoke(PostReview $command): void
     {
         $this->reviewList->save(Review::post(
             $command->id(),

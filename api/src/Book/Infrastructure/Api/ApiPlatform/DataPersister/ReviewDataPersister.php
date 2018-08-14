@@ -35,7 +35,7 @@ final class ReviewDataPersister implements DataPersisterInterface
      *
      * @param Review $data
      */
-    public function persist($data)
+    public function persist($data): Review
     {
         $id = ReviewId::generate()->toString();
 
@@ -57,7 +57,7 @@ final class ReviewDataPersister implements DataPersisterInterface
     /**
      * {@inheritdoc}
      */
-    public function remove($data)
+    public function remove($data): void
     {
         // TODO: Implement remove() method.
     }
