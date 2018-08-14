@@ -7,6 +7,7 @@ namespace Book\Infrastructure\Api\ApiPlatform\DataPersister;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use Book\Domain\Model\Book\BookId;
 use Book\Domain\Model\Book\Command\CreateBook;
+use Book\Domain\Model\Book\Command\DeleteBook;
 use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
 use Prooph\Common\Messaging\MessageFactory;
 use Prooph\ServiceBus\CommandBus;
@@ -56,9 +57,15 @@ final class BookDataPersister implements DataPersisterInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @param Book $data
      */
     public function remove($data): void
     {
-        // TODO: Implement remove() method.
+        $this->commandBus->dispatch($this->messageFactory->createMessageFromArray(DeleteBook::MESSAGE_NAME, [
+            'payload' => [
+                'id' => $data->id,
+            ],
+        ]));
     }
 }

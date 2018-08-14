@@ -27,4 +27,15 @@ final class ReviewReadModel extends AbstractDoctrineOrmReadModel
 
         $this->entityManager->persist($review);
     }
+
+    protected function remove(string $id): void
+    {
+        $review = $this->entityManager->find($this->entityClass, $id);
+
+        if (null === $review) {
+            return;
+        }
+
+        $this->entityManager->remove($review);
+    }
 }

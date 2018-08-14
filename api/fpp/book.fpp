@@ -13,6 +13,8 @@ namespace Book\Domain\Model\Review\Command {
         \Book\Domain\Model\Review\Rating $rating,
         ?\Book\Domain\Model\Review\Author $author
     } deriving (Command);
+
+    data DeleteReview = DeleteReview { \Book\Domain\Model\Review\ReviewId $id } deriving (Command);
 }
 
 namespace Book\Domain\Model\Review\Event {
@@ -23,6 +25,8 @@ namespace Book\Domain\Model\Review\Event {
         \Book\Domain\Model\Review\Rating $rating,
         ?\Book\Domain\Model\Review\Author $author
     } deriving (AggregateChanged);
+
+    data ReviewWasDeleted = ReviewWasDeleted { \Book\Domain\Model\Review\ReviewId $id } deriving (AggregateChanged);
 }
 
 namespace Book\Domain\Model\Book {
@@ -41,6 +45,8 @@ namespace Book\Domain\Model\Book\Command {
         \Book\Domain\Model\Book\Description $description,
         \Book\Domain\Model\Book\Author $author,
     } deriving (Command);
+
+    data DeleteBook = DeleteBook { \Book\Domain\Model\Book\BookId $id } deriving (Command);
 }
 
 namespace Book\Domain\Model\Book\Event {
@@ -51,4 +57,6 @@ namespace Book\Domain\Model\Book\Event {
         \Book\Domain\Model\Book\Description $description,
         \Book\Domain\Model\Book\Author $author,
     } deriving (AggregateChanged);
+
+    data BookWasDeleted = BookWasDeleted { \Book\Domain\Model\Book\BookId $id } deriving (AggregateChanged);
 }

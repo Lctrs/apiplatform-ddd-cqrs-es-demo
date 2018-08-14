@@ -19,7 +19,7 @@ final class CreateBookHandler
 
     public function __invoke(CreateBook $command): void
     {
-        $this->bookList->add(Book::create(
+        $this->bookList->save(Book::create(
             $command->id(),
             $command->isbn(),
             $command->title(),

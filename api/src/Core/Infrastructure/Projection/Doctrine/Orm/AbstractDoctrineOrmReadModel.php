@@ -11,7 +11,7 @@ use Prooph\EventStore\Projection\ReadModel;
 abstract class AbstractDoctrineOrmReadModel implements ReadModel
 {
     protected $entityManager;
-    private $entityClass;
+    protected $entityClass;
 
     public function __construct(EntityManagerInterface $entityManager, string $entityClass)
     {

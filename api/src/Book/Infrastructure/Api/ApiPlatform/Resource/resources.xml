@@ -29,6 +29,7 @@
         </collectionOperations>
         <itemOperations>
             <itemOperation name="get"/>
+            <itemOperation name="delete"/>
         </itemOperations>
 
         <property
@@ -86,6 +87,7 @@
         </collectionOperations>
         <itemOperations>
             <itemOperation name="get"/>
+            <itemOperation name="delete"/>
         </itemOperations>
 
         <property

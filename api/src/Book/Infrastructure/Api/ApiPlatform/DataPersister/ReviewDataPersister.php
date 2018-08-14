@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Book\Infrastructure\Api\ApiPlatform\DataPersister;
 
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
+use Book\Domain\Model\Review\Command\DeleteReview;
 use Book\Domain\Model\Review\Command\PostReview;
 use Book\Domain\Model\Review\ReviewId;
 use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review;
@@ -56,9 +57,15 @@ final class ReviewDataPersister implements DataPersisterInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @param Review $data
      */
     public function remove($data): void
     {
-        // TODO: Implement remove() method.
+        $this->commandBus->dispatch($this->messageFactory->createMessageFromArray(DeleteReview::MESSAGE_NAME, [
+            'payload' => [
+                'id' => $data->id,
+            ],
+        ]));
     }
 }

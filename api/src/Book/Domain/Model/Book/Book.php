@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Book\Domain\Model\Book;
 
 use Book\Domain\Model\Book\Event\BookWasCreated;
+use Book\Domain\Model\Book\Event\BookWasDeleted;
 use Prooph\EventSourcing\AggregateChanged;
 use Prooph\EventSourcing\AggregateRoot;
 
@@ -23,6 +24,11 @@ final class Book extends AggregateRoot
         $book->recordThat(BookWasCreated::with($id, $isbn, $title, $description, $author));
 
         return $book;
+    }
+
+    public function delete(): void
+    {
+        $this->recordThat(BookWasDeleted::with($this->id));
     }
 
     public function id(): BookId
@@ -60,6 +66,8 @@ final class Book extends AggregateRoot
         switch (\get_class($event)) {
             case BookWasCreated::class:
                 $this->whenBookWasCreated($event);
+                break;
+            case BookWasDeleted::class:
                 break;
             default:
                 throw new \RuntimeException(sprintf(

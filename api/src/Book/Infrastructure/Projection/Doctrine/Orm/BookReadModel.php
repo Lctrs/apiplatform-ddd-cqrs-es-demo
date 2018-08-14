@@ -26,4 +26,15 @@ final class BookReadModel extends AbstractDoctrineOrmReadModel
 
         $this->entityManager->persist($book);
     }
+
+    protected function remove(string $id): void
+    {
+        $book = $this->entityManager->find($this->entityClass, $id);
+
+        if (null === $book) {
+            return;
+        }
+
+        $this->entityManager->remove($book);
+    }
 }

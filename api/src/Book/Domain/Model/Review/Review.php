@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Book\Domain\Model\Review;
 
 use Book\Domain\Model\Book\BookId;
+use Book\Domain\Model\Review\Event\ReviewWasDeleted;
 use Book\Domain\Model\Review\Event\ReviewWasPosted;
 use Prooph\EventSourcing\AggregateChanged;
 use Prooph\EventSourcing\AggregateRoot;
@@ -27,6 +28,11 @@ final class Review extends AggregateRoot
         $self->recordThat(ReviewWasPosted::with($id, $bookId, $body, $rating, $author));
 
         return $self;
+    }
+
+    public function delete(): void
+    {
+        $this->recordThat(ReviewWasDeleted::with($this->id));
     }
 
     public function id(): ReviewId
@@ -64,6 +70,8 @@ final class Review extends AggregateRoot
         switch (\get_class($event)) {
             case ReviewWasPosted::class:
                 $this->whenReviewWasPosted($event);
+                break;
+            case ReviewWasDeleted::class:
                 break;
             default:
                 throw new \RuntimeException(sprintf(

@@ -14,7 +14,7 @@ use Prooph\EventSourcing\Aggregate\AggregateRepository;
  */
 final class EventStoreBookList extends AggregateRepository implements BookList
 {
-    public function add(Book $book): void
+    public function save(Book $book): void
     {
         $this->saveAggregateRoot($book);
     }

@@ -21,6 +21,14 @@ services:
         tags:
             - name: 'prooph_service_bus.main_command_bus.route_target'
               message_detection: true
+    Book\Domain\Model\Book\Handler\DeleteBookHandler:
+        class: Book\Domain\Model\Book\Handler\DeleteBookHandler
+        public: true
+        arguments:
+            - '@book_list'
+        tags:
+            - name: 'prooph_service_bus.main_command_bus.route_target'
+              message_detection: true
     Book\Infrastructure\Api\ApiPlatform\DataPersister\BookDataPersister:
         class: Book\Infrastructure\Api\ApiPlatform\DataPersister\BookDataPersister
         arguments:
@@ -34,6 +42,14 @@ services:
 
     Book\Domain\Model\Review\Handler\PostReviewHandler:
         class: Book\Domain\Model\Review\Handler\PostReviewHandler
+        public: true
+        arguments:
+            - '@review_list'
+        tags:
+            - name: 'prooph_service_bus.main_command_bus.route_target'
+              message_detection: true
+    Book\Domain\Model\Review\Handler\DeleteReviewHandler:
+        class: Book\Domain\Model\Review\Handler\DeleteReviewHandler
         public: true
         arguments:
             - '@review_list'
