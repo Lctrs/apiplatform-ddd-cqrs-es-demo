@@ -15,25 +15,21 @@ services:
 
     Book\Domain\Model\Book\Handler\CreateBookHandler:
         class: Book\Domain\Model\Book\Handler\CreateBookHandler
-        public: true
         arguments:
             - '@book_list'
         tags:
-            - name: 'prooph_service_bus.main_command_bus.route_target'
-              message_detection: true
+            - messenger.message_handler
     Book\Domain\Model\Book\Handler\DeleteBookHandler:
         class: Book\Domain\Model\Book\Handler\DeleteBookHandler
-        public: true
         arguments:
             - '@book_list'
         tags:
-            - name: 'prooph_service_bus.main_command_bus.route_target'
-              message_detection: true
+            - messenger.message_handler
     Book\Infrastructure\Api\ApiPlatform\DataPersister\BookDataPersister:
         class: Book\Infrastructure\Api\ApiPlatform\DataPersister\BookDataPersister
         arguments:
-            - '@prooph_service_bus.main_command_bus'
-            - '@prooph_service_bus.message_factory.main_command_bus'
+            - '@messenger.bus.commands'
+            - '@prooph_event_store.message_factory'
     Book\Infrastructure\Projection\BookProjection: ~
     Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel:
         class: Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
@@ -42,25 +38,21 @@ services:
 
     Book\Domain\Model\Review\Handler\PostReviewHandler:
         class: Book\Domain\Model\Review\Handler\PostReviewHandler
-        public: true
         arguments:
             - '@review_list'
         tags:
-            - name: 'prooph_service_bus.main_command_bus.route_target'
-              message_detection: true
+            - messenger.message_handler
     Book\Domain\Model\Review\Handler\DeleteReviewHandler:
         class: Book\Domain\Model\Review\Handler\DeleteReviewHandler
-        public: true
         arguments:
             - '@review_list'
         tags:
-            - name: 'prooph_service_bus.main_command_bus.route_target'
-              message_detection: true
+            - messenger.message_handler
     Book\Infrastructure\Api\ApiPlatform\DataPersister\ReviewDataPersister:
         class: Book\Infrastructure\Api\ApiPlatform\DataPersister\ReviewDataPersister
         arguments:
-        - '@prooph_service_bus.main_command_bus'
-        - '@prooph_service_bus.message_factory.main_command_bus'
+            - '@messenger.bus.commands'
+            - '@prooph_event_store.message_factory'
     Book\Infrastructure\Projection\ReviewProjection: ~
     Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel:
         class: Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel

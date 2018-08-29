@@ -10,14 +10,14 @@ use Book\Domain\Model\Review\Command\PostReview;
 use Book\Domain\Model\Review\ReviewId;
 use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review;
 use Prooph\Common\Messaging\MessageFactory;
-use Prooph\ServiceBus\CommandBus;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 final class ReviewDataPersister implements DataPersisterInterface
 {
     private $commandBus;
     private $messageFactory;
 
-    public function __construct(CommandBus $commandBus, MessageFactory $messageFactory)
+    public function __construct(MessageBusInterface $commandBus, MessageFactory $messageFactory)
     {
         $this->commandBus = $commandBus;
         $this->messageFactory = $messageFactory;

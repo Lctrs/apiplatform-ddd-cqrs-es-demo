@@ -1,0 +1,13 @@
+framework:
+    messenger:
+        buses:
+            messenger.bus.commands:
+                middleware:
+                    - 'Core\Infrastructure\MessageBus\CommandBus\Middleware\TransactionMiddleware'
+
+services:
+    Core\Infrastructure\MessageBus\CommandBus\Middleware\TransactionMiddleware:
+        class: Core\Infrastructure\MessageBus\CommandBus\Middleware\TransactionMiddleware
+        public: false
+        arguments:
+            - '@Prooph\EventStore\TransactionalEventStore'

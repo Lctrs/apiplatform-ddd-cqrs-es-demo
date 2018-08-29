@@ -200,20 +200,11 @@
     "prooph/event-store": {
         "version": "v7.3.7"
     },
-    "prooph/event-store-bus-bridge": {
-        "version": "v3.2.0"
-    },
     "prooph/event-store-symfony-bundle": {
         "version": "v0.5.0"
     },
     "prooph/pdo-event-store": {
         "version": "v1.9.0"
-    },
-    "prooph/service-bus": {
-        "version": "v6.2.2"
-    },
-    "prooph/service-bus-symfony-bundle": {
-        "version": "v0.7.0"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -298,6 +289,15 @@
     },
     "symfony/inflector": {
         "version": "v4.1.2"
+    },
+    "symfony/messenger": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "85ab0b55d90a8f3e29e1b685a71f5b37923a7f5e"
+        }
     },
     "symfony/options-resolver": {
         "version": "v4.1.2"

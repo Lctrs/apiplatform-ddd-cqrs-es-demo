@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2dc87b8c03bbdb1827458ee5d49a3c15",
+    "content-hash": "2515150f4cb5535099376acac70d3a22",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2179,70 +2179,6 @@
             "time": "2018-08-27T07:12:19+00:00"
         },
         {
-            "name": "prooph/event-store-bus-bridge",
-            "version": "v3.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/prooph/event-store-bus-bridge.git",
-                "reference": "911f144d682aaf155610f4220fde605b13d8a100"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/prooph/event-store-bus-bridge/zipball/911f144d682aaf155610f4220fde605b13d8a100",
-                "reference": "911f144d682aaf155610f4220fde605b13d8a100",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1",
-                "prooph/common": "^4.2.1",
-                "prooph/event-store": "^7.3.1",
-                "prooph/service-bus": "^6.2"
-            },
-            "require-dev": {
-                "malukenho/docheader": "^0.1.4",
-                "phpspec/prophecy": "^1.7",
-                "phpunit/phpunit": "^6.0",
-                "prooph/bookdown-template": "^0.2.3",
-                "prooph/php-cs-fixer-config": "^0.2.1",
-                "psr/container": "^1.0",
-                "satooshi/php-coveralls": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Prooph\\EventStoreBusBridge\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sascha-Oliver Prolic",
-                    "email": "saschaprolic@googlemail.com"
-                },
-                {
-                    "name": "Alexander Miertsch",
-                    "email": "contact@prooph.de",
-                    "homepage": "http://www.codeliner.ws/"
-                }
-            ],
-            "description": "Marry CQRS with Event Sourcing",
-            "homepage": "http://getprooph.org/",
-            "keywords": [
-                "EventSourcing",
-                "cqrs",
-                "prooph"
-            ],
-            "time": "2018-08-06T11:02:01+00:00"
-        },
-        {
             "name": "prooph/event-store-symfony-bundle",
             "version": "v0.5.0",
             "source": {
@@ -2397,168 +2333,6 @@
             "description": "Prooph PDO EventStore",
             "homepage": "http://getprooph.org/",
             "time": "2018-06-29T08:37:28+00:00"
-        },
-        {
-            "name": "prooph/service-bus",
-            "version": "v6.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/prooph/service-bus.git",
-                "reference": "4b6f1ded5039cf939591990ae94302a039aca67e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/prooph/service-bus/zipball/4b6f1ded5039cf939591990ae94302a039aca67e",
-                "reference": "4b6f1ded5039cf939591990ae94302a039aca67e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1",
-                "prooph/common": "^4.0.0"
-            },
-            "conflict": {
-                "sandrokeil/interop-config": "<2.0.1"
-            },
-            "require-dev": {
-                "malukenho/docheader": "^0.1.4",
-                "phpspec/prophecy": "^1.7",
-                "phpunit/phpunit": "^6.0",
-                "prooph/bookdown-template": "^0.2.3",
-                "prooph/php-cs-fixer-config": "^0.2.1",
-                "psr/container": "^1.0",
-                "react/promise": "^2.4.1",
-                "sandrokeil/interop-config": "^2.0.1",
-                "satooshi/php-coveralls": "^1.0"
-            },
-            "suggest": {
-                "prooph/event-store-bus-bridge": "Let the EventBus dispatch persisted DomainEvents",
-                "prooph/service-bus-zfc-rbac-bridge": "Use ZfcRbac as authorization service for route and finalize guard",
-                "psr/container": "^1.0 for usage of provided factories",
-                "react/promise": "^2.4.1 for usage with provided QueryBus",
-                "sandrokeil/interop-config": "For usage of provided factories",
-                "zendframework/zend-servicemanager": "Use Zend ServiceManager to lazy load your handlers and listeners"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Prooph\\ServiceBus\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sascha-Oliver Prolic",
-                    "email": "saschaprolic@googlemail.com"
-                },
-                {
-                    "name": "Alexander Miertsch",
-                    "email": "contact@prooph.de",
-                    "homepage": "http://www.prooph.de"
-                }
-            ],
-            "description": "PHP Enterprise Service Bus Implementation supporting CQRS and DDD",
-            "homepage": "http://getprooph.org/",
-            "keywords": [
-                "cqrs",
-                "ddd",
-                "messaging",
-                "prooph"
-            ],
-            "time": "2018-02-07T12:51:24+00:00"
-        },
-        {
-            "name": "prooph/service-bus-symfony-bundle",
-            "version": "v0.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/prooph/service-bus-symfony-bundle.git",
-                "reference": "306f3a677cffe46b49871d3848ae3a70f814a139"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/prooph/service-bus-symfony-bundle/zipball/306f3a677cffe46b49871d3848ae3a70f814a139",
-                "reference": "306f3a677cffe46b49871d3848ae3a70f814a139",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1",
-                "prooph/service-bus": "~6.0",
-                "psr/container": "^1.0",
-                "symfony/config": "~3.3|^4.0",
-                "symfony/dependency-injection": "~3.3|^4.0",
-                "symfony/http-kernel": "~3.3|^4.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "~2.0",
-                "phpspec/prophecy": "^1.7",
-                "phpstan/phpstan": "^0.9",
-                "phpunit/phpunit": "^6.0",
-                "prooph/bookdown-template": "^0.2.3",
-                "prooph/php-cs-fixer-config": "^0.2",
-                "react/promise": "^2.5",
-                "satooshi/php-coveralls": "^1.0",
-                "symfony/framework-bundle": "~3.3|^4.0"
-            },
-            "suggest": {
-                "symfony/framework-bundle": "~3.3|^4.0",
-                "symfony/stopwatch": "~3.3|^4.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Prooph\\Bundle\\ServiceBus\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sascha-Oliver Prolic",
-                    "email": "saschaprolic@googlemail.com"
-                },
-                {
-                    "name": "Alexander Miertsch",
-                    "email": "contact@prooph.de",
-                    "homepage": "http://www.prooph.de"
-                },
-                {
-                    "name": "Oskar Pfeifer-Bley",
-                    "email": "oskar@programming-php.net"
-                },
-                {
-                    "name": "Ralf Junghanns",
-                    "email": "ralf.junghanns@gmail.com"
-                },
-                {
-                    "name": "Malte Blättermann",
-                    "email": "malte.blaettermann@googlemail.com"
-                }
-            ],
-            "homepage": "http://getprooph.org/",
-            "keywords": [
-                "Query Bus",
-                "Service Bus",
-                "bundle",
-                "cqrs",
-                "ddd",
-                "event bus",
-                "message bus",
-                "messaging",
-                "php",
-                "prooph",
-                "symfony"
-            ],
-            "time": "2018-04-26T12:29:33+00:00"
         },
         {
             "name": "psr/cache",
@@ -3868,6 +3642,69 @@
                 "words"
             ],
             "time": "2018-07-26T08:55:25+00:00"
+        },
+        {
+            "name": "symfony/messenger",
+            "version": "v4.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/messenger.git",
+                "reference": "e7a8d981bfb74904b93d1f172cf38af2ff485ae8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/messenger/zipball/e7a8d981bfb74904b93d1f172cf38af2ff485ae8",
+                "reference": "e7a8d981bfb74904b93d1f172cf38af2ff485ae8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/console": "~3.4|~4.0",
+                "symfony/dependency-injection": "~3.4.6|~4.0",
+                "symfony/http-kernel": "~3.4|~4.0",
+                "symfony/process": "~3.4|~4.0",
+                "symfony/property-access": "~3.4|~4.0",
+                "symfony/serializer": "~3.4|~4.0",
+                "symfony/validator": "~3.4|~4.0",
+                "symfony/var-dumper": "~3.4|~4.0"
+            },
+            "suggest": {
+                "enqueue/messenger-adapter": "For using the php-enqueue library as a transport."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Messenger\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Samuel Roze",
+                    "email": "samuel.roze@gmail.com"
+                }
+            ],
+            "description": "Symfony Messenger Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-08-24T11:47:58+00:00"
         },
         {
             "name": "symfony/property-access",

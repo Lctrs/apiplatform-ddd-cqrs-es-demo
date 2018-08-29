@@ -7,7 +7,7 @@ namespace Core\Infrastructure\Fixtures\Persistence;
 use Fidry\AliceDataFixtures\Persistence\PersisterInterface;
 use Nelmio\Alice\IsAServiceTrait;
 use Prooph\Common\Messaging\Command;
-use Prooph\ServiceBus\CommandBus;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 final class CommandBusPersister implements PersisterInterface
 {
@@ -15,7 +15,7 @@ final class CommandBusPersister implements PersisterInterface
 
     private $commandBus;
 
-    public function __construct(CommandBus $commandBus)
+    public function __construct(MessageBusInterface $commandBus)
     {
         $this->commandBus = $commandBus;
     }

@@ -15,7 +15,7 @@ services:
     Core\Infrastructure\Fixtures\Persistence\CommandBusPersister:
         class: Core\Infrastructure\Fixtures\Persistence\CommandBusPersister
         arguments:
-            - '@prooph_service_bus.main_command_bus'
+            - '@messenger.bus.commands'
 
     Fidry\AliceDataFixtures\LoaderInterface:
         class: Fidry\AliceDataFixtures\Loader\PersisterLoader

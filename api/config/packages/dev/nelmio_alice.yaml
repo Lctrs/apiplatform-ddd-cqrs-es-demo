@@ -10,7 +10,7 @@ services:
     Core\Infrastructure\Fixtures\Instantiator\MessageInstantiator:
         class: Core\Infrastructure\Fixtures\Instantiator\MessageInstantiator
         arguments:
-            - '@prooph_service_bus.message_factory'
+            - '@prooph_event_store.message_factory'
             - '@nelmio_alice.generator.resolver.value.registry'
         tags:
             - nelmio_alice.generator.instantiator.chainable_instantiator

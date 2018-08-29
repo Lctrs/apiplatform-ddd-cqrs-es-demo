@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Infrastructure\Kernel\Symfony;
 
+use Core\Infrastructure\Container\RemoveDoctrineOrmPersisterCompilerPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -35,6 +36,11 @@ class Kernel extends BaseKernel
                 yield new $class();
             }
         }
+    }
+
+    protected function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new RemoveDoctrineOrmPersisterCompilerPass());
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
