@@ -33,10 +33,9 @@
         "symfony/console": "^4.1",
         "symfony/dependency-injection": "^4.1",
         "symfony/doctrine-bridge": "^4.1",
-        "symfony/flex": "^1.0",
+        "symfony/flex": "^1.1",
         "symfony/framework-bundle": "^4.1",
         "symfony/http-kernel": "^4.1",
-        "symfony/lts": "^4@dev",
         "symfony/routing": "^4.1",
         "symfony/serializer": "^4.1",
         "symfony/twig-bundle": "^4.1",
@@ -67,6 +66,7 @@
         }
     },
     "replace": {
+        "paragonie/random_compat": "*",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
         "symfony/polyfill-mbstring": "*",
@@ -99,7 +99,8 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": true
+            "allow-contrib": true,
+            "require": "4.1.*"
         }
     }
 }

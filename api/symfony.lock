@@ -167,9 +167,6 @@
     "ocramius/proxy-manager": {
         "version": "2.2.0"
     },
-    "paragonie/random_compat": {
-        "version": "v9.99.99"
-    },
     "php-cs-fixer/diff": {
         "version": "v1.3.0"
     },
@@ -301,9 +298,6 @@
     },
     "symfony/inflector": {
         "version": "v4.1.2"
-    },
-    "symfony/lts": {
-        "version": "4-dev"
     },
     "symfony/options-resolver": {
         "version": "v4.1.2"
