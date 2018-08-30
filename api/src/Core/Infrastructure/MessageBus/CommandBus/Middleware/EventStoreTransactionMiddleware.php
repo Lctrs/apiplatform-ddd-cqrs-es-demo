@@ -7,7 +7,7 @@ namespace Core\Infrastructure\MessageBus\CommandBus\Middleware;
 use Prooph\EventStore\TransactionalEventStore;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
 
-final class TransactionMiddleware implements MiddlewareInterface
+final class EventStoreTransactionMiddleware implements MiddlewareInterface
 {
     private $eventStore;
 
