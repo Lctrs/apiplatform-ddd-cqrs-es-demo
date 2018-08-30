@@ -10,7 +10,6 @@ api_platform:
     description: |
         This is a demo application of the [API Platform](https://api-platform.com) framework, DDD/CQRS/ES styles!
         [Its source code](https://github.com/Lctrs/apiplatform-ddd-cqrs-es-demo) includes various examples, check it out!
-        You may also be insterested by [the GraphQL entrypoint](/graphql).
     formats:
         jsonld: ['application/ld+json']
         jsonhal: ['application/hal+json']
