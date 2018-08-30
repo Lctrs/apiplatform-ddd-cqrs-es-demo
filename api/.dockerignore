@@ -16,7 +16,6 @@
 bin/*
 !bin/console
 docker/db/data/
-helm/
 public/bundles/
 var/
 vendor/
