@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\Kernel\Symfony;
+namespace Core\Infrastructure\Symfony;
 
-use Core\Infrastructure\Container\RemoveDoctrineOrmPersisterCompilerPass;
+use Core\Infrastructure\Symfony\DependencyInjection\CompilerPass\RemoveDoctrineOrmPersisterCompilerPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
