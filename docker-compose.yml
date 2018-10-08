@@ -5,10 +5,6 @@ services:
     build:
       context: ./api
       target: api_platform_cli
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/php
-        - ${CONTAINER_REGISTRY_BASE}/nginx
-        - ${CONTAINER_REGISTRY_BASE}/varnish
     depends_on:
       - db
     env_file:
@@ -22,10 +18,6 @@ services:
     build:
       context: ./api
       target: api_platform_cli
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/php
-        - ${CONTAINER_REGISTRY_BASE}/nginx
-        - ${CONTAINER_REGISTRY_BASE}/varnish
     depends_on:
       - db
     env_file:
@@ -37,14 +29,9 @@ services:
     command: bin/console event-store:projection:run review_projection
 
   php:
-    image: ${CONTAINER_REGISTRY_BASE}/php
     build:
       context: ./api
       target: api_platform_php
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/php
-        - ${CONTAINER_REGISTRY_BASE}/nginx
-        - ${CONTAINER_REGISTRY_BASE}/varnish
     depends_on:
       - db
     env_file:
@@ -56,14 +43,9 @@ services:
       - ./api/var:/srv/api/var:rw
 
   api:
-    image: ${CONTAINER_REGISTRY_BASE}/nginx
     build:
       context: ./api
       target: api_platform_nginx
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/php
-        - ${CONTAINER_REGISTRY_BASE}/nginx
-        - ${CONTAINER_REGISTRY_BASE}/varnish
     depends_on:
       - php
     # Comment out this volume in production
@@ -73,14 +55,9 @@ services:
       - "8080:80"
 
   cache-proxy:
-    image: ${CONTAINER_REGISTRY_BASE}/varnish
     build:
       context: ./api
       target: api_platform_varnish
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/php
-        - ${CONTAINER_REGISTRY_BASE}/nginx
-        - ${CONTAINER_REGISTRY_BASE}/varnish
     depends_on:
       - api
     volumes:
@@ -92,7 +69,7 @@ services:
 
   db:
     # In production, you may want to use a managed database service
-    image: postgres:9.6-alpine
+    image: postgres:10.5-alpine
     environment:
       - POSTGRES_DB=api
       - POSTGRES_USER=api-platform
@@ -109,11 +86,8 @@ services:
   client:
     # Use a static website hosting service in production
     # See https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment
-    image: ${CONTAINER_REGISTRY_BASE}/client
     build:
       context: ./client
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/client
     env_file:
       - ./client/.env
     volumes:
@@ -125,11 +99,8 @@ services:
   admin:
     # Use a static website hosting service in production
     # See https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment
-    image: ${CONTAINER_REGISTRY_BASE}/admin
     build:
       context: ./admin
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/admin
     env_file:
       - ./admin/.env
     volumes:
