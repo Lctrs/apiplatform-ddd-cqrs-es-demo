@@ -11,19 +11,17 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'bin/console' ]; then
 	setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX var
 	setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX var
 
-	if [ "$APP_ENV" != 'prod' ]; then
-		if  [ "$1" = 'php-fpm' ]; then
-			composer install --prefer-dist --no-progress --no-suggest --no-interaction
-		fi
+	if [ "$APP_ENV" != 'prod' ] && [ "$1" = 'php-fpm' ]; then
+		composer install --prefer-dist --no-progress --no-suggest --no-interaction
+	fi
 
-		>&2 echo "Waiting for Postgres to be ready..."
-		until pg_isready --timeout=0 --dbname="${DATABASE_URL}"; do
-			sleep 1
-		done
+	>&2 echo "Waiting for Postgres to be ready..."
+	until pg_isready --timeout=0 --dbname="${DATABASE_URL}"; do
+		sleep 1
+	done
 
-		if  [ "$1" = 'php-fpm' ]; then
-			bin/console doctrine:migrations:migrate --no-interaction
-		fi
+	if  [ "$APP_ENV" != 'prod' ] && [ "$1" = 'php-fpm' ]; then
+		bin/console doctrine:migrations:migrate --no-interaction
 	fi
 fi
 
