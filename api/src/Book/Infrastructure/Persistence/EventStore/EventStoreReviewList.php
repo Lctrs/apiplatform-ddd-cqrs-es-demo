@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Persistence\EventStore;
+namespace App\Book\Infrastructure\Persistence\EventStore;
 
-use Book\Domain\Model\Review\Review;
-use Book\Domain\Model\Review\ReviewId;
-use Book\Domain\Model\Review\ReviewList;
-use Core\Domain\AggregateRepository;
-use Core\Domain\EventStore;
+use App\Book\Domain\Model\Review\Review;
+use App\Book\Domain\Model\Review\ReviewId;
+use App\Book\Domain\Model\Review\ReviewList;
+use App\Core\Domain\AggregateRepository;
+use App\Core\Domain\AggregateType;
+use App\Core\Domain\EventStore;
 
 /**
  * @method null|Review getAggregateRoot(ReviewId $reviewId) : ?Review
@@ -17,7 +18,7 @@ final class EventStoreReviewList extends AggregateRepository implements ReviewLi
 {
     public function __construct(EventStore $eventStore, string $streamName)
     {
-        parent::__construct($eventStore, $streamName, Review::class);
+        parent::__construct($eventStore, $streamName, new AggregateType('review', Review::class));
     }
 
     public function save(Review $review): void

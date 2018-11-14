@@ -1,64 +1,64 @@
-'Book\Domain\Model\Book\BookId':
+'App\Book\Domain\Model\Book\BookId':
     bookid_{1..100}:
         __factory:
             fromString:
                 0 (unique): <uuid()>
-'Book\Domain\Model\Book\Isbn':
+'App\Book\Domain\Model\Book\Isbn':
     isbn_{1..100}:
         __factory:
             fromString:
                 0 (unique): <isbn13()>
-'Book\Domain\Model\Book\Title':
+'App\Book\Domain\Model\Book\Title':
     title_{1..100}:
         __factory:
             fromString:
                 - <sentence()>
-'Book\Domain\Model\Book\Description':
+'App\Book\Domain\Model\Book\Description':
     description_{1..100}:
         __factory:
             fromString:
                 0 (unique): <paragraph()>
-'Book\Domain\Model\Book\Author':
+'App\Book\Domain\Model\Book\Author':
     bookauthor_{1..100}:
         __factory:
             fromString:
                 - <name()>
 
-'Book\Domain\Model\Book\Command\CreateBook':
+'App\Book\Domain\Model\Book\Command\CreateBook':
     book_{1..100}:
         __construct:
-            - 'bookid_<current()>'
-            - 'isbn_<current()>'
-            - 'title_<current()>'
-            - 'description_<current()>'
-            - 'bookauthor_<current()>'
+            - '@bookid_<current()>'
+            - '@isbn_<current()>'
+            - '@title_<current()>'
+            - '@description_<current()>'
+            - '@bookauthor_<current()>'
 
-'Book\Domain\Model\Review\ReviewId':
+'App\Book\Domain\Model\Review\ReviewId':
     reviewid_{1..500}:
         __factory:
             fromString:
                 0 (unique): <uuid()>
-'Book\Domain\Model\Review\Body':
+'App\Book\Domain\Model\Review\Body':
     body_{1..500}:
         __factory:
             fromString:
                 0 (unique): <paragraph()>
-'Book\Domain\Model\Review\Rating':
+'App\Book\Domain\Model\Review\Rating':
     rating_{1..500}:
         __factory:
             fromScalar:
                 - <numberBetween(0, 5)>
-'Book\Domain\Model\Review\Author':
+'App\Book\Domain\Model\Review\Author':
     reviewauthor_{1..500}:
         __factory:
             fromString:
                 - <name()>
 
-'Book\Domain\Model\Review\Command\PostReview':
+'App\Book\Domain\Model\Review\Command\PostReview':
     review_{1..500}:
         __construct:
-            - 'reviewid_<current()>'
-            - 'bookid_*'
-            - 'body_<current()>'
-            - 'rating_<current()>'
-            - 'reviewauthor_<current()>'
+            - '@reviewid_<current()>'
+            - '@bookid_*'
+            - '@body_<current()>'
+            - '@rating_<current()>'
+            - '@reviewauthor_<current()>'

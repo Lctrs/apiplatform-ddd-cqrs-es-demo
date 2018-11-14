@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Projection;
+namespace App\Book\Infrastructure\Projection;
 
-use Book\Domain\Model\Book\Event\BookWasCreated;
-use Book\Domain\Model\Book\Event\BookWasDeleted;
-use Core\Infrastructure\Persistence\Streams;
+use App\Book\Domain\Model\Book\Event\BookWasCreated;
+use App\Book\Domain\Model\Book\Event\BookWasDeleted;
+use App\Core\Infrastructure\Persistence\Streams;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModel;
 use Prooph\EventStore\Projection\ReadModelProjector;

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Book\Event;
+namespace App\Book\Domain\Model\Book\Event;
 
-use Book\Domain\Model\Book\Author;
-use Book\Domain\Model\Book\BookId;
-use Book\Domain\Model\Book\Description;
-use Book\Domain\Model\Book\Isbn;
-use Book\Domain\Model\Book\Title;
-use Core\Domain\DomainEvent;
-use Core\Domain\IdentifiesAggregate;
+use App\Book\Domain\Model\Book\Author;
+use App\Book\Domain\Model\Book\BookId;
+use App\Book\Domain\Model\Book\Description;
+use App\Book\Domain\Model\Book\Isbn;
+use App\Book\Domain\Model\Book\Title;
+use App\Core\Domain\DomainEvent;
+use App\Core\Domain\IdentifiesAggregate;
 
 final class BookWasCreated extends DomainEvent
 {

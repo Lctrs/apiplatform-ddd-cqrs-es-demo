@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Review;
+namespace App\Book\Domain\Model\Review;
 
-use Book\Domain\Model\Book\BookId;
-use Book\Domain\Model\Review\Event\ReviewWasDeleted;
-use Book\Domain\Model\Review\Event\ReviewWasPosted;
-use Core\Domain\AggregateRoot;
-use Core\Domain\DomainEvent;
-use Core\Domain\IdentifiesAggregate;
+use App\Book\Domain\Model\Book\BookId;
+use App\Book\Domain\Model\Review\Event\ReviewWasDeleted;
+use App\Book\Domain\Model\Review\Event\ReviewWasPosted;
+use App\Core\Domain\AggregateRoot;
+use App\Core\Domain\DomainEvent;
+use App\Core\Domain\IdentifiesAggregate;
 
 final class Review extends AggregateRoot
 {

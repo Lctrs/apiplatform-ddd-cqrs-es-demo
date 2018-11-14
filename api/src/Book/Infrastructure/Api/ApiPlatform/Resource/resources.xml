@@ -5,7 +5,7 @@
            https://api-platform.com/schema/metadata/metadata-2.0.xsd"
 >
     <resource
-        class="Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book"
+        class="App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book"
         description="A book."
         iri="http://schema.org/Book"
     >
@@ -56,7 +56,7 @@
     </resource>
 
     <resource
-        class="Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review"
+        class="App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review"
         description="A review of an item - for example, of a restaurant, movie, or store."
         iri="http://schema.org/Review"
     >
@@ -79,7 +79,7 @@
         <property
             name="book"
             description="The item that is being reviewed/rated"
-            iri="http://schema.org/itemReviewed"
+            iri="hk\ttp://schema.org/itemReviewed"
             required="true"
         />
         <property

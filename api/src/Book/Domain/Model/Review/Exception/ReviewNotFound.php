@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Review\Exception;
+namespace App\Book\Domain\Model\Review\Exception;
 
-use Book\Domain\Model\Review\ReviewId;
+use App\Book\Domain\Model\Review\ReviewId;
 use InvalidArgumentException;
 
 final class ReviewNotFound extends InvalidArgumentException

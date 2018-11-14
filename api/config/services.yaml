@@ -14,62 +14,76 @@ services:
                             # The best practice is to be explicit about your dependencies anyway.
 
     _instanceof:
-        Core\Domain\DomainEvent:
+        App\Core\Domain\DomainEvent:
             tags: ['app.domain_event']
-    Book\Domain\Model\Book\Event\BookWasCreated:
-        class: Book\Domain\Model\Book\Event\BookWasCreated
-    Book\Domain\Model\Review\Event\:
-        class: Book\Domain\Model\Book\Event\BookWasDeleted
-    Book\Domain\Model\Review\Event\ReviewWasDeleted:
-        class: Book\Domain\Model\Review\Event\ReviewWasDeleted
-    Book\Domain\Model\Review\Event\ReviewWasPosted:
-        class: Book\Domain\Model\Review\Event\ReviewWasPosted
+    App\Book\Domain\Model\Book\Event\BookWasCreated:
+        class: App\Book\Domain\Model\Book\Event\BookWasCreated
+    App\Book\Domain\Model\Review\Event\:
+        class: App\Book\Domain\Model\Book\Event\BookWasDeleted
+    App\Book\Domain\Model\Review\Event\ReviewWasDeleted:
+        class: App\Book\Domain\Model\Review\Event\ReviewWasDeleted
+    App\Book\Domain\Model\Review\Event\ReviewWasPosted:
+        class: App\Book\Domain\Model\Review\Event\ReviewWasPosted
 
-    Core\Domain\EventStore:
-        alias: Core\Infrastructure\Persistence\Prooph\EventStore
-    Core\Infrastructure\Persistence\Prooph\EventStore:
-        class: Core\Infrastructure\Persistence\Prooph\EventStore
+    App\Core\Domain\EventStore:
+        alias: App\Core\Infrastructure\Persistence\Prooph\EventStore
+    App\Core\Infrastructure\Persistence\Prooph\EventStore:
+        class: App\Core\Infrastructure\Persistence\Prooph\EventStore
         arguments:
             - '@Prooph\EventStore\EventStore'
-            - '@Core\Infrastructure\Persistence\Prooph\Internal\DomainEventToProophMessageTransformer'
-    Core\Infrastructure\Persistence\Prooph\Internal\DomainEventToProophMessageTransformer:
-        class: Core\Infrastructure\Persistence\Prooph\Internal\DomainEventToProophMessageTransformer
+            - '@App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer'
+    App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer:
+        class: App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer
         arguments:
             - []
 
-#    Book\Domain\Model\Book\Handler\CreateBookHandler:
-#        class: Book\Domain\Model\Book\Handler\CreateBookHandler
-#        arguments:
-#            - '@book_list'
-#        tags:
-#            - messenger.message_handler
-#    Book\Domain\Model\Book\Handler\DeleteBookHandler:
-#        class: Book\Domain\Model\Book\Handler\DeleteBookHandler
-#        arguments:
-#            - '@book_list'
-#        tags:
-#            - messenger.message_handler
-    Book\Infrastructure\Projection\BookProjection: ~
-    Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel:
-        class: Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
+    App\Book\Infrastructure\Persistence\EventStore\EventStoreBookList:
+        class: App\Book\Infrastructure\Persistence\EventStore\EventStoreBookList
+        arguments:
+            - '@App\Core\Domain\EventStore'
+            - !php/const App\Core\Infrastructure\Persistence\Streams::BOOK
+    App\Book\Domain\Model\Book\BookList:
+        alias: App\Book\Infrastructure\Persistence\EventStore\EventStoreBookList
+    App\Book\Domain\Model\Book\Handler\CreateBookHandler:
+        class: App\Book\Domain\Model\Book\Handler\CreateBookHandler
+        arguments:
+            - '@App\Book\Domain\Model\Book\BookList'
+        tags:
+            - messenger.message_handler
+    App\Book\Domain\Model\Book\Handler\DeleteBookHandler:
+        class: App\Book\Domain\Model\Book\Handler\DeleteBookHandler
+        arguments:
+            - '@App\Book\Domain\Model\Book\BookList'
+        tags:
+            - messenger.message_handler
+    App\Book\Infrastructure\Projection\BookProjection: ~
+    App\Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel:
+        class: App\Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
         arguments:
             - '@doctrine.orm.default_entity_manager'
 
-#    Book\Domain\Model\Review\Handler\PostReviewHandler:
-#        class: Book\Domain\Model\Review\Handler\PostReviewHandler
-#        arguments:
-#            - '@book_list'
-#            - '@review_list'
-#        tags:
-#            - messenger.message_handler
-#    Book\Domain\Model\Review\Handler\DeleteReviewHandler:
-#        class: Book\Domain\Model\Review\Handler\DeleteReviewHandler
-#        arguments:
-#            - '@review_list'
-#        tags:
-#            - messenger.message_handler
-    Book\Infrastructure\Projection\ReviewProjection: ~
-    Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel:
-        class: Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
+    App\Book\Infrastructure\Persistence\EventStore\EventStoreReviewList:
+        class: App\Book\Infrastructure\Persistence\EventStore\EventStoreReviewList
+        arguments:
+            - '@App\Core\Domain\EventStore'
+            - !php/const App\Core\Infrastructure\Persistence\Streams::BOOK
+    App\Book\Domain\Model\Review\ReviewList:
+        alias: App\Book\Infrastructure\Persistence\EventStore\EventStoreReviewList
+    App\Book\Domain\Model\Review\Handler\PostReviewHandler:
+        class: App\Book\Domain\Model\Review\Handler\PostReviewHandler
+        arguments:
+            - '@App\Book\Domain\Model\Book\BookList'
+            - '@App\Book\Domain\Model\Review\ReviewList'
+        tags:
+            - messenger.message_handler
+    App\Book\Domain\Model\Review\Handler\DeleteReviewHandler:
+        class: App\Book\Domain\Model\Review\Handler\DeleteReviewHandler
+        arguments:
+            - '@App\Book\Domain\Model\Review\ReviewList'
+        tags:
+            - messenger.message_handler
+    App\Book\Infrastructure\Projection\ReviewProjection: ~
+    App\Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel:
+        class: App\Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
         arguments:
             - '@doctrine.orm.default_entity_manager'

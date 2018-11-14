@@ -8,11 +8,11 @@ prooph_event_store:
             connection: PDO
             projections:
                 book_projection:
-                    read_model: Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
-                    projection: Book\Infrastructure\Projection\BookProjection
+                    read_model: App\Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
+                    projection: App\Book\Infrastructure\Projection\BookProjection
                 review_projection:
-                    read_model: Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
-                    projection: Book\Infrastructure\Projection\ReviewProjection
+                    read_model: App\Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
+                    projection: App\Book\Infrastructure\Projection\ReviewProjection
 
 services:
     PDO:

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Book\Event;
+namespace App\Book\Domain\Model\Book\Event;
 
-use Book\Domain\Model\Book\BookId;
-use Core\Domain\DomainEvent;
-use Core\Domain\IdentifiesAggregate;
+use App\Book\Domain\Model\Book\BookId;
+use App\Core\Domain\DomainEvent;
+use App\Core\Domain\IdentifiesAggregate;
 
 final class BookWasDeleted extends DomainEvent
 {

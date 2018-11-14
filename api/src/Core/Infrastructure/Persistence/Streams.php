@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\Persistence;
+namespace App\Core\Infrastructure\Persistence;
 
 use MabeEnum\Enum;
 

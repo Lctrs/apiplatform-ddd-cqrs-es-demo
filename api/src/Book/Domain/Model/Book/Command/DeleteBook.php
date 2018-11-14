@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Book\Command;
+namespace App\Book\Domain\Model\Book\Command;
 
-use Book\Domain\Model\Book\BookId;
-use Core\Domain\Command;
+use App\Book\Domain\Model\Book\BookId;
+use App\Core\Domain\Command;
 
 final class DeleteBook implements Command
 {

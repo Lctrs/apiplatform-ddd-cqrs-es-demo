@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Projection;
+namespace App\Book\Infrastructure\Projection;
 
-use Book\Domain\Model\Review\Event\ReviewWasDeleted;
-use Book\Domain\Model\Review\Event\ReviewWasPosted;
-use Core\Infrastructure\Persistence\Streams;
+use App\Book\Domain\Model\Review\Event\ReviewWasDeleted;
+use App\Book\Domain\Model\Review\Event\ReviewWasPosted;
+use App\Core\Infrastructure\Persistence\Streams;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModel;
 use Prooph\EventStore\Projection\ReadModelProjector;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Projection\Doctrine\Orm\Entity;
+namespace App\Book\Infrastructure\Projection\Doctrine\Orm\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

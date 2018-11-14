@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Projection\Doctrine\Orm;
+namespace App\Book\Infrastructure\Projection\Doctrine\Orm;
 
-use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
-use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review;
-use Core\Infrastructure\Projection\Doctrine\Orm\AbstractDoctrineOrmReadModel;
+use App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
+use App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review;
+use App\Core\Infrastructure\Projection\Doctrine\Orm\AbstractDoctrineOrmReadModel;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class ReviewReadModel extends AbstractDoctrineOrmReadModel

@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Persistence\EventStore;
+namespace App\Book\Infrastructure\Persistence\EventStore;
 
-use Book\Domain\Model\Book\Book;
-use Book\Domain\Model\Book\BookId;
-use Book\Domain\Model\Book\BookList;
-use Core\Domain\AggregateRepository;
-use Core\Domain\EventStore;
+use App\Book\Domain\Model\Book\Book;
+use App\Book\Domain\Model\Book\BookId;
+use App\Book\Domain\Model\Book\BookList;
+use App\Core\Domain\AggregateRepository;
+use App\Core\Domain\AggregateType;
+use App\Core\Domain\EventStore;
 
 /**
  * @method null|Book getAggregateRoot(BookId $id) : ?Book
@@ -17,7 +18,7 @@ final class EventStoreBookList extends AggregateRepository implements BookList
 {
     public function __construct(EventStore $eventStore, string $streamName)
     {
-        parent::__construct($eventStore, $streamName, Book::class);
+        parent::__construct($eventStore, $streamName, new AggregateType('book', Book::class));
     }
 
     public function save(Book $book): void

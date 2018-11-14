@@ -21,5 +21,5 @@ doctrine:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/Book/Infrastructure/Projection/Doctrine/Orm/Entity'
-                prefix: 'Book\Infrastructure\Projection\Doctrine\Orm\Entity'
+                prefix: 'App\Book\Infrastructure\Projection\Doctrine\Orm\Entity'
                 alias: Book

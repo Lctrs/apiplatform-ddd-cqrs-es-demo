@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\Projection\Doctrine\Orm;
+namespace App\Core\Infrastructure\Projection\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;

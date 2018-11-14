@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\Fixtures\Persistence;
+namespace App\Core\Infrastructure\Fixtures\Persistence;
 
-use Core\Domain\Command;
+use App\Core\Domain\Command;
 use Fidry\AliceDataFixtures\Persistence\PersisterInterface;
 use Nelmio\Alice\IsAServiceTrait;
 use Symfony\Component\Messenger\MessageBusInterface;

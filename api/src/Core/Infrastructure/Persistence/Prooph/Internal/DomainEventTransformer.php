@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\Persistence\Prooph\Internal;
+namespace App\Core\Infrastructure\Persistence\Prooph\Internal;
 
-use Core\Domain\DomainEvent;
+use App\Core\Domain\DomainEvent;
 use Prooph\Common\Messaging\Message;
 use Prooph\EventSourcing\AggregateChanged;
 use Ramsey\Uuid\Uuid;
 
-final class DomainEventToProophMessageTransformer
+final class DomainEventTransformer
 {
     private $eventNameToEventFqcnMap;
 

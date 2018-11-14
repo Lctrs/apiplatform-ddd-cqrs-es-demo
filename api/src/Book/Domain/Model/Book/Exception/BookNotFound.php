@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Book\Exception;
+namespace App\Book\Domain\Model\Book\Exception;
 
-use Book\Domain\Model\Book\BookId;
+use App\Book\Domain\Model\Book\BookId;
 use InvalidArgumentException;
 
 final class BookNotFound extends InvalidArgumentException

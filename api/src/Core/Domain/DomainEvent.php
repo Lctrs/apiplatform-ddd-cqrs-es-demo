@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\Domain;
+namespace App\Core\Domain;
 
 abstract class DomainEvent
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Review\Command;
+namespace App\Book\Domain\Model\Review\Command;
 
-use Book\Domain\Model\Book\BookId;
-use Book\Domain\Model\Review\Author;
-use Book\Domain\Model\Review\Body;
-use Book\Domain\Model\Review\Rating;
-use Book\Domain\Model\Review\ReviewId;
-use Core\Domain\Command;
+use App\Book\Domain\Model\Book\BookId;
+use App\Book\Domain\Model\Review\Author;
+use App\Book\Domain\Model\Review\Body;
+use App\Book\Domain\Model\Review\Rating;
+use App\Book\Domain\Model\Review\ReviewId;
+use App\Core\Domain\Command;
 
 final class PostReview implements Command
 {

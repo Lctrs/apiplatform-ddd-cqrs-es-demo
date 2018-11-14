@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\Fixtures\Cli;
+namespace App\Core\Infrastructure\Fixtures\Cli;
 
 use Fidry\AliceDataFixtures\LoaderInterface;
 use Symfony\Component\Console\Command\Command;

@@ -4,7 +4,7 @@
             xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping
         http://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
 >
-    <class name="Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book">
+    <class name="App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book">
         <attribute name="isbn">
             <group>Book:read</group>
         </attribute>
@@ -23,7 +23,7 @@
         </attribute>
     </class>
 
-    <class name="Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review">
+    <class name="App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review">
         <attribute name="book">
             <group>Review:read</group>
         </attribute>

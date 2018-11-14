@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Review;
+namespace App\Book\Domain\Model\Review;
 
 final class Author
 {

@@ -5,15 +5,15 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Review\Event;
+namespace App\Book\Domain\Model\Review\Event;
 
-use Book\Domain\Model\Book\BookId;
-use Book\Domain\Model\Review\Author;
-use Book\Domain\Model\Review\Body;
-use Book\Domain\Model\Review\Rating;
-use Book\Domain\Model\Review\ReviewId;
-use Core\Domain\DomainEvent;
-use Core\Domain\IdentifiesAggregate;
+use App\Book\Domain\Model\Book\BookId;
+use App\Book\Domain\Model\Review\Author;
+use App\Book\Domain\Model\Review\Body;
+use App\Book\Domain\Model\Review\Rating;
+use App\Book\Domain\Model\Review\ReviewId;
+use App\Core\Domain\DomainEvent;
+use App\Core\Domain\IdentifiesAggregate;
 
 final class ReviewWasPosted extends DomainEvent
 {

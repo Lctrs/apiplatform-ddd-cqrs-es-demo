@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\Symfony\DependencyInjection\CompilerPass;
+namespace App\Core\Infrastructure\Symfony\DependencyInjection\CompilerPass;
 
-use Core\Domain\DomainEvent;
-use Core\Infrastructure\Persistence\Prooph\Internal\DomainEventToProophMessageTransformer;
+use App\Core\Domain\DomainEvent;
+use App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -26,6 +26,6 @@ final class NameToDomainEventMapFactoryCompilerPass implements CompilerPassInter
             $container->removeDefinition($id);
         }
 
-        $container->getDefinition(DomainEventToProophMessageTransformer::class)->replaceArgument(0, $map);
+        $container->getDefinition(DomainEventTransformer::class)->replaceArgument(0, $map);
     }
 }

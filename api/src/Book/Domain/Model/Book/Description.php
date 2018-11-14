@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Book;
+namespace App\Book\Domain\Model\Book;
 
 final class Description
 {

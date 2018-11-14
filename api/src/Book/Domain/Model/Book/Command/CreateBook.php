@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Book\Command;
+namespace App\Book\Domain\Model\Book\Command;
 
-use Book\Domain\Model\Book\Author;
-use Book\Domain\Model\Book\BookId;
-use Book\Domain\Model\Book\Description;
-use Book\Domain\Model\Book\Isbn;
-use Book\Domain\Model\Book\Title;
-use Core\Domain\Command;
+use App\Book\Domain\Model\Book\Author;
+use App\Book\Domain\Model\Book\BookId;
+use App\Book\Domain\Model\Book\Description;
+use App\Book\Domain\Model\Book\Isbn;
+use App\Book\Domain\Model\Book\Title;
+use App\Core\Domain\Command;
 
 final class CreateBook implements Command
 {

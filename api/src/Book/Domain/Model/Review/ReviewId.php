@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Review;
+namespace App\Book\Domain\Model\Review;
 
-use Core\Domain\IdentifiesAggregate;
+use App\Core\Domain\IdentifiesAggregate;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 

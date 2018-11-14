@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Book\Handler;
+namespace App\Book\Domain\Model\Book\Handler;
 
-use Book\Domain\Model\Book\Book;
-use Book\Domain\Model\Book\BookList;
-use Book\Domain\Model\Book\Command\CreateBook;
+use App\Book\Domain\Model\Book\Book;
+use App\Book\Domain\Model\Book\BookList;
+use App\Book\Domain\Model\Book\Command\CreateBook;
 
 final class CreateBookHandler
 {

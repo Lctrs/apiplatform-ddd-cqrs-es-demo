@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Api\ApiPlatform\DataPersister;
+namespace App\Book\Infrastructure\Api\ApiPlatform\DataPersister;
 
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
-use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
+use App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
 use Prooph\Common\Messaging\Command;
 use Symfony\Component\Messenger\MessageBusInterface;
 

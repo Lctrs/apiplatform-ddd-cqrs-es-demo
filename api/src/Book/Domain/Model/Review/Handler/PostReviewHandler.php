@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Review\Handler;
+namespace App\Book\Domain\Model\Review\Handler;
 
-use Book\Domain\Model\Book\BookList;
-use Book\Domain\Model\Book\Exception\BookNotFound;
-use Book\Domain\Model\Review\Command\PostReview;
-use Book\Domain\Model\Review\ReviewList;
+use App\Book\Domain\Model\Book\BookList;
+use App\Book\Domain\Model\Book\Exception\BookNotFound;
+use App\Book\Domain\Model\Review\Command\PostReview;
+use App\Book\Domain\Model\Review\ReviewList;
 
 final class PostReviewHandler
 {

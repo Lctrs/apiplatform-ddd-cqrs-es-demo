@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Book;
+namespace App\Book\Domain\Model\Book;
 
-use Book\Domain\Model\Book\Event\BookWasCreated;
-use Book\Domain\Model\Book\Event\BookWasDeleted;
-use Book\Domain\Model\Review\Author as ReviewAuthor;
-use Book\Domain\Model\Review\Body;
-use Book\Domain\Model\Review\Rating;
-use Book\Domain\Model\Review\Review;
-use Book\Domain\Model\Review\ReviewId;
-use Core\Domain\AggregateRoot;
-use Core\Domain\DomainEvent;
-use Core\Domain\IdentifiesAggregate;
+use App\Book\Domain\Model\Book\Event\BookWasCreated;
+use App\Book\Domain\Model\Book\Event\BookWasDeleted;
+use App\Book\Domain\Model\Review\Author as ReviewAuthor;
+use App\Book\Domain\Model\Review\Body;
+use App\Book\Domain\Model\Review\Rating;
+use App\Book\Domain\Model\Review\Review;
+use App\Book\Domain\Model\Review\ReviewId;
+use App\Core\Domain\AggregateRoot;
+use App\Core\Domain\DomainEvent;
+use App\Core\Domain\IdentifiesAggregate;
 
 final class Book extends AggregateRoot
 {

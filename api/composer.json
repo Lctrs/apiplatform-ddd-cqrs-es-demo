@@ -58,8 +58,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Book\\": "src/Book",
-            "Core\\": "src/Core"
+            "App\\": "src/"
         }
     },
     "replace": {

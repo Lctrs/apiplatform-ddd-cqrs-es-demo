@@ -2,23 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\Persistence\Prooph;
+namespace App\Core\Infrastructure\Persistence\Prooph;
 
-use Core\Domain\EventStore as EventStoreInterface;
-use Core\Domain\IdentifiesAggregate;
-use Core\Infrastructure\Persistence\Prooph\Internal\CallableIterator;
-use Core\Infrastructure\Persistence\Prooph\Internal\DomainEventToProophMessageTransformer;
+use App\Core\Domain\DomainEvent;
+use App\Core\Domain\EventStore as EventStoreInterface;
+use App\Core\Domain\IdentifiesAggregate;
+use App\Core\Domain\MapperIterator;
+use App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer;
+use ArrayIterator;
+use Prooph\Common\Messaging\Message;
 use Prooph\EventStore\EventStore as ProophEventStore;
 use Prooph\EventStore\Metadata\MetadataMatcher;
 use Prooph\EventStore\Metadata\Operator;
 use Prooph\EventStore\StreamName;
+use Traversable;
 
 final class EventStore implements EventStoreInterface
 {
     private $eventStore;
     private $transformer;
 
-    public function __construct(ProophEventStore $eventStore, DomainEventToProophMessageTransformer $transformer)
+    public function __construct(ProophEventStore $eventStore, DomainEventTransformer $transformer)
     {
         $this->eventStore = $eventStore;
         $this->transformer = $transformer;
@@ -26,9 +30,15 @@ final class EventStore implements EventStoreInterface
 
     public function appendTo(string $streamName, iterable $streamEvents): void
     {
+        if (!$streamEvents instanceof Traversable) {
+            $streamEvents = new ArrayIterator($streamEvents);
+        }
+
         $this->eventStore->appendTo(
             new StreamName($streamName),
-            new CallableIterator(new \ArrayIterator($streamEvents), [$this->transformer, 'transform'])
+            new MapperIterator($streamEvents, function (DomainEvent $event): Message {
+                return $this->transformer->transform($event);
+            })
         );
     }
 
@@ -41,9 +51,11 @@ final class EventStore implements EventStoreInterface
                 $aggregateId->__toString()
             );
 
-        return new CallableIterator(
+        return new MapperIterator(
             $this->eventStore->load(new StreamName($streamName), 1, null, $metadataMatcher),
-            [$this->transformer, 'reverseTransform']
+            function (Message $message): DomainEvent {
+                return $this->transformer->reverseTransform($message);
+            }
         );
     }
 }

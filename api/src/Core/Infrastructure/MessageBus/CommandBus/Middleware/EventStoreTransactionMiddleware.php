@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\MessageBus\CommandBus\Middleware;
+namespace App\Core\Infrastructure\MessageBus\CommandBus\Middleware;
 
 use Prooph\EventStore\TransactionalEventStore;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
