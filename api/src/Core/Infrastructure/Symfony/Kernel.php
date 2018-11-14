@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Infrastructure\Symfony;
 
+use Core\Infrastructure\Symfony\DependencyInjection\CompilerPass\NameToDomainEventMapFactoryCompilerPass;
 use Core\Infrastructure\Symfony\DependencyInjection\CompilerPass\RemoveDoctrineOrmPersisterCompilerPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -41,6 +42,7 @@ class Kernel extends BaseKernel
     protected function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new RemoveDoctrineOrmPersisterCompilerPass());
+        $container->addCompilerPass(new NameToDomainEventMapFactoryCompilerPass());
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void

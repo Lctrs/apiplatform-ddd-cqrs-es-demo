@@ -13,46 +13,61 @@ services:
                             # fetching services directly from the container via $container->get() won't work.
                             # The best practice is to be explicit about your dependencies anyway.
 
-    Book\Domain\Model\Book\Handler\CreateBookHandler:
-        class: Book\Domain\Model\Book\Handler\CreateBookHandler
+    _instanceof:
+        Core\Domain\DomainEvent:
+            tags: ['app.domain_event']
+    Book\Domain\Model\Book\Event\BookWasCreated:
+        class: Book\Domain\Model\Book\Event\BookWasCreated
+    Book\Domain\Model\Review\Event\:
+        class: Book\Domain\Model\Book\Event\BookWasDeleted
+    Book\Domain\Model\Review\Event\ReviewWasDeleted:
+        class: Book\Domain\Model\Review\Event\ReviewWasDeleted
+    Book\Domain\Model\Review\Event\ReviewWasPosted:
+        class: Book\Domain\Model\Review\Event\ReviewWasPosted
+
+    Core\Domain\EventStore:
+        alias: Core\Infrastructure\Persistence\Prooph\EventStore
+    Core\Infrastructure\Persistence\Prooph\EventStore:
+        class: Core\Infrastructure\Persistence\Prooph\EventStore
         arguments:
-            - '@book_list'
-        tags:
-            - messenger.message_handler
-    Book\Domain\Model\Book\Handler\DeleteBookHandler:
-        class: Book\Domain\Model\Book\Handler\DeleteBookHandler
+            - '@Prooph\EventStore\EventStore'
+            - '@Core\Infrastructure\Persistence\Prooph\Internal\DomainEventToProophMessageTransformer'
+    Core\Infrastructure\Persistence\Prooph\Internal\DomainEventToProophMessageTransformer:
+        class: Core\Infrastructure\Persistence\Prooph\Internal\DomainEventToProophMessageTransformer
         arguments:
-            - '@book_list'
-        tags:
-            - messenger.message_handler
-    Book\Infrastructure\Api\ApiPlatform\DataPersister\BookDataPersister:
-        class: Book\Infrastructure\Api\ApiPlatform\DataPersister\BookDataPersister
-        arguments:
-            - '@messenger.bus.commands'
-            - '@prooph_event_store.message_factory'
+            - []
+
+#    Book\Domain\Model\Book\Handler\CreateBookHandler:
+#        class: Book\Domain\Model\Book\Handler\CreateBookHandler
+#        arguments:
+#            - '@book_list'
+#        tags:
+#            - messenger.message_handler
+#    Book\Domain\Model\Book\Handler\DeleteBookHandler:
+#        class: Book\Domain\Model\Book\Handler\DeleteBookHandler
+#        arguments:
+#            - '@book_list'
+#        tags:
+#            - messenger.message_handler
     Book\Infrastructure\Projection\BookProjection: ~
     Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel:
         class: Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
         arguments:
             - '@doctrine.orm.default_entity_manager'
 
-    Book\Domain\Model\Review\Handler\PostReviewHandler:
-        class: Book\Domain\Model\Review\Handler\PostReviewHandler
-        arguments:
-            - '@review_list'
-        tags:
-            - messenger.message_handler
-    Book\Domain\Model\Review\Handler\DeleteReviewHandler:
-        class: Book\Domain\Model\Review\Handler\DeleteReviewHandler
-        arguments:
-            - '@review_list'
-        tags:
-            - messenger.message_handler
-    Book\Infrastructure\Api\ApiPlatform\DataPersister\ReviewDataPersister:
-        class: Book\Infrastructure\Api\ApiPlatform\DataPersister\ReviewDataPersister
-        arguments:
-            - '@messenger.bus.commands'
-            - '@prooph_event_store.message_factory'
+#    Book\Domain\Model\Review\Handler\PostReviewHandler:
+#        class: Book\Domain\Model\Review\Handler\PostReviewHandler
+#        arguments:
+#            - '@book_list'
+#            - '@review_list'
+#        tags:
+#            - messenger.message_handler
+#    Book\Domain\Model\Review\Handler\DeleteReviewHandler:
+#        class: Book\Domain\Model\Review\Handler\DeleteReviewHandler
+#        arguments:
+#            - '@review_list'
+#        tags:
+#            - messenger.message_handler
     Book\Infrastructure\Projection\ReviewProjection: ~
     Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel:
         class: Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel

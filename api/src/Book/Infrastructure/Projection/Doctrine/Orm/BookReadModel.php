@@ -17,12 +17,13 @@ final class BookReadModel extends AbstractDoctrineOrmReadModel
 
     protected function insert(array $data): void
     {
-        $book = new Book();
-        $book->id = $data['id'];
-        $book->isbn = $data['isbn'];
-        $book->title = $data['title'];
-        $book->description = $data['description'];
-        $book->author = $data['author'];
+        $book = new Book(
+            $data['id'],
+            $data['isbn'],
+            $data['title'],
+            $data['description'],
+            $data['author']
+        );
 
         $this->entityManager->persist($book);
     }

@@ -7,8 +7,8 @@ services:
         autoconfigure: true
         public: false
 
-    Core\Infrastructure\Fixtures\Command\LoadDataFixturesCommand:
-        class: Core\Infrastructure\Fixtures\Command\LoadDataFixturesCommand
+    Core\Infrastructure\Fixtures\Cli\LoadDataFixturesCommand:
+        class: Core\Infrastructure\Fixtures\Cli\LoadDataFixturesCommand
         arguments:
             - '@Fidry\AliceDataFixtures\LoaderInterface'
     

@@ -6,8 +6,14 @@ namespace Book\Domain\Model\Book;
 
 use Book\Domain\Model\Book\Event\BookWasCreated;
 use Book\Domain\Model\Book\Event\BookWasDeleted;
-use Prooph\EventSourcing\AggregateChanged;
-use Prooph\EventSourcing\AggregateRoot;
+use Book\Domain\Model\Review\Author as ReviewAuthor;
+use Book\Domain\Model\Review\Body;
+use Book\Domain\Model\Review\Rating;
+use Book\Domain\Model\Review\Review;
+use Book\Domain\Model\Review\ReviewId;
+use Core\Domain\AggregateRoot;
+use Core\Domain\DomainEvent;
+use Core\Domain\IdentifiesAggregate;
 
 final class Book extends AggregateRoot
 {
@@ -26,14 +32,19 @@ final class Book extends AggregateRoot
         return $book;
     }
 
+    public function postReview(ReviewId $reviewId, ?Body $body, Rating $rating, ?ReviewAuthor $author): Review
+    {
+        return Review::post($reviewId, $this->id, $body, $rating, $author);
+    }
+
+    public function aggregateId(): IdentifiesAggregate
+    {
+        return $this->id;
+    }
+
     public function delete(): void
     {
         $this->recordThat(BookWasDeleted::with($this->id));
-    }
-
-    public function id(): BookId
-    {
-        return $this->id;
     }
 
     public function isbn(): ?Isbn
@@ -56,12 +67,7 @@ final class Book extends AggregateRoot
         return $this->author;
     }
 
-    protected function aggregateId(): string
-    {
-        return $this->id()->toString();
-    }
-
-    protected function apply(AggregateChanged $event): void
+    protected function when(DomainEvent $event): void
     {
         switch (\get_class($event)) {
             case BookWasCreated::class:
@@ -80,7 +86,7 @@ final class Book extends AggregateRoot
 
     private function whenBookWasCreated(BookWasCreated $event): void
     {
-        $this->id = $event->id();
+        $this->id = $event->aggregateId();
         $this->isbn = $event->isbn();
         $this->title = $event->title();
         $this->description = $event->description();

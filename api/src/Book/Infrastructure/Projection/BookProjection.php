@@ -6,7 +6,7 @@ namespace Book\Infrastructure\Projection;
 
 use Book\Domain\Model\Book\Event\BookWasCreated;
 use Book\Domain\Model\Book\Event\BookWasDeleted;
-use Core\Infrastructure\EventSourcing\Prooph\Stream\Streams;
+use Core\Infrastructure\Persistence\Streams;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModel;
 use Prooph\EventStore\Projection\ReadModelProjector;
@@ -22,7 +22,7 @@ final class BookProjection implements ReadModelProjection
                     $readModel = $this->readModel();
 
                     $readModel->stack('insert', [
-                        'id' => $event->id()->toString(),
+                        'id' => $event->aggregateId()->__toString(),
                         'isbn' => null === $event->isbn() ? null : $event->isbn()->toString(),
                         'title' => $event->title()->toString(),
                         'description' => $event->description()->toString(),
@@ -33,7 +33,7 @@ final class BookProjection implements ReadModelProjection
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
 
-                    $readModel->stack('remove', $event->id()->toString());
+                    $readModel->stack('remove', $event->aggregateId()->__toString());
                 },
             ]);
 

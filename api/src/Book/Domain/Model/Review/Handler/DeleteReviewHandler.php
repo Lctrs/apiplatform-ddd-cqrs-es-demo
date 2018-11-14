@@ -19,10 +19,10 @@ final class DeleteReviewHandler
 
     public function __invoke(DeleteReview $command): void
     {
-        $review = $this->reviewList->get($command->id());
+        $review = $this->reviewList->get($command->reviewId());
 
         if (null === $review) {
-            throw ReviewNotFound::withId($command->id());
+            throw ReviewNotFound::withId($command->reviewId());
         }
 
         $review->delete();

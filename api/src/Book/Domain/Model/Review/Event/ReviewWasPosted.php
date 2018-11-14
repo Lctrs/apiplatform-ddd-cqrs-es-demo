@@ -7,93 +7,93 @@ declare(strict_types=1);
 
 namespace Book\Domain\Model\Review\Event;
 
-final class ReviewWasPosted extends \Prooph\EventSourcing\AggregateChanged
+use Book\Domain\Model\Book\BookId;
+use Book\Domain\Model\Review\Author;
+use Book\Domain\Model\Review\Body;
+use Book\Domain\Model\Review\Rating;
+use Book\Domain\Model\Review\ReviewId;
+use Core\Domain\DomainEvent;
+use Core\Domain\IdentifiesAggregate;
+
+final class ReviewWasPosted extends DomainEvent
 {
-    public const MESSAGE_NAME = 'Book\Domain\Model\Review\Event\ReviewWasPosted';
+    public const MESSAGE_NAME = 'review-was-posted';
 
-    protected $messageName = self::MESSAGE_NAME;
-
-    protected $payload = [];
-
-    private $id;
+    private $reviewId;
     private $bookId;
     private $body;
     private $rating;
     private $author;
 
-    public function id(): \Book\Domain\Model\Review\ReviewId
+    protected function __construct(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author)
     {
-        if (null === $this->id) {
-            $this->id = \Book\Domain\Model\Review\ReviewId::fromString($this->aggregateId());
-        }
+        parent::__construct();
 
-        return $this->id;
+        $this->reviewId = $reviewId;
+        $this->bookId = $bookId;
+        $this->body = $body;
+        $this->rating = $rating;
+        $this->author = $author;
     }
 
-    public function bookId(): \Book\Domain\Model\Book\BookId
+    public static function with(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author): self
     {
-        if (null === $this->bookId) {
-            $this->bookId = \Book\Domain\Model\Book\BookId::fromString($this->payload['bookId']);
-        }
+        return new self($reviewId, $bookId, $body, $rating, $author);
+    }
 
+    public function name(): string
+    {
+        return self::MESSAGE_NAME;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'bookId' => $this->bookId->__toString(),
+            'body' => null === $this->body ? null : $this->body->toString(),
+            'rating' => $this->rating->toScalar(),
+            'author' => null === $this->author ? null : $this->author->toString(),
+        ];
+    }
+
+    public function aggregateId(): IdentifiesAggregate
+    {
+        return $this->reviewId;
+    }
+
+    public function bookId(): BookId
+    {
         return $this->bookId;
     }
 
-    public function body(): ?\Book\Domain\Model\Review\Body
+    public function body(): ?Body
     {
-        if (null === $this->body && isset($this->payload['body'])) {
-            $this->body = isset($this->payload['body']) ? \Book\Domain\Model\Review\Body::fromString($this->payload['body']) : null;
-        }
-
         return $this->body;
     }
 
-    public function rating(): \Book\Domain\Model\Review\Rating
+    public function rating(): Rating
     {
-        if (null === $this->rating) {
-            $this->rating = \Book\Domain\Model\Review\Rating::fromScalar($this->payload['rating']);
-        }
-
         return $this->rating;
     }
 
-    public function author(): ?\Book\Domain\Model\Review\Author
+    public function author(): ?Author
     {
-        if (null === $this->author && isset($this->payload['author'])) {
-            $this->author = isset($this->payload['author']) ? \Book\Domain\Model\Review\Author::fromString($this->payload['author']) : null;
-        }
-
         return $this->author;
     }
 
-    public static function with(\Book\Domain\Model\Review\ReviewId $id, \Book\Domain\Model\Book\BookId $bookId, ?\Book\Domain\Model\Review\Body $body, \Book\Domain\Model\Review\Rating $rating, ?\Book\Domain\Model\Review\Author $author): self
+    public static function fromArray(array $data): DomainEvent
     {
-        return new self($id->toString(), [
-            'bookId' => $bookId->toString(),
-            'body' => null === $body ? null : $body->toString(),
-            'rating' => $rating->toScalar(),
-            'author' => null === $author ? null : $author->toString(),
-        ]);
-    }
+        /** @var self $message */
+        $message = (new \ReflectionClass(self::class))->newInstanceWithoutConstructor();
 
-    protected function setPayload(array $payload): void
-    {
-        if (!isset($payload['bookId']) || !\is_string($payload['bookId'])) {
-            throw new \InvalidArgumentException("Key 'bookId' is missing in payload or is not a string");
-        }
+        $message->reviewId = ReviewId::fromString($data['aggregateId']);
+        $message->bookId = BookId::fromString($data['bookId']);
+        $message->body = null === $data['body'] ? $data['body'] : Body::fromString($data['body']);
+        $message->rating = Rating::fromScalar($data['rating']);
+        $message->author = null === $data['author'] ? $data['author'] : Author::fromString($data['author']);
+        $message->version = $data['version'];
+        $message->occuredOn = $data['occuredOn'];
 
-        if (isset($payload['body']) && !\is_string($payload['body'])) {
-            throw new \InvalidArgumentException("Value for 'body' is not a string in payload");
-        }
-
-        if (!isset($payload['rating']) || !\is_int($payload['rating'])) {
-            throw new \InvalidArgumentException("Key 'rating' is missing in payload or is not a int");
-        }
-
-        if (isset($payload['author']) && !\is_string($payload['author'])) {
-            throw new \InvalidArgumentException("Value for 'author' is not a string in payload");
-        }
-
-        $this->payload = $payload;
+        return $message;
     }
 }

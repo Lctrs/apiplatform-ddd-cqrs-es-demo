@@ -14,22 +14,15 @@
                 <attribute>Book:read</attribute>
             </attribute>
         </attribute>
-        <attribute name="denormalization_context">
-            <attribute name="groups">
-                <attribute>Book:write</attribute>
-            </attribute>
-        </attribute>
         <collectionOperations>
             <collectionOperation name="get">
                 <attribute name="filters">
                     <attribute>book.property_filter</attribute>
                 </attribute>
             </collectionOperation>
-            <collectionOperation name="post"/>
         </collectionOperations>
         <itemOperations>
             <itemOperation name="get"/>
-            <itemOperation name="delete"/>
         </itemOperations>
 
         <property
@@ -72,22 +65,15 @@
                 <attribute>Review:read</attribute>
             </attribute>
         </attribute>
-        <attribute name="denormalization_context">
-            <attribute name="groups">
-                <attribute>Review:write</attribute>
-            </attribute>
-        </attribute>
         <collectionOperations>
             <collectionOperation name="get">
-            <attribute name="filters">
-                <attribute>review.search_filter.book</attribute>
-            </attribute>
-        </collectionOperation>
-            <collectionOperation name="post"/>
+                <attribute name="filters">
+                    <attribute>review.search_filter.book</attribute>
+                </attribute>
+            </collectionOperation>
         </collectionOperations>
         <itemOperations>
             <itemOperation name="get"/>
-            <itemOperation name="delete"/>
         </itemOperations>
 
         <property

@@ -7,20 +7,26 @@ namespace Book\Infrastructure\Persistence\EventStore;
 use Book\Domain\Model\Review\Review;
 use Book\Domain\Model\Review\ReviewId;
 use Book\Domain\Model\Review\ReviewList;
-use Prooph\EventSourcing\Aggregate\AggregateRepository;
+use Core\Domain\AggregateRepository;
+use Core\Domain\EventStore;
 
 /**
- * @method null|Review getAggregateRoot(string $aggregateId)
+ * @method null|Review getAggregateRoot(ReviewId $reviewId) : ?Review
  */
 final class EventStoreReviewList extends AggregateRepository implements ReviewList
 {
-    public function save(Review $book): void
+    public function __construct(EventStore $eventStore, string $streamName)
     {
-        $this->saveAggregateRoot($book);
+        parent::__construct($eventStore, $streamName, Review::class);
     }
 
-    public function get(ReviewId $id): ?Review
+    public function save(Review $review): void
     {
-        return $this->getAggregateRoot($id->toString());
+        $this->saveAggregateRoot($review);
+    }
+
+    public function get(ReviewId $reviewId): ?Review
+    {
+        return $this->getAggregateRoot($reviewId);
     }
 }

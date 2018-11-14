@@ -6,7 +6,7 @@ namespace Book\Infrastructure\Projection;
 
 use Book\Domain\Model\Review\Event\ReviewWasDeleted;
 use Book\Domain\Model\Review\Event\ReviewWasPosted;
-use Core\Infrastructure\EventSourcing\Prooph\Stream\Streams;
+use Core\Infrastructure\Persistence\Streams;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModel;
 use Prooph\EventStore\Projection\ReadModelProjector;
@@ -22,8 +22,8 @@ final class ReviewProjection implements ReadModelProjection
                     $readModel = $this->readModel();
 
                     $readModel->stack('insert', [
-                        'id' => $event->id()->toString(),
-                        'bookId' => $event->bookId()->toString(),
+                        'id' => $event->aggregateId()->__toString(),
+                        'bookId' => $event->bookId()->__toString(),
                         'body' => null === $event->body() ? null : $event->body()->toString(),
                         'rating' => $event->rating()->toScalar(),
                         'author' => null === $event->author() ? null : $event->author()->toString(),
@@ -33,7 +33,7 @@ final class ReviewProjection implements ReadModelProjection
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
 
-                    $readModel->stack('remove', $event->id()->toString());
+                    $readModel->stack('remove', $event->aggregateId()->__toString());
                 },
             ]);
 

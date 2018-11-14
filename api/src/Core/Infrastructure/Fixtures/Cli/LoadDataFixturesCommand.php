@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\Fixtures\Command;
+namespace Core\Infrastructure\Fixtures\Cli;
 
 use Fidry\AliceDataFixtures\LoaderInterface;
 use Symfony\Component\Console\Command\Command;
@@ -39,7 +39,13 @@ final class LoadDataFixturesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        $fixturesFiles = $this->resolvePath($input->getArgument('path'));
+        $path = $input->getArgument('path');
+
+        if (!\is_string($path)) {
+            throw new \InvalidArgumentException('Argument "path" must be a string.');
+        }
+
+        $fixturesFiles = $this->resolvePath($path);
 
         $this->loader->load($fixturesFiles);
     }

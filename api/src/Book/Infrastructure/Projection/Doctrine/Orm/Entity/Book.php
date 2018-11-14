@@ -9,36 +9,46 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(readOnly=true)
  */
 class Book
 {
     /**
+     * @var string
+     *
      * @ORM\Id()
      * @ORM\Column(type="guid")
      * @ORM\GeneratedValue(strategy="NONE")
      */
-    public $id;
+    private $id;
 
     /**
+     * @var null|string
+     *
      * @ORM\Column(type="string", length=13, nullable=true)
      */
-    public $isbn;
+    private $isbn;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="text")
      */
-    public $title;
+    private $title;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="text")
      */
-    public $description;
+    private $description;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="text")
      */
-    public $author;
+    private $author;
 
     /**
      * @var Collection|Review[]
@@ -47,25 +57,52 @@ class Book
      */
     private $reviews;
 
-    public function __construct()
+    public function __construct(string $id, ?string $isbn, string $title, string $description, string $author)
     {
+        $this->id = $id;
+        $this->isbn = $isbn;
+        $this->title = $title;
+        $this->description = $description;
+        $this->author = $author;
         $this->reviews = new ArrayCollection();
     }
 
-    public function addReview(Review $review, bool $updateRelation = true): void
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getIsbn(): ?string
+    {
+        return $this->isbn;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    public function addReview(Review $review): void
     {
         if ($this->reviews->contains($review)) {
             return;
         }
 
         $this->reviews->add($review);
-        if ($updateRelation) {
-            $review->setBook($this, false);
-        }
     }
 
     /**
-     * @return Review[]
+     * @return iterable|Review[]
      */
     public function getReviews(): iterable
     {

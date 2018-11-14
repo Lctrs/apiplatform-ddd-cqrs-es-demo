@@ -19,10 +19,10 @@ final class DeleteBookHandler
 
     public function __invoke(DeleteBook $command)
     {
-        $book = $this->bookList->get($command->id());
+        $book = $this->bookList->get($command->bookId());
 
         if (null === $book) {
-            throw BookNotFound::withId($command->id());
+            throw BookNotFound::withId($command->bookId());
         }
 
         $book->delete();

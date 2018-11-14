@@ -1,16 +1,3 @@
 nelmio_alice:
     functions_blacklist:
         - 'current'
-
-services:
-    _defaults:
-        autoconfigure: true
-        public: false
-    
-    Core\Infrastructure\Fixtures\Instantiator\MessageInstantiator:
-        class: Core\Infrastructure\Fixtures\Instantiator\MessageInstantiator
-        arguments:
-            - '@prooph_event_store.message_factory'
-            - '@nelmio_alice.generator.resolver.value.registry'
-        tags:
-            - nelmio_alice.generator.instantiator.chainable_instantiator

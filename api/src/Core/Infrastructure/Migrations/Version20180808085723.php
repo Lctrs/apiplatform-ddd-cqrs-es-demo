@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
-use Core\Infrastructure\EventSourcing\Prooph\Stream\Streams;
+use Core\Infrastructure\Persistence\Streams;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 use Prooph\EventStore\EventStore;

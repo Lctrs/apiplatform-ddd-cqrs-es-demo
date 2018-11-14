@@ -6,7 +6,7 @@ namespace Book\Domain\Model\Review;
 
 interface ReviewList
 {
-    public function save(Review $book): void;
+    public function save(Review $review): void;
 
-    public function get(ReviewId $id): ?Review;
+    public function get(ReviewId $reviewId): ?Review;
 }
