@@ -16,9 +16,9 @@ use App\Core\Domain\EventStore;
  */
 final class EventStoreBookList extends AggregateRepository implements BookList
 {
-    public function __construct(EventStore $eventStore, string $streamName)
+    public function __construct(EventStore $eventStore)
     {
-        parent::__construct($eventStore, $streamName, new AggregateType('book', Book::class));
+        parent::__construct($eventStore, new AggregateType('book', Book::class));
     }
 
     public function save(Book $book): void

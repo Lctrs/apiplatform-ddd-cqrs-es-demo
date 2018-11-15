@@ -13,6 +13,8 @@ abstract class AggregateRoot
     {
     }
 
+    abstract public function aggregateId(): IdentifiesAggregate;
+
     /**
      * @return iterable|DomainEvent[]
      */
@@ -25,6 +27,9 @@ abstract class AggregateRoot
         return $pendingEvents;
     }
 
+    /**
+     * @param iterable|DomainEvent[] $historyEvents
+     */
     public static function reconstituteFromHistory(iterable $historyEvents): self
     {
         $instance = new static();

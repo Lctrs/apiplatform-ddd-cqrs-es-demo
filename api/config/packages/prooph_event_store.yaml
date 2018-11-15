@@ -25,7 +25,7 @@ services:
             - '@prooph_event_store.message_factory'
             - '@PDO'
             - !service
-              class: Prooph\EventStore\Pdo\PersistenceStrategy\PostgresSingleStreamStrategy
+              class: Prooph\EventStore\Pdo\PersistenceStrategy\PostgresAggregateStreamStrategy
     Prooph\EventStore\EventStore:
         alias: Prooph\EventStore\TransactionalEventStore
         public: true

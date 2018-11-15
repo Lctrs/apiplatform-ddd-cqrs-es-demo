@@ -41,7 +41,6 @@ services:
         class: App\Book\Infrastructure\Persistence\EventStore\EventStoreBookList
         arguments:
             - '@App\Core\Domain\EventStore'
-            - !php/const App\Core\Infrastructure\Persistence\Streams::BOOK
     App\Book\Domain\Model\Book\BookList:
         alias: App\Book\Infrastructure\Persistence\EventStore\EventStoreBookList
     App\Book\Domain\Model\Book\Handler\CreateBookHandler:
@@ -66,7 +65,6 @@ services:
         class: App\Book\Infrastructure\Persistence\EventStore\EventStoreReviewList
         arguments:
             - '@App\Core\Domain\EventStore'
-            - !php/const App\Core\Infrastructure\Persistence\Streams::BOOK
     App\Book\Domain\Model\Review\ReviewList:
         alias: App\Book\Infrastructure\Persistence\EventStore\EventStoreReviewList
     App\Book\Domain\Model\Review\Handler\PostReviewHandler:

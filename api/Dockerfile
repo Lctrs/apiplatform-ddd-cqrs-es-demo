@@ -94,7 +94,8 @@ CMD ["php-fpm"]
 FROM php:${PHP_VERSION}-cli-alpine AS api_platform_cli
 
 RUN apk add --no-cache \
-    	acl
+    	acl \
+	;
 
 ARG APCU_VERSION=5.1.12
 RUN set -eux; \

@@ -16,9 +16,9 @@ use App\Core\Domain\EventStore;
  */
 final class EventStoreReviewList extends AggregateRepository implements ReviewList
 {
-    public function __construct(EventStore $eventStore, string $streamName)
+    public function __construct(EventStore $eventStore)
     {
-        parent::__construct($eventStore, $streamName, new AggregateType('review', Review::class));
+        parent::__construct($eventStore, new AggregateType('review', Review::class));
     }
 
     public function save(Review $review): void
