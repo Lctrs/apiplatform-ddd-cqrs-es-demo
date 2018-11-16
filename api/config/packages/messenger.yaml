@@ -6,8 +6,10 @@ framework:
                     - 'App\Core\Infrastructure\MessageBus\CommandBus\Middleware\EventStoreTransactionMiddleware'
 
 services:
+    _defaults:
+        public: false
+
     App\Core\Infrastructure\MessageBus\CommandBus\Middleware\EventStoreTransactionMiddleware:
         class: App\Core\Infrastructure\MessageBus\CommandBus\Middleware\EventStoreTransactionMiddleware
-        public: false
         arguments:
             - '@Prooph\EventStore\TransactionalEventStore'

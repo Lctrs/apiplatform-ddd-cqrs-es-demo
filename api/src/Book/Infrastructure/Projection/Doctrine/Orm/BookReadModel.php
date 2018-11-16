@@ -30,7 +30,7 @@ final class BookReadModel extends AbstractDoctrineOrmReadModel
 
     protected function remove(string $id): void
     {
-        $book = $this->entityManager->find($this->entityClass, $id);
+        $book = $this->entityManager->getReference($this->entityClass, $id);
 
         if (null === $book) {
             return;

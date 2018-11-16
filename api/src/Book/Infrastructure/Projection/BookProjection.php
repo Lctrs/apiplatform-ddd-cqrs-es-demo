@@ -6,7 +6,6 @@ namespace App\Book\Infrastructure\Projection;
 
 use App\Book\Domain\Model\Book\Event\BookWasCreated;
 use App\Book\Domain\Model\Book\Event\BookWasDeleted;
-use App\Core\Infrastructure\Persistence\Streams;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModel;
 use Prooph\EventStore\Projection\ReadModelProjector;
@@ -15,7 +14,7 @@ final class BookProjection implements ReadModelProjection
 {
     public function project(ReadModelProjector $projector): ReadModelProjector
     {
-        $projector->fromStream(Streams::BOOK)
+        $projector->fromCategory('book')
             ->when([
                 BookWasCreated::class => function ($data, BookWasCreated $event) {
                     /** @var ReadModel $readModel */

@@ -6,7 +6,6 @@ namespace App\Book\Infrastructure\Projection;
 
 use App\Book\Domain\Model\Review\Event\ReviewWasDeleted;
 use App\Book\Domain\Model\Review\Event\ReviewWasPosted;
-use App\Core\Infrastructure\Persistence\Streams;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModel;
 use Prooph\EventStore\Projection\ReadModelProjector;
@@ -15,7 +14,7 @@ final class ReviewProjection implements ReadModelProjection
 {
     public function project(ReadModelProjector $projector): ReadModelProjector
     {
-        $projector->fromStream(Streams::REVIEW)
+        $projector->fromCategory('review')
             ->when([
                 ReviewWasPosted::class => function ($data, ReviewWasPosted $event) {
                     /** @var ReadModel $readModel */

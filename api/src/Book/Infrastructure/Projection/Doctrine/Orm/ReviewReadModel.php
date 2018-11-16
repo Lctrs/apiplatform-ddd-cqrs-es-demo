@@ -37,7 +37,7 @@ final class ReviewReadModel extends AbstractDoctrineOrmReadModel
 
     protected function remove(string $id): void
     {
-        $review = $this->entityManager->find($this->entityClass, $id);
+        $review = $this->entityManager->getReference($this->entityClass, $id);
 
         if (null === $review) {
             return;

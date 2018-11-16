@@ -15,6 +15,9 @@ prooph_event_store:
                     projection: App\Book\Infrastructure\Projection\ReviewProjection
 
 services:
+    _defaults:
+        public: false
+
     PDO:
         class: PDO
         factory: ['@database_connection', getWrappedConnection]
@@ -32,3 +35,6 @@ services:
             
     Prooph\EventSourcing\Aggregate\AggregateTranslator:
         class: Prooph\EventSourcing\EventStoreIntegration\AggregateTranslator
+
+    prooph_event_store.message_factory:
+        class: App\Core\Infrastructure\Persistence\Prooph\ProophMessageFactory

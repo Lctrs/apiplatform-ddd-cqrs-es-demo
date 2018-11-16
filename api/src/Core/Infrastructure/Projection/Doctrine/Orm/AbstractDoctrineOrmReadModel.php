@@ -13,6 +13,11 @@ abstract class AbstractDoctrineOrmReadModel implements ReadModel
     protected $entityManager;
     protected $entityClass;
 
+    /**
+     * @var array
+     */
+    private $stack = [];
+
     public function __construct(EntityManagerInterface $entityManager, string $entityClass)
     {
         $this->entityManager = $entityManager;
