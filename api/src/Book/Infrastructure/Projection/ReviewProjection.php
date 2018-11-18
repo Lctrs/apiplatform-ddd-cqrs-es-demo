@@ -14,7 +14,7 @@ final class ReviewProjection implements ReadModelProjection
 {
     public function project(ReadModelProjector $projector): ReadModelProjector
     {
-        $projector->fromCategory('review')
+        $projector->fromStream('event_stream')
             ->when([
                 ReviewWasPosted::class => function ($data, ReviewWasPosted $event) {
                     /** @var ReadModel $readModel */

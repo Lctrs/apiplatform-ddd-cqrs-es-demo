@@ -17,16 +17,11 @@ abstract class AggregateRepository
 
     public function saveAggregateRoot(AggregateRoot $aggregateRoot): void
     {
-        $this->eventStore->appendTo($this->determineStreamName($aggregateRoot->aggregateId()), $aggregateRoot->popRecordedEvents());
+        $this->eventStore->appendTo('event_stream', $this->aggregateType, $aggregateRoot->popRecordedEvents());
     }
 
     public function getAggregateRoot(IdentifiesAggregate $id): AggregateRoot
     {
-        return $this->aggregateType->aggregateRootClass()::reconstituteFromHistory($this->eventStore->load($this->determineStreamName($id), $id));
-    }
-
-    private function determineStreamName(IdentifiesAggregate $id): string
-    {
-        return $this->aggregateType->aggregateType().'-'.$id->__toString();
+        return $this->aggregateType->aggregateRootClass()::reconstituteFromHistory($this->eventStore->load('event_stream', $this->aggregateType, $id));
     }
 }

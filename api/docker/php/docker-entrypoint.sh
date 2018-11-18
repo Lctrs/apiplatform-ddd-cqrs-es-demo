@@ -6,10 +6,9 @@ if [ "${1#-}" != "$1" ]; then
 	set -- php-fpm "$@"
 fi
 
-if [ "$1" = 'php-fpm' ] || [ "$1" = 'bin/console' ]; then
-	if [ "$APP_ENV" = 'prod' ]; then
-		PHP_INI_RECOMMENDED="$PHP_INI_DIR/php.ini-production"
-	else
+if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
+	PHP_INI_RECOMMENDED="$PHP_INI_DIR/php.ini-production"
+	if [ "$APP_ENV" != 'prod' ]; then
 		PHP_INI_RECOMMENDED="$PHP_INI_DIR/php.ini-development"
 	fi
 	ln -sf "$PHP_INI_RECOMMENDED" "$PHP_INI_DIR/php.ini"
@@ -28,7 +27,7 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'bin/console' ]; then
 	done
 
 	if  [ "$APP_ENV" != 'prod' ] && [ "$1" = 'php-fpm' ]; then
-		bin/console doctrine:migrations:migrate --no-interaction
+		bin/console event-store:event-stream:create --no-interaction
 	fi
 fi
 

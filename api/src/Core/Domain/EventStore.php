@@ -6,7 +6,7 @@ namespace App\Core\Domain;
 
 interface EventStore
 {
-    public function appendTo(string $streamName, iterable $streamEvents): void;
+    public function appendTo(string $streamName, AggregateType $aggregateType, iterable $streamEvents): void;
 
-    public function load(string $streamName, IdentifiesAggregate $aggregateId): iterable;
+    public function load(string $streamName, AggregateType $aggregateType, IdentifiesAggregate $aggregateId): iterable;
 }

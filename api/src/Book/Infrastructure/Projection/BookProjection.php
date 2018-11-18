@@ -14,9 +14,9 @@ final class BookProjection implements ReadModelProjection
 {
     public function project(ReadModelProjector $projector): ReadModelProjector
     {
-        $projector->fromCategory('book')
+        $projector->fromStream('event_stream')
             ->when([
-                BookWasCreated::class => function ($data, BookWasCreated $event) {
+                'book-was-created' => function ($data, BookWasCreated $event) {
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
 

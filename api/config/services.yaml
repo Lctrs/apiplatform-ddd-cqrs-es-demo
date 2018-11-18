@@ -36,6 +36,11 @@ services:
         class: App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer
         arguments:
             - []
+            
+    App\Core\Infrastructure\Cli\CreateEventStreamCommand:
+        class: App\Core\Infrastructure\Cli\CreateEventStreamCommand
+        arguments:
+            - '@Prooph\EventStore\EventStore'
 
     App\Book\Infrastructure\Persistence\EventStore\EventStoreBookList:
         class: App\Book\Infrastructure\Persistence\EventStore\EventStoreBookList
