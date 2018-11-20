@@ -32,7 +32,13 @@ final class CreateEventStreamCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        $this->eventStore->create(new Stream(new StreamName('event_stream'), new \ArrayIterator([])));
+        $streamName = new StreamName('event_stream');
+
+        if ($this->eventStore->hasStream($streamName)) {
+            return;
+        }
+
+        $this->eventStore->create(new Stream($streamName, new \ArrayIterator([])));
         $output->writeln('<info>Event stream was created successfully.</info>');
     }
 }

@@ -13,3 +13,4 @@ parameters:
     reportUnmatchedIgnoredErrors: true
     ignoreErrors:
     	- '#Call to an undefined method [a-zA-Z0-9\\_]+::readModel\(\)#'
+    	- '#Method App\\Core\\Infrastructure\\Persistence\\Prooph\\DomainEventTransformer::toEventData\(\) should return App\\Core\\Infrastructure\\Persistence\\Prooph\\EventData but returns Prooph\\Common\\Messaging\\DomainMessage\.#'

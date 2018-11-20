@@ -6,19 +6,33 @@ namespace App\Book\Infrastructure\Projection;
 
 use App\Book\Domain\Model\Book\Event\BookWasCreated;
 use App\Book\Domain\Model\Book\Event\BookWasDeleted;
+use App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer;
+use App\Core\Infrastructure\Persistence\Prooph\EventData;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModel;
 use Prooph\EventStore\Projection\ReadModelProjector;
 
 final class BookProjection implements ReadModelProjection
 {
+    private $transformer;
+
+    public function __construct(DomainEventTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
     public function project(ReadModelProjector $projector): ReadModelProjector
     {
+        $transformer = $this->transformer;
+
         $projector->fromStream('event_stream')
             ->when([
-                'book-was-created' => function ($data, BookWasCreated $event) {
+                BookWasCreated::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
+
+                    /** @var BookWasCreated $event */
+                    $event = $transformer->toDomainEvent($eventData);
 
                     $readModel->stack('insert', [
                         'id' => $event->aggregateId()->__toString(),
@@ -28,9 +42,12 @@ final class BookProjection implements ReadModelProjection
                         'author' => $event->author()->toString(),
                     ]);
                 },
-                BookWasDeleted::class => function ($data, BookWasDeleted $event) {
+                BookWasDeleted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
+
+                    /** @var BookWasDeleted $event */
+                    $event = $transformer->toDomainEvent($eventData);
 
                     $readModel->stack('remove', $event->aggregateId()->__toString());
                 },

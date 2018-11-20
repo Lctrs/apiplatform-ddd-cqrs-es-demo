@@ -179,9 +179,6 @@
     "prooph/common": {
         "version": "v4.2.2"
     },
-    "prooph/event-sourcing": {
-        "version": "v5.6.0"
-    },
     "prooph/event-store": {
         "version": "v7.3.7"
     },

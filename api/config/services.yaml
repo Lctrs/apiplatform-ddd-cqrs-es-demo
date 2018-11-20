@@ -18,7 +18,7 @@ services:
             tags: ['app.domain_event']
     App\Book\Domain\Model\Book\Event\BookWasCreated:
         class: App\Book\Domain\Model\Book\Event\BookWasCreated
-    App\Book\Domain\Model\Review\Event\:
+    App\Book\Domain\Model\Review\Event\BookWasDeleted:
         class: App\Book\Domain\Model\Book\Event\BookWasDeleted
     App\Book\Domain\Model\Review\Event\ReviewWasDeleted:
         class: App\Book\Domain\Model\Review\Event\ReviewWasDeleted
@@ -31,9 +31,9 @@ services:
         class: App\Core\Infrastructure\Persistence\Prooph\EventStore
         arguments:
             - '@Prooph\EventStore\EventStore'
-            - '@App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer'
-    App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer:
-        class: App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer
+            - '@App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer'
+    App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer:
+        class: App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer
         arguments:
             - []
             
@@ -60,7 +60,10 @@ services:
             - '@App\Book\Domain\Model\Book\BookList'
         tags:
             - messenger.message_handler
-    App\Book\Infrastructure\Projection\BookProjection: ~
+    App\Book\Infrastructure\Projection\BookProjection:
+        class: App\Book\Infrastructure\Projection\BookProjection
+        arguments:
+            - '@App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer'
     App\Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel:
         class: App\Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
         arguments:
@@ -85,7 +88,10 @@ services:
             - '@App\Book\Domain\Model\Review\ReviewList'
         tags:
             - messenger.message_handler
-    App\Book\Infrastructure\Projection\ReviewProjection: ~
+    App\Book\Infrastructure\Projection\ReviewProjection:
+        class: App\Book\Infrastructure\Projection\ReviewProjection
+        arguments:
+            - '@App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer'
     App\Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel:
         class: App\Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
         arguments:

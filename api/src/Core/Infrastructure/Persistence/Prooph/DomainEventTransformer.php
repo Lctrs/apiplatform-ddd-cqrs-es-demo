@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Infrastructure\Persistence\Prooph\Internal;
+namespace App\Core\Infrastructure\Persistence\Prooph;
 
 use App\Core\Domain\DomainEvent;
-use Prooph\Common\Messaging\Message;
-use Prooph\EventSourcing\AggregateChanged;
 use Ramsey\Uuid\Uuid;
 
 final class DomainEventTransformer
@@ -18,9 +16,9 @@ final class DomainEventTransformer
         $this->eventNameToEventFqcnMap = $eventNameToEventFqcnMap;
     }
 
-    public function transform(DomainEvent $domainEvent): Message
+    public static function toEventData(DomainEvent $domainEvent): EventData
     {
-        return AggregateChanged::fromArray([
+        return EventData::fromArray([
             'uuid' => Uuid::uuid4()->toString(),
             'message_name' => $domainEvent->name(),
             'metadata' => [
@@ -32,7 +30,7 @@ final class DomainEventTransformer
         ]);
     }
 
-    public function reverseTransform(Message $message): DomainEvent
+    public function toDomainEvent(EventData $message): DomainEvent
     {
         $messageName = $message->messageName();
 
@@ -56,10 +54,8 @@ final class DomainEventTransformer
 
         $data = $message->payload();
 
-        $metadata = $message->metadata();
-        $data['aggregateId'] = $metadata['_aggregate_id'];
-        $data['version'] = $metadata['_aggregate_version'];
-
+        $data['aggregateId'] = $message->aggregateId();
+        $data['version'] = $message->version();
         $data['occuredOn'] = $message->createdAt();
 
         return $fqcn::fromArray($data);

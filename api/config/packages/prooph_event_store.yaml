@@ -32,9 +32,6 @@ services:
     Prooph\EventStore\EventStore:
         alias: Prooph\EventStore\TransactionalEventStore
         public: true
-            
-    Prooph\EventSourcing\Aggregate\AggregateTranslator:
-        class: Prooph\EventSourcing\EventStoreIntegration\AggregateTranslator
 
     prooph_event_store.message_factory:
         class: App\Core\Infrastructure\Persistence\Prooph\ProophMessageFactory

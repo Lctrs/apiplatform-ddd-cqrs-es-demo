@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Infrastructure\Symfony\DependencyInjection\CompilerPass;
 
 use App\Core\Domain\DomainEvent;
-use App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer;
+use App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

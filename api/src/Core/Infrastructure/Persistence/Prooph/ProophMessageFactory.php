@@ -6,7 +6,6 @@ namespace App\Core\Infrastructure\Persistence\Prooph;
 
 use Prooph\Common\Messaging\Message;
 use Prooph\Common\Messaging\MessageFactory;
-use Prooph\EventSourcing\AggregateChanged;
 
 final class ProophMessageFactory implements MessageFactory
 {
@@ -16,6 +15,6 @@ final class ProophMessageFactory implements MessageFactory
             $messageData['message_name'] = $messageName;
         }
 
-        return AggregateChanged::fromArray($messageData);
+        return EventData::fromArray($messageData);
     }
 }

@@ -9,10 +9,8 @@ use App\Core\Domain\DomainEvent;
 use App\Core\Domain\EventStore as EventStoreInterface;
 use App\Core\Domain\IdentifiesAggregate;
 use App\Core\Domain\MapperIterator;
-use App\Core\Infrastructure\Persistence\Prooph\Internal\DomainEventTransformer;
 use ArrayIterator;
 use Prooph\Common\Messaging\Message;
-use Prooph\EventSourcing\AggregateChanged;
 use Prooph\EventStore\EventStore as ProophEventStore;
 use Prooph\EventStore\Metadata\MetadataMatcher;
 use Prooph\EventStore\Metadata\Operator;
@@ -43,10 +41,10 @@ final class EventStore implements EventStoreInterface
             new StreamName($streamName),
             new MapperIterator(
                 new MapperIterator($streamEvents, function (DomainEvent $event): Message {
-                    return $this->transformer->transform($event);
+                    return DomainEventTransformer::toEventData($event);
                 }),
-                function (AggregateChanged $aggregateChanged) use ($aggregateType): Message {
-                    return $aggregateChanged->withAddedMetadata('_aggregate_type', $aggregateType->aggregateType());
+                function (EventData $eventData) use ($aggregateType): Message {
+                    return $eventData->withAddedMetadata('_aggregate_type', $aggregateType->aggregateType());
                 })
         );
     }
@@ -67,8 +65,8 @@ final class EventStore implements EventStoreInterface
 
         return new MapperIterator(
             $this->eventStore->load(new StreamName($streamName), 1, null, $metadataMatcher),
-            function (Message $message): DomainEvent {
-                return $this->transformer->reverseTransform($message);
+            function (EventData $eventData): DomainEvent {
+                return $this->transformer->toDomainEvent($eventData);
             }
         );
     }
