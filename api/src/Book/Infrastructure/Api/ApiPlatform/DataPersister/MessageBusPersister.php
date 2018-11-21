@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Book\Infrastructure\Api\ApiPlatform\DataPersister;
 
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
-use App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
-use Prooph\Common\Messaging\Command;
+use App\Book\Infrastructure\Api\ApiPlatform\Resource\Resource;
+use LogicException;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 final class MessageBusPersister implements DataPersisterInterface
@@ -23,27 +24,28 @@ final class MessageBusPersister implements DataPersisterInterface
      */
     public function supports($data): bool
     {
-        return $data instanceof Command;
+        return $data instanceof Resource;
     }
 
     /**
      * {@inheritdoc}
      *
-     * @param Command $data
+     * @param Resource $data
      */
-    public function persist($data): Command
+    public function persist($data): Response
     {
-        $this->commandBus->dispatch($data);
+        $command = $data->toCommand();
 
-        return $data;
+        $this->commandBus->dispatch($command);
+
+        return new Response('', 201);
     }
 
     /**
      * {@inheritdoc}
-     *
-     * @param Book $data
      */
     public function remove($data): void
     {
+        throw new LogicException('Should never been called. Not relevant in a ES system.');
     }
 }
