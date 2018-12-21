@@ -10,13 +10,10 @@ use Prooph\EventStore\Projection\ReadModel;
 
 abstract class AbstractDoctrineOrmReadModel implements ReadModel
 {
+    /** @var EntityManagerInterface */
     protected $entityManager;
+    /** @var string */
     protected $entityClass;
-
-    /**
-     * @var array
-     */
-    private $stack = [];
 
     public function __construct(EntityManagerInterface $entityManager, string $entityClass)
     {

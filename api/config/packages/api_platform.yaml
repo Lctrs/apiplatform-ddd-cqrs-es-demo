@@ -45,3 +45,10 @@ services:
               book: exact
         tags:
             - api_platform.filter
+                
+    App\Book\Infrastructure\Api\ApiPlatform\DataPersister\MessageBusPersister:
+        autoconfigure: true
+        public: false
+        class: App\Book\Infrastructure\Api\ApiPlatform\DataPersister\MessageBusPersister
+        arguments:
+            - '@messenger.bus.commands'

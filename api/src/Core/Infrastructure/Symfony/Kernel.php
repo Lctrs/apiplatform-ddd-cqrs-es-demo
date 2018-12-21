@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Core\Infrastructure\Symfony;
 
 use App\Core\Infrastructure\Symfony\DependencyInjection\CompilerPass\NameToDomainEventMapFactoryCompilerPass;
-use App\Core\Infrastructure\Symfony\DependencyInjection\CompilerPass\RemoveDoctrineOrmPersisterCompilerPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -33,7 +32,7 @@ class Kernel extends BaseKernel
     {
         $contents = require $this->getProjectDir().'/config/bundles.php';
         foreach ($contents as $class => $envs) {
-            if (isset($envs['all']) || isset($envs[$this->environment])) {
+            if ($envs[$this->environment] ?? $envs['all'] ?? false) {
                 yield new $class();
             }
         }
@@ -41,17 +40,13 @@ class Kernel extends BaseKernel
 
     protected function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new RemoveDoctrineOrmPersisterCompilerPass());
         $container->addCompilerPass(new NameToDomainEventMapFactoryCompilerPass());
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
         $container->addResource(new FileResource($this->getProjectDir().'/config/bundles.php'));
-        // Feel free to remove the "container.autowiring.strict_mode" parameter
-        // if you are using symfony/dependency-injection 4.0+ as it's the default behavior
-        $container->setParameter('container.autowiring.strict_mode', true);
-        $container->setParameter('container.dumper.inline_class_loader', false);
+        $container->setParameter('container.dumper.inline_class_loader', true);
         $confDir = $this->getProjectDir().'/config';
 
         $loader->load($confDir.'/{packages}/*'.self::CONFIG_EXTS, 'glob');

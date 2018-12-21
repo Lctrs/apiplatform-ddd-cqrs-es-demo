@@ -18,6 +18,9 @@ services:
             - '@messenger.bus.commands'
 
     Fidry\AliceDataFixtures\LoaderInterface:
+        alias: Fidry\AliceDataFixtures\Loader\PersisterLoader
+
+    Fidry\AliceDataFixtures\Loader\PersisterLoader:
         class: Fidry\AliceDataFixtures\Loader\PersisterLoader
         arguments:
             - '@fidry_alice_data_fixtures.loader.simple'

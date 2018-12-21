@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Book\Infrastructure\Api\ApiPlatform\DataPersister;
 
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
-use App\Book\Infrastructure\Api\ApiPlatform\Resource\Resource;
+use App\Core\Infrastructure\Api\Resource;
 use LogicException;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 final class MessageBusPersister implements DataPersisterInterface
@@ -30,15 +29,15 @@ final class MessageBusPersister implements DataPersisterInterface
     /**
      * {@inheritdoc}
      *
-     * @param Resource $data
+     * @param resource $data
      */
-    public function persist($data): Response
+    public function persist($data)
     {
         $command = $data->toCommand();
 
         $this->commandBus->dispatch($command);
 
-        return new Response('', 201);
+        return $command;
     }
 
     /**
