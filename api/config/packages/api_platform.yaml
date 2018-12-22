@@ -38,11 +38,11 @@ services:
         tags:
             - api_platform.filter
 
-    review.search_filter.book:
+    review.search_filter.bookId:
         parent: api_platform.doctrine.orm.search_filter
         arguments:
             -
-              book: exact
+              bookId: exact
         tags:
             - api_platform.filter
                 

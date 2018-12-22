@@ -17,7 +17,7 @@
         <collectionOperations>
             <collectionOperation name="get">
                 <attribute name="filters">
-                    <attribute>review.search_filter.book</attribute>
+                    <attribute>review.search_filter.bookId</attribute>
                 </attribute>
             </collectionOperation>
         </collectionOperations>
@@ -26,8 +26,8 @@
         </itemOperations>
 
         <property
-            name="book"
-            description="The item that is being reviewed/rated"
+            name="bookId"
+            description="The ID identifying the item that is being reviewed/rated"
             iri="hk\ttp://schema.org/itemReviewed"
             required="true"
         />

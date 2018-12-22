@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(readOnly=true)
+ * @ORM\Table(indexes={@ORM\Index(name="book_ids", columns={"book_id"})})
  */
 class Review
 {
@@ -19,6 +20,13 @@ class Review
      * @ORM\GeneratedValue(strategy="NONE")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="guid")
+     */
+    private $bookId;
 
     /**
      * @var null|string
@@ -41,27 +49,23 @@ class Review
      */
     private $author;
 
-    /**
-     * @var Book
-     *
-     * @ORM\ManyToOne(targetEntity=Book::class, inversedBy="reviews")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $book;
-
-    public function __construct(string $id, ?string $body, int $rating, ?string $author, Book $book)
+    public function __construct(string $id, string $bookId, ?string $body, int $rating, ?string $author)
     {
         $this->id = $id;
+        $this->bookId = $bookId;
         $this->body = $body;
         $this->rating = $rating;
         $this->author = $author;
-        $this->book = $book;
-        $book->addReview($this);
     }
 
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function bookId(): string
+    {
+        return $this->bookId;
     }
 
     public function getBody(): ?string
@@ -77,10 +81,5 @@ class Review
     public function getAuthor(): ?string
     {
         return $this->author;
-    }
-
-    public function getBook(): Book
-    {
-        return $this->book;
     }
 }

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Book\Infrastructure\Projection\Doctrine\Orm\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,13 +48,6 @@ class Book
      */
     private $author;
 
-    /**
-     * @var Collection|Review[]
-     *
-     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="book", orphanRemoval=true, cascade={"persist", "remove"})
-     */
-    private $reviews;
-
     public function __construct(string $id, ?string $isbn, string $title, string $description, string $author)
     {
         $this->id = $id;
@@ -64,7 +55,6 @@ class Book
         $this->title = $title;
         $this->description = $description;
         $this->author = $author;
-        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): string
@@ -90,22 +80,5 @@ class Book
     public function getAuthor(): string
     {
         return $this->author;
-    }
-
-    public function addReview(Review $review): void
-    {
-        if ($this->reviews->contains($review)) {
-            return;
-        }
-
-        $this->reviews->add($review);
-    }
-
-    /**
-     * @return iterable|Review[]
-     */
-    public function getReviews(): iterable
-    {
-        return $this->reviews;
     }
 }

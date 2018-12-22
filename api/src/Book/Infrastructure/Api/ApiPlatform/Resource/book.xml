@@ -48,10 +48,5 @@
             iri="http://schema.org/author"
             required="true"
         />
-        <property
-            name="reviews"
-            description="The book's reviews"
-            iri="http://schema.org/review"
-        />
     </resource>
 </resources>

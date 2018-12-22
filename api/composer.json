@@ -9,7 +9,6 @@
         "ext-iconv": "*",
         "api-platform/core": "dev-master",
         "doctrine/annotations": "^1.0",
-        "doctrine/collections": "^1.5",
         "doctrine/dbal": "^2.8",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.4.5",
