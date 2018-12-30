@@ -14,13 +14,21 @@ use App\Book\Domain\Model\Review\ReviewId;
 use App\Core\Domain\AggregateRoot;
 use App\Core\Domain\DomainEvent;
 use App\Core\Domain\IdentifiesAggregate;
+use RuntimeException;
+use function get_class;
+use function sprintf;
 
 final class Book extends AggregateRoot
 {
+    /** @var BookId */
     private $id;
+    /** @var Isbn|null */
     private $isbn;
+    /** @var Title */
     private $title;
+    /** @var Description */
     private $description;
+    /** @var Author */
     private $author;
 
     public static function create(BookId $id, ?Isbn $isbn, Title $title, Description $description, Author $author): self
@@ -69,27 +77,27 @@ final class Book extends AggregateRoot
 
     protected function when(DomainEvent $event): void
     {
-        switch (\get_class($event)) {
+        switch (get_class($event)) {
             case BookWasCreated::class:
                 $this->whenBookWasCreated($event);
                 break;
             case BookWasDeleted::class:
                 break;
             default:
-                throw new \RuntimeException(sprintf(
+                throw new RuntimeException(sprintf(
                     'Missing event "%s" handler method for aggregate root "%s".',
-                    \get_class($event),
-                    \get_class($this)
+                    get_class($event),
+                    static::class
                 ));
         }
     }
 
     private function whenBookWasCreated(BookWasCreated $event): void
     {
-        $this->id = $event->aggregateId();
-        $this->isbn = $event->isbn();
-        $this->title = $event->title();
+        $this->id          = $event->aggregateId();
+        $this->isbn        = $event->isbn();
+        $this->title       = $event->title();
         $this->description = $event->description();
-        $this->author = $event->author();
+        $this->author      = $event->author();
     }
 }

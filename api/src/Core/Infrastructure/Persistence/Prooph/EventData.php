@@ -8,7 +8,7 @@ use Prooph\Common\Messaging\DomainEvent;
 
 final class EventData extends DomainEvent
 {
-    /** @var array */
+    /** @var mixed[] */
     protected $payload = [];
 
     public function aggregateId(): string
@@ -21,11 +21,17 @@ final class EventData extends DomainEvent
         return $this->metadata['_aggregate_version'];
     }
 
+    /**
+     * @return mixed[]
+     */
     public function payload(): array
     {
         return $this->payload;
     }
 
+    /**
+     * @param mixed[] $payload
+     */
     protected function setPayload(array $payload): void
     {
         $this->payload = $payload;

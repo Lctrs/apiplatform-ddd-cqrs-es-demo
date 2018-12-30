@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
@@ -28,6 +29,9 @@ class Kernel extends BaseKernel
         return $this->getProjectDir().'/var/log';
     }
 
+    /**
+     * @return iterable|BundleInterface[]
+     */
     public function registerBundles(): iterable
     {
         $contents = require $this->getProjectDir().'/config/bundles.php';
@@ -38,7 +42,7 @@ class Kernel extends BaseKernel
         }
     }
 
-    protected function build(ContainerBuilder $container)
+    protected function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new NameToDomainEventMapFactoryCompilerPass());
     }

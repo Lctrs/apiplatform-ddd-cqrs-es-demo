@@ -13,47 +13,47 @@ use Doctrine\ORM\Mapping as ORM;
 class Review
 {
     /**
-     * @var string
-     *
      * @ORM\Id()
      * @ORM\Column(type="guid")
      * @ORM\GeneratedValue(strategy="NONE")
+     *
+     * @var string
      */
     private $id;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="guid")
+     *
+     * @var string
      */
     private $bookId;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string|null
      */
     private $body;
 
     /**
-     * @var int
-     *
      * @ORM\Column(type="smallint")
+     *
+     * @var int
      */
     private $rating;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string|null
      */
     private $author;
 
     public function __construct(string $id, string $bookId, ?string $body, int $rating, ?string $author)
     {
-        $this->id = $id;
+        $this->id     = $id;
         $this->bookId = $bookId;
-        $this->body = $body;
+        $this->body   = $body;
         $this->rating = $rating;
         $this->author = $author;
     }

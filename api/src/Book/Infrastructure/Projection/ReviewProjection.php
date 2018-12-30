@@ -6,6 +6,8 @@ namespace App\Book\Infrastructure\Projection;
 
 use App\Book\Domain\Model\Review\Event\ReviewWasDeleted;
 use App\Book\Domain\Model\Review\Event\ReviewWasPosted;
+use App\Book\Infrastructure\Projection\Doctrine\Orm\Data\InsertReview;
+use App\Book\Infrastructure\Projection\Doctrine\Orm\Data\RemoveReview;
 use App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer;
 use App\Core\Infrastructure\Persistence\Prooph\EventData;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
@@ -14,6 +16,7 @@ use Prooph\EventStore\Projection\ReadModelProjector;
 
 final class ReviewProjection implements ReadModelProjection
 {
+    /** @var DomainEventTransformer */
     private $transformer;
 
     public function __construct(DomainEventTransformer $transformer)
@@ -34,13 +37,13 @@ final class ReviewProjection implements ReadModelProjection
                     /** @var ReviewWasPosted $event */
                     $event = $transformer->toDomainEvent($eventData);
 
-                    $readModel->stack('insert', [
-                        'id' => $event->aggregateId()->__toString(),
-                        'bookId' => $event->bookId()->__toString(),
-                        'body' => null === $event->body() ? null : $event->body()->toString(),
-                        'rating' => $event->rating()->toScalar(),
-                        'author' => null === $event->author() ? null : $event->author()->toString(),
-                    ]);
+                    $readModel->stack('insert', new InsertReview(
+                        $event->aggregateId()->__toString(),
+                        $event->bookId()->__toString(),
+                        $event->body() === null ? null : $event->body()->toString(),
+                        $event->rating()->toScalar(),
+                        $event->author() === null ? null : $event->author()->toString()
+                    ));
                 },
                 ReviewWasDeleted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {
                     /** @var ReadModel $readModel */
@@ -49,7 +52,7 @@ final class ReviewProjection implements ReadModelProjection
                     /** @var ReviewWasDeleted $event */
                     $event = $transformer->toDomainEvent($eventData);
 
-                    $readModel->stack('remove', $event->aggregateId()->__toString());
+                    $readModel->stack('remove', new RemoveReview($event->aggregateId()->__toString()));
                 },
             ]);
 

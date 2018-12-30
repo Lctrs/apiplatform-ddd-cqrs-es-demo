@@ -6,7 +6,9 @@ namespace App\Core\Domain;
 
 abstract class AggregateRoot
 {
+    /** @var int */
     private $version = 0;
+    /** @var DomainEvent[] */
     private $recordedEvents = [];
 
     protected function __construct()

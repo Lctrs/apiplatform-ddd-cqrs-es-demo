@@ -10,6 +10,7 @@ use App\Book\Domain\Model\Book\Exception\BookNotFound;
 
 final class DeleteBookHandler
 {
+    /** @var BookList */
     private $bookList;
 
     public function __construct(BookList $bookList)
@@ -17,11 +18,11 @@ final class DeleteBookHandler
         $this->bookList = $bookList;
     }
 
-    public function __invoke(DeleteBook $command)
+    public function __invoke(DeleteBook $command): void
     {
         $book = $this->bookList->get($command->bookId());
 
-        if (null === $book) {
+        if ($book === null) {
             throw BookNotFound::withId($command->bookId());
         }
 

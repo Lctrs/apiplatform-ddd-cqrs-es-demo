@@ -36,7 +36,6 @@ final class PostReviewResource implements Resource
     public $author;
     /**
      * @var ReviewId|null
-     *
      * @ApiProperty(identifier=true)
      */
     private $id;
@@ -46,9 +45,9 @@ final class PostReviewResource implements Resource
         return new PostReview(
             $this->id ?? $this->id = ReviewId::generate(),
             BookId::fromString($this->bookId),
-            null === $this->body ? null : Body::fromString($this->body),
+            $this->body === null ? null : Body::fromString($this->body),
             Rating::fromScalar($this->rating),
-            null === $this->author ? null : Author::fromString($this->body)
+            $this->author === null ? null : Author::fromString($this->body)
         );
     }
 }

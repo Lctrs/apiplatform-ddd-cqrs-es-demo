@@ -87,8 +87,8 @@
             "@analyze"
         ],
         "analyze": "phpstan analyze -l max -c ./phpstan.neon ./src ./config",
-        "cs-check": "php-cs-fixer fix --dry-run --diff",
-        "cs-fix": "php-cs-fixer fix"
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf"
     },
     "conflict": {
         "symfony/symfony": "*"

@@ -6,6 +6,7 @@ namespace App\Book\Domain\Model\Review\Exception;
 
 use App\Book\Domain\Model\Review\ReviewId;
 use InvalidArgumentException;
+use function sprintf;
 
 final class ReviewNotFound extends InvalidArgumentException
 {

@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Prooph\EventStore\Projection\ReadModel;
 
-abstract class AbstractDoctrineOrmReadModel implements ReadModel
+abstract class DoctrineOrmReadModel implements ReadModel
 {
     /** @var EntityManagerInterface */
     protected $entityManager;
@@ -18,9 +18,12 @@ abstract class AbstractDoctrineOrmReadModel implements ReadModel
     public function __construct(EntityManagerInterface $entityManager, string $entityClass)
     {
         $this->entityManager = $entityManager;
-        $this->entityClass = $entityClass;
+        $this->entityClass   = $entityClass;
     }
 
+    /**
+     * @param mixed ...$args
+     */
     public function stack(string $operation, ...$args): void
     {
         $this->{$operation}(...$args);
@@ -50,7 +53,7 @@ abstract class AbstractDoctrineOrmReadModel implements ReadModel
     public function reset(): void
     {
         $connection = $this->entityManager->getConnection();
-        $tableName = $this->entityManager->getClassMetadata($this->entityClass)->getTableName();
+        $tableName  = $this->entityManager->getClassMetadata($this->entityClass)->getTableName();
 
         $connection->executeUpdate($connection->getDatabasePlatform()->getTruncateTableSQL($tableName));
     }

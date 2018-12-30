@@ -6,12 +6,14 @@ namespace App\Core\Domain;
 
 abstract class AggregateRepository
 {
+    /** @var EventStore */
     private $eventStore;
+    /** @var AggregateType */
     private $aggregateType;
 
     public function __construct(EventStore $eventStore, AggregateType $aggregateType)
     {
-        $this->eventStore = $eventStore;
+        $this->eventStore    = $eventStore;
         $this->aggregateType = $aggregateType;
     }
 

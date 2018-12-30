@@ -21,15 +21,20 @@ final class EventStore implements EventStoreInterface
 {
     public const STREAM_NAME = 'event_stream';
 
+    /** @var ProophEventStore */
     private $eventStore;
+    /** @var DomainEventTransformer */
     private $transformer;
 
     public function __construct(ProophEventStore $eventStore, DomainEventTransformer $transformer)
     {
-        $this->eventStore = $eventStore;
+        $this->eventStore  = $eventStore;
         $this->transformer = $transformer;
     }
 
+    /**
+     * @param iterable|DomainEvent[] $streamEvents
+     */
     public function appendTo(AggregateType $aggregateType, iterable $streamEvents): void
     {
         if (!$streamEvents instanceof Traversable) {
@@ -39,15 +44,19 @@ final class EventStore implements EventStoreInterface
         $this->eventStore->appendTo(
             new StreamName(self::STREAM_NAME),
             new MapperIterator(
-                new MapperIterator($streamEvents, function (DomainEvent $event): Message {
+                new MapperIterator($streamEvents, static function (DomainEvent $event): Message {
                     return DomainEventTransformer::toEventData($event);
                 }),
-                function (EventData $eventData) use ($aggregateType): Message {
+                static function (EventData $eventData) use ($aggregateType): Message {
                     return $eventData->withAddedMetadata('_aggregate_type', $aggregateType->aggregateType());
-                })
+                }
+            )
         );
     }
 
+    /**
+     * @return iterable|DomainEvent[]
+     */
     public function load(AggregateType $aggregateType, IdentifiesAggregate $aggregateId): iterable
     {
         $metadataMatcher = (new MetadataMatcher())

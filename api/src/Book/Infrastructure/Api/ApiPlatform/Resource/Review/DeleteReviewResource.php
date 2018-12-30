@@ -24,7 +24,6 @@ final class DeleteReviewResource implements Resource
 {
     /**
      * @var string
-     *
      * @ApiProperty(identifier=true)
      */
     public $id;

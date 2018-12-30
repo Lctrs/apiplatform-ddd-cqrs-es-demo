@@ -11,11 +11,18 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
+use function file_exists;
+use function is_dir;
+use function is_string;
+use function iterator_to_array;
+use function sprintf;
 
 final class LoadDataFixturesCommand extends Command
 {
+    /** @var string */
     protected static $defaultName = 'app:fixtures:load';
 
+    /** @var LoaderInterface */
     private $loader;
 
     public function __construct(LoaderInterface $loader)
@@ -41,7 +48,7 @@ final class LoadDataFixturesCommand extends Command
     {
         $path = $input->getArgument('path');
 
-        if (!\is_string($path)) {
+        if (!is_string($path)) {
             throw new \InvalidArgumentException('Argument "path" must be a string.');
         }
 
@@ -50,6 +57,9 @@ final class LoadDataFixturesCommand extends Command
         $this->loader->load($fixturesFiles);
     }
 
+    /**
+     * @return string[]
+     */
     private function resolvePath(string $path): array
     {
         if (!file_exists($path)) {

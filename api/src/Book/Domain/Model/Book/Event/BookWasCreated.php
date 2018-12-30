@@ -10,31 +10,41 @@ use App\Book\Domain\Model\Book\Description;
 use App\Book\Domain\Model\Book\Isbn;
 use App\Book\Domain\Model\Book\Title;
 use App\Core\Domain\DomainEvent;
-use App\Core\Domain\IdentifiesAggregate;
+use ReflectionClass;
 
 final class BookWasCreated extends DomainEvent
 {
     public const MESSAGE_NAME = 'book-was-created';
 
+    /** @var BookId */
     private $bookId;
+    /** @var Isbn|null */
     private $isbn;
+    /** @var Title */
     private $title;
+    /** @var Description */
     private $description;
+    /** @var Author */
     private $author;
 
     protected function __construct(BookId $bookId, ?Isbn $isbn, Title $title, Description $description, Author $author)
     {
         parent::__construct();
 
-        $this->bookId = $bookId;
-        $this->isbn = $isbn;
-        $this->title = $title;
+        $this->bookId      = $bookId;
+        $this->isbn        = $isbn;
+        $this->title       = $title;
         $this->description = $description;
-        $this->author = $author;
+        $this->author      = $author;
     }
 
-    public static function with(BookId $bookId, ?Isbn $isbn, Title $title, Description $description, Author $author): self
-    {
+    public static function with(
+        BookId $bookId,
+        ?Isbn $isbn,
+        Title $title,
+        Description $description,
+        Author $author
+    ): self {
         return new self($bookId, $isbn, $title, $description, $author);
     }
 
@@ -43,17 +53,20 @@ final class BookWasCreated extends DomainEvent
         return self::MESSAGE_NAME;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function toArray(): array
     {
         return [
-            'isbn' => null === $this->isbn ? null : $this->isbn->toString(),
+            'isbn' => $this->isbn === null ? null : $this->isbn->toString(),
             'title' => $this->title->toString(),
             'description' => $this->description->toString(),
             'author' => $this->author->toString(),
         ];
     }
 
-    public function aggregateId(): IdentifiesAggregate
+    public function aggregateId(): BookId
     {
         return $this->bookId;
     }
@@ -78,18 +91,21 @@ final class BookWasCreated extends DomainEvent
         return $this->author;
     }
 
+    /**
+     * @inheritdoc
+     */
     public static function fromArray(array $data): DomainEvent
     {
         /** @var self $message */
-        $message = (new \ReflectionClass(self::class))->newInstanceWithoutConstructor();
+        $message = (new ReflectionClass(self::class))->newInstanceWithoutConstructor();
 
-        $message->bookId = BookId::fromString($data['aggregateId']);
-        $message->isbn = null === $data['isbn'] ? $data['isbn'] : Isbn::fromString($data['isbn']);
-        $message->title = Title::fromString($data['title']);
+        $message->bookId      = BookId::fromString($data['aggregateId']);
+        $message->isbn        = $data['isbn'] === null ? $data['isbn'] : Isbn::fromString($data['isbn']);
+        $message->title       = Title::fromString($data['title']);
         $message->description = Description::fromString($data['description']);
-        $message->author = Author::fromString($data['author']);
-        $message->version = $data['version'];
-        $message->occuredOn = $data['occuredOn'];
+        $message->author      = Author::fromString($data['author']);
+        $message->version     = $data['version'];
+        $message->occuredOn   = $data['occuredOn'];
 
         return $message;
     }

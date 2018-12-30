@@ -46,9 +46,9 @@ services:
         tags:
             - api_platform.filter
                 
-    App\Book\Infrastructure\Api\ApiPlatform\DataPersister\MessageBusPersister:
+    App\Book\Infrastructure\Api\ApiPlatform\DataPersister\CommandBusPersister:
         autoconfigure: true
         public: false
-        class: App\Book\Infrastructure\Api\ApiPlatform\DataPersister\MessageBusPersister
+        class: App\Book\Infrastructure\Api\ApiPlatform\DataPersister\CommandBusPersister
         arguments:
             - '@messenger.bus.commands'

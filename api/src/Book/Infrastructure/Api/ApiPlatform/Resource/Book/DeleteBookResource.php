@@ -24,7 +24,6 @@ final class DeleteBookResource implements Resource
 {
     /**
      * @var string
-     *
      * @ApiProperty(identifier=true)
      */
     public $id;

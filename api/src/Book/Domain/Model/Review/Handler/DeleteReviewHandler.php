@@ -10,6 +10,7 @@ use App\Book\Domain\Model\Review\ReviewList;
 
 final class DeleteReviewHandler
 {
+    /** @var ReviewList */
     private $reviewList;
 
     public function __construct(ReviewList $reviewList)
@@ -21,7 +22,7 @@ final class DeleteReviewHandler
     {
         $review = $this->reviewList->get($command->reviewId());
 
-        if (null === $review) {
+        if ($review === null) {
             throw ReviewNotFound::withId($command->reviewId());
         }
 

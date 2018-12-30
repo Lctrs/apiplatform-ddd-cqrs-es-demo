@@ -13,19 +13,24 @@ use App\Core\Domain\Command;
 
 final class PostReview implements Command
 {
+    /** @var ReviewId */
     private $reviewId;
+    /** @var BookId */
     private $bookId;
+    /** @var Body|null */
     private $body;
+    /** @var Rating */
     private $rating;
+    /** @var Author|null */
     private $author;
 
     public function __construct(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author)
     {
         $this->reviewId = $reviewId;
-        $this->bookId = $bookId;
-        $this->body = $body;
-        $this->rating = $rating;
-        $this->author = $author;
+        $this->bookId   = $bookId;
+        $this->body     = $body;
+        $this->rating   = $rating;
+        $this->author   = $author;
     }
 
     public function reviewId(): ReviewId

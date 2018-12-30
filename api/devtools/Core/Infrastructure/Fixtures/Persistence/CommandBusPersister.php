@@ -13,6 +13,7 @@ final class CommandBusPersister implements PersisterInterface
 {
     use IsAServiceTrait;
 
+    /** @var MessageBusInterface */
     private $commandBus;
 
     public function __construct(MessageBusInterface $commandBus)
@@ -21,9 +22,7 @@ final class CommandBusPersister implements PersisterInterface
     }
 
     /**
-     * Persists objects into the database.
-     *
-     * @param object $object
+     * @inheritdoc
      */
     public function persist($object): void
     {

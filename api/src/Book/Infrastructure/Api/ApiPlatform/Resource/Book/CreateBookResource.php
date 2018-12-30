@@ -36,7 +36,6 @@ final class CreateBookResource implements Resource
     public $author;
     /**
      * @var BookId|null
-     *
      * @ApiProperty(identifier=true)
      */
     private $id;
@@ -45,7 +44,7 @@ final class CreateBookResource implements Resource
     {
         return new CreateBook(
             $this->id ?? $this->id = BookId::generate(),
-            null === $this->isbn ? null : Isbn::fromString($this->isbn),
+            $this->isbn === null ? null : Isbn::fromString($this->isbn),
             Title::fromString($this->title),
             Description::fromString($this->description),
             Author::fromString($this->author)

@@ -8,12 +8,24 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
-    <rule ref="Doctrine"/>
+    <rule ref="Doctrine">
+        <exclude name="Generic.Formatting.SpaceAfterNot"/>
+    </rule>
+    <!-- No space around colon in return types -->
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing">
+        <properties>
+            <property name="spacesCountBeforeColon" value="0"/>
+        </properties>
+    </rule>
+    <!-- No whitespace before and after concatenation -->
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+        <properties>
+            <property name="spacing" value="0"/>
+        </properties>
+    </rule>
 
-    <file>bin/</file>
     <file>config/</file>
-    <file>public/</file>
+    <file>devtools/</file>
     <file>src/</file>
-    <file>tests/</file>
 
 </ruleset>

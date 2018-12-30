@@ -12,49 +12,49 @@ use Doctrine\ORM\Mapping as ORM;
 class Book
 {
     /**
-     * @var string
-     *
      * @ORM\Id()
      * @ORM\Column(type="guid")
      * @ORM\GeneratedValue(strategy="NONE")
+     *
+     * @var string
      */
     private $id;
 
     /**
-     * @var null|string
-     *
      * @ORM\Column(type="string", length=13, nullable=true)
+     *
+     * @var string|null
      */
     private $isbn;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="text")
+     *
+     * @var string
      */
     private $title;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="text")
+     *
+     * @var string
      */
     private $description;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="text")
+     *
+     * @var string
      */
     private $author;
 
     public function __construct(string $id, ?string $isbn, string $title, string $description, string $author)
     {
-        $this->id = $id;
-        $this->isbn = $isbn;
-        $this->title = $title;
+        $this->id          = $id;
+        $this->isbn        = $isbn;
+        $this->title       = $title;
         $this->description = $description;
-        $this->author = $author;
+        $this->author      = $author;
     }
 
     public function getId(): string

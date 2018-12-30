@@ -9,8 +9,9 @@ use App\Core\Infrastructure\Api\Resource;
 use LogicException;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-final class MessageBusPersister implements DataPersisterInterface
+final class CommandBusPersister implements DataPersisterInterface
 {
+    /** @var MessageBusInterface */
     private $commandBus;
 
     public function __construct(MessageBusInterface $commandBus)
@@ -29,7 +30,7 @@ final class MessageBusPersister implements DataPersisterInterface
     /**
      * {@inheritdoc}
      *
-     * @param resource $data
+     * @param Resource $data
      */
     public function persist($data)
     {

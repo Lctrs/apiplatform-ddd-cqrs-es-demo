@@ -9,6 +9,7 @@ use App\Core\Domain\Command;
 
 final class DeleteReview implements Command
 {
+    /** @var ReviewId */
     private $reviewId;
 
     public function __construct(ReviewId $reviewId)

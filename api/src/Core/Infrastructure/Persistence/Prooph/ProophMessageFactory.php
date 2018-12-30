@@ -9,6 +9,9 @@ use Prooph\Common\Messaging\MessageFactory;
 
 final class ProophMessageFactory implements MessageFactory
 {
+    /**
+     * @param mixed[] $messageData
+     */
     public function createMessageFromArray(string $messageName, array $messageData): Message
     {
         if (!isset($messageData['message_name'])) {

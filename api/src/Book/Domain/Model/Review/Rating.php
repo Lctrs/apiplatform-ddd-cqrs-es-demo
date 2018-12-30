@@ -6,6 +6,7 @@ namespace App\Book\Domain\Model\Review;
 
 final class Rating
 {
+    /** @var int */
     private $value;
 
     public function __construct(int $value)

@@ -6,6 +6,7 @@ namespace App\Book\Domain\Model\Book;
 
 final class Author
 {
+    /** @var string */
     private $value;
 
     public function __construct(string $value)

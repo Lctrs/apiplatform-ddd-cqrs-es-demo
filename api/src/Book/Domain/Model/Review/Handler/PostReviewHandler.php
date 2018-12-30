@@ -11,12 +11,14 @@ use App\Book\Domain\Model\Review\ReviewList;
 
 final class PostReviewHandler
 {
+    /** @var BookList */
     private $bookList;
+    /** @var ReviewList */
     private $reviewList;
 
     public function __construct(BookList $bookList, ReviewList $reviewList)
     {
-        $this->bookList = $bookList;
+        $this->bookList   = $bookList;
         $this->reviewList = $reviewList;
     }
 
@@ -24,7 +26,7 @@ final class PostReviewHandler
     {
         $book = $this->bookList->get($command->bookId());
 
-        if (null === $book) {
+        if ($book === null) {
             throw BookNotFound::withId($command->bookId());
         }
 

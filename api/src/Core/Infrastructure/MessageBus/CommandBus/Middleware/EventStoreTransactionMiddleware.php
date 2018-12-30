@@ -8,9 +8,11 @@ use Prooph\EventStore\TransactionalEventStore;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
 use Symfony\Component\Messenger\Middleware\StackInterface;
+use Throwable;
 
 final class EventStoreTransactionMiddleware implements MiddlewareInterface
 {
+    /** @var TransactionalEventStore */
     private $eventStore;
 
     public function __construct(TransactionalEventStore $eventStore)
@@ -26,7 +28,7 @@ final class EventStoreTransactionMiddleware implements MiddlewareInterface
             $envelope = $stack->next()->handle($envelope, $stack);
 
             $this->eventStore->commit();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $this->eventStore->rollback();
 
             throw $e;

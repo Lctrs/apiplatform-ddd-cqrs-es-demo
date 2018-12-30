@@ -8,8 +8,14 @@ interface IdentifiesAggregate
 {
     public function __toString(): string;
 
+    /**
+     * @return static
+     */
     public static function generate();
 
+    /**
+     * @return static
+     */
     public static function fromString(string $string);
 
     public function equals(self $other): bool;
