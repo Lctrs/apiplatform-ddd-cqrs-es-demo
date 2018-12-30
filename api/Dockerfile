@@ -15,7 +15,7 @@ RUN apk add --no-cache \
 		git \
 	;
 
-ARG APCU_VERSION=5.1.12
+ARG APCU_VERSION=5.1.16
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
@@ -97,7 +97,7 @@ RUN apk add --no-cache \
     	acl \
 	;
 
-ARG APCU_VERSION=5.1.12
+ARG APCU_VERSION=5.1.16
 RUN set -eux; \
     \
     apk add --no-cache --virtual .build-deps \

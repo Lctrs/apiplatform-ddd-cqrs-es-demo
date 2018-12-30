@@ -1,16 +1,6 @@
 version: '3.4'
 
 services:
-  pgadmin:
-    image: dpage/pgadmin4
-    depends_on:
-      - db
-    environment:
-      PGADMIN_DEFAULT_EMAIL: jp@jp.fr
-      PGADMIN_DEFAULT_PASSWORD: jp
-    ports:
-      - "88:80"
-  
   book_projection:
     build:
       context: ./api

@@ -19,6 +19,8 @@ use Traversable;
 
 final class EventStore implements EventStoreInterface
 {
+    public const STREAM_NAME = 'event_stream';
+
     private $eventStore;
     private $transformer;
 
@@ -28,17 +30,14 @@ final class EventStore implements EventStoreInterface
         $this->transformer = $transformer;
     }
 
-    /**
-     * @param iterable|DomainEvent[] $streamEvents
-     */
-    public function appendTo(string $streamName, AggregateType $aggregateType, iterable $streamEvents): void
+    public function appendTo(AggregateType $aggregateType, iterable $streamEvents): void
     {
         if (!$streamEvents instanceof Traversable) {
             $streamEvents = new ArrayIterator($streamEvents);
         }
 
         $this->eventStore->appendTo(
-            new StreamName($streamName),
+            new StreamName(self::STREAM_NAME),
             new MapperIterator(
                 new MapperIterator($streamEvents, function (DomainEvent $event): Message {
                     return DomainEventTransformer::toEventData($event);
@@ -49,7 +48,7 @@ final class EventStore implements EventStoreInterface
         );
     }
 
-    public function load(string $streamName, AggregateType $aggregateType, IdentifiesAggregate $aggregateId): iterable
+    public function load(AggregateType $aggregateType, IdentifiesAggregate $aggregateId): iterable
     {
         $metadataMatcher = (new MetadataMatcher())
             ->withMetadataMatch(
@@ -64,7 +63,7 @@ final class EventStore implements EventStoreInterface
             );
 
         return new MapperIterator(
-            $this->eventStore->load(new StreamName($streamName), 1, null, $metadataMatcher),
+            $this->eventStore->load(new StreamName(self::STREAM_NAME), 1, null, $metadataMatcher),
             function (EventData $eventData): DomainEvent {
                 return $this->transformer->toDomainEvent($eventData);
             }
