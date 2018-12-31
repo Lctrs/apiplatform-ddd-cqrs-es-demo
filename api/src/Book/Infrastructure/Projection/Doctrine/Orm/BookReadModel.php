@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Book\Infrastructure\Projection\Doctrine\Orm;
 
-use App\Book\Infrastructure\Projection\Doctrine\Orm\Data\InsertBook;
-use App\Book\Infrastructure\Projection\Doctrine\Orm\Data\RemoveBook;
+use App\Book\Infrastructure\Projection\Doctrine\Data\InsertBook;
+use App\Book\Infrastructure\Projection\Doctrine\Data\RemoveBook;
 use App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
 use App\Core\Infrastructure\Projection\Doctrine\Orm\DoctrineOrmReadModel;
 use Doctrine\ORM\EntityManagerInterface;

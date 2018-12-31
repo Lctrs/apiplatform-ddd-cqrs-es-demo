@@ -6,8 +6,8 @@ namespace App\Book\Infrastructure\Projection;
 
 use App\Book\Domain\Model\Review\Event\ReviewWasDeleted;
 use App\Book\Domain\Model\Review\Event\ReviewWasPosted;
-use App\Book\Infrastructure\Projection\Doctrine\Orm\Data\InsertReview;
-use App\Book\Infrastructure\Projection\Doctrine\Orm\Data\RemoveReview;
+use App\Book\Infrastructure\Projection\Doctrine\Data\InsertReview;
+use App\Book\Infrastructure\Projection\Doctrine\Data\RemoveReview;
 use App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer;
 use App\Core\Infrastructure\Persistence\Prooph\EventData;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;

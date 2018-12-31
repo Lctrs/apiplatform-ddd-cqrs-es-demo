@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Book\Infrastructure\Projection\Doctrine\Orm\Data;
+namespace App\Book\Infrastructure\Projection\Doctrine\Data;
 
 final class InsertBook
 {

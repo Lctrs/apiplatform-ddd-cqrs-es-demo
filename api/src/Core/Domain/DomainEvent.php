@@ -50,5 +50,10 @@ abstract class DomainEvent
      */
     abstract public function toArray(): array;
 
-    abstract public function aggregateId(): IdentifiesAggregate;
+    // phpcs:disable SlevomatCodingStandard.TypeHints.TypeHintDeclaration
+    /**
+     * @return IdentifiesAggregate
+     */
+    abstract public function aggregateId();
+    // phpcs:enable
 }

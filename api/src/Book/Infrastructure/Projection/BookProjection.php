@@ -6,8 +6,8 @@ namespace App\Book\Infrastructure\Projection;
 
 use App\Book\Domain\Model\Book\Event\BookWasCreated;
 use App\Book\Domain\Model\Book\Event\BookWasDeleted;
-use App\Book\Infrastructure\Projection\Doctrine\Orm\Data\InsertBook;
-use App\Book\Infrastructure\Projection\Doctrine\Orm\Data\RemoveBook;
+use App\Book\Infrastructure\Projection\Doctrine\Data\InsertBook;
+use App\Book\Infrastructure\Projection\Doctrine\Data\RemoveBook;
 use App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer;
 use App\Core\Infrastructure\Persistence\Prooph\EventData;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
