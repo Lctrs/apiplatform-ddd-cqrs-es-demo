@@ -3,7 +3,7 @@ includes:
     - vendor/phpstan/phpstan-symfony/extension.neon
 parameters:
     symfony:
-        container_xml_path: var/cache/dev/SymfonyDevDebugProjectContainer.xml
+        container_xml_path: var/cache/dev/SymfonyApp_Core_Infrastructure_Symfony_KernelDevDebugContainer.xml
     excludes_analyse:
     	- src/Core/Infrastructure/Migrations
     fileExtensions:
