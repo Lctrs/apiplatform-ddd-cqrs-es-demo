@@ -2,30 +2,22 @@ prooph_event_store:
     stores:
         book_store:
             event_store: Prooph\EventStore\EventStore
-            repositories:
-                book_list:
-                    repository_class: Book\Infrastructure\Persistence\EventStore\EventStoreBookList
-                    aggregate_type: Book\Domain\Model\Book\Book
-                    aggregate_translator: Prooph\EventSourcing\Aggregate\AggregateTranslator
-                    stream_name: !php/const Core\Infrastructure\EventSourcing\Prooph\Stream\Streams::BOOK
-                review_list:
-                    repository_class: Book\Infrastructure\Persistence\EventStore\EventStoreReviewList
-                    aggregate_type: Book\Domain\Model\Review\Review
-                    aggregate_translator: Prooph\EventSourcing\Aggregate\AggregateTranslator
-                    stream_name: !php/const Core\Infrastructure\EventSourcing\Prooph\Stream\Streams::REVIEW
     projection_managers:
         book_projection_manager:
             event_store: Prooph\EventStore\EventStore
             connection: PDO
             projections:
                 book_projection:
-                    read_model: Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
-                    projection: Book\Infrastructure\Projection\BookProjection
+                    read_model: App\Book\Infrastructure\Projection\Doctrine\Orm\BookReadModel
+                    projection: App\Book\Infrastructure\Projection\BookProjection
                 review_projection:
-                    read_model: Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
-                    projection: Book\Infrastructure\Projection\ReviewProjection
+                    read_model: App\Book\Infrastructure\Projection\Doctrine\Orm\ReviewReadModel
+                    projection: App\Book\Infrastructure\Projection\ReviewProjection
 
 services:
+    _defaults:
+        public: false
+
     PDO:
         class: PDO
         factory: ['@database_connection', getWrappedConnection]
@@ -40,6 +32,6 @@ services:
     Prooph\EventStore\EventStore:
         alias: Prooph\EventStore\TransactionalEventStore
         public: true
-            
-    Prooph\EventSourcing\Aggregate\AggregateTranslator:
-        class: Prooph\EventSourcing\EventStoreIntegration\AggregateTranslator
+
+    prooph_event_store.message_factory:
+        class: App\Core\Infrastructure\Persistence\Prooph\ProophMessageFactory

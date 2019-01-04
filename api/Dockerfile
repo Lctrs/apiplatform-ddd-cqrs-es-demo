@@ -13,10 +13,9 @@ RUN apk add --no-cache \
 		file \
 		gettext \
 		git \
-		postgresql-client \
 	;
 
-ARG APCU_VERSION=5.1.12
+ARG APCU_VERSION=5.1.16
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
@@ -52,7 +51,8 @@ RUN set -eux; \
 	apk del .build-deps
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY docker/php/php.ini /usr/local/etc/php/php.ini
+RUN ln -s $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
+COPY docker/php/conf.d/app.ini $PHP_INI_DIR/conf.d/app.ini
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -77,6 +77,7 @@ COPY bin bin/
 COPY config config/
 COPY public public/
 COPY src src/
+COPY .env ./
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
@@ -94,10 +95,10 @@ CMD ["php-fpm"]
 FROM php:${PHP_VERSION}-cli-alpine AS api_platform_cli
 
 RUN apk add --no-cache \
-    acl \
-    postgresql-client
+    	acl \
+	;
 
-ARG APCU_VERSION=5.1.12
+ARG APCU_VERSION=5.1.16
 RUN set -eux; \
     \
     apk add --no-cache --virtual .build-deps \
@@ -129,7 +130,7 @@ RUN set -eux; \
     apk add --no-cache --virtual .api-phpexts-rundeps $runDeps; \
     apk del .build-deps
 
-COPY docker/php/php.ini /usr/local/etc/php/php.ini
+COPY docker/php/conf.d/app.ini /usr/local/etc/php/php.ini
 
 WORKDIR /srv/api
 

@@ -7,19 +7,22 @@ services:
         autoconfigure: true
         public: false
 
-    Core\Infrastructure\Fixtures\Command\LoadDataFixturesCommand:
-        class: Core\Infrastructure\Fixtures\Command\LoadDataFixturesCommand
+    App\Core\Infrastructure\Fixtures\Cli\LoadDataFixturesCommand:
+        class: App\Core\Infrastructure\Fixtures\Cli\LoadDataFixturesCommand
         arguments:
             - '@Fidry\AliceDataFixtures\LoaderInterface'
-    
-    Core\Infrastructure\Fixtures\Persistence\CommandBusPersister:
-        class: Core\Infrastructure\Fixtures\Persistence\CommandBusPersister
+
+    App\Core\Infrastructure\Fixtures\Persistence\CommandBusPersister:
+        class: App\Core\Infrastructure\Fixtures\Persistence\CommandBusPersister
         arguments:
             - '@messenger.bus.commands'
 
     Fidry\AliceDataFixtures\LoaderInterface:
+        alias: Fidry\AliceDataFixtures\Loader\PersisterLoader
+
+    Fidry\AliceDataFixtures\Loader\PersisterLoader:
         class: Fidry\AliceDataFixtures\Loader\PersisterLoader
         arguments:
             - '@fidry_alice_data_fixtures.loader.simple'
-            - '@Core\Infrastructure\Fixtures\Persistence\CommandBusPersister'
+            - '@App\Core\Infrastructure\Fixtures\Persistence\CommandBusPersister'
             - '@?logger'

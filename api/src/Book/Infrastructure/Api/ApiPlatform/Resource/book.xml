@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources xmlns="https://api-platform.com/schema/metadata"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="https://api-platform.com/schema/metadata
+           https://api-platform.com/schema/metadata/metadata-2.0.xsd"
+>
+    <resource
+        class="App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book"
+        description="A book."
+        iri="http://schema.org/Book"
+    >
+        <attribute name="normalization_context">
+            <attribute name="groups">
+                <attribute>Book:read</attribute>
+            </attribute>
+        </attribute>
+        <collectionOperations>
+            <collectionOperation name="get">
+                <attribute name="filters">
+                    <attribute>book.property_filter</attribute>
+                </attribute>
+            </collectionOperation>
+        </collectionOperations>
+        <itemOperations>
+            <itemOperation name="get"/>
+        </itemOperations>
+
+        <property
+            name="isbn"
+            description="The ISBN of the book"
+            iri="http://schema.org/isbn"
+        />
+        <property
+            name="title"
+            description="The title of the book"
+            iri="http://schema.org/name"
+            required="true"
+        />
+        <property
+            name="description"
+            description="A description of the item"
+            iri="http://schema.org/description"
+            required="true"
+        />
+        <property
+            name="author"
+            description="The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably"
+            iri="http://schema.org/author"
+            required="true"
+        />
+    </resource>
+</resources>

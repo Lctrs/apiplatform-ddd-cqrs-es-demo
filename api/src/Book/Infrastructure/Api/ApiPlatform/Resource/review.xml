@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources xmlns="https://api-platform.com/schema/metadata"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="https://api-platform.com/schema/metadata
+           https://api-platform.com/schema/metadata/metadata-2.0.xsd"
+>
+    <resource
+        class="App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review"
+        description="A review of an item - for example, of a restaurant, movie, or store."
+        iri="http://schema.org/Review"
+    >
+        <attribute name="normalization_context">
+            <attribute name="groups">
+                <attribute>Review:read</attribute>
+            </attribute>
+        </attribute>
+        <collectionOperations>
+            <collectionOperation name="get">
+                <attribute name="filters">
+                    <attribute>review.search_filter.bookId</attribute>
+                </attribute>
+            </collectionOperation>
+        </collectionOperations>
+        <itemOperations>
+            <itemOperation name="get"/>
+        </itemOperations>
+
+        <property
+            name="bookId"
+            description="The ID identifying the item that is being reviewed/rated"
+            iri="hk\ttp://schema.org/itemReviewed"
+            required="true"
+        />
+        <property
+            name="body"
+            description="The actual body of the review"
+            iri="http://schema.org/reviewBody"
+        />
+        <property
+            name="rating"
+            description="The rating given in this review."
+            iri="http://schema.org/reviewRating"
+            required="true"
+        />
+        <property
+            name="author"
+            description="The author of the review"
+            iri="http://schema.org/author"
+        />
+    </resource>
+</resources>

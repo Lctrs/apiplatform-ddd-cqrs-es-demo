@@ -2,25 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Persistence\EventStore;
+namespace App\Book\Infrastructure\Persistence\EventStore;
 
-use Book\Domain\Model\Book\Book;
-use Book\Domain\Model\Book\BookId;
-use Book\Domain\Model\Book\BookList;
-use Prooph\EventSourcing\Aggregate\AggregateRepository;
+use App\Book\Domain\Model\Book\Book;
+use App\Book\Domain\Model\Book\BookId;
+use App\Book\Domain\Model\Book\BookList;
+use App\Core\Domain\AggregateRepository;
+use App\Core\Domain\AggregateType;
+use App\Core\Domain\EventStore;
 
 /**
- * @method null|Book getAggregateRoot(string $aggregateId)
+ * @method null|Book getAggregateRoot(BookId $id) : ?Book
  */
 final class EventStoreBookList extends AggregateRepository implements BookList
 {
+    public function __construct(EventStore $eventStore)
+    {
+        parent::__construct($eventStore, new AggregateType('book', Book::class));
+    }
+
     public function save(Book $book): void
     {
         $this->saveAggregateRoot($book);
     }
 
-    public function get(BookId $id): ?Book
+    public function get(BookId $bookId): ?Book
     {
-        return $this->getAggregateRoot($id->toString());
+        return $this->getAggregateRoot($bookId);
     }
 }

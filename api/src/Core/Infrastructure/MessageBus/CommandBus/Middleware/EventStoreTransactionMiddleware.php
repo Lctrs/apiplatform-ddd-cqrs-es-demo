@@ -2,13 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Core\Infrastructure\MessageBus\CommandBus\Middleware;
+namespace App\Core\Infrastructure\MessageBus\CommandBus\Middleware;
 
 use Prooph\EventStore\TransactionalEventStore;
+use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
+use Symfony\Component\Messenger\Middleware\StackInterface;
+use Throwable;
 
 final class EventStoreTransactionMiddleware implements MiddlewareInterface
 {
+    /** @var TransactionalEventStore */
     private $eventStore;
 
     public function __construct(TransactionalEventStore $eventStore)
@@ -16,22 +20,20 @@ final class EventStoreTransactionMiddleware implements MiddlewareInterface
         $this->eventStore = $eventStore;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function handle($message, callable $next)
+    public function handle(Envelope $envelope, StackInterface $stack): Envelope
     {
         $this->eventStore->beginTransaction();
 
         try {
-            $result = $next($message);
+            $envelope = $stack->next()->handle($envelope, $stack);
+
             $this->eventStore->commit();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $this->eventStore->rollback();
 
             throw $e;
         }
 
-        return $result;
+        return $envelope;
     }
 }

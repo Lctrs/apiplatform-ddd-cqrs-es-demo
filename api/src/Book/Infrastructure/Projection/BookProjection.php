@@ -2,38 +2,57 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Projection;
+namespace App\Book\Infrastructure\Projection;
 
-use Book\Domain\Model\Book\Event\BookWasCreated;
-use Book\Domain\Model\Book\Event\BookWasDeleted;
-use Core\Infrastructure\EventSourcing\Prooph\Stream\Streams;
+use App\Book\Domain\Model\Book\Event\BookWasCreated;
+use App\Book\Domain\Model\Book\Event\BookWasDeleted;
+use App\Book\Infrastructure\Projection\Doctrine\Data\InsertBook;
+use App\Book\Infrastructure\Projection\Doctrine\Data\RemoveBook;
+use App\Core\Infrastructure\Persistence\Prooph\DomainEventTransformer;
+use App\Core\Infrastructure\Persistence\Prooph\EventData;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModel;
 use Prooph\EventStore\Projection\ReadModelProjector;
 
 final class BookProjection implements ReadModelProjection
 {
+    /** @var DomainEventTransformer */
+    private $transformer;
+
+    public function __construct(DomainEventTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
     public function project(ReadModelProjector $projector): ReadModelProjector
     {
-        $projector->fromStream(Streams::BOOK)
+        $transformer = $this->transformer;
+
+        $projector->fromStream('event_stream')
             ->when([
-                BookWasCreated::class => function ($data, BookWasCreated $event) {
+                BookWasCreated::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
 
-                    $readModel->stack('insert', [
-                        'id' => $event->id()->toString(),
-                        'isbn' => null === $event->isbn() ? null : $event->isbn()->toString(),
-                        'title' => $event->title()->toString(),
-                        'description' => $event->description()->toString(),
-                        'author' => $event->author()->toString(),
-                    ]);
+                    /** @var BookWasCreated $event */
+                    $event = $transformer->toDomainEvent($eventData);
+
+                    $readModel->stack('insert', new InsertBook(
+                        $event->aggregateId()->__toString(),
+                        $event->isbn() === null ? null : $event->isbn()->toString(),
+                        $event->title()->toString(),
+                        $event->description()->toString(),
+                        $event->author()->toString()
+                    ));
                 },
-                BookWasDeleted::class => function ($data, BookWasDeleted $event) {
+                BookWasDeleted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
 
-                    $readModel->stack('remove', $event->id()->toString());
+                    /** @var BookWasDeleted $event */
+                    $event = $transformer->toDomainEvent($eventData);
+
+                    $readModel->stack('remove', new RemoveBook($event->aggregateId()->__toString()));
                 },
             ]);
 

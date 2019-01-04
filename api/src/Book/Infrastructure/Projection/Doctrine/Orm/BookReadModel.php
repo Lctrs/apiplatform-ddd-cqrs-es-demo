@@ -2,36 +2,39 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Projection\Doctrine\Orm;
+namespace App\Book\Infrastructure\Projection\Doctrine\Orm;
 
-use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
-use Core\Infrastructure\Projection\Doctrine\Orm\AbstractDoctrineOrmReadModel;
+use App\Book\Infrastructure\Projection\Doctrine\Data\InsertBook;
+use App\Book\Infrastructure\Projection\Doctrine\Data\RemoveBook;
+use App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
+use App\Core\Infrastructure\Projection\Doctrine\Orm\DoctrineOrmReadModel;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class BookReadModel extends AbstractDoctrineOrmReadModel
+final class BookReadModel extends DoctrineOrmReadModel
 {
     public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct($entityManager, Book::class);
     }
 
-    protected function insert(array $data): void
+    protected function insert(InsertBook $data): void
     {
-        $book = new Book();
-        $book->id = $data['id'];
-        $book->isbn = $data['isbn'];
-        $book->title = $data['title'];
-        $book->description = $data['description'];
-        $book->author = $data['author'];
+        $book = new Book(
+            $data->id(),
+            $data->isbn(),
+            $data->title(),
+            $data->description(),
+            $data->author()
+        );
 
         $this->entityManager->persist($book);
     }
 
-    protected function remove(string $id): void
+    protected function remove(RemoveBook $data): void
     {
-        $book = $this->entityManager->find($this->entityClass, $id);
+        $book = $this->entityManager->getReference($this->entityClass, $data->id());
 
-        if (null === $book) {
+        if ($book === null) {
             return;
         }
 

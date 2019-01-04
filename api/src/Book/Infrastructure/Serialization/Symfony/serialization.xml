@@ -4,46 +4,38 @@
             xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping
         http://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
 >
-    <class name="Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book">
+    <class name="App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book">
         <attribute name="isbn">
             <group>Book:read</group>
-            <group>Book:write</group>
         </attribute>
         <attribute name="title">
             <group>Book:read</group>
             <group>Review:read</group>
-            <group>Book:write</group>
         </attribute>
         <attribute name="description">
             <group>Book:read</group>
-            <group>Book:write</group>
         </attribute>
         <attribute name="author">
             <group>Book:read</group>
-            <group>Book:write</group>
         </attribute>
         <attribute name="reviews">
             <group>Book:read</group>
         </attribute>
     </class>
 
-    <class name="Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review">
+    <class name="App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review">
         <attribute name="book">
             <group>Review:read</group>
-            <group>Review:write</group>
         </attribute>
         <attribute name="body">
             <group>Review:read</group>
             <group>Book:read</group>
-            <group>Review:write</group>
         </attribute>
         <attribute name="rating">
             <group>Review:read</group>
-            <group>Review:write</group>
         </attribute>
         <attribute name="author">
             <group>Review:read</group>
-            <group>Review:write</group>
         </attribute>
     </class>
 </serializer>

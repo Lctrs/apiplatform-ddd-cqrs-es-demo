@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Projection\Doctrine\Orm\Entity;
+namespace App\Book\Infrastructure\Projection\Doctrine\Orm\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(readOnly=true)
  */
 class Book
 {
@@ -17,58 +15,70 @@ class Book
      * @ORM\Id()
      * @ORM\Column(type="guid")
      * @ORM\GeneratedValue(strategy="NONE")
+     *
+     * @var string
      */
-    public $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=13, nullable=true)
-     */
-    public $isbn;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    public $title;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    public $description;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    public $author;
-
-    /**
-     * @var Collection|Review[]
      *
-     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="book", orphanRemoval=true, cascade={"persist", "remove"})
+     * @var string|null
      */
-    private $reviews;
-
-    public function __construct()
-    {
-        $this->reviews = new ArrayCollection();
-    }
-
-    public function addReview(Review $review, bool $updateRelation = true): void
-    {
-        if ($this->reviews->contains($review)) {
-            return;
-        }
-
-        $this->reviews->add($review);
-        if ($updateRelation) {
-            $review->setBook($this, false);
-        }
-    }
+    private $isbn;
 
     /**
-     * @return Review[]
+     * @ORM\Column(type="text")
+     *
+     * @var string
      */
-    public function getReviews(): iterable
+    private $title;
+
+    /**
+     * @ORM\Column(type="text")
+     *
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="text")
+     *
+     * @var string
+     */
+    private $author;
+
+    public function __construct(string $id, ?string $isbn, string $title, string $description, string $author)
     {
-        return $this->reviews;
+        $this->id          = $id;
+        $this->isbn        = $isbn;
+        $this->title       = $title;
+        $this->description = $description;
+        $this->author      = $author;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getIsbn(): ?string
+    {
+        return $this->isbn;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
     }
 }

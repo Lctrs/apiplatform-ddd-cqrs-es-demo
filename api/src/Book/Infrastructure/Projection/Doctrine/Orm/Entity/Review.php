@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Projection\Doctrine\Orm\Entity;
+namespace App\Book\Infrastructure\Projection\Doctrine\Orm\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(readOnly=true)
+ * @ORM\Table(indexes={@ORM\Index(name="book_ids", columns={"book_id"})})
  */
 class Review
 {
@@ -15,42 +16,70 @@ class Review
      * @ORM\Id()
      * @ORM\Column(type="guid")
      * @ORM\GeneratedValue(strategy="NONE")
+     *
+     * @var string
      */
-    public $id;
+    private $id;
+
+    /**
+     * @ORM\Column(type="guid")
+     *
+     * @var string
+     */
+    private $bookId;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string|null
      */
-    public $body;
+    private $body;
 
     /**
      * @ORM\Column(type="smallint")
+     *
+     * @var int
      */
-    public $rating;
+    private $rating;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     */
-    public $author;
-
-    /**
-     * @var Book
      *
-     * @ORM\ManyToOne(targetEntity=Book::class, inversedBy="reviews")
-     * @ORM\JoinColumn(nullable=false)
+     * @var string|null
      */
-    private $book;
+    private $author;
 
-    public function setBook(Book $book, bool $updateRelation = true): void
+    public function __construct(string $id, string $bookId, ?string $body, int $rating, ?string $author)
     {
-        $this->book = $book;
-        if ($updateRelation) {
-            $book->addReview($this, false);
-        }
+        $this->id     = $id;
+        $this->bookId = $bookId;
+        $this->body   = $body;
+        $this->rating = $rating;
+        $this->author = $author;
     }
 
-    public function getBook(): ?Book
+    public function getId(): string
     {
-        return $this->book;
+        return $this->id;
+    }
+
+    public function bookId(): string
+    {
+        return $this->bookId;
+    }
+
+    public function getBody(): ?string
+    {
+        return $this->body;
+    }
+
+    public function getRating(): int
+    {
+        return $this->rating;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
     }
 }

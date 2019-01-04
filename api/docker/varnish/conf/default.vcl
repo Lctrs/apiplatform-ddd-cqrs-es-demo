@@ -19,8 +19,8 @@ backend default {
 acl invalidators {
   "localhost";
   "php";
-  "book_projection";
-  "review_projection";
+  "projection_book";
+  "projection_review";
 }
 
 sub vcl_backend_response {

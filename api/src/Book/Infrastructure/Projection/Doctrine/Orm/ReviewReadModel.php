@@ -2,37 +2,39 @@
 
 declare(strict_types=1);
 
-namespace Book\Infrastructure\Projection\Doctrine\Orm;
+namespace App\Book\Infrastructure\Projection\Doctrine\Orm;
 
-use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
-use Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review;
-use Core\Infrastructure\Projection\Doctrine\Orm\AbstractDoctrineOrmReadModel;
+use App\Book\Infrastructure\Projection\Doctrine\Data\InsertReview;
+use App\Book\Infrastructure\Projection\Doctrine\Data\RemoveReview;
+use App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review;
+use App\Core\Infrastructure\Projection\Doctrine\Orm\DoctrineOrmReadModel;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class ReviewReadModel extends AbstractDoctrineOrmReadModel
+final class ReviewReadModel extends DoctrineOrmReadModel
 {
     public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct($entityManager, Review::class);
     }
 
-    protected function insert(array $data): void
+    protected function insert(InsertReview $data): void
     {
-        $review = new Review();
-        $review->id = $data['id'];
-        $review->setBook($this->entityManager->find(Book::class, $data['bookId']));
-        $review->body = $data['body'];
-        $review->rating = $data['rating'];
-        $review->author = $data['author'];
+        $review = new Review(
+            $data->id(),
+            $data->bookId(),
+            $data->body(),
+            $data->rating(),
+            $data->author()
+        );
 
         $this->entityManager->persist($review);
     }
 
-    protected function remove(string $id): void
+    protected function remove(RemoveReview $data): void
     {
-        $review = $this->entityManager->find($this->entityClass, $id);
+        $review = $this->entityManager->getReference($this->entityClass, $data->id());
 
-        if (null === $review) {
+        if ($review === null) {
             return;
         }
 

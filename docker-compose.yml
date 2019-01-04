@@ -1,51 +1,36 @@
 version: '3.4'
 
 services:
-  book_projection:
-    build:
-      context: ./api
-      target: api_platform_cli
-    depends_on:
-      - db
-    env_file:
-      - ./api/.env
-    # Comment out these volumes in production
-    volumes:
-      - ./api:/srv/api:rw,cached
-    entrypoint: docker-entrypoint
-    command: bin/console event-store:projection:run book_projection
-  review_projection:
-    build:
-      context: ./api
-      target: api_platform_cli
-    depends_on:
-      - db
-    env_file:
-      - ./api/.env
-    # Comment out these volumes in production
-    volumes:
-      - ./api:/srv/api:rw,cached
-    entrypoint: docker-entrypoint
-    command: bin/console event-store:projection:run review_projection
-
   php:
+    image: ${CONTAINER_REGISTRY_BASE}/php
     build:
       context: ./api
       target: api_platform_php
+      cache_from:
+        - ${CONTAINER_REGISTRY_BASE}/php
+        - ${CONTAINER_REGISTRY_BASE}/nginx
+        - ${CONTAINER_REGISTRY_BASE}/varnish
+        - ${CONTAINER_REGISTRY_BASE}/projection_book
+        - ${CONTAINER_REGISTRY_BASE}/projection_review
     depends_on:
       - db
-    env_file:
-      - ./api/.env
     # Comment out these volumes in production
     volumes:
       - ./api:/srv/api:rw,cached
-      # If you develop on Linux, uncomment the following line to use a bind-mounted host directory instead
+      # If you don't develop on Linux, comment the following line to not use a bind-mounted host directory instead
       - ./api/var:/srv/api/var:rw
 
   api:
+    image: ${CONTAINER_REGISTRY_BASE}/nginx
     build:
       context: ./api
       target: api_platform_nginx
+      cache_from:
+        - ${CONTAINER_REGISTRY_BASE}/php
+        - ${CONTAINER_REGISTRY_BASE}/nginx
+        - ${CONTAINER_REGISTRY_BASE}/varnish
+        - ${CONTAINER_REGISTRY_BASE}/projection_book
+        - ${CONTAINER_REGISTRY_BASE}/projection_review
     depends_on:
       - php
     # Comment out this volume in production
@@ -55,9 +40,16 @@ services:
       - "8080:80"
 
   cache-proxy:
+    image: ${CONTAINER_REGISTRY_BASE}/varnish
     build:
       context: ./api
       target: api_platform_varnish
+      cache_from:
+        - ${CONTAINER_REGISTRY_BASE}/php
+        - ${CONTAINER_REGISTRY_BASE}/nginx
+        - ${CONTAINER_REGISTRY_BASE}/varnish
+        - ${CONTAINER_REGISTRY_BASE}/projection_book
+        - ${CONTAINER_REGISTRY_BASE}/projection_review
     depends_on:
       - api
     volumes:
@@ -86,8 +78,11 @@ services:
   client:
     # Use a static website hosting service in production
     # See https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment
+    image: ${CONTAINER_REGISTRY_BASE}/client
     build:
       context: ./client
+      cache_from:
+        - ${CONTAINER_REGISTRY_BASE}/client
     env_file:
       - ./client/.env
     volumes:
@@ -99,8 +94,11 @@ services:
   admin:
     # Use a static website hosting service in production
     # See https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment
+    image: ${CONTAINER_REGISTRY_BASE}/admin
     build:
       context: ./admin
+      cache_from:
+        - ${CONTAINER_REGISTRY_BASE}/admin
     env_file:
       - ./admin/.env
     volumes:
@@ -123,6 +121,44 @@ services:
       - "444:444"
       - "8443:8443"
       - "8444:8444"
+
+  projection_book:
+    image: ${CONTAINER_REGISTRY_BASE}/projection_book
+    build:
+      context: ./api
+      target: api_platform_cli
+      cache_from:
+        - ${CONTAINER_REGISTRY_BASE}/php
+        - ${CONTAINER_REGISTRY_BASE}/nginx
+        - ${CONTAINER_REGISTRY_BASE}/varnish
+        - ${CONTAINER_REGISTRY_BASE}/projection_book
+        - ${CONTAINER_REGISTRY_BASE}/projection_review
+    depends_on:
+      - db
+    # Comment out these volumes in production
+    volumes:
+      - ./api:/srv/api:rw,cached
+    entrypoint: docker-entrypoint
+    command: bin/console event-store:projection:run book_projection
+
+  projection_review:
+    image: ${CONTAINER_REGISTRY_BASE}/projection_review
+    build:
+      context: ./api
+      target: api_platform_cli
+      cache_from:
+        - ${CONTAINER_REGISTRY_BASE}/php
+        - ${CONTAINER_REGISTRY_BASE}/nginx
+        - ${CONTAINER_REGISTRY_BASE}/varnish
+        - ${CONTAINER_REGISTRY_BASE}/projection_book
+        - ${CONTAINER_REGISTRY_BASE}/projection_review
+    depends_on:
+      - db
+    # Comment out these volumes in production
+    volumes:
+      - ./api:/srv/api:rw,cached
+    entrypoint: docker-entrypoint
+    command: bin/console event-store:projection:run review_projection
 
 volumes:
   db-data: {}

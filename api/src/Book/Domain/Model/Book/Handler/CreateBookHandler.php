@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Book\Domain\Model\Book\Handler;
+namespace App\Book\Domain\Model\Book\Handler;
 
-use Book\Domain\Model\Book\Book;
-use Book\Domain\Model\Book\BookList;
-use Book\Domain\Model\Book\Command\CreateBook;
+use App\Book\Domain\Model\Book\Book;
+use App\Book\Domain\Model\Book\BookList;
+use App\Book\Domain\Model\Book\Command\CreateBook;
 
 final class CreateBookHandler
 {
+    /** @var BookList */
     private $bookList;
 
     public function __construct(BookList $bookList)
@@ -20,7 +21,7 @@ final class CreateBookHandler
     public function __invoke(CreateBook $command): void
     {
         $this->bookList->save(Book::create(
-            $command->id(),
+            $command->bookId(),
             $command->isbn(),
             $command->title(),
             $command->description(),

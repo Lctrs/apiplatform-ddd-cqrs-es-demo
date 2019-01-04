@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <arg name="basepath" value="."/>
+    <arg name="cache" value=".phpcs-cache"/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+
+    <rule ref="Doctrine">
+        <exclude name="Generic.Formatting.SpaceAfterNot"/>
+    </rule>
+    <!-- No space around colon in return types -->
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing">
+        <properties>
+            <property name="spacesCountBeforeColon" value="0"/>
+        </properties>
+    </rule>
+    <!-- No whitespace before and after concatenation -->
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+        <properties>
+            <property name="spacing" value="0"/>
+            <property name="ignoreNewlines" value="true"/>
+        </properties>
+    </rule>
+
+    <file>devtools/</file>
+    <file>src/</file>
+
+</ruleset>
