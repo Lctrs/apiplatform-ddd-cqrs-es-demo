@@ -14,6 +14,7 @@ use App\Book\Domain\Model\Review\Rating;
 use App\Book\Domain\Model\Review\ReviewId;
 use App\Core\Domain\Command;
 use App\Core\Infrastructure\Api\Resource;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -26,11 +27,18 @@ use App\Core\Infrastructure\Api\Resource;
  */
 final class PostReviewResource implements Resource
 {
-    /** @var string */
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
     public $bookId;
     /** @var string */
     public $body;
-    /** @var int */
+    /**
+     * @var int
+     * @Assert\NotBlank()
+     * @Assert\Range(min=1, max=5)
+     */
     public $rating;
     /** @var string|null */
     public $author;

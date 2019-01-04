@@ -10,6 +10,7 @@ use App\Book\Domain\Model\Review\Command\DeleteReview;
 use App\Book\Domain\Model\Review\ReviewId;
 use App\Core\Domain\Command;
 use App\Core\Infrastructure\Api\Resource;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -25,6 +26,7 @@ final class DeleteReviewResource implements Resource
     /**
      * @var string
      * @ApiProperty(identifier=true)
+     * @Assert\NotBlank()
      */
     public $id;
 

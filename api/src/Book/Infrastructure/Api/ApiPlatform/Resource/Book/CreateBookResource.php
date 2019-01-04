@@ -14,6 +14,7 @@ use App\Book\Domain\Model\Book\Isbn;
 use App\Book\Domain\Model\Book\Title;
 use App\Core\Domain\Command;
 use App\Core\Infrastructure\Api\Resource;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -26,13 +27,25 @@ use App\Core\Infrastructure\Api\Resource;
  */
 final class CreateBookResource implements Resource
 {
-    /** @var string|null */
+    /**
+     * @var string|null
+     * @Assert\Isbn()
+     */
     public $isbn;
-    /** @var string */
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
     public $title;
-    /** @var string */
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
     public $description;
-    /** @var string */
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     */
     public $author;
     /**
      * @var BookId|null

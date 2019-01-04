@@ -10,6 +10,7 @@ use App\Book\Domain\Model\Book\BookId;
 use App\Book\Domain\Model\Book\Command\DeleteBook;
 use App\Core\Domain\Command;
 use App\Core\Infrastructure\Api\Resource;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -25,6 +26,7 @@ final class DeleteBookResource implements Resource
     /**
      * @var string
      * @ApiProperty(identifier=true)
+     * @Assert\NotBlank()
      */
     public $id;
 

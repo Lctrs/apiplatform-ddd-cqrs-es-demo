@@ -33,6 +33,7 @@
         "symfony/routing": "*",
         "symfony/serializer": "*",
         "symfony/twig-bundle": "*",
+        "symfony/validator": "4.2.*",
         "symfony/yaml": "*"
     },
     "require-dev": {
