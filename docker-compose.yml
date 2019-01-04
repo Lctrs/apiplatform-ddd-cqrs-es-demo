@@ -14,8 +14,6 @@ services:
         - ${CONTAINER_REGISTRY_BASE}/projection_review
     depends_on:
       - db
-    env_file:
-      - ./api/.env
     # Comment out these volumes in production
     volumes:
       - ./api:/srv/api:rw,cached
@@ -137,8 +135,6 @@ services:
         - ${CONTAINER_REGISTRY_BASE}/projection_review
     depends_on:
       - db
-    env_file:
-      - ./api/.env
     # Comment out these volumes in production
     volumes:
       - ./api:/srv/api:rw,cached
@@ -158,8 +154,6 @@ services:
         - ${CONTAINER_REGISTRY_BASE}/projection_review
     depends_on:
       - db
-    env_file:
-      - ./api/.env
     # Comment out these volumes in production
     volumes:
       - ./api:/srv/api:rw,cached

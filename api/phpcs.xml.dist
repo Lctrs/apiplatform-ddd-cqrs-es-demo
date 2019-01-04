@@ -25,7 +25,6 @@
         </properties>
     </rule>
 
-    <file>config/</file>
     <file>devtools/</file>
     <file>src/</file>
 

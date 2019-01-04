@@ -77,6 +77,7 @@ COPY bin bin/
 COPY config config/
 COPY public public/
 COPY src src/
+COPY .env ./
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
