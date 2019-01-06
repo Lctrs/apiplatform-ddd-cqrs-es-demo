@@ -10,8 +10,7 @@ services:
         - ${CONTAINER_REGISTRY_BASE}/php
         - ${CONTAINER_REGISTRY_BASE}/nginx
         - ${CONTAINER_REGISTRY_BASE}/varnish
-        - ${CONTAINER_REGISTRY_BASE}/projection_book
-        - ${CONTAINER_REGISTRY_BASE}/projection_review
+        - ${CONTAINER_REGISTRY_BASE}/php-cli
     depends_on:
       - db
     # Comment out these volumes in production
@@ -29,8 +28,7 @@ services:
         - ${CONTAINER_REGISTRY_BASE}/php
         - ${CONTAINER_REGISTRY_BASE}/nginx
         - ${CONTAINER_REGISTRY_BASE}/varnish
-        - ${CONTAINER_REGISTRY_BASE}/projection_book
-        - ${CONTAINER_REGISTRY_BASE}/projection_review
+        - ${CONTAINER_REGISTRY_BASE}/php-cli
     depends_on:
       - php
     # Comment out this volume in production
@@ -48,8 +46,7 @@ services:
         - ${CONTAINER_REGISTRY_BASE}/php
         - ${CONTAINER_REGISTRY_BASE}/nginx
         - ${CONTAINER_REGISTRY_BASE}/varnish
-        - ${CONTAINER_REGISTRY_BASE}/projection_book
-        - ${CONTAINER_REGISTRY_BASE}/projection_review
+        - ${CONTAINER_REGISTRY_BASE}/php-cli
     depends_on:
       - api
     volumes:
@@ -123,7 +120,7 @@ services:
       - "8444:8444"
 
   projection_book:
-    image: ${CONTAINER_REGISTRY_BASE}/projection_book
+    image: ${CONTAINER_REGISTRY_BASE}/php-cli
     build:
       context: ./api
       target: api_platform_cli
@@ -131,8 +128,7 @@ services:
         - ${CONTAINER_REGISTRY_BASE}/php
         - ${CONTAINER_REGISTRY_BASE}/nginx
         - ${CONTAINER_REGISTRY_BASE}/varnish
-        - ${CONTAINER_REGISTRY_BASE}/projection_book
-        - ${CONTAINER_REGISTRY_BASE}/projection_review
+        - ${CONTAINER_REGISTRY_BASE}/php-cli
     depends_on:
       - db
     # Comment out these volumes in production
@@ -142,7 +138,7 @@ services:
     command: bin/console event-store:projection:run book_projection
 
   projection_review:
-    image: ${CONTAINER_REGISTRY_BASE}/projection_review
+    image: ${CONTAINER_REGISTRY_BASE}/php-cli
     build:
       context: ./api
       target: api_platform_cli
@@ -150,8 +146,7 @@ services:
         - ${CONTAINER_REGISTRY_BASE}/php
         - ${CONTAINER_REGISTRY_BASE}/nginx
         - ${CONTAINER_REGISTRY_BASE}/varnish
-        - ${CONTAINER_REGISTRY_BASE}/projection_book
-        - ${CONTAINER_REGISTRY_BASE}/projection_review
+        - ${CONTAINER_REGISTRY_BASE}/php-cli
     depends_on:
       - db
     # Comment out these volumes in production
