@@ -23,6 +23,11 @@
         __factory:
             fromString:
                 - <name()>
+'App\Book\Domain\Model\Book\PublicationDate':
+    publicationdate_{1..100}:
+        __factory:
+            fromString:
+                - <date()>
 
 'App\Book\Domain\Model\Book\Command\CreateBook':
     book_{1..100}:
@@ -32,6 +37,7 @@
             - '@title_<current()>'
             - '@description_<current()>'
             - '@bookauthor_<current()>'
+            - '@publicationdate_<current()>'
 
 'App\Book\Domain\Model\Review\ReviewId':
     reviewid_{1..500}:

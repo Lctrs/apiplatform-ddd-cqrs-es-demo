@@ -24,7 +24,8 @@ final class BookReadModel extends DoctrineOrmReadModel
             $data->isbn(),
             $data->title(),
             $data->description(),
-            $data->author()
+            $data->author(),
+            $data->publicationDate()
         );
 
         $this->entityManager->persist($book);

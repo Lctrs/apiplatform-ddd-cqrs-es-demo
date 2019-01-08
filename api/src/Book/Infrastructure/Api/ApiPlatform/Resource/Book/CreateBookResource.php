@@ -11,6 +11,7 @@ use App\Book\Domain\Model\Book\BookId;
 use App\Book\Domain\Model\Book\Command\CreateBook;
 use App\Book\Domain\Model\Book\Description;
 use App\Book\Domain\Model\Book\Isbn;
+use App\Book\Domain\Model\Book\PublicationDate;
 use App\Book\Domain\Model\Book\Title;
 use App\Core\Domain\Command;
 use App\Core\Infrastructure\Api\Resource;
@@ -48,6 +49,12 @@ final class CreateBookResource implements Resource
      */
     public $author;
     /**
+     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Date()
+     */
+    public $publicationDate;
+    /**
      * @var BookId|null
      * @ApiProperty(identifier=true)
      */
@@ -60,7 +67,8 @@ final class CreateBookResource implements Resource
             $this->isbn === null ? null : Isbn::fromString($this->isbn),
             Title::fromString($this->title),
             Description::fromString($this->description),
-            Author::fromString($this->author)
+            Author::fromString($this->author),
+            PublicationDate::fromString($this->publicationDate)
         );
     }
 }

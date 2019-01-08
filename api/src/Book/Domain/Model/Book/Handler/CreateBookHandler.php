@@ -25,7 +25,8 @@ final class CreateBookHandler
             $command->isbn(),
             $command->title(),
             $command->description(),
-            $command->author()
+            $command->author(),
+            $command->publicationDate()
         ));
     }
 }

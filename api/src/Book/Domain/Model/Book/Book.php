@@ -30,12 +30,20 @@ final class Book extends AggregateRoot
     private $description;
     /** @var Author */
     private $author;
+    /** @var PublicationDate */
+    private $publicationDate;
 
-    public static function create(BookId $id, ?Isbn $isbn, Title $title, Description $description, Author $author): self
-    {
+    public static function create(
+        BookId $id,
+        ?Isbn $isbn,
+        Title $title,
+        Description $description,
+        Author $author,
+        PublicationDate $publicationDate
+    ): self {
         $book = new self();
 
-        $book->recordThat(BookWasCreated::with($id, $isbn, $title, $description, $author));
+        $book->recordThat(BookWasCreated::with($id, $isbn, $title, $description, $author, $publicationDate));
 
         return $book;
     }
@@ -75,6 +83,11 @@ final class Book extends AggregateRoot
         return $this->author;
     }
 
+    public function publicationDate(): PublicationDate
+    {
+        return $this->publicationDate;
+    }
+
     protected function when(DomainEvent $event): void
     {
         switch (get_class($event)) {
@@ -94,10 +107,11 @@ final class Book extends AggregateRoot
 
     private function whenBookWasCreated(BookWasCreated $event): void
     {
-        $this->id          = $event->aggregateId();
-        $this->isbn        = $event->isbn();
-        $this->title       = $event->title();
-        $this->description = $event->description();
-        $this->author      = $event->author();
+        $this->id              = $event->aggregateId();
+        $this->isbn            = $event->isbn();
+        $this->title           = $event->title();
+        $this->description     = $event->description();
+        $this->author          = $event->author();
+        $this->publicationDate = $event->publicationDate();
     }
 }

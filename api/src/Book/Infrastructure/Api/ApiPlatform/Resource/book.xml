@@ -48,5 +48,11 @@
             iri="http://schema.org/author"
             required="true"
         />
+        <property
+            name="publicationDate"
+            description="The date on which the CreativeWork was created or the item was added to a DataFeed"
+            iri="http://schema.org/dateCreated"
+            required="true"
+        />
     </resource>
 </resources>

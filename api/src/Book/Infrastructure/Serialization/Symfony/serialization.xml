@@ -10,7 +10,6 @@
         </attribute>
         <attribute name="title">
             <group>Book:read</group>
-            <group>Review:read</group>
         </attribute>
         <attribute name="description">
             <group>Book:read</group>
@@ -18,18 +17,17 @@
         <attribute name="author">
             <group>Book:read</group>
         </attribute>
-        <attribute name="reviews">
+        <attribute name="publicationDate">
             <group>Book:read</group>
         </attribute>
     </class>
 
     <class name="App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review">
-        <attribute name="book">
+        <attribute name="bookId">
             <group>Review:read</group>
         </attribute>
         <attribute name="body">
             <group>Review:read</group>
-            <group>Book:read</group>
         </attribute>
         <attribute name="rating">
             <group>Review:read</group>

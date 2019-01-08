@@ -42,7 +42,8 @@ final class BookProjection implements ReadModelProjection
                         $event->isbn() === null ? null : $event->isbn()->toString(),
                         $event->title()->toString(),
                         $event->description()->toString(),
-                        $event->author()->toString()
+                        $event->author()->toString(),
+                        $event->publicationDate()->value()
                     ));
                 },
                 BookWasDeleted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {

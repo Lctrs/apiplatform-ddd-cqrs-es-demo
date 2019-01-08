@@ -8,6 +8,7 @@ use App\Book\Domain\Model\Book\Author;
 use App\Book\Domain\Model\Book\BookId;
 use App\Book\Domain\Model\Book\Description;
 use App\Book\Domain\Model\Book\Isbn;
+use App\Book\Domain\Model\Book\PublicationDate;
 use App\Book\Domain\Model\Book\Title;
 use App\Core\Domain\DomainEvent;
 use ReflectionClass;
@@ -26,16 +27,25 @@ final class BookWasCreated extends DomainEvent
     private $description;
     /** @var Author */
     private $author;
+    /** @var PublicationDate */
+    private $publicationDate;
 
-    protected function __construct(BookId $bookId, ?Isbn $isbn, Title $title, Description $description, Author $author)
-    {
+    protected function __construct(
+        BookId $bookId,
+        ?Isbn $isbn,
+        Title $title,
+        Description $description,
+        Author $author,
+        PublicationDate $publicationDate
+    ) {
         parent::__construct();
 
-        $this->bookId      = $bookId;
-        $this->isbn        = $isbn;
-        $this->title       = $title;
-        $this->description = $description;
-        $this->author      = $author;
+        $this->bookId          = $bookId;
+        $this->isbn            = $isbn;
+        $this->title           = $title;
+        $this->description     = $description;
+        $this->author          = $author;
+        $this->publicationDate = $publicationDate;
     }
 
     public static function with(
@@ -43,9 +53,10 @@ final class BookWasCreated extends DomainEvent
         ?Isbn $isbn,
         Title $title,
         Description $description,
-        Author $author
+        Author $author,
+        PublicationDate $publicationDate
     ): self {
-        return new self($bookId, $isbn, $title, $description, $author);
+        return new self($bookId, $isbn, $title, $description, $author, $publicationDate);
     }
 
     public function name(): string
@@ -63,6 +74,7 @@ final class BookWasCreated extends DomainEvent
             'title' => $this->title->toString(),
             'description' => $this->description->toString(),
             'author' => $this->author->toString(),
+            'publicationDate' => $this->publicationDate->toString(),
         ];
     }
 
@@ -91,6 +103,11 @@ final class BookWasCreated extends DomainEvent
         return $this->author;
     }
 
+    public function publicationDate(): PublicationDate
+    {
+        return $this->publicationDate;
+    }
+
     /**
      * @inheritdoc
      */
@@ -99,13 +116,14 @@ final class BookWasCreated extends DomainEvent
         /** @var self $message */
         $message = (new ReflectionClass(self::class))->newInstanceWithoutConstructor();
 
-        $message->bookId      = BookId::fromString($data['aggregateId']);
-        $message->isbn        = $data['isbn'] === null ? $data['isbn'] : Isbn::fromString($data['isbn']);
-        $message->title       = Title::fromString($data['title']);
-        $message->description = Description::fromString($data['description']);
-        $message->author      = Author::fromString($data['author']);
-        $message->version     = $data['version'];
-        $message->occuredOn   = $data['occuredOn'];
+        $message->bookId          = BookId::fromString($data['aggregateId']);
+        $message->isbn            = $data['isbn'] === null ? $data['isbn'] : Isbn::fromString($data['isbn']);
+        $message->title           = Title::fromString($data['title']);
+        $message->description     = Description::fromString($data['description']);
+        $message->author          = Author::fromString($data['author']);
+        $message->publicationDate = PublicationDate::fromString($data['publicationDate']);
+        $message->version         = $data['version'];
+        $message->occuredOn       = $data['occuredOn'];
 
         return $message;
     }

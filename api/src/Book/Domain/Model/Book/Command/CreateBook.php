@@ -8,6 +8,7 @@ use App\Book\Domain\Model\Book\Author;
 use App\Book\Domain\Model\Book\BookId;
 use App\Book\Domain\Model\Book\Description;
 use App\Book\Domain\Model\Book\Isbn;
+use App\Book\Domain\Model\Book\PublicationDate;
 use App\Book\Domain\Model\Book\Title;
 use App\Core\Domain\Command;
 
@@ -23,14 +24,23 @@ final class CreateBook implements Command
     private $description;
     /** @var Author */
     private $author;
+    /** @var PublicationDate */
+    private $publicationDate;
 
-    public function __construct(BookId $bookId, ?Isbn $isbn, Title $title, Description $description, Author $author)
-    {
-        $this->bookId      = $bookId;
-        $this->isbn        = $isbn;
-        $this->title       = $title;
-        $this->description = $description;
-        $this->author      = $author;
+    public function __construct(
+        BookId $bookId,
+        ?Isbn $isbn,
+        Title $title,
+        Description $description,
+        Author $author,
+        PublicationDate $publicationDate
+    ) {
+        $this->bookId          = $bookId;
+        $this->isbn            = $isbn;
+        $this->title           = $title;
+        $this->description     = $description;
+        $this->author          = $author;
+        $this->publicationDate = $publicationDate;
     }
 
     public function bookId(): BookId
@@ -56,5 +66,10 @@ final class CreateBook implements Command
     public function author(): Author
     {
         return $this->author;
+    }
+
+    public function publicationDate(): PublicationDate
+    {
+        return $this->publicationDate;
     }
 }
