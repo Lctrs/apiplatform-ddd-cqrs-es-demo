@@ -20,9 +20,10 @@ script:
   - docker-compose build --pull
   - docker-compose run --no-deps -T php composer validate --no-check-publish
   - docker-compose up -d
-  - sleep 30
+  - sleep 20
   - docker-compose exec -T php composer cs-check
   - docker-compose exec -T php composer analyze
+  - docker-compose exec -T php vendor/bin/composer-require-checker
   - docker-compose exec -T php composer req sensiolabs/security-checker
   - docker-compose exec -T php bin/console security:check
   - curl http://localhost # Client

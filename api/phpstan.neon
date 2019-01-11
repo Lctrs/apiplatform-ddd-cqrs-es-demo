@@ -5,12 +5,13 @@ parameters:
     symfony:
         container_xml_path: var/cache/dev/SymfonyApp_Core_Infrastructure_Symfony_KernelDevDebugContainer.xml
     excludes_analyse:
-    	- src/Core/Infrastructure/Migrations
+        - config/bootstrap.php
+        - src/Core/Infrastructure/Migrations
     fileExtensions:
         # Standard php files and .dist config files
         - php
         - dist
     reportUnmatchedIgnoredErrors: true
     ignoreErrors:
-    	- '#Call to an undefined method [a-zA-Z0-9\\_]+::readModel\(\)#'
-    	- '#Method App\\Core\\Infrastructure\\Persistence\\Prooph\\DomainEventTransformer::toEventData\(\) should return App\\Core\\Infrastructure\\Persistence\\Prooph\\EventData but returns Prooph\\Common\\Messaging\\DomainMessage\.#'
+        - '#Call to an undefined method [a-zA-Z0-9\\_]+::readModel\(\)#'
+        - '#Method App\\Core\\Infrastructure\\Persistence\\Prooph\\DomainEventTransformer::toEventData\(\) should return App\\Core\\Infrastructure\\Persistence\\Prooph\\EventData but returns Prooph\\Common\\Messaging\\DomainMessage\.#'
