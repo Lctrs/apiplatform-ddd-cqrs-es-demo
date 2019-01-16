@@ -21,6 +21,7 @@ script:
   - docker-compose run --no-deps -T php composer validate --no-check-publish
   - docker-compose up -d
   - sleep 20
+  - docker-compose exec -T php bin/phpunit
   - docker-compose exec -T php composer cs-check
   - docker-compose exec -T php composer analyze
   - docker-compose exec -T php vendor/bin/composer-require-checker
