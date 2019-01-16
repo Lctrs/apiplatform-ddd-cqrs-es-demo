@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "c20b86cfa6def8f1921dd7e02280d283fcd80e8a"
+                "reference": "92d45aa945384f9f86abce652d042fa2401218f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/c20b86cfa6def8f1921dd7e02280d283fcd80e8a",
-                "reference": "c20b86cfa6def8f1921dd7e02280d283fcd80e8a",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/92d45aa945384f9f86abce652d042fa2401218f6",
+                "reference": "92d45aa945384f9f86abce652d042fa2401218f6",
                 "shasum": ""
             },
             "require": {
@@ -56,7 +56,7 @@
                 "phpdocumentor/reflection-docblock": "^3.0 || ^4.0",
                 "phpdocumentor/type-resolver": "^0.3 || ^0.4",
                 "phpspec/prophecy": "^1.8",
-                "phpunit/phpunit": "^7.5.1",
+                "phpunit/phpunit": "^7.5.2",
                 "psr/log": "^1.0",
                 "ramsey/uuid": "^3.7",
                 "ramsey/uuid-doctrine": "^1.4",
@@ -134,7 +134,7 @@
                 "rest",
                 "swagger"
             ],
-            "time": "2019-01-09T16:15:14+00:00"
+            "time": "2019-01-15T17:16:02+00:00"
         },
         {
             "name": "beberlei/assert",
@@ -4440,16 +4440,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.6.0",
+            "version": "v2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "a11dd39f5b6589e14f0ff3b36675d06047c589b1"
+                "reference": "7d7342c8a4059fefb9b8d07db0cc14007021f9b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a11dd39f5b6589e14f0ff3b36675d06047c589b1",
-                "reference": "a11dd39f5b6589e14f0ff3b36675d06047c589b1",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/7d7342c8a4059fefb9b8d07db0cc14007021f9b7",
+                "reference": "7d7342c8a4059fefb9b8d07db0cc14007021f9b7",
                 "shasum": ""
             },
             "require": {
@@ -4503,7 +4503,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-12-16T10:36:48+00:00"
+            "time": "2019-01-14T15:00:48+00:00"
         },
         {
             "name": "webmozart/assert",
