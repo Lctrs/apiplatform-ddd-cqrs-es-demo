@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57316516519401083910f69a2902f2b4",
+    "content-hash": "a177f7a9b42bee0300862eeec932215f",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "dev-master",
+            "version": "v2.4.0-beta.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "92d45aa945384f9f86abce652d042fa2401218f6"
+                "reference": "8c4357b9416e95e910ed9536b120f4f2896110bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/92d45aa945384f9f86abce652d042fa2401218f6",
-                "reference": "92d45aa945384f9f86abce652d042fa2401218f6",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/8c4357b9416e95e910ed9536b120f4f2896110bd",
+                "reference": "8c4357b9416e95e910ed9536b120f4f2896110bd",
                 "shasum": ""
             },
             "require": {
@@ -46,9 +46,11 @@
                 "doctrine/annotations": "^1.2",
                 "doctrine/doctrine-bundle": "^1.8",
                 "doctrine/doctrine-cache-bundle": "^1.3.5",
+                "doctrine/mongodb-odm": "^2.0.0@beta",
+                "doctrine/mongodb-odm-bundle": "^4.0.0@beta",
                 "doctrine/orm": "^2.6.3",
                 "elasticsearch/elasticsearch": "^6.0",
-                "friendsofsymfony/user-bundle": "^2.1",
+                "friendsofsymfony/user-bundle": "dev-fix-mongodb-mapping",
                 "guzzlehttp/guzzle": "^6.0",
                 "justinrainbow/json-schema": "^5.0",
                 "nelmio/api-doc-bundle": "^2.13.3",
@@ -85,6 +87,7 @@
                 "webonyx/graphql-php": ">=0.13 <1.0"
             },
             "suggest": {
+                "doctrine/mongodb-odm-bundle": "To support MongoDB.",
                 "elasticsearch/elasticsearch": "To support Elasticsearch.",
                 "friendsofsymfony/user-bundle": "To use the FOSUserBundle bridge.",
                 "guzzlehttp/guzzle": "To use the HTTP cache invalidation system.",
@@ -134,7 +137,7 @@
                 "rest",
                 "swagger"
             ],
-            "time": "2019-01-15T17:16:02+00:00"
+            "time": "2019-01-18T16:29:51+00:00"
         },
         {
             "name": "beberlei/assert",
@@ -5043,16 +5046,16 @@
         },
         {
             "name": "phpstan/phpstan-shim",
-            "version": "0.11",
+            "version": "0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-shim.git",
-                "reference": "15fa67ca5de4857fb30ae832183716a0931ca86f"
+                "reference": "eb95dbe98cdd9ab67e6716416274e4f6c1006fcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-shim/zipball/15fa67ca5de4857fb30ae832183716a0931ca86f",
-                "reference": "15fa67ca5de4857fb30ae832183716a0931ca86f",
+                "url": "https://api.github.com/repos/phpstan/phpstan-shim/zipball/eb95dbe98cdd9ab67e6716416274e4f6c1006fcc",
+                "reference": "eb95dbe98cdd9ab67e6716416274e4f6c1006fcc",
                 "shasum": ""
             },
             "require": {
@@ -5083,7 +5086,7 @@
                 "MIT"
             ],
             "description": "PHPStan Phar distribution",
-            "time": "2019-01-16T11:03:15+00:00"
+            "time": "2019-01-19T21:06:39+00:00"
         },
         {
             "name": "phpstan/phpstan-symfony",
@@ -5937,7 +5940,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "api-platform/core": 20
+        "api-platform/core": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,

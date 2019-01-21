@@ -22,8 +22,8 @@ script:
   - docker-compose up -d
   - sleep 20
   - docker-compose exec -T php bin/phpunit
-  - docker-compose exec -T php composer cs-check
-  - docker-compose exec -T php composer analyze
+  - docker-compose exec -T php vendor/bin/phpcs
+  - docker-compose exec -T php vendor/bin/phpstan analyze
   - docker-compose exec -T php vendor/bin/composer-require-checker
   - docker-compose exec -T php composer req sensiolabs/security-checker
   - docker-compose exec -T php bin/console security:check

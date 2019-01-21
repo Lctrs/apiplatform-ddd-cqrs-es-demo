@@ -44,7 +44,7 @@ final class LoadDataFixturesCommand extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         $path = $input->getArgument('path');
 
@@ -55,6 +55,8 @@ final class LoadDataFixturesCommand extends Command
         $fixturesFiles = $this->resolvePath($path);
 
         $this->loader->load($fixturesFiles);
+
+        return 0;
     }
 
     /**
