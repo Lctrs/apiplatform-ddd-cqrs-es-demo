@@ -22,7 +22,7 @@ class Book
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=13, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      *
      * @var string|null
      */
