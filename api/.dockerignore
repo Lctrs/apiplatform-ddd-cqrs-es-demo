@@ -14,7 +14,7 @@
 .env.local
 .env.local.php
 .env.*.local
-.php_cs.cache
+.phpcs-cache
 bin/*
 !bin/console
 docker/db/data/

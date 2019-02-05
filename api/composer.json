@@ -13,7 +13,6 @@
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.4.5",
         "guzzlehttp/guzzle": "^6.3",
-        "marc-mabe/php-enum": "^3.0",
         "nelmio/cors-bundle": "^1.5",
         "phpdocumentor/reflection-docblock": "^4.3",
         "prooph/common": "^4.2",
