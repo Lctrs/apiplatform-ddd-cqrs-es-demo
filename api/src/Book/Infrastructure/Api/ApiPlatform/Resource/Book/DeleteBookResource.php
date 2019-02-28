@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *         "post"={"status"=202}
  *     },
  *     itemOperations={},
- *     outputClass=false
+ *     output=false
  * )
  */
 final class DeleteBookResource implements Resource
