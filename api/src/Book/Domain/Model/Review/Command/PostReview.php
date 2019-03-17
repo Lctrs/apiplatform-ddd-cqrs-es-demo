@@ -33,27 +33,27 @@ final class PostReview implements Command
         $this->author   = $author;
     }
 
-    public function reviewId(): ReviewId
+    public function reviewId() : ReviewId
     {
         return $this->reviewId;
     }
 
-    public function bookId(): BookId
+    public function bookId() : BookId
     {
         return $this->bookId;
     }
 
-    public function body(): ?Body
+    public function body() : ?Body
     {
         return $this->body;
     }
 
-    public function rating(): Rating
+    public function rating() : Rating
     {
         return $this->rating;
     }
 
-    public function author(): ?Author
+    public function author() : ?Author
     {
         return $this->author;
     }

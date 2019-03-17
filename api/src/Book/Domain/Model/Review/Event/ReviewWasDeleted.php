@@ -25,7 +25,7 @@ final class ReviewWasDeleted extends DomainEvent
     /**
      * @inheritdoc
      */
-    public static function fromArray(array $data): DomainEvent
+    public static function fromArray(array $data) : DomainEvent
     {
         /** @var self $message */
         $message = (new ReflectionClass(self::class))->newInstanceWithoutConstructor();
@@ -37,12 +37,12 @@ final class ReviewWasDeleted extends DomainEvent
         return $message;
     }
 
-    public static function with(ReviewId $reviewId): self
+    public static function with(ReviewId $reviewId) : self
     {
         return new self($reviewId);
     }
 
-    public function name(): string
+    public function name() : string
     {
         return self::MESSAGE_NAME;
     }
@@ -50,12 +50,12 @@ final class ReviewWasDeleted extends DomainEvent
     /**
      * @inheritdoc
      */
-    public function toArray(): array
+    public function toArray() : array
     {
         return [];
     }
 
-    public function aggregateId(): ReviewId
+    public function aggregateId() : ReviewId
     {
         return $this->reviewId;
     }

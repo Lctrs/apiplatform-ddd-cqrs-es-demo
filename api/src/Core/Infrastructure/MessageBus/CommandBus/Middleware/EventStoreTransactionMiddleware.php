@@ -20,7 +20,7 @@ final class EventStoreTransactionMiddleware implements MiddlewareInterface
         $this->eventStore = $eventStore;
     }
 
-    public function handle(Envelope $envelope, StackInterface $stack): Envelope
+    public function handle(Envelope $envelope, StackInterface $stack) : Envelope
     {
         $this->eventStore->beginTransaction();
 

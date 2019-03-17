@@ -37,7 +37,7 @@
         "symfony/yaml": "4.2.*"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^5.0",
+        "doctrine/coding-standard": "^6.0",
         "maglnet/composer-require-checker": "^1.1",
         "nelmio/alice": "^3.4",
         "phpstan/phpstan-doctrine": "^0.11.0",

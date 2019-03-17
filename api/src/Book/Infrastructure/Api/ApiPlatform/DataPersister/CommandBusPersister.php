@@ -22,7 +22,7 @@ final class CommandBusPersister implements DataPersisterInterface
     /**
      * {@inheritdoc}
      */
-    public function supports($data): bool
+    public function supports($data) : bool
     {
         return $data instanceof Resource;
     }
@@ -44,7 +44,7 @@ final class CommandBusPersister implements DataPersisterInterface
     /**
      * {@inheritdoc}
      */
-    public function remove($data): void
+    public function remove($data) : void
     {
         throw new LogicException('Should never been called. Not relevant in a ES system.');
     }

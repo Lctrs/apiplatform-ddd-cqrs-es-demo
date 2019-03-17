@@ -38,12 +38,12 @@ final class ReviewWasPosted extends DomainEvent
         $this->author   = $author;
     }
 
-    public static function with(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author): self
+    public static function with(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author) : self
     {
         return new self($reviewId, $bookId, $body, $rating, $author);
     }
 
-    public function name(): string
+    public function name() : string
     {
         return self::MESSAGE_NAME;
     }
@@ -51,7 +51,7 @@ final class ReviewWasPosted extends DomainEvent
     /**
      * @inheritdoc
      */
-    public function toArray(): array
+    public function toArray() : array
     {
         return [
             'bookId' => $this->bookId->__toString(),
@@ -61,27 +61,27 @@ final class ReviewWasPosted extends DomainEvent
         ];
     }
 
-    public function aggregateId(): ReviewId
+    public function aggregateId() : ReviewId
     {
         return $this->reviewId;
     }
 
-    public function bookId(): BookId
+    public function bookId() : BookId
     {
         return $this->bookId;
     }
 
-    public function body(): ?Body
+    public function body() : ?Body
     {
         return $this->body;
     }
 
-    public function rating(): Rating
+    public function rating() : Rating
     {
         return $this->rating;
     }
 
-    public function author(): ?Author
+    public function author() : ?Author
     {
         return $this->author;
     }
@@ -89,7 +89,7 @@ final class ReviewWasPosted extends DomainEvent
     /**
      * @inheritdoc
      */
-    public static function fromArray(array $data): DomainEvent
+    public static function fromArray(array $data) : DomainEvent
     {
         /** @var self $message */
         $message = (new ReflectionClass(self::class))->newInstanceWithoutConstructor();

@@ -30,7 +30,7 @@ final class DeleteReviewResource implements Resource
      */
     public $id;
 
-    public function toCommand(): Command
+    public function toCommand() : Command
     {
         return new DeleteReview(ReviewId::fromString($this->id));
     }

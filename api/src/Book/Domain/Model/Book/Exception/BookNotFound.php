@@ -10,7 +10,7 @@ use function sprintf;
 
 final class BookNotFound extends InvalidArgumentException
 {
-    public static function withId(BookId $id): self
+    public static function withId(BookId $id) : self
     {
         return new self(sprintf('Book with id "%s" cannot be found.', $id->__toString()));
     }

@@ -24,13 +24,13 @@ final class ReviewProjection implements ReadModelProjection
         $this->transformer = $transformer;
     }
 
-    public function project(ReadModelProjector $projector): ReadModelProjector
+    public function project(ReadModelProjector $projector) : ReadModelProjector
     {
         $transformer = $this->transformer;
 
         $projector->fromStream('event_stream')
             ->when([
-                ReviewWasPosted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {
+                ReviewWasPosted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer) : void {
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
 
@@ -45,7 +45,7 @@ final class ReviewProjection implements ReadModelProjection
                         $event->author() === null ? null : $event->author()->toString()
                     ));
                 },
-                ReviewWasDeleted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {
+                ReviewWasDeleted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer) : void {
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
 

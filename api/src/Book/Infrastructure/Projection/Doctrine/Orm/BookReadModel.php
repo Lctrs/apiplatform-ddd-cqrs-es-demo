@@ -17,7 +17,7 @@ final class BookReadModel extends DoctrineOrmReadModel
         parent::__construct($entityManager, Book::class);
     }
 
-    protected function insert(InsertBook $data): void
+    protected function insert(InsertBook $data) : void
     {
         $book = new Book(
             $data->id(),
@@ -31,7 +31,7 @@ final class BookReadModel extends DoctrineOrmReadModel
         $this->entityManager->persist($book);
     }
 
-    protected function remove(RemoveBook $data): void
+    protected function remove(RemoveBook $data) : void
     {
         $book = $this->entityManager->getReference($this->entityClass, $data->id());
 

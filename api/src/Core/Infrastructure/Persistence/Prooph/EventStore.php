@@ -35,19 +35,19 @@ final class EventStore implements EventStoreInterface
     /**
      * @param iterable|DomainEvent[] $streamEvents
      */
-    public function appendTo(AggregateType $aggregateType, iterable $streamEvents): void
+    public function appendTo(AggregateType $aggregateType, iterable $streamEvents) : void
     {
-        if (!$streamEvents instanceof Traversable) {
+        if (! $streamEvents instanceof Traversable) {
             $streamEvents = new ArrayIterator($streamEvents);
         }
 
         $this->eventStore->appendTo(
             new StreamName(self::STREAM_NAME),
             new MapperIterator(
-                new MapperIterator($streamEvents, static function (DomainEvent $event): Message {
+                new MapperIterator($streamEvents, static function (DomainEvent $event) : Message {
                     return DomainEventTransformer::toEventData($event);
                 }),
-                static function (EventData $eventData) use ($aggregateType): Message {
+                static function (EventData $eventData) use ($aggregateType) : Message {
                     return $eventData->withAddedMetadata('_aggregate_type', $aggregateType->aggregateType());
                 }
             )
@@ -57,7 +57,7 @@ final class EventStore implements EventStoreInterface
     /**
      * @return iterable|DomainEvent[]
      */
-    public function load(AggregateType $aggregateType, IdentifiesAggregate $aggregateId): iterable
+    public function load(AggregateType $aggregateType, IdentifiesAggregate $aggregateId) : iterable
     {
         $metadataMatcher = (new MetadataMatcher())
             ->withMetadataMatch(
@@ -73,7 +73,7 @@ final class EventStore implements EventStoreInterface
 
         return new MapperIterator(
             $this->eventStore->load(new StreamName(self::STREAM_NAME), 1, null, $metadataMatcher),
-            function (EventData $eventData): DomainEvent {
+            function (EventData $eventData) : DomainEvent {
                 return $this->transformer->toDomainEvent($eventData);
             }
         );

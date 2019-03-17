@@ -22,12 +22,12 @@ final class BookWasDeleted extends DomainEvent
         $this->bookId = $bookId;
     }
 
-    public static function with(BookId $bookId): self
+    public static function with(BookId $bookId) : self
     {
         return new self($bookId);
     }
 
-    public function name(): string
+    public function name() : string
     {
         return self::MESSAGE_NAME;
     }
@@ -35,12 +35,12 @@ final class BookWasDeleted extends DomainEvent
     /**
      * @inheritdoc
      */
-    public function toArray(): array
+    public function toArray() : array
     {
         return [];
     }
 
-    public function aggregateId(): BookId
+    public function aggregateId() : BookId
     {
         return $this->bookId;
     }
@@ -48,7 +48,7 @@ final class BookWasDeleted extends DomainEvent
     /**
      * @inheritdoc
      */
-    public static function fromArray(array $data): DomainEvent
+    public static function fromArray(array $data) : DomainEvent
     {
         /** @var self $message */
         $message = (new ReflectionClass(self::class))->newInstanceWithoutConstructor();

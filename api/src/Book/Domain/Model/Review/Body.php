@@ -14,22 +14,22 @@ final class Body
         $this->value = $value;
     }
 
-    public function __toString(): string
+    public function __toString() : string
     {
         return $this->value;
     }
 
-    public function value(): string
+    public function value() : string
     {
         return $this->value;
     }
 
-    public static function fromString(string $body): self
+    public static function fromString(string $body) : self
     {
         return new self($body);
     }
 
-    public function toString(): string
+    public function toString() : string
     {
         return $this->value;
     }

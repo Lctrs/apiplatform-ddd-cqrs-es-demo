@@ -17,17 +17,17 @@ final class PublicationDate
         $this->date = $date->setTime(0, 0, 0);
     }
 
-    public static function fromString(string $date): self
+    public static function fromString(string $date) : self
     {
         return new self(new DateTimeImmutable($date, new DateTimeZone('UTC')));
     }
 
-    public function value(): DateTimeImmutable
+    public function value() : DateTimeImmutable
     {
         return $this->date;
     }
 
-    public function toString(): string
+    public function toString() : string
     {
         return $this->date->format('Y-m-d');
     }

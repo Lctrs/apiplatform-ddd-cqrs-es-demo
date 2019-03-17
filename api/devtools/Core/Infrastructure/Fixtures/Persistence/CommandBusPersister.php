@@ -24,16 +24,16 @@ final class CommandBusPersister implements PersisterInterface
     /**
      * @inheritdoc
      */
-    public function persist($object): void
+    public function persist($object) : void
     {
-        if (!$object instanceof Command) {
+        if (! $object instanceof Command) {
             return;
         }
 
         $this->commandBus->dispatch($object);
     }
 
-    public function flush(): void
+    public function flush() : void
     {
         // No-op
     }

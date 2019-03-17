@@ -24,13 +24,13 @@ final class BookProjection implements ReadModelProjection
         $this->transformer = $transformer;
     }
 
-    public function project(ReadModelProjector $projector): ReadModelProjector
+    public function project(ReadModelProjector $projector) : ReadModelProjector
     {
         $transformer = $this->transformer;
 
         $projector->fromStream('event_stream')
             ->when([
-                BookWasCreated::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {
+                BookWasCreated::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer) : void {
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
 
@@ -46,7 +46,7 @@ final class BookProjection implements ReadModelProjection
                         $event->publicationDate()->value()
                     ));
                 },
-                BookWasDeleted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer): void {
+                BookWasDeleted::MESSAGE_NAME => function ($data, EventData $eventData) use ($transformer) : void {
                     /** @var ReadModel $readModel */
                     $readModel = $this->readModel();
 

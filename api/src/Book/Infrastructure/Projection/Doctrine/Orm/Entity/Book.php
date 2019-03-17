@@ -72,32 +72,32 @@ class Book
         $this->publicationDate = $publicationDate;
     }
 
-    public function getId(): string
+    public function getId() : string
     {
         return $this->id;
     }
 
-    public function getIsbn(): ?string
+    public function getIsbn() : ?string
     {
         return $this->isbn;
     }
 
-    public function getTitle(): string
+    public function getTitle() : string
     {
         return $this->title;
     }
 
-    public function getDescription(): string
+    public function getDescription() : string
     {
         return $this->description;
     }
 
-    public function getAuthor(): string
+    public function getAuthor() : string
     {
         return $this->author;
     }
 
-    public function getPublicationDate(): DateTimeImmutable
+    public function getPublicationDate() : DateTimeImmutable
     {
         return $this->publicationDate;
     }

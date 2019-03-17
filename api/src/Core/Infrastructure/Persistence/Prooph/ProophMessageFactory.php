@@ -12,9 +12,9 @@ final class ProophMessageFactory implements MessageFactory
     /**
      * @param mixed[] $messageData
      */
-    public function createMessageFromArray(string $messageName, array $messageData): Message
+    public function createMessageFromArray(string $messageName, array $messageData) : Message
     {
-        if (!isset($messageData['message_name'])) {
+        if (! isset($messageData['message_name'])) {
             $messageData['message_name'] = $messageName;
         }
 

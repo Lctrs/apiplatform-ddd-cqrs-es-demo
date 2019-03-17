@@ -17,7 +17,7 @@ final class DeleteReview implements Command
         $this->reviewId = $reviewId;
     }
 
-    public function reviewId(): ReviewId
+    public function reviewId() : ReviewId
     {
         return $this->reviewId;
     }

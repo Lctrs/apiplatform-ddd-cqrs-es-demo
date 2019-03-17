@@ -12,7 +12,7 @@ use App\Core\Domain\AggregateType;
 use App\Core\Domain\EventStore;
 
 /**
- * @method null|Book getAggregateRoot(BookId $id) : ?Book
+ * @method Book|null getAggregateRoot(BookId $id) : ?Book
  */
 final class EventStoreBookList extends AggregateRepository implements BookList
 {
@@ -21,12 +21,12 @@ final class EventStoreBookList extends AggregateRepository implements BookList
         parent::__construct($eventStore, new AggregateType('book', Book::class));
     }
 
-    public function save(Book $book): void
+    public function save(Book $book) : void
     {
         $this->saveAggregateRoot($book);
     }
 
-    public function get(BookId $bookId): ?Book
+    public function get(BookId $bookId) : ?Book
     {
         return $this->getAggregateRoot($bookId);
     }

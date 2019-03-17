@@ -32,7 +32,7 @@ final class LoadDataFixturesCommand extends Command
         parent::__construct();
     }
 
-    protected function configure(): void
+    protected function configure() : void
     {
         $this
             ->setName(self::$defaultName)
@@ -44,11 +44,11 @@ final class LoadDataFixturesCommand extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): ?int
+    protected function execute(InputInterface $input, OutputInterface $output) : ?int
     {
         $path = $input->getArgument('path');
 
-        if (!is_string($path)) {
+        if (! is_string($path)) {
             throw new \InvalidArgumentException('Argument "path" must be a string.');
         }
 
@@ -62,13 +62,13 @@ final class LoadDataFixturesCommand extends Command
     /**
      * @return string[]
      */
-    private function resolvePath(string $path): array
+    private function resolvePath(string $path) : array
     {
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             throw new InvalidArgumentException(sprintf('Directory "%s" does not exist.', $path));
         }
 
-        if (!is_dir($path)) {
+        if (! is_dir($path)) {
             throw new InvalidArgumentException(sprintf('"%s" is not a directory.', $path));
         }
 

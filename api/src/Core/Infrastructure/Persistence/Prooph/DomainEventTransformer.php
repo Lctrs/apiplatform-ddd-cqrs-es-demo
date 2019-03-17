@@ -24,7 +24,7 @@ final class DomainEventTransformer
         $this->eventNameToEventFqcnMap = $eventNameToEventFqcnMap;
     }
 
-    public static function toEventData(DomainEvent $domainEvent): EventData
+    public static function toEventData(DomainEvent $domainEvent) : EventData
     {
         return EventData::fromArray([
             'uuid' => Uuid::uuid4()->toString(),
@@ -38,21 +38,21 @@ final class DomainEventTransformer
         ]);
     }
 
-    public function toDomainEvent(EventData $message): DomainEvent
+    public function toDomainEvent(EventData $message) : DomainEvent
     {
         $messageName = $message->messageName();
 
-        if (!isset($this->eventNameToEventFqcnMap[$messageName])) {
+        if (! isset($this->eventNameToEventFqcnMap[$messageName])) {
             throw new UnexpectedValueException(sprintf('Unknown message name "%s".', $messageName));
         }
 
         $fqcn = $this->eventNameToEventFqcnMap[$messageName];
 
-        if (!class_exists($fqcn)) {
-            throw new UnexpectedValueException('Given message class is not a valid class: '.$fqcn);
+        if (! class_exists($fqcn)) {
+            throw new UnexpectedValueException('Given message class is not a valid class: ' . $fqcn);
         }
 
-        if (!is_subclass_of($fqcn, DomainEvent::class, true)) {
+        if (! is_subclass_of($fqcn, DomainEvent::class, true)) {
             throw new UnexpectedValueException(sprintf(
                 'Message class %s is not a sub class of %s',
                 $fqcn,

@@ -24,14 +24,14 @@ final class CreateEventStreamCommand extends Command
         parent::__construct();
     }
 
-    protected function configure(): void
+    protected function configure() : void
     {
         $this->setName('event-store:event-stream:create')
             ->setDescription('Create event_stream.')
             ->setHelp('This command creates the event_stream');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): ?int
+    protected function execute(InputInterface $input, OutputInterface $output) : ?int
     {
         $streamName = new StreamName('event_stream');
 

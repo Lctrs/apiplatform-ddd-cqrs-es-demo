@@ -43,32 +43,32 @@ final class CreateBook implements Command
         $this->publicationDate = $publicationDate;
     }
 
-    public function bookId(): BookId
+    public function bookId() : BookId
     {
         return $this->bookId;
     }
 
-    public function isbn(): ?Isbn
+    public function isbn() : ?Isbn
     {
         return $this->isbn;
     }
 
-    public function title(): Title
+    public function title() : Title
     {
         return $this->title;
     }
 
-    public function description(): Description
+    public function description() : Description
     {
         return $this->description;
     }
 
-    public function author(): Author
+    public function author() : Author
     {
         return $this->author;
     }
 
-    public function publicationDate(): PublicationDate
+    public function publicationDate() : PublicationDate
     {
         return $this->publicationDate;
     }

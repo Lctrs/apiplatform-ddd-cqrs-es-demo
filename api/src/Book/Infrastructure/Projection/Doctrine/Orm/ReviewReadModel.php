@@ -17,7 +17,7 @@ final class ReviewReadModel extends DoctrineOrmReadModel
         parent::__construct($entityManager, Review::class);
     }
 
-    protected function insert(InsertReview $data): void
+    protected function insert(InsertReview $data) : void
     {
         $review = new Review(
             $data->id(),
@@ -30,7 +30,7 @@ final class ReviewReadModel extends DoctrineOrmReadModel
         $this->entityManager->persist($review);
     }
 
-    protected function remove(RemoveReview $data): void
+    protected function remove(RemoveReview $data) : void
     {
         $review = $this->entityManager->getReference($this->entityClass, $data->id());
 

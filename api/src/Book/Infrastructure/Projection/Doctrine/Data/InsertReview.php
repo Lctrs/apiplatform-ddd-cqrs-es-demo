@@ -26,27 +26,27 @@ final class InsertReview
         $this->author = $author;
     }
 
-    public function id(): string
+    public function id() : string
     {
         return $this->id;
     }
 
-    public function bookId(): string
+    public function bookId() : string
     {
         return $this->bookId;
     }
 
-    public function body(): ?string
+    public function body() : ?string
     {
         return $this->body;
     }
 
-    public function rating(): int
+    public function rating() : int
     {
         return $this->rating;
     }
 
-    public function author(): ?string
+    public function author() : ?string
     {
         return $this->author;
     }

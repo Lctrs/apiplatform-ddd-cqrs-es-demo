@@ -37,32 +37,32 @@ final class InsertBook
         $this->publicationDate = $publicationDate;
     }
 
-    public function id(): string
+    public function id() : string
     {
         return $this->id;
     }
 
-    public function isbn(): ?string
+    public function isbn() : ?string
     {
         return $this->isbn;
     }
 
-    public function title(): string
+    public function title() : string
     {
         return $this->title;
     }
 
-    public function description(): string
+    public function description() : string
     {
         return $this->description;
     }
 
-    public function author(): string
+    public function author() : string
     {
         return $this->author;
     }
 
-    public function publicationDate(): DateTimeImmutable
+    public function publicationDate() : DateTimeImmutable
     {
         return $this->publicationDate;
     }

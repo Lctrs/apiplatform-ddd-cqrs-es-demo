@@ -18,7 +18,7 @@ final class CreateBookHandler
         $this->bookList = $bookList;
     }
 
-    public function __invoke(CreateBook $command): void
+    public function __invoke(CreateBook $command) : void
     {
         $this->bookList->save(Book::create(
             $command->bookId(),

@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class NameToDomainEventMapFactoryCompilerPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container): void
+    public function process(ContainerBuilder $container) : void
     {
         $services = $container->findTaggedServiceIds('app.domain_event');
 

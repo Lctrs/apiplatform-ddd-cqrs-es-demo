@@ -18,7 +18,7 @@ final class AggregateType
 
     public function __construct(string $aggregateType, string $aggregateRootClass)
     {
-        if (!is_subclass_of($aggregateRootClass, AggregateRoot::class, true)) {
+        if (! is_subclass_of($aggregateRootClass, AggregateRoot::class, true)) {
             throw new InvalidArgumentException(sprintf(
                 '"%s" is not a valid aggregate root class. It must extends "%s".',
                 $aggregateRootClass,
@@ -30,12 +30,12 @@ final class AggregateType
         $this->aggregateRootClass = $aggregateRootClass;
     }
 
-    public function aggregateType(): string
+    public function aggregateType() : string
     {
         return $this->aggregateType;
     }
 
-    public function aggregateRootClass(): string
+    public function aggregateRootClass() : string
     {
         return $this->aggregateRootClass;
     }

@@ -9,10 +9,10 @@ interface EventStore
     /**
      * @param iterable|DomainEvent[] $streamEvents
      */
-    public function appendTo(AggregateType $aggregateType, iterable $streamEvents): void;
+    public function appendTo(AggregateType $aggregateType, iterable $streamEvents) : void;
 
     /**
      * @return iterable|DomainEvent[]
      */
-    public function load(AggregateType $aggregateType, IdentifiesAggregate $aggregateId): iterable;
+    public function load(AggregateType $aggregateType, IdentifiesAggregate $aggregateId) : iterable;
 }

@@ -60,7 +60,7 @@ final class CreateBookResource implements Resource
      */
     private $id;
 
-    public function toCommand(): Command
+    public function toCommand() : Command
     {
         return new CreateBook(
             $this->id ?? $this->id = BookId::generate(),

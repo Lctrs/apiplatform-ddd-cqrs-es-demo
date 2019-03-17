@@ -20,7 +20,7 @@ abstract class DomainEvent
         $this->occuredOn = new DateTimeImmutable('now', new DateTimeZone('UTC'));
     }
 
-    public function withVersion(int $version): self
+    public function withVersion(int $version) : self
     {
         $instance          = clone $this;
         $instance->version = $version;
@@ -28,29 +28,30 @@ abstract class DomainEvent
         return $instance;
     }
 
-    public function version(): int
+    public function version() : int
     {
         return $this->version;
     }
 
-    public function occuredOn(): DateTimeInterface
+    public function occuredOn() : DateTimeInterface
     {
         return $this->occuredOn;
     }
 
-    abstract public function name(): string;
+    abstract public function name() : string;
 
     /**
      * @param mixed[] $data
      */
-    abstract public static function fromArray(array $data): self;
+    abstract public static function fromArray(array $data) : self;
 
     /**
      * @return mixed[]
      */
-    abstract public function toArray(): array;
+    abstract public function toArray() : array;
 
     // phpcs:disable SlevomatCodingStandard.TypeHints.TypeHintDeclaration
+
     /**
      * @return IdentifiesAggregate
      */

@@ -10,7 +10,7 @@ use function sprintf;
 
 final class ReviewNotFound extends InvalidArgumentException
 {
-    public static function withId(ReviewId $id): self
+    public static function withId(ReviewId $id) : self
     {
         return new self(sprintf('Review with id "%s" cannot be found.', $id->__toString()));
     }

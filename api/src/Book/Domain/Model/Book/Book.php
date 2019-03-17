@@ -40,7 +40,7 @@ final class Book extends AggregateRoot
         Description $description,
         Author $author,
         PublicationDate $publicationDate
-    ): self {
+    ) : self {
         $book = new self();
 
         $book->recordThat(BookWasCreated::with($id, $isbn, $title, $description, $author, $publicationDate));
@@ -48,47 +48,47 @@ final class Book extends AggregateRoot
         return $book;
     }
 
-    public function postReview(ReviewId $reviewId, ?Body $body, Rating $rating, ?ReviewAuthor $author): Review
+    public function postReview(ReviewId $reviewId, ?Body $body, Rating $rating, ?ReviewAuthor $author) : Review
     {
         return Review::post($reviewId, $this->id, $body, $rating, $author);
     }
 
-    public function aggregateId(): IdentifiesAggregate
+    public function aggregateId() : IdentifiesAggregate
     {
         return $this->id;
     }
 
-    public function delete(): void
+    public function delete() : void
     {
         $this->recordThat(BookWasDeleted::with($this->id));
     }
 
-    public function isbn(): ?Isbn
+    public function isbn() : ?Isbn
     {
         return $this->isbn;
     }
 
-    public function title(): Title
+    public function title() : Title
     {
         return $this->title;
     }
 
-    public function description(): Description
+    public function description() : Description
     {
         return $this->description;
     }
 
-    public function author(): Author
+    public function author() : Author
     {
         return $this->author;
     }
 
-    public function publicationDate(): PublicationDate
+    public function publicationDate() : PublicationDate
     {
         return $this->publicationDate;
     }
 
-    protected function when(DomainEvent $event): void
+    protected function when(DomainEvent $event) : void
     {
         switch (get_class($event)) {
             case BookWasCreated::class:
@@ -105,7 +105,7 @@ final class Book extends AggregateRoot
         }
     }
 
-    private function whenBookWasCreated(BookWasCreated $event): void
+    private function whenBookWasCreated(BookWasCreated $event) : void
     {
         $this->id              = $event->aggregateId();
         $this->isbn            = $event->isbn();

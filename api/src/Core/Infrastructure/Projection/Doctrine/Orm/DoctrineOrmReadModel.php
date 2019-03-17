@@ -24,17 +24,17 @@ abstract class DoctrineOrmReadModel implements ReadModel
     /**
      * @param mixed ...$args
      */
-    public function stack(string $operation, ...$args): void
+    public function stack(string $operation, ...$args) : void
     {
         $this->{$operation}(...$args);
     }
 
-    public function persist(): void
+    public function persist() : void
     {
         $this->entityManager->flush();
     }
 
-    public function init(): void
+    public function init() : void
     {
         $schemaTool = new SchemaTool($this->entityManager);
 
@@ -43,14 +43,14 @@ abstract class DoctrineOrmReadModel implements ReadModel
         $schemaTool->createSchema($metadatas);
     }
 
-    public function isInitialized(): bool
+    public function isInitialized() : bool
     {
         return $this->entityManager->getConnection()->getSchemaManager()->tablesExist([
             $this->entityManager->getClassMetadata($this->entityClass)->getTableName(),
         ]);
     }
 
-    public function reset(): void
+    public function reset() : void
     {
         $connection = $this->entityManager->getConnection();
         $tableName  = $this->entityManager->getClassMetadata($this->entityClass)->getTableName();
@@ -58,7 +58,7 @@ abstract class DoctrineOrmReadModel implements ReadModel
         $connection->executeUpdate($connection->getDatabasePlatform()->getTruncateTableSQL($tableName));
     }
 
-    public function delete(): void
+    public function delete() : void
     {
         $schemaTool = new SchemaTool($this->entityManager);
 

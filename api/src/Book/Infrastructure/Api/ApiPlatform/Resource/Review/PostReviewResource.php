@@ -48,7 +48,7 @@ final class PostReviewResource implements Resource
      */
     private $id;
 
-    public function toCommand(): Command
+    public function toCommand() : Command
     {
         return new PostReview(
             $this->id ?? $this->id = ReviewId::generate(),

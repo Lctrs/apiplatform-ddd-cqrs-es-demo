@@ -12,7 +12,7 @@ use App\Core\Domain\AggregateType;
 use App\Core\Domain\EventStore;
 
 /**
- * @method null|Review getAggregateRoot(ReviewId $reviewId) : ?Review
+ * @method Review|null getAggregateRoot(ReviewId $reviewId) : ?Review
  */
 final class EventStoreReviewList extends AggregateRepository implements ReviewList
 {
@@ -21,12 +21,12 @@ final class EventStoreReviewList extends AggregateRepository implements ReviewLi
         parent::__construct($eventStore, new AggregateType('review', Review::class));
     }
 
-    public function save(Review $review): void
+    public function save(Review $review) : void
     {
         $this->saveAggregateRoot($review);
     }
 
-    public function get(ReviewId $reviewId): ?Review
+    public function get(ReviewId $reviewId) : ?Review
     {
         return $this->getAggregateRoot($reviewId);
     }

@@ -11,12 +11,12 @@ final class EventData extends DomainEvent
     /** @var mixed[] */
     protected $payload = [];
 
-    public function aggregateId(): string
+    public function aggregateId() : string
     {
         return $this->metadata['_aggregate_id'];
     }
 
-    public function version(): int
+    public function version() : int
     {
         return $this->metadata['_aggregate_version'];
     }
@@ -24,7 +24,7 @@ final class EventData extends DomainEvent
     /**
      * @return mixed[]
      */
-    public function payload(): array
+    public function payload() : array
     {
         return $this->payload;
     }
@@ -32,7 +32,7 @@ final class EventData extends DomainEvent
     /**
      * @param mixed[] $payload
      */
-    protected function setPayload(array $payload): void
+    protected function setPayload(array $payload) : void
     {
         $this->payload = $payload;
     }

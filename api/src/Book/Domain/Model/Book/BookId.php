@@ -18,22 +18,22 @@ final class BookId implements IdentifiesAggregate
         $this->uuid = $bookId;
     }
 
-    public function __toString(): string
+    public function __toString() : string
     {
         return $this->uuid->toString();
     }
 
-    public static function generate(): self
+    public static function generate() : self
     {
         return new self(Uuid::uuid4());
     }
 
-    public static function fromString(string $string): self
+    public static function fromString(string $string) : self
     {
         return new self(Uuid::fromString($string));
     }
 
-    public function equals(IdentifiesAggregate $other): bool
+    public function equals(IdentifiesAggregate $other) : bool
     {
         return $other instanceof self && $this->uuid->equals($other->uuid);
     }

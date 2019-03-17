@@ -15,12 +15,12 @@ abstract class AggregateRoot
     {
     }
 
-    abstract public function aggregateId(): IdentifiesAggregate;
+    abstract public function aggregateId() : IdentifiesAggregate;
 
     /**
      * @return iterable|DomainEvent[]
      */
-    public function popRecordedEvents(): iterable
+    public function popRecordedEvents() : iterable
     {
         $pendingEvents = $this->recordedEvents;
 
@@ -32,7 +32,7 @@ abstract class AggregateRoot
     /**
      * @param iterable|DomainEvent[] $historyEvents
      */
-    public static function reconstituteFromHistory(iterable $historyEvents): self
+    public static function reconstituteFromHistory(iterable $historyEvents) : self
     {
         $instance = new static();
 
@@ -44,7 +44,7 @@ abstract class AggregateRoot
         return $instance;
     }
 
-    protected function recordThat(DomainEvent $event): void
+    protected function recordThat(DomainEvent $event) : void
     {
         ++$this->version;
         $this->recordedEvents[] = $event->withVersion($this->version);
@@ -52,5 +52,5 @@ abstract class AggregateRoot
         $this->when($event);
     }
 
-    abstract protected function when(DomainEvent $event): void;
+    abstract protected function when(DomainEvent $event) : void;
 }

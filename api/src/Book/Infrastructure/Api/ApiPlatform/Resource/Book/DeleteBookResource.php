@@ -30,7 +30,7 @@ final class DeleteBookResource implements Resource
      */
     public $id;
 
-    public function toCommand(): Command
+    public function toCommand() : Command
     {
         return new DeleteBook(BookId::fromString($this->id));
     }

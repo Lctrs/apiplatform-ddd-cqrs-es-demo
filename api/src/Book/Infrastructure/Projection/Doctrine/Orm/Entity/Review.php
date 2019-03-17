@@ -58,27 +58,27 @@ class Review
         $this->author = $author;
     }
 
-    public function getId(): string
+    public function getId() : string
     {
         return $this->id;
     }
 
-    public function bookId(): string
+    public function bookId() : string
     {
         return $this->bookId;
     }
 
-    public function getBody(): ?string
+    public function getBody() : ?string
     {
         return $this->body;
     }
 
-    public function getRating(): int
+    public function getRating() : int
     {
         return $this->rating;
     }
 
-    public function getAuthor(): ?string
+    public function getAuthor() : ?string
     {
         return $this->author;
     }

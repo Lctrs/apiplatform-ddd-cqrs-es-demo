@@ -22,7 +22,7 @@ final class PostReviewHandler
         $this->reviewList = $reviewList;
     }
 
-    public function __invoke(PostReview $command): void
+    public function __invoke(PostReview $command) : void
     {
         $book = $this->bookList->get($command->bookId());
 
