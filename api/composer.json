@@ -17,7 +17,7 @@
         "phpdocumentor/reflection-docblock": "^4.3",
         "prooph/common": "^4.2",
         "prooph/event-store": "^7.3",
-        "prooph/event-store-symfony-bundle": "^0.5.0",
+        "prooph/event-store-symfony-bundle": "^0.6.0",
         "prooph/pdo-event-store": "^1.9",
         "ramsey/uuid": "^3.8",
         "symfony/asset": "4.2.*",
