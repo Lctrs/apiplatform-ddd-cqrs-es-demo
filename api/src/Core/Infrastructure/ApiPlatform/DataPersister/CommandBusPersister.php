@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Book\Infrastructure\Api\ApiPlatform\DataPersister;
+namespace App\Core\Infrastructure\ApiPlatform\DataPersister;
 
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
-use App\Core\Infrastructure\Api\Resource;
+use App\Core\Infrastructure\ApiPlatform\Resource;
 use LogicException;
 use Symfony\Component\Messenger\MessageBusInterface;
 

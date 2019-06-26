@@ -21,7 +21,7 @@ api_platform:
         html: ['text/html']
     mapping:
         paths:
-            - '%kernel.project_dir%/src/Book/Infrastructure/Api/ApiPlatform/Resource'
+            - '%kernel.project_dir%/src/Book/Infrastructure/ApiPlatform/Resource'
     # Varnish integration, remove if unwanted
     http_cache:
         invalidation:
@@ -46,9 +46,9 @@ services:
         tags:
             - api_platform.filter
                 
-    App\Book\Infrastructure\Api\ApiPlatform\DataPersister\CommandBusPersister:
+    App\Core\Infrastructure\ApiPlatform\DataPersister\CommandBusPersister:
         autoconfigure: true
         public: false
-        class: App\Book\Infrastructure\Api\ApiPlatform\DataPersister\CommandBusPersister
+        class: App\Core\Infrastructure\ApiPlatform\DataPersister\CommandBusPersister
         arguments:
             - '@messenger.bus.commands'

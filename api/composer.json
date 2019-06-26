@@ -20,21 +20,21 @@
         "prooph/event-store-symfony-bundle": "^0.6.0",
         "prooph/pdo-event-store": "^1.9",
         "ramsey/uuid": "^3.8",
-        "symfony/asset": "4.2.*",
-        "symfony/config": "4.2.*",
-        "symfony/console": "4.2.*",
-        "symfony/dependency-injection": "4.2.*",
-        "symfony/doctrine-bridge": "4.2.*",
-        "symfony/dotenv": "4.2.*",
+        "symfony/asset": "4.3.*",
+        "symfony/config": "4.3.*",
+        "symfony/console": "4.3.*",
+        "symfony/dependency-injection": "4.3.*",
+        "symfony/doctrine-bridge": "4.3.*",
+        "symfony/dotenv": "4.3.*",
         "symfony/flex": "^1.1",
-        "symfony/framework-bundle": "4.2.*",
-        "symfony/http-kernel": "4.2.*",
-        "symfony/messenger": "4.2.*",
-        "symfony/routing": "4.2.*",
-        "symfony/serializer": "4.2.*",
-        "symfony/twig-bundle": "4.2.*",
-        "symfony/validator": "4.2.*",
-        "symfony/yaml": "4.2.*"
+        "symfony/framework-bundle": "4.3.*",
+        "symfony/http-kernel": "4.3.*",
+        "symfony/messenger": "4.3.*",
+        "symfony/routing": "4.3.*",
+        "symfony/serializer": "4.3.*",
+        "symfony/twig-bundle": "4.3.*",
+        "symfony/validator": "4.3.*",
+        "symfony/yaml": "4.3.*"
     },
     "require-dev": {
         "doctrine/coding-standard": "^6.0",
@@ -43,8 +43,8 @@
         "phpstan/phpstan-doctrine": "^0.11.0",
         "phpstan/phpstan-shim": "^0.11.0",
         "phpstan/phpstan-symfony": "^0.11.0",
-        "symfony/finder": "4.2.*",
-        "symfony/phpunit-bridge": "4.2.*",
+        "symfony/finder": "4.3.*",
+        "symfony/phpunit-bridge": "4.3.*",
         "symfony/profiler-pack": "^1.0",
         "theofidry/alice-data-fixtures": "^1.0"
     },
@@ -93,7 +93,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "4.2.*"
+            "require": "4.3.*"
         }
     }
 }
