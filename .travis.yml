@@ -44,9 +44,12 @@ before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin "$DOCKER_REGISTRY"
 
 deploy:
-  provider: script
-  script: docker-compose push
-  skip_cleanup: true
-  on:
-    repo: Lctrs/apiplatform-ddd-cqrs-es-demo
-    branch: master
+  - provider: script
+    script: docker-compose push
+    skip_cleanup: true
+    on:
+      repo: Lctrs/apiplatform-ddd-cqrs-es-demo
+      branch: master
+  - provider: script
+    script: ci/deploy.sh
+    skip_cleanup: true
