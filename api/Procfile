@@ -1,0 +1,3 @@
+web: vendor/bin/heroku-php-nginx -C heroku/nginx/app.conf public/
+worker: php -d apc.enable_cli=1 -d date.timezone=UTC -d session.auto_start=Off -d short_open_tag=Off -d opcache.interned_strings_buffer=16 -d opcache.max_accelerated_files=20000 -d opcache.memory_consumption=256 -d opcache.validate_timestamps=0 -d realpath_cache_size=4096K -d realpath_cache_ttl=600 bin/console event-store:projection:run book_projection
+worker: php -d apc.enable_cli=1 -d date.timezone=UTC -d session.auto_start=Off -d short_open_tag=Off -d opcache.interned_strings_buffer=16 -d opcache.max_accelerated_files=20000 -d opcache.memory_consumption=256 -d opcache.validate_timestamps=0 -d realpath_cache_size=4096K -d realpath_cache_ttl=600 bin/console event-store:projection:run review_projection

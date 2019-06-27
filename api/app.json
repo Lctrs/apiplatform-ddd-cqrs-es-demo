@@ -1,0 +1,19 @@
+{
+  "success_url": "/",
+  "env": {
+    "APP_ENV": "prod",
+    "APP_SECRET": {"generator": "secret"},
+    "CORS_ALLOW_ORIGIN": "https://your-client-url.com"
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-php"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "php bin/console event-store:event-stream:create --no-interaction"
+  }
+}
