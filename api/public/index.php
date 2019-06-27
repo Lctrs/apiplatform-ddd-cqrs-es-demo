@@ -14,12 +14,22 @@ if ($_SERVER['APP_DEBUG']) {
     Debug::enable();
 }
 
-if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? $_ENV['TRUSTED_PROXIES'] ?? false) {
-    Request::setTrustedProxies(explode(',', $trustedProxies), Request::HEADER_X_FORWARDED_ALL);
-}
+if ($_SERVER['ON_HEROKU'] ?? $_ENV['ON_HEROKU'] ?? false) {
+    Request::setTrustedProxies(
+        // trust *all* requests
+        ['127.0.0.1', $_SERVER['REMOTE_ADDR']],
 
-if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false) {
-    Request::setTrustedHosts([$trustedHosts]);
+        // only trust X-Forwarded-Port/-Proto, not -Host
+        Request::HEADER_X_FORWARDED_AWS_ELB
+    );
+} else {
+    if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? $_ENV['TRUSTED_PROXIES'] ?? false) {
+        Request::setTrustedProxies(explode(',', $trustedProxies), Request::HEADER_X_FORWARDED_ALL);
+    }
+
+    if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false) {
+        Request::setTrustedHosts([$trustedHosts]);
+    }
 }
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
