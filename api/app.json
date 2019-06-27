@@ -6,7 +6,12 @@
     "CORS_ALLOW_ORIGIN": "https://your-client-url.com"
   },
   "addons": [
-    "heroku-postgresql"
+    {
+      "plan": "heroku-postgresql:hobby-dev",
+      "options": {
+        "version": "10"
+      }
+    }
   ],
   "buildpacks": [
     {
