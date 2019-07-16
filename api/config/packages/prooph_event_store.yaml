@@ -15,9 +15,6 @@ prooph_event_store:
                     projection: App\Book\Infrastructure\Projection\ReviewProjection
 
 services:
-    _defaults:
-        public: false
-
     PDO:
         class: PDO
         factory: ['@database_connection', getWrappedConnection]

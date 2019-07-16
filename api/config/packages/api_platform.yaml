@@ -48,7 +48,6 @@ services:
                 
     App\Core\Infrastructure\ApiPlatform\DataPersister\CommandBusPersister:
         autoconfigure: true
-        public: false
         class: App\Core\Infrastructure\ApiPlatform\DataPersister\CommandBusPersister
         arguments:
             - '@messenger.bus.commands'

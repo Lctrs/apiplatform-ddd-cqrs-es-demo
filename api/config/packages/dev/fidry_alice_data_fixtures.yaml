@@ -5,7 +5,6 @@ fidry_alice_data_fixtures:
 services:
     _defaults:
         autoconfigure: true
-        public: false
 
     App\Core\Infrastructure\Fixtures\Cli\LoadDataFixturesCommand:
         class: App\Core\Infrastructure\Fixtures\Cli\LoadDataFixturesCommand
