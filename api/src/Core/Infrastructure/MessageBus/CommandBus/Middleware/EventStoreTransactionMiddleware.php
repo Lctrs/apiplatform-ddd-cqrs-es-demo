@@ -36,7 +36,10 @@ final class EventStoreTransactionMiddleware implements MiddlewareInterface
             if ($e instanceof HandlerFailedException) {
                 // Remove all HandledStamp from the envelope so the retry will execute all handlers again.
                 // When a handler fails, the queries of allegedly successful previous handlers just got rolled back.
-                throw new HandlerFailedException($e->getEnvelope()->withoutAll(HandledStamp::class), $e->getNestedExceptions());
+                throw new HandlerFailedException(
+                    $e->getEnvelope()->withoutAll(HandledStamp::class),
+                    $e->getNestedExceptions()
+                );
             }
 
             throw $e;
