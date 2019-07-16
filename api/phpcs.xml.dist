@@ -12,5 +12,6 @@
 
     <file>devtools/</file>
     <file>src/</file>
+    <file>tests/</file>
 
 </ruleset>
