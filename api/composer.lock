@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e56956490b3ec3a61a47d2e9ff737f52",
+    "content-hash": "c5ab3a2bb55d2a1866b89e0f7ab21cff",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7341,16 +7341,16 @@
         },
         {
             "name": "phpstan/phpstan-doctrine",
-            "version": "0.12.5",
+            "version": "0.12.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-doctrine.git",
-                "reference": "24ce35192c74097454b3dfb6364406f48c69cec1"
+                "reference": "c1bf25ed5d90f7ee83bcead0ca84c28b0f9fe259"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/24ce35192c74097454b3dfb6364406f48c69cec1",
-                "reference": "24ce35192c74097454b3dfb6364406f48c69cec1",
+                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/c1bf25ed5d90f7ee83bcead0ca84c28b0f9fe259",
+                "reference": "c1bf25ed5d90f7ee83bcead0ca84c28b0f9fe259",
                 "shasum": ""
             },
             "require": {
@@ -7371,6 +7371,7 @@
                 "doctrine/common": "^2.7",
                 "doctrine/mongodb-odm": "^1.2",
                 "doctrine/orm": "^2.5",
+                "ergebnis/composer-normalize": "^2.0.2",
                 "jakub-onderka/php-parallel-lint": "^1.0",
                 "phing/phing": "^2.16.0",
                 "phpstan/phpstan-phpunit": "^0.12",
@@ -7401,7 +7402,7 @@
                 "MIT"
             ],
             "description": "Doctrine extensions for PHPStan",
-            "time": "2019-12-18T15:58:52+00:00"
+            "time": "2019-12-21T18:55:30+00:00"
         },
         {
             "name": "phpstan/phpstan-symfony",
