@@ -1,36 +1,16 @@
-parameters:
-    # Adds a fallback VARNISH_URL if the env var is not set.
-    # This allows you to run cache:warmup even if your
-    # environment variables are not available yet.
-    # You should not need to change this value.
-    env(VARNISH_URL): ''
-
 api_platform:
+    title: Hello API Platform
     version: 1.0.0
     description: |
         This is a demo application of the [API Platform](https://api-platform.com) framework, DDD/CQRS/ES styles!
         [Its source code](https://github.com/Lctrs/apiplatform-ddd-cqrs-es-demo) includes various examples, check it out!
-    formats:
-        jsonld: ['application/ld+json']
-        jsonhal: ['application/hal+json']
-        jsonapi: ['application/vnd.api+json']
-        json: ['application/json']
-        xml: ['application/xml', 'text/xml']
-        yaml: ['application/x-yaml']
-        csv: ['text/csv']
-        html: ['text/html']
     mapping:
         paths:
             - '%kernel.project_dir%/src/Book/Infrastructure/ApiPlatform/Resource'
-    # Varnish integration, remove if unwanted
-    http_cache:
-        invalidation:
-            enabled: true
-            varnish_urls: ['%env(VARNISH_URL)%']
-        max_age: 0
-        shared_max_age: 3600
-        vary: ['Content-Type', 'Authorization']
-        public: true
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]
 
 services:
     book.property_filter:
@@ -41,13 +21,12 @@ services:
     review.search_filter.bookId:
         parent: api_platform.doctrine.orm.search_filter
         arguments:
-            -
-              bookId: exact
+            - bookId: exact
         tags:
             - api_platform.filter
-                
+
     App\Core\Infrastructure\ApiPlatform\DataPersister\CommandBusPersister:
         autoconfigure: true
         class: App\Core\Infrastructure\ApiPlatform\DataPersister\CommandBusPersister
         arguments:
-            - '@messenger.bus.commands'
+            - '@command.bus'

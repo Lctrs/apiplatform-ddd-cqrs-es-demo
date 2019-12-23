@@ -4,57 +4,21 @@ declare(strict_types=1);
 
 namespace App\Core\Domain;
 
-use DateTimeImmutable;
-use DateTimeInterface;
-use DateTimeZone;
+use Prooph\EventStore\EventId;
 
-abstract class DomainEvent
+interface DomainEvent
 {
-    /** @var int */
-    protected $version = 1;
-    /** @var DateTimeInterface */
-    protected $occuredOn;
+    public function eventId() : ?string;
 
-    protected function __construct()
-    {
-        $this->occuredOn = new DateTimeImmutable('now', new DateTimeZone('UTC'));
-    }
-
-    public function withVersion(int $version) : self
-    {
-        $instance          = clone $this;
-        $instance->version = $version;
-
-        return $instance;
-    }
-
-    public function version() : int
-    {
-        return $this->version;
-    }
-
-    public function occuredOn() : DateTimeInterface
-    {
-        return $this->occuredOn;
-    }
-
-    abstract public function name() : string;
+    public function eventType() : string;
 
     /**
-     * @param mixed[] $data
+     * @return array<string, (string|int|bool|float|null)>
      */
-    abstract public static function fromArray(array $data) : self;
+    public function toArray() : array;
 
     /**
-     * @return mixed[]
+     * @param array<string, (string|int|bool|float|null)> $data
      */
-    abstract public function toArray() : array;
-
-    // phpcs:disable SlevomatCodingStandard.TypeHints.TypeHintDeclaration
-
-    /**
-     * @return IdentifiesAggregate
-     */
-    abstract public function aggregateId();
-    // phpcs:enable
+    public static function from(EventId $eventId, array $data) : self;
 }

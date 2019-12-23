@@ -88,7 +88,7 @@ final class Book extends AggregateRoot
         return $this->publicationDate;
     }
 
-    protected function when(DomainEvent $event) : void
+    protected function apply(DomainEvent $event) : void
     {
         switch (get_class($event)) {
             case BookWasCreated::class:

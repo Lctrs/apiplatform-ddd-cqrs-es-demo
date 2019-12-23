@@ -1,0 +1,71 @@
+# https://github.com/probot/settings
+
+branches:
+  - name: "master"
+
+    # https://developer.github.com/v3/repos/branches/#remove-branch-protection
+    # https://developer.github.com/v3/repos/branches/#update-branch-protection
+
+    protection:
+      enforce_admins: false
+      required_pull_request_reviews:
+        dismiss_stale_reviews: true
+        require_code_owner_reviews: true
+        required_approving_review_count: 1
+      required_status_checks:
+        contexts:
+          - "CI/CD / Docker build/test/deploy (Docker 19.03)"
+        strict: false
+      restrictions:
+        apps:
+          - "dependabot-preview"
+        teams: []
+        users: []
+
+# https://developer.github.com/v3/issues/labels/#create-a-label
+# https://developer.github.com/v3/issues/labels/#update-a-label
+
+labels:
+  - name: "bug"
+    color: "#ee0701"
+    description: ""
+
+  - name: "dependency"
+    color: "#0366d6"
+    description: ""
+
+  - name: "enhancement"
+    color: "#0e8a16"
+    description: ""
+
+  - name: "question"
+    color: "#cc317c"
+    description: ""
+
+  - name: "security"
+    color: "#ee0701"
+    description: ""
+
+  - name: "stale"
+    color: "#eeeeee"
+    description: ""
+
+# https://developer.github.com/v3/repos/#edit
+
+repository:
+  allow_merge_commit: true
+  allow_rebase_merge: false
+  allow_squash_merge: false
+  default_branch: "master"
+  description: ""
+  has_downloads: true
+  has_issues: true
+  has_pages: false
+  has_projects: false
+  has_wiki: false
+  name: "apiplatform-ddd-cqrs-es-demo"
+  private: false
+
+  # https://developer.github.com/v3/repos/branches/#remove-branch-protection
+
+  topics: "api, php, ddd, crqs, event-store, symfony, api-platform, prooph"

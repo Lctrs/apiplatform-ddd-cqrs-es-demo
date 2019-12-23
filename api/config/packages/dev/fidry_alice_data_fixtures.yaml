@@ -14,7 +14,7 @@ services:
     App\Core\Infrastructure\Fixtures\Persistence\CommandBusPersister:
         class: App\Core\Infrastructure\Fixtures\Persistence\CommandBusPersister
         arguments:
-            - '@messenger.bus.commands'
+            - '@command.bus'
 
     Fidry\AliceDataFixtures\LoaderInterface:
         alias: Fidry\AliceDataFixtures\Loader\PersisterLoader

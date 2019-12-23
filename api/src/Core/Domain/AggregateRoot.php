@@ -4,18 +4,28 @@ declare(strict_types=1);
 
 namespace App\Core\Domain;
 
+use Prooph\EventStore\ExpectedVersion;
+
 abstract class AggregateRoot
 {
     /** @var int */
-    private $version = 0;
+    private $expectedVersion = ExpectedVersion::EMPTY_STREAM;
     /** @var DomainEvent[] */
     private $recordedEvents = [];
 
-    protected function __construct()
+    final protected function __construct()
     {
     }
 
-    abstract public function aggregateId() : IdentifiesAggregate;
+    public function expectedVersion() : int
+    {
+        return $this->expectedVersion;
+    }
+
+    public function setExpectedVersion(int $version) : void
+    {
+        $this->expectedVersion = $version;
+    }
 
     /**
      * @return iterable|DomainEvent[]
@@ -30,27 +40,34 @@ abstract class AggregateRoot
     }
 
     /**
-     * @param iterable|DomainEvent[] $historyEvents
+     * @param DomainEvent[] $historyEvents
      */
     public static function reconstituteFromHistory(iterable $historyEvents) : self
     {
         $instance = new static();
-
-        foreach ($historyEvents as $pastEvent) {
-            $instance->version = $pastEvent->version();
-            $instance->when($pastEvent);
-        }
+        $instance->replay($historyEvents);
 
         return $instance;
     }
 
-    protected function recordThat(DomainEvent $event) : void
+    /**
+     * @param DomainEvent[] $historyEvents
+     */
+    public function replay(iterable $historyEvents) : void
     {
-        ++$this->version;
-        $this->recordedEvents[] = $event->withVersion($this->version);
-
-        $this->when($event);
+        foreach ($historyEvents as $pastEvent) {
+            $this->apply($pastEvent);
+        }
     }
 
-    abstract protected function when(DomainEvent $event) : void;
+    protected function recordThat(DomainEvent $event) : void
+    {
+        $this->recordedEvents[] = $event;
+
+        $this->apply($event);
+    }
+
+    abstract public function aggregateId() : IdentifiesAggregate;
+
+    abstract protected function apply(DomainEvent $event) : void;
 }

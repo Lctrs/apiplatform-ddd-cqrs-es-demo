@@ -1,0 +1,152 @@
+name: CI/CD
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+    tags:
+      - "**"
+
+env:
+  DOCKER_BUILDX_VERSION: '0.3.1'
+  DOCKER_COMPOSE_VERSION: '1.25.1-rc1'
+  DOCKER_REGISTRY: quay.io
+
+jobs:
+  docker-build-test-deploy:
+    name: Docker build/test/deploy (Docker ${{ matrix.docker }})
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: docker:${{ matrix.docker }}
+      env:
+        DOCKER_CERT_PATH: /certs/client
+        DOCKER_CLI_EXPERIMENTAL: enabled
+        DOCKER_HOST: tcp://docker:2376
+        DOCKER_TLS_VERIFY: '1'
+      options: >-
+        -v /tmp/docker/certs/client:/certs/client
+
+    services:
+      docker:
+        image: docker:${{ matrix.docker }}-dind
+
+        env:
+          DOCKER_TLS_CERTDIR: /certs
+
+        options: >-
+          --privileged
+          -v /home/runner/work:/__w
+          -v /tmp/docker/certs:/certs
+          --health-cmd "docker info"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    strategy:
+      matrix:
+        docker:
+          - '19.03'
+      fail-fast: false
+
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+
+      - name: Install system packages
+        run: |
+          apk add \
+            curl \
+            jq
+
+      - name: Install Docker Buildx
+        run: |
+          mkdir -p ~/.docker/cli-plugins
+          curl -fsSL -o ~/.docker/cli-plugins/docker-buildx "https://github.com/docker/buildx/releases/download/v${DOCKER_BUILDX_VERSION}/buildx-v${DOCKER_BUILDX_VERSION}.linux-amd64"
+          chmod +x ~/.docker/cli-plugins/docker-buildx
+
+      - name: Install Docker Compose
+        run: |
+          docker create --name docker_compose "docker/compose:${DOCKER_COMPOSE_VERSION}-alpine"
+          docker cp docker_compose:/usr/local/bin/docker-compose /usr/local/bin/docker-compose
+          docker rm docker_compose
+
+      - name: Pull images
+        run: docker-compose pull --ignore-pull-failures
+
+      - name: Build images
+        run: docker buildx bake --pull
+
+      - name: Validate composer.json
+        run: |
+          if jq -e '.extra.symfony.id != null' api/composer.json > /dev/null; then
+            echo 'api/composer.json must not have extra.symfony.id' 1>&2
+            exit 1
+          fi
+          docker-compose run --no-deps --rm -T php composer validate --no-check-publish
+
+      - name: Start services
+        run: docker-compose up -d
+
+      - name: Wait for services
+        run: |
+          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose ps -q php)")"; do
+            case $status in
+              starting) sleep 1;;
+              healthy) exit 0;;
+              unhealthy) exit 1;;
+            esac
+          done
+          exit 1
+          
+      - name: "Run ergebnis/composer-normalize"
+        run: docker-compose exec -T php composer normalize --dry-run
+
+      - name: "Run doctrine/coding-standard"
+        run: docker-compose exec -T php vendor/bin/phpcs
+        
+      - name: "Run maglnet/composer-require-checker"
+        run: docker-compose exec -T php vendor/bin/composer-require-checker
+
+      - name: "Run phpstan/phpstan"
+        run: docker-compose exec -T php vendor/bin/phpstan analyse
+        
+      - name: "Run unit tests with phpunit/phpunit"
+        run: docker-compose exec -T php bin/phpunit
+
+      - name: Check security vulnerabilities
+        run: |
+          docker-compose exec -T php curl -fsSL -o /usr/local/bin/security-checker https://get.sensiolabs.org/security-checker.phar
+          docker-compose exec -T php chmod +x /usr/local/bin/security-checker
+          docker-compose exec -T php security-checker security:check
+
+      - name: Check HTTP reachability
+        run: | # we have to connect to the "docker" hostname because of Docker-in-Docker
+          curl -fk -H 'Host: localhost' https://docker # Client
+          curl -fk -H 'Host: localhost' https://docker:444 # Admin
+          curl -fk -H 'Host: localhost' https://docker:8443 # API
+
+      - name: Load fixtures
+        run: | # we have to connect to the "docker" hostname because of Docker-in-Docker
+          docker-compose exec -T php bin/console app:fixtures:load ./fixtures
+          sleep 5
+          docker ps | grep -q projection_book
+          docker ps | grep -q projection_review
+
+      - name: Login to registry
+        if: github.event_name == 'push' && github.repository == 'apiplatform-ddd-cqrs-es-demo' && github.ref == 'refs/heads/master'
+        run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login --username '${{ secrets.DOCKER_USERNAME }}' --password-stdin "$DOCKER_REGISTRY"
+
+      - name: Push images
+        if: github.event_name == 'push' && github.repository == 'Lctrs/apiplatform-ddd-cqrs-es-demo' && github.ref == 'refs/heads/master'
+        run: |
+          docker-compose push \
+            admin \
+            api \
+            client \
+            php \
+            projection_book

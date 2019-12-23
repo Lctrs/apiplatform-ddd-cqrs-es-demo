@@ -6,19 +6,19 @@ namespace App\Book\Domain\Model\Book\Event;
 
 use App\Book\Domain\Model\Book\BookId;
 use App\Core\Domain\DomainEvent;
-use ReflectionClass;
+use Prooph\EventStore\EventId;
 
-final class BookWasDeleted extends DomainEvent
+final class BookWasDeleted implements DomainEvent
 {
     public const MESSAGE_NAME = 'book-was-deleted';
 
+    /** @var string|null */
+    private $eventId;
     /** @var BookId */
     private $bookId;
 
-    protected function __construct(BookId $bookId)
+    private function __construct(BookId $bookId)
     {
-        parent::__construct();
-
         $this->bookId = $bookId;
     }
 
@@ -27,7 +27,17 @@ final class BookWasDeleted extends DomainEvent
         return new self($bookId);
     }
 
-    public function name() : string
+    public function aggregateId() : BookId
+    {
+        return $this->bookId;
+    }
+
+    public function eventId() : ?string
+    {
+        return $this->eventId;
+    }
+
+    public function eventType() : string
     {
         return self::MESSAGE_NAME;
     }
@@ -37,25 +47,19 @@ final class BookWasDeleted extends DomainEvent
      */
     public function toArray() : array
     {
-        return [];
-    }
-
-    public function aggregateId() : BookId
-    {
-        return $this->bookId;
+        return [
+            'bookId' => $this->bookId->toString(),
+        ];
     }
 
     /**
-     * @inheritdoc
+     * @param array{bookId:string} $data
      */
-    public static function fromArray(array $data) : DomainEvent
+    public static function from(EventId $eventId, array $data) : DomainEvent
     {
-        /** @var self $message */
-        $message = (new ReflectionClass(self::class))->newInstanceWithoutConstructor();
+        $message = new self(BookId::fromString($data['bookId']));
 
-        $message->bookId    = BookId::fromString($data['aggregateId']);
-        $message->version   = $data['version'];
-        $message->occuredOn = $data['occuredOn'];
+        $message->eventId = $eventId->toString();
 
         return $message;
     }

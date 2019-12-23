@@ -6,8 +6,6 @@ namespace App\Core\Domain;
 
 interface IdentifiesAggregate
 {
-    public function __toString() : string;
-
     /**
      * @return static
      */
@@ -18,5 +16,5 @@ interface IdentifiesAggregate
      */
     public static function fromString(string $string);
 
-    public function equals(self $other) : bool;
+    public function toString() : string;
 }

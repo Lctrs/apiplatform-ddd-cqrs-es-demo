@@ -52,7 +52,7 @@
 'App\Book\Domain\Model\Review\Rating':
     rating_{1..500}:
         __factory:
-            fromScalar:
+            fromInt:
                 - <numberBetween(0, 5)>
 'App\Book\Domain\Model\Review\Author':
     reviewauthor_{1..500}:

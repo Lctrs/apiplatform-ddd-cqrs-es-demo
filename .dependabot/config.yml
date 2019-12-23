@@ -1,0 +1,50 @@
+# https://dependabot.com/docs/config-file/
+
+version: 1
+
+update_configs:
+  - default_assignees:
+      - "Lctrs"
+    default_labels:
+      - "dependency"
+    default_reviewers:
+      - "Lctrs"
+    directory: "/"
+    package_manager: "github_actions"
+    update_schedule: "daily"
+
+  - default_assignees:
+      - "Lctrs"
+    default_labels:
+      - "dependency"
+    default_reviewers:
+      - "Lctrs"
+    directory: "/admin"
+    package_manager: "javascript"
+    update_schedule: "live"
+    version_requirement_updates: "increase_versions"
+
+  - automerged_updates:
+      - match:
+          dependency_type: "development"
+    default_assignees:
+      - "Lctrs"
+    default_labels:
+      - "dependency"
+    default_reviewers:
+      - "Lctrs"
+    directory: "/api"
+    package_manager: "php:composer"
+    update_schedule: "live"
+    version_requirement_updates: "increase_versions"
+
+  - default_assignees:
+      - "Lctrs"
+    default_labels:
+      - "dependency"
+    default_reviewers:
+      - "Lctrs"
+    directory: "/client"
+    package_manager: "javascript"
+    update_schedule: "live"
+    version_requirement_updates: "increase_versions"

@@ -8,6 +8,7 @@ use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use App\Core\Infrastructure\ApiPlatform\Resource;
 use LogicException;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 final class CommandBusPersister implements DataPersisterInterface
 {
@@ -21,6 +22,8 @@ final class CommandBusPersister implements DataPersisterInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @param mixed $data
      */
     public function supports($data) : bool
     {
@@ -34,11 +37,14 @@ final class CommandBusPersister implements DataPersisterInterface
      */
     public function persist($data)
     {
-        $command = $data->toCommand();
+        $envelope = $this->commandBus->dispatch($data->toCommand());
 
-        $this->commandBus->dispatch($command);
+        $handledStamp = $envelope->last(HandledStamp::class);
+        if (! $handledStamp instanceof HandledStamp) {
+            return $data;
+        }
 
-        return $command;
+        return $handledStamp->getResult();
     }
 
     /**

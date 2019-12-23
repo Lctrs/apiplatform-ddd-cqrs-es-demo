@@ -14,16 +14,6 @@ final class Description
         $this->value = $value;
     }
 
-    public function __toString() : string
-    {
-        return $this->value;
-    }
-
-    public function value() : string
-    {
-        return $this->value;
-    }
-
     public static function fromString(string $description) : self
     {
         return new self($description);
