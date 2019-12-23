@@ -13,8 +13,9 @@ update_configs:
     package_manager: "github_actions"
     update_schedule: "daily"
 
-  - default_assignees:
-      - "Lctrs"
+  - automerged_updates:
+      - match:
+          dependency_type: "all"
     default_labels:
       - "dependency"
     default_reviewers:
@@ -27,6 +28,9 @@ update_configs:
   - automerged_updates:
       - match:
           dependency_type: "development"
+      - match:
+          dependency_type: "production"
+          update_type: "semver:patch"
     default_assignees:
       - "Lctrs"
     default_labels:
@@ -37,8 +41,14 @@ update_configs:
     package_manager: "php:composer"
     update_schedule: "live"
     version_requirement_updates: "increase_versions"
+    ignored_updates:
+      - match:
+          dependency_name: "symfony/*"
 
-  - default_assignees:
+  - automerged_updates:
+      - match:
+          dependency_type: "all"
+    default_assignees:
       - "Lctrs"
     default_labels:
       - "dependency"
