@@ -138,7 +138,7 @@ jobs:
           docker ps | grep -q projection_review
 
       - name: Login to registry
-        if: github.event_name == 'push' && github.repository == 'apiplatform-ddd-cqrs-es-demo' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.repository == 'Lctrs/apiplatform-ddd-cqrs-es-demo' && github.ref == 'refs/heads/master'
         run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login --username '${{ secrets.DOCKER_USERNAME }}' --password-stdin "$DOCKER_REGISTRY"
 
       - name: Push images
