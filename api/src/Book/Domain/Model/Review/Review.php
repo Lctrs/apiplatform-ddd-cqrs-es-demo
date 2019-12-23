@@ -66,7 +66,7 @@ final class Review extends AggregateRoot
         return $this->author;
     }
 
-    protected function when(DomainEvent $event) : void
+    protected function apply(DomainEvent $event) : void
     {
         switch (get_class($event)) {
             case ReviewWasPosted::class:

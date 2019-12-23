@@ -27,7 +27,17 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 	done
 
 	if  [ "$APP_ENV" != 'prod' ] && [ "$1" = 'php-fpm' ]; then
-		bin/console event-store:event-stream:create --no-interaction
+	    bin/console doctrine:schema:update --force --no-interaction
+	fi
+
+	echo "Waiting for event-store to be ready..."
+	until curl -sf $EVENT_STORE_URL/stats > /dev/null 2>&1; do
+		sleep 1
+	done
+
+	if [ -n "$STREAM" ]; then
+		curl -sSf -X POST "$EVENT_STORE_URL/projection/\$by_category/command/enable" -H "accept:application/json" -H "Content-Length:0" -u "$EVENT_STORE_CREDENTIALS" > /dev/null
+		bin/console app:create-persistent-subscriptions --no-interaction -vvv
 	fi
 fi
 

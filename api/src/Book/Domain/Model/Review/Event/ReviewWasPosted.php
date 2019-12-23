@@ -10,12 +10,14 @@ use App\Book\Domain\Model\Review\Body;
 use App\Book\Domain\Model\Review\Rating;
 use App\Book\Domain\Model\Review\ReviewId;
 use App\Core\Domain\DomainEvent;
-use ReflectionClass;
+use Prooph\EventStore\EventId;
 
-final class ReviewWasPosted extends DomainEvent
+final class ReviewWasPosted implements DomainEvent
 {
     public const MESSAGE_NAME = 'review-was-posted';
 
+    /** @var string|null */
+    private $eventId;
     /** @var ReviewId */
     private $reviewId;
     /** @var BookId */
@@ -27,10 +29,8 @@ final class ReviewWasPosted extends DomainEvent
     /** @var Author|null */
     private $author;
 
-    protected function __construct(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author)
+    private function __construct(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author)
     {
-        parent::__construct();
-
         $this->reviewId = $reviewId;
         $this->bookId   = $bookId;
         $this->body     = $body;
@@ -41,24 +41,6 @@ final class ReviewWasPosted extends DomainEvent
     public static function with(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author) : self
     {
         return new self($reviewId, $bookId, $body, $rating, $author);
-    }
-
-    public function name() : string
-    {
-        return self::MESSAGE_NAME;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function toArray() : array
-    {
-        return [
-            'bookId' => $this->bookId->__toString(),
-            'body' => $this->body === null ? null : $this->body->toString(),
-            'rating' => $this->rating->toScalar(),
-            'author' => $this->author === null ? null : $this->author->toString(),
-        ];
     }
 
     public function aggregateId() : ReviewId
@@ -86,21 +68,44 @@ final class ReviewWasPosted extends DomainEvent
         return $this->author;
     }
 
+    public function eventId() : ?string
+    {
+        return $this->eventId;
+    }
+
+    public function eventType() : string
+    {
+        return self::MESSAGE_NAME;
+    }
+
     /**
      * @inheritdoc
      */
-    public static function fromArray(array $data) : DomainEvent
+    public function toArray() : array
     {
-        /** @var self $message */
-        $message = (new ReflectionClass(self::class))->newInstanceWithoutConstructor();
+        return [
+            'reviewId' => $this->reviewId->toString(),
+            'bookId' => $this->bookId->toString(),
+            'body' => $this->body === null ? null : $this->body->toString(),
+            'rating' => $this->rating->toInt(),
+            'author' => $this->author === null ? null : $this->author->toString(),
+        ];
+    }
 
-        $message->reviewId  = ReviewId::fromString($data['aggregateId']);
-        $message->bookId    = BookId::fromString($data['bookId']);
-        $message->body      = $data['body'] === null ? $data['body'] : Body::fromString($data['body']);
-        $message->rating    = Rating::fromScalar($data['rating']);
-        $message->author    = $data['author'] === null ? $data['author'] : Author::fromString($data['author']);
-        $message->version   = $data['version'];
-        $message->occuredOn = $data['occuredOn'];
+    /**
+     * @param array{reviewId: string, bookId: string, body: string|null, rating: int, author: string|null} $data
+     */
+    public static function from(EventId $eventId, array $data) : DomainEvent
+    {
+        $message = new self(
+            ReviewId::fromString($data['reviewId']),
+            BookId::fromString($data['bookId']),
+            $data['body'] === null ? null : Body::fromString($data['body']),
+            Rating::fromInt($data['rating']),
+            $data['author'] === null ? null : Author::fromString($data['author'])
+        );
+
+        $message->eventId = $eventId->toString();
 
         return $message;
     }

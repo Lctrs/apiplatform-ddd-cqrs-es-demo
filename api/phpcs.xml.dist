@@ -8,8 +8,11 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
-    <rule ref="Doctrine"/>
+    <rule ref="Doctrine">
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+    </rule>
 
+    <file>config/services.php</file>
     <file>devtools/</file>
     <file>src/</file>
     <file>tests/</file>

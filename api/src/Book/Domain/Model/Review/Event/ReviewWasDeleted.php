@@ -6,35 +6,20 @@ namespace App\Book\Domain\Model\Review\Event;
 
 use App\Book\Domain\Model\Review\ReviewId;
 use App\Core\Domain\DomainEvent;
-use ReflectionClass;
+use Prooph\EventStore\EventId;
 
-final class ReviewWasDeleted extends DomainEvent
+final class ReviewWasDeleted implements DomainEvent
 {
     public const MESSAGE_NAME = 'review-was-deleted';
 
+    /** @var string|null */
+    private $eventId;
     /** @var ReviewId */
     private $reviewId;
 
-    protected function __construct(ReviewId $reviewId)
+    private function __construct(ReviewId $reviewId)
     {
-        parent::__construct();
-
         $this->reviewId = $reviewId;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function fromArray(array $data) : DomainEvent
-    {
-        /** @var self $message */
-        $message = (new ReflectionClass(self::class))->newInstanceWithoutConstructor();
-
-        $message->reviewId  = ReviewId::fromString($data['aggregateId']);
-        $message->version   = $data['version'];
-        $message->occuredOn = $data['occuredOn'];
-
-        return $message;
     }
 
     public static function with(ReviewId $reviewId) : self
@@ -42,7 +27,17 @@ final class ReviewWasDeleted extends DomainEvent
         return new self($reviewId);
     }
 
-    public function name() : string
+    public function aggregateId() : ReviewId
+    {
+        return $this->reviewId;
+    }
+
+    public function eventId() : ?string
+    {
+        return $this->eventId;
+    }
+
+    public function eventType() : string
     {
         return self::MESSAGE_NAME;
     }
@@ -52,11 +47,20 @@ final class ReviewWasDeleted extends DomainEvent
      */
     public function toArray() : array
     {
-        return [];
+        return [
+            'reviewId' => $this->reviewId->toString(),
+        ];
     }
 
-    public function aggregateId() : ReviewId
+    /**
+     * @param array{reviewId: string} $data
+     */
+    public static function from(EventId $eventId, array $data) : DomainEvent
     {
-        return $this->reviewId;
+        $message = new self(ReviewId::fromString($data['reviewId']));
+
+        $message->eventId = $eventId->toString();
+
+        return $message;
     }
 }

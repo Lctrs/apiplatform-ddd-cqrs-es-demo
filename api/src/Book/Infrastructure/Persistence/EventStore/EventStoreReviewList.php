@@ -8,17 +8,23 @@ use App\Book\Domain\Model\Review\Review;
 use App\Book\Domain\Model\Review\ReviewId;
 use App\Book\Domain\Model\Review\ReviewList;
 use App\Core\Domain\AggregateRepository;
-use App\Core\Domain\AggregateType;
-use App\Core\Domain\EventStore;
+use App\Core\Domain\DomainEventTransformer;
+use Prooph\EventStore\EventStoreConnection;
+use function assert;
 
-/**
- * @method Review|null getAggregateRoot(ReviewId $reviewId) : ?Review
- */
 final class EventStoreReviewList extends AggregateRepository implements ReviewList
 {
-    public function __construct(EventStore $eventStore)
-    {
-        parent::__construct($eventStore, new AggregateType('review', Review::class));
+    public function __construct(
+        EventStoreConnection $eventStoreConnection,
+        DomainEventTransformer $transformer
+    ) {
+        parent::__construct(
+            $eventStoreConnection,
+            $transformer,
+            'review',
+            Review::class,
+            true
+        );
     }
 
     public function save(Review $review) : void
@@ -28,6 +34,10 @@ final class EventStoreReviewList extends AggregateRepository implements ReviewLi
 
     public function get(ReviewId $reviewId) : ?Review
     {
-        return $this->getAggregateRoot($reviewId);
+        $review = $this->getAggregateRoot($reviewId);
+
+        assert($review === null || $review instanceof Review);
+
+        return $review;
     }
 }

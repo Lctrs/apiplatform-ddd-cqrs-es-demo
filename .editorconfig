@@ -48,6 +48,11 @@ indent_size = 4
 
 [*.{yaml,yml}]
 indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+[api/config/**.{yaml,yml}]
+indent_style = space
 indent_size = 4
 trim_trailing_whitespace = false
 
@@ -67,7 +72,7 @@ indent_size = 2
 indent_style = space
 indent_size = 4
 
-[docker-compose{,.override}.{yaml,yml}]
+[docker-compose{,.*}.{yaml,yml}]
 indent_style = space
 indent_size = 2
 
@@ -82,3 +87,6 @@ indent_size = 2
 [phpunit.xml{,.dist}]
 indent_style = space
 indent_size = 4
+
+[*.neon{,.dist}]
+indent_style = tab

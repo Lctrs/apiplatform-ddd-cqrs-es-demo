@@ -13,16 +13,6 @@ final class BookId implements IdentifiesAggregate
     /** @var UuidInterface */
     private $uuid;
 
-    private function __construct(UuidInterface $bookId)
-    {
-        $this->uuid = $bookId;
-    }
-
-    public function __toString() : string
-    {
-        return $this->uuid->toString();
-    }
-
     public static function generate() : self
     {
         return new self(Uuid::uuid4());
@@ -33,8 +23,13 @@ final class BookId implements IdentifiesAggregate
         return new self(Uuid::fromString($string));
     }
 
-    public function equals(IdentifiesAggregate $other) : bool
+    private function __construct(UuidInterface $bookId)
     {
-        return $other instanceof self && $this->uuid->equals($other->uuid);
+        $this->uuid = $bookId;
+    }
+
+    public function toString() : string
+    {
+        return $this->uuid->toString();
     }
 }

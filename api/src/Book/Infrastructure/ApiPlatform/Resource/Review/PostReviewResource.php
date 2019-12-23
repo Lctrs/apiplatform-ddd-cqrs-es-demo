@@ -54,7 +54,7 @@ final class PostReviewResource implements Resource
             $this->id ?? $this->id = ReviewId::generate(),
             BookId::fromString($this->bookId),
             $this->body === null ? null : Body::fromString($this->body),
-            Rating::fromScalar($this->rating),
+            Rating::fromInt($this->rating),
             $this->author === null ? null : Author::fromString($this->body)
         );
     }

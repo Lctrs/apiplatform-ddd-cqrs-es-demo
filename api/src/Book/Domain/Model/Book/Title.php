@@ -14,16 +14,6 @@ final class Title
         $this->value = $value;
     }
 
-    public function __toString() : string
-    {
-        return $this->value;
-    }
-
-    public function value() : string
-    {
-        return $this->value;
-    }
-
     public static function fromString(string $title) : self
     {
         return new self($title);

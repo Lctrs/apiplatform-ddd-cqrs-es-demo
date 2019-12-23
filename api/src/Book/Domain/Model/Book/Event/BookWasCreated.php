@@ -11,12 +11,14 @@ use App\Book\Domain\Model\Book\Isbn;
 use App\Book\Domain\Model\Book\PublicationDate;
 use App\Book\Domain\Model\Book\Title;
 use App\Core\Domain\DomainEvent;
-use ReflectionClass;
+use Prooph\EventStore\EventId;
 
-final class BookWasCreated extends DomainEvent
+final class BookWasCreated implements DomainEvent
 {
     public const MESSAGE_NAME = 'book-was-created';
 
+    /** @var string|null */
+    private $eventId;
     /** @var BookId */
     private $bookId;
     /** @var Isbn|null */
@@ -30,7 +32,7 @@ final class BookWasCreated extends DomainEvent
     /** @var PublicationDate */
     private $publicationDate;
 
-    protected function __construct(
+    private function __construct(
         BookId $bookId,
         ?Isbn $isbn,
         Title $title,
@@ -38,8 +40,6 @@ final class BookWasCreated extends DomainEvent
         Author $author,
         PublicationDate $publicationDate
     ) {
-        parent::__construct();
-
         $this->bookId          = $bookId;
         $this->isbn            = $isbn;
         $this->title           = $title;
@@ -57,25 +57,6 @@ final class BookWasCreated extends DomainEvent
         PublicationDate $publicationDate
     ) : self {
         return new self($bookId, $isbn, $title, $description, $author, $publicationDate);
-    }
-
-    public function name() : string
-    {
-        return self::MESSAGE_NAME;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function toArray() : array
-    {
-        return [
-            'isbn' => $this->isbn === null ? null : $this->isbn->toString(),
-            'title' => $this->title->toString(),
-            'description' => $this->description->toString(),
-            'author' => $this->author->toString(),
-            'publicationDate' => $this->publicationDate->toString(),
-        ];
     }
 
     public function aggregateId() : BookId
@@ -108,22 +89,46 @@ final class BookWasCreated extends DomainEvent
         return $this->publicationDate;
     }
 
+    public function eventId() : ?string
+    {
+        return $this->eventId;
+    }
+
+    public function eventType() : string
+    {
+        return self::MESSAGE_NAME;
+    }
+
     /**
      * @inheritdoc
      */
-    public static function fromArray(array $data) : DomainEvent
+    public function toArray() : array
     {
-        /** @var self $message */
-        $message = (new ReflectionClass(self::class))->newInstanceWithoutConstructor();
+        return [
+            'bookId' => $this->bookId->toString(),
+            'isbn' => $this->isbn === null ? null : $this->isbn->toString(),
+            'title' => $this->title->toString(),
+            'description' => $this->description->toString(),
+            'author' => $this->author->toString(),
+            'publicationDate' => $this->publicationDate->toString(),
+        ];
+    }
 
-        $message->bookId          = BookId::fromString($data['aggregateId']);
-        $message->isbn            = $data['isbn'] === null ? $data['isbn'] : Isbn::fromString($data['isbn']);
-        $message->title           = Title::fromString($data['title']);
-        $message->description     = Description::fromString($data['description']);
-        $message->author          = Author::fromString($data['author']);
-        $message->publicationDate = PublicationDate::fromString($data['publicationDate']);
-        $message->version         = $data['version'];
-        $message->occuredOn       = $data['occuredOn'];
+    /**
+     * @param array{bookId: string, isbn: string|null, title: string, description: string, author: string, publicationDate: string} $data
+     */
+    public static function from(EventId $eventId, array $data) : DomainEvent
+    {
+        $message = new self(
+            BookId::fromString($data['bookId']),
+            $data['isbn'] === null ? null : Isbn::fromString($data['isbn']),
+            Title::fromString($data['title']),
+            Description::fromString($data['description']),
+            Author::fromString($data['author']),
+            PublicationDate::fromString($data['publicationDate'])
+        );
+
+        $message->eventId = $eventId->toString();
 
         return $message;
     }

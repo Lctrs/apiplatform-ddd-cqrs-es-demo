@@ -8,17 +8,23 @@ use App\Book\Domain\Model\Book\Book;
 use App\Book\Domain\Model\Book\BookId;
 use App\Book\Domain\Model\Book\BookList;
 use App\Core\Domain\AggregateRepository;
-use App\Core\Domain\AggregateType;
-use App\Core\Domain\EventStore;
+use App\Core\Domain\DomainEventTransformer;
+use Prooph\EventStore\EventStoreConnection;
+use function assert;
 
-/**
- * @method Book|null getAggregateRoot(BookId $id) : ?Book
- */
 final class EventStoreBookList extends AggregateRepository implements BookList
 {
-    public function __construct(EventStore $eventStore)
-    {
-        parent::__construct($eventStore, new AggregateType('book', Book::class));
+    public function __construct(
+        EventStoreConnection $eventStoreConnection,
+        DomainEventTransformer $transformer
+    ) {
+        parent::__construct(
+            $eventStoreConnection,
+            $transformer,
+            'book',
+            Book::class,
+            true
+        );
     }
 
     public function save(Book $book) : void
@@ -28,6 +34,10 @@ final class EventStoreBookList extends AggregateRepository implements BookList
 
     public function get(BookId $bookId) : ?Book
     {
-        return $this->getAggregateRoot($bookId);
+        $book = $this->getAggregateRoot($bookId);
+
+        assert($book === null || $book instanceof Book);
+
+        return $book;
     }
 }

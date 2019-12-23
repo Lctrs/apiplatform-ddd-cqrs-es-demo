@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Book\Domain\Model\Book;
 
 use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
 
 final class PublicationDate
@@ -22,13 +23,13 @@ final class PublicationDate
         return new self(new DateTimeImmutable($date, new DateTimeZone('UTC')));
     }
 
-    public function value() : DateTimeImmutable
-    {
-        return $this->date;
-    }
-
     public function toString() : string
     {
-        return $this->date->format('Y-m-d');
+        return $this->date->format(DateTimeInterface::ATOM);
+    }
+
+    public function toDateTime() : DateTimeImmutable
+    {
+        return $this->date;
     }
 }
