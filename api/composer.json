@@ -34,7 +34,7 @@
         "symfony/dotenv": "~4.4.2",
         "symfony/flex": "^1.6.0",
         "symfony/framework-bundle": "~4.4.2",
-        "symfony/http-client": "~4.4.2",
+        "symfony/http-client": "~5.0.2",
         "symfony/http-client-contracts": "^1.1.8",
         "symfony/http-kernel": "~4.4.2",
         "symfony/messenger": "~4.4.2",
