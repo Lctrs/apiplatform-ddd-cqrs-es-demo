@@ -35,7 +35,7 @@
         "symfony/flex": "^1.6.0",
         "symfony/framework-bundle": "~4.4.2",
         "symfony/http-client": "~4.4.2",
-        "symfony/http-client-contracts": "^1.1.8",
+        "symfony/http-client-contracts": "^2.0.1",
         "symfony/http-kernel": "~4.4.2",
         "symfony/messenger": "~4.4.2",
         "symfony/routing": "~4.4.2",
