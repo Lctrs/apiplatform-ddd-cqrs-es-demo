@@ -72,7 +72,7 @@
         "symfony/finder": "~4.4.2",
         "symfony/phpunit-bridge": "~4.4.2",
         "symfony/stopwatch": "~4.4.2",
-        "symfony/web-profiler-bundle": "~4.4.2",
+        "symfony/web-profiler-bundle": "~5.0.2",
         "theofidry/alice-data-fixtures": "^1.1.2"
     },
     "config": {
