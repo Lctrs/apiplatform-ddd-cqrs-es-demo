@@ -18,7 +18,7 @@
         "nelmio/cors-bundle": "^2.0.1",
         "nyholm/psr7": "^1.2.1",
         "php-http/message-factory": "^1.0.2",
-        "phpdocumentor/reflection-docblock": "^4.3.2",
+        "phpdocumentor/reflection-docblock": "^4.3.4",
         "prooph/event-store": "^8.0.0-RC-1",
         "prooph/event-store-client": "^1.0.0-RC-1",
         "prooph/event-store-http-client": "^1.0.0-BETA-3",
