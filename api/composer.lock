@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c7f7c1e9acbea622d04f6f331fa5034",
+    "content-hash": "da7bc6341d4b2c415b2e8d7cf0a89101",
     "packages": [
         {
             "name": "amphp/amp",
@@ -6562,16 +6562,16 @@
         },
         {
             "name": "ergebnis/composer-normalize",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ergebnis/composer-normalize.git",
-                "reference": "3d8b5818b5bfeda21d8a8077d0eda4112734695c"
+                "reference": "a60faee62f227485f36151e7da06155146e204a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ergebnis/composer-normalize/zipball/3d8b5818b5bfeda21d8a8077d0eda4112734695c",
-                "reference": "3d8b5818b5bfeda21d8a8077d0eda4112734695c",
+                "url": "https://api.github.com/repos/ergebnis/composer-normalize/zipball/a60faee62f227485f36151e7da06155146e204a1",
+                "reference": "a60faee62f227485f36151e7da06155146e204a1",
                 "shasum": ""
             },
             "require": {
@@ -6623,7 +6623,7 @@
                 "normalizer",
                 "plugin"
             ],
-            "time": "2019-12-26T22:01:46+00:00"
+            "time": "2019-12-28T16:36:23+00:00"
         },
         {
             "name": "ergebnis/json-normalizer",
