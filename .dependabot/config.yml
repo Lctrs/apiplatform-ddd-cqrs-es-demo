@@ -43,7 +43,62 @@ update_configs:
     version_requirement_updates: "increase_versions"
     ignored_updates:
       - match:
-          dependency_name: "symfony/*"
+          dependency_name: "symfony/asset"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/config"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/console"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/dependency-injection"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/doctrine-bridge"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/dotenv"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/framework-bundle"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/http-client"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/http-kernel"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/messenger"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/routing"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/serializer"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/twig-bundle"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/validator"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/yaml"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/finder"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/phpunit-bridge"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/stopwatch"
+          version_requirement: ">= 5.1.0"
+      - match:
+          dependency_name: "symfony/web-profiler-bundle"
+          version_requirement: ">= 5.1.0"
 
   - automerged_updates:
       - match:

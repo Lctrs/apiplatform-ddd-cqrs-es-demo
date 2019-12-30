@@ -21,6 +21,8 @@ final class ReviewIdTest extends TestCase
      */
     public function testItThrowsExceptionOnInvalidUuid() : void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         ReviewId::fromString('invalid');
     }
 }

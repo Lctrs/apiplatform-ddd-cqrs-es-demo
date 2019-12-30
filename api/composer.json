@@ -26,23 +26,23 @@
         "psr/http-factory": "^1.0.1",
         "psr/log": "^1.1.2",
         "ramsey/uuid": "^3.9.2",
-        "symfony/asset": "~4.4.2",
-        "symfony/config": "~4.4.2",
-        "symfony/console": "~4.4.2",
-        "symfony/dependency-injection": "~4.4.2",
-        "symfony/doctrine-bridge": "~4.4.2",
-        "symfony/dotenv": "~4.4.2",
+        "symfony/asset": "~5.0.2",
+        "symfony/config": "~5.0.2",
+        "symfony/console": "~5.0.2",
+        "symfony/dependency-injection": "~5.0.2",
+        "symfony/doctrine-bridge": "~5.0.2",
+        "symfony/dotenv": "~5.0.2",
         "symfony/flex": "^1.6.0",
-        "symfony/framework-bundle": "~4.4.2",
-        "symfony/http-client": "~4.4.2",
-        "symfony/http-client-contracts": "^1.1.8",
-        "symfony/http-kernel": "~4.4.2",
-        "symfony/messenger": "~4.4.2",
-        "symfony/routing": "~4.4.2",
-        "symfony/serializer": "~4.4.2",
-        "symfony/twig-bundle": "~4.4.2",
-        "symfony/validator": "~4.4.2",
-        "symfony/yaml": "~4.4.2",
+        "symfony/framework-bundle": "~5.0.2",
+        "symfony/http-client": "~5.0.2",
+        "symfony/http-client-contracts": "^2.0.1",
+        "symfony/http-kernel": "~5.0.2",
+        "symfony/messenger": "~5.0.2",
+        "symfony/routing": "~5.0.2",
+        "symfony/serializer": "~5.0.2",
+        "symfony/twig-bundle": "~5.0.2",
+        "symfony/validator": "~5.0.2",
+        "symfony/yaml": "~5.0.2",
         "webmozart/assert": "^1.6.0"
     },
     "replace": {
@@ -61,7 +61,7 @@
     "require-dev": {
         "doctrine/coding-standard": "^7.0.2",
         "ergebnis/composer-normalize": "^2.1.2",
-        "maglnet/composer-require-checker": "^2.0.0",
+        "maglnet/composer-require-checker": "^2.1.0",
         "nelmio/alice": "^3.5.8",
         "phpstan/extension-installer": "^1.0.3",
         "phpstan/phpstan": "^0.12.3",
@@ -69,10 +69,10 @@
         "phpstan/phpstan-doctrine": "^0.12.6",
         "phpstan/phpstan-symfony": "^0.12.1",
         "phpstan/phpstan-webmozart-assert": "^0.12.0",
-        "symfony/finder": "~4.4.2",
-        "symfony/phpunit-bridge": "~4.4.2",
-        "symfony/stopwatch": "~4.4.2",
-        "symfony/web-profiler-bundle": "~4.4.2",
+        "symfony/finder": "~5.0.2",
+        "symfony/phpunit-bridge": "~5.0.2",
+        "symfony/stopwatch": "~5.0.2",
+        "symfony/web-profiler-bundle": "~5.0.2",
         "theofidry/alice-data-fixtures": "^1.1.2"
     },
     "config": {
@@ -84,7 +84,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.4.*"
+            "require": "5.0.*"
         }
     },
     "autoload": {
