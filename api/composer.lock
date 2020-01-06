@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e386f63e06d3255c13d6aad99b425399",
+    "content-hash": "5b4068392201b059b4b56ea45da83e7b",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7520,26 +7520,26 @@
         },
         {
             "name": "phpstan/phpstan-webmozart-assert",
-            "version": "0.12.0",
+            "version": "0.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-webmozart-assert.git",
-                "reference": "97cde39e6ddb70915e7188704d0ebd174f07b688"
+                "reference": "387b0300ebb9e9b06b76bbff436da46b48f34b1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-webmozart-assert/zipball/97cde39e6ddb70915e7188704d0ebd174f07b688",
-                "reference": "97cde39e6ddb70915e7188704d0ebd174f07b688",
+                "url": "https://api.github.com/repos/phpstan/phpstan-webmozart-assert/zipball/387b0300ebb9e9b06b76bbff436da46b48f34b1e",
+                "reference": "387b0300ebb9e9b06b76bbff436da46b48f34b1e",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "^4.3",
                 "php": "~7.1",
                 "phpstan/phpstan": "^0.12"
             },
             "require-dev": {
                 "consistence/coding-standard": "^3.7",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+                "ergebnis/composer-normalize": "^2.0.2",
                 "jakub-onderka/php-parallel-lint": "^1.0",
                 "phing/phing": "^2.16.0",
                 "phpstan/phpstan-phpunit": "^0.12",
@@ -7569,7 +7569,7 @@
                 "MIT"
             ],
             "description": "PHPStan webmozart/assert extension",
-            "time": "2019-11-26T08:13:40+00:00"
+            "time": "2020-01-01T17:35:30+00:00"
         },
         {
             "name": "sebastian/comparator",
