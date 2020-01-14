@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00f3fb59c3591b72561209ac3f252e9b",
+    "content-hash": "4fed67608321ff51ebec059ffaf99762",
     "packages": [
         {
             "name": "amphp/amp",
@@ -773,16 +773,16 @@
         },
         {
             "name": "api-platform/core",
-            "version": "v2.5.3",
+            "version": "v2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "2d402688c485457adbc771e347e6498e70c6f232"
+                "reference": "14ed547d10a23dcd5c852e24948e661aee48492e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/2d402688c485457adbc771e347e6498e70c6f232",
-                "reference": "2d402688c485457adbc771e347e6498e70c6f232",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/14ed547d10a23dcd5c852e24948e661aee48492e",
+                "reference": "14ed547d10a23dcd5c852e24948e661aee48492e",
                 "shasum": ""
             },
             "require": {
@@ -828,9 +828,9 @@
                 "phpdocumentor/type-resolver": "^0.3 || ^0.4",
                 "phpspec/prophecy": "^1.8",
                 "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "^0.11.10",
                 "phpstan/phpstan-doctrine": "^0.11.5",
                 "phpstan/phpstan-phpunit": "^0.11.2",
+                "phpstan/phpstan-shim": "^0.11.10",
                 "phpstan/phpstan-symfony": "^0.11.6",
                 "phpunit/phpunit": "^7.5.2 || ^8.0",
                 "psr/log": "^1.0",
@@ -886,6 +886,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.5.x-dev"
+                },
+                "symfony": {
+                    "require": "^3.4 || ^4.0 || ^5.0"
                 }
             },
             "autoload": {
@@ -917,7 +920,7 @@
                 "rest",
                 "swagger"
             ],
-            "time": "2019-11-23T11:27:39+00:00"
+            "time": "2020-01-13T16:27:19+00:00"
         },
         {
             "name": "clue/stream-filter",
