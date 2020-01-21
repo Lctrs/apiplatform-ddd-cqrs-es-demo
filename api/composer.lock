@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "79b1f168830734b040fe5729f21fded6",
+    "content-hash": "66eb2a436c66728cba67b7797675266c",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7472,21 +7472,21 @@
         },
         {
             "name": "phpstan/phpstan-webmozart-assert",
-            "version": "0.12.1",
+            "version": "0.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-webmozart-assert.git",
-                "reference": "387b0300ebb9e9b06b76bbff436da46b48f34b1e"
+                "reference": "c3c84ec4e6874516c207401a154843b0b1418e2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-webmozart-assert/zipball/387b0300ebb9e9b06b76bbff436da46b48f34b1e",
-                "reference": "387b0300ebb9e9b06b76bbff436da46b48f34b1e",
+                "url": "https://api.github.com/repos/phpstan/phpstan-webmozart-assert/zipball/c3c84ec4e6874516c207401a154843b0b1418e2c",
+                "reference": "c3c84ec4e6874516c207401a154843b0b1418e2c",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1",
-                "phpstan/phpstan": "^0.12"
+                "phpstan/phpstan": "^0.12.6"
             },
             "require-dev": {
                 "consistence/coding-standard": "^3.7",
@@ -7494,9 +7494,9 @@
                 "ergebnis/composer-normalize": "^2.0.2",
                 "jakub-onderka/php-parallel-lint": "^1.0",
                 "phing/phing": "^2.16.0",
-                "phpstan/phpstan-phpunit": "^0.12",
-                "phpstan/phpstan-strict-rules": "^0.12",
-                "phpunit/phpunit": "^7.1.3",
+                "phpstan/phpstan-phpunit": "^0.12.6",
+                "phpstan/phpstan-strict-rules": "^0.12.1",
+                "phpunit/phpunit": "^7.5.18",
                 "slevomat/coding-standard": "^4.5.2",
                 "webmozart/assert": "^1.3.0"
             },
@@ -7521,7 +7521,7 @@
                 "MIT"
             ],
             "description": "PHPStan webmozart/assert extension",
-            "time": "2020-01-01T17:35:30+00:00"
+            "time": "2020-01-20T12:26:56+00:00"
         },
         {
             "name": "sebastian/comparator",
