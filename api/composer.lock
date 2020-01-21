@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "afc2d0f98b30e70d18eef88484e2d07d",
+    "content-hash": "04938cb3f3a7fd1d355c287455a5c9f9",
     "packages": [
         {
             "name": "amphp/amp",
@@ -5676,16 +5676,16 @@
         },
         {
             "name": "symfony/twig-bridge",
-            "version": "v5.0.2",
+            "version": "v5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bridge.git",
-                "reference": "abbaeee38ff39651e335c55be40752be2ddd0976"
+                "reference": "39cc296147e010af3c13d7734a21528426bd46ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/abbaeee38ff39651e335c55be40752be2ddd0976",
-                "reference": "abbaeee38ff39651e335c55be40752be2ddd0976",
+                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/39cc296147e010af3c13d7734a21528426bd46ff",
+                "reference": "39cc296147e010af3c13d7734a21528426bd46ff",
                 "shasum": ""
             },
             "require": {
@@ -5773,20 +5773,20 @@
             ],
             "description": "Symfony Twig Bridge",
             "homepage": "https://symfony.com",
-            "time": "2019-12-18T16:23:52+00:00"
+            "time": "2020-01-08T17:33:29+00:00"
         },
         {
             "name": "symfony/twig-bundle",
-            "version": "v5.0.2",
+            "version": "v5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bundle.git",
-                "reference": "a54f6db9d452aa06a77e9f8562974a61e15bfa42"
+                "reference": "1bd6192a7742d7807b9ecd0eff347ea549a19390"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bundle/zipball/a54f6db9d452aa06a77e9f8562974a61e15bfa42",
-                "reference": "a54f6db9d452aa06a77e9f8562974a61e15bfa42",
+                "url": "https://api.github.com/repos/symfony/twig-bundle/zipball/1bd6192a7742d7807b9ecd0eff347ea549a19390",
+                "reference": "1bd6192a7742d7807b9ecd0eff347ea549a19390",
                 "shasum": ""
             },
             "require": {
@@ -5848,7 +5848,7 @@
             ],
             "description": "Symfony TwigBundle",
             "homepage": "https://symfony.com",
-            "time": "2019-12-10T11:06:55+00:00"
+            "time": "2020-01-04T14:08:26+00:00"
         },
         {
             "name": "symfony/validator",
