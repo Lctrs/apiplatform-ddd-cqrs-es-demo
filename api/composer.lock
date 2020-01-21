@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40ade70bc85e1f76c7aad57dd47867fd",
+    "content-hash": "9e12ef7daed7a0533c55e7e832a6f4a4",
     "packages": [
         {
             "name": "amphp/amp",
@@ -3705,16 +3705,16 @@
         },
         {
             "name": "symfony/cache",
-            "version": "v5.0.2",
+            "version": "v5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "6e8d978878ae5de705ec9fabbb6011cc18776bc9"
+                "reference": "b503e72c8e2fa55eed9e2d3dd6a166f3eaaabb9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/6e8d978878ae5de705ec9fabbb6011cc18776bc9",
-                "reference": "6e8d978878ae5de705ec9fabbb6011cc18776bc9",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/b503e72c8e2fa55eed9e2d3dd6a166f3eaaabb9a",
+                "reference": "b503e72c8e2fa55eed9e2d3dd6a166f3eaaabb9a",
                 "shasum": ""
             },
             "require": {
@@ -3780,7 +3780,7 @@
                 "caching",
                 "psr6"
             ],
-            "time": "2019-12-12T13:03:32+00:00"
+            "time": "2020-01-10T21:57:37+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -4539,16 +4539,16 @@
         },
         {
             "name": "symfony/framework-bundle",
-            "version": "v5.0.2",
+            "version": "v5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "36e51776b231d8e224da4ce4c60079540acd1c55"
+                "reference": "cc59bc797b77c6ecccd6c87d9052f6b3eb6a8d63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/36e51776b231d8e224da4ce4c60079540acd1c55",
-                "reference": "36e51776b231d8e224da4ce4c60079540acd1c55",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/cc59bc797b77c6ecccd6c87d9052f6b3eb6a8d63",
+                "reference": "cc59bc797b77c6ecccd6c87d9052f6b3eb6a8d63",
                 "shasum": ""
             },
             "require": {
@@ -4665,7 +4665,7 @@
             ],
             "description": "Symfony FrameworkBundle",
             "homepage": "https://symfony.com",
-            "time": "2019-12-17T10:33:13+00:00"
+            "time": "2020-01-21T08:40:24+00:00"
         },
         {
             "name": "symfony/http-client",
@@ -6019,16 +6019,16 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v5.0.2",
+            "version": "v5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "1b9653e68d5b701bf6d9c91bdd3660078c9f4f28"
+                "reference": "960f9ac0fdbd642461ed29d7717aeb2a94d428b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/1b9653e68d5b701bf6d9c91bdd3660078c9f4f28",
-                "reference": "1b9653e68d5b701bf6d9c91bdd3660078c9f4f28",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/960f9ac0fdbd642461ed29d7717aeb2a94d428b9",
+                "reference": "960f9ac0fdbd642461ed29d7717aeb2a94d428b9",
                 "shasum": ""
             },
             "require": {
@@ -6075,7 +6075,7 @@
                 "instantiate",
                 "serialize"
             ],
-            "time": "2019-12-01T08:48:26+00:00"
+            "time": "2020-01-04T14:08:26+00:00"
         },
         {
             "name": "symfony/web-link",
