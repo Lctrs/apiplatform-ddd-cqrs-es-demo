@@ -26,7 +26,7 @@
         "psr/http-factory": "^1.0.1",
         "psr/log": "^1.1.2",
         "ramsey/uuid": "^3.9.2",
-        "symfony/asset": "~5.0.3",
+        "symfony/asset": "~5.0.4",
         "symfony/config": "~5.0.3",
         "symfony/console": "~5.0.3",
         "symfony/dependency-injection": "~5.0.4",
