@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f70b250718fc79236f0a73c1a0d63fb",
+    "content-hash": "d99cf22d7a43a39f94ea97b6fd39dea3",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4208,16 +4208,16 @@
         },
         {
             "name": "symfony/error-handler",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/error-handler.git",
-                "reference": "95f64c1d7dfb86a722dc9d278d0edf5176eff16e"
+                "reference": "c263709b4570387f3fe339c4f05aae66740cf2ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/error-handler/zipball/95f64c1d7dfb86a722dc9d278d0edf5176eff16e",
-                "reference": "95f64c1d7dfb86a722dc9d278d0edf5176eff16e",
+                "url": "https://api.github.com/repos/symfony/error-handler/zipball/c263709b4570387f3fe339c4f05aae66740cf2ab",
+                "reference": "c263709b4570387f3fe339c4f05aae66740cf2ab",
                 "shasum": ""
             },
             "require": {
@@ -4259,11 +4259,11 @@
             ],
             "description": "Symfony ErrorHandler Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-08T17:33:29+00:00"
+            "time": "2020-01-31T09:13:47+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -4794,16 +4794,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "5dc0db5026f2b611cb8910a1f465e95eafd84c2e"
+                "reference": "2832d8cffc3a91df550ac42bcdce602f8c08be3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/5dc0db5026f2b611cb8910a1f465e95eafd84c2e",
-                "reference": "5dc0db5026f2b611cb8910a1f465e95eafd84c2e",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/2832d8cffc3a91df550ac42bcdce602f8c08be3e",
+                "reference": "2832d8cffc3a91df550ac42bcdce602f8c08be3e",
                 "shasum": ""
             },
             "require": {
@@ -4845,20 +4845,20 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-04T14:08:26+00:00"
+            "time": "2020-01-31T09:13:47+00:00"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "9e31e5e11cbe038cbb853beb3e3bb6e4f2500259"
+                "reference": "1f4179489af4ead692fd375b7d9ac675da4215a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/9e31e5e11cbe038cbb853beb3e3bb6e4f2500259",
-                "reference": "9e31e5e11cbe038cbb853beb3e3bb6e4f2500259",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/1f4179489af4ead692fd375b7d9ac675da4215a7",
+                "reference": "1f4179489af4ead692fd375b7d9ac675da4215a7",
                 "shasum": ""
             },
             "require": {
@@ -4941,7 +4941,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-21T13:29:58+00:00"
+            "time": "2020-01-31T12:49:38+00:00"
         },
         {
             "name": "symfony/inflector",
@@ -5077,7 +5077,7 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
@@ -5944,16 +5944,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "ccb1be566ae15f790020f917f06d1da0b04fe47b"
+                "reference": "923591cfb78a935f0c98968fedfad05bfda9d01f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/ccb1be566ae15f790020f917f06d1da0b04fe47b",
-                "reference": "ccb1be566ae15f790020f917f06d1da0b04fe47b",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/923591cfb78a935f0c98968fedfad05bfda9d01f",
+                "reference": "923591cfb78a935f0c98968fedfad05bfda9d01f",
                 "shasum": ""
             },
             "require": {
@@ -6015,7 +6015,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2020-01-04T14:08:26+00:00"
+            "time": "2020-01-25T15:56:29+00:00"
         },
         {
             "name": "symfony/var-exporter",
