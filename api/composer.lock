@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd6116fecfff7fd25dcb9dddd353680b",
+    "content-hash": "5ac513df0cb752624e0f51f962efd33f",
     "packages": [
         {
             "name": "amphp/amp",
@@ -3649,7 +3649,7 @@
         },
         {
             "name": "symfony/asset",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",
