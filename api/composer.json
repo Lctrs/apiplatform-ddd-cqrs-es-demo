@@ -70,7 +70,7 @@
         "phpstan/phpstan-symfony": "^0.12.4",
         "phpstan/phpstan-webmozart-assert": "^0.12.2",
         "symfony/finder": "~5.0.2",
-        "symfony/phpunit-bridge": "~5.0.3",
+        "symfony/phpunit-bridge": "~5.0.4",
         "symfony/stopwatch": "~5.0.3",
         "symfony/web-profiler-bundle": "~5.0.4",
         "theofidry/alice-data-fixtures": "^1.1.2"
