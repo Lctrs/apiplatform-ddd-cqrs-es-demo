@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6dfb36629595046f6a53182a3c9da336",
+    "content-hash": "8175650d322f8343f2f39609d27e1eb7",
     "packages": [
         {
             "name": "amphp/amp",
@@ -3842,7 +3842,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
