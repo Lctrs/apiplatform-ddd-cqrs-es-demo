@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8175650d322f8343f2f39609d27e1eb7",
+    "content-hash": "8b13b312fa144ad18c9ce74cb35ab721",
     "packages": [
         {
             "name": "amphp/amp",
@@ -5479,7 +5479,7 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
