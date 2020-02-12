@@ -6,9 +6,14 @@ parameters:
 		container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
 	level: max
 	paths:
+		- config/services.php
 		- devtools
 		- src
+		- tests
 	fileExtensions:
 		# Standard php files and .dist config files
 		- php
 		- dist
+	excludes_analyse:
+		- src/Kernel.php
+		- tests/bootstrap.php

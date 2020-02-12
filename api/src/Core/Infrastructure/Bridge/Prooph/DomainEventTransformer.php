@@ -2,23 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Domain;
+namespace App\Core\Infrastructure\Bridge\Prooph;
 
+use App\Core\Domain\DomainEvent;
 use Prooph\EventStore\EventData;
 use Prooph\EventStore\EventId;
 use Prooph\EventStore\ResolvedEvent;
 use Prooph\EventStore\Util\Json;
 use RuntimeException;
 use function assert;
-use function is_subclass_of;
+use function is_array;
 
 final class DomainEventTransformer
 {
-    /** @var array<string, string> */
+    /**
+     * @var array<string, string>
+     * @psalm-var array<string, class-string<DomainEvent>>
+     */
     private $map;
 
     /**
      * @param array<string, string> $map
+     *
+     * @psalm-param array<string, class-string<DomainEvent>> $map
      */
     public function __construct(array $map)
     {
@@ -61,9 +67,9 @@ final class DomainEventTransformer
 
         $payload = Json::decode($event->data());
 
-        $class = $this->map[$type];
+        assert(is_array($payload));
 
-        assert(is_subclass_of($class, DomainEvent::class));
+        $class = $this->map[$type];
 
         return $class::from($event->eventId(), $payload);
     }

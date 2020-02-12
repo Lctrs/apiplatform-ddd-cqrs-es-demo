@@ -32,7 +32,7 @@ final class PostReviewResource implements Resource
      * @Assert\NotBlank()
      */
     public $bookId;
-    /** @var string */
+    /** @var string|null */
     public $body;
     /**
      * @var int
@@ -55,7 +55,7 @@ final class PostReviewResource implements Resource
             BookId::fromString($this->bookId),
             $this->body === null ? null : Body::fromString($this->body),
             Rating::fromInt($this->rating),
-            $this->author === null ? null : Author::fromString($this->body)
+            $this->author === null ? null : Author::fromString($this->author)
         );
     }
 }

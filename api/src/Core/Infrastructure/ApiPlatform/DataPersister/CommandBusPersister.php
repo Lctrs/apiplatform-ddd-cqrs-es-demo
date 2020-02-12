@@ -49,6 +49,8 @@ final class CommandBusPersister implements DataPersisterInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @param object|void $data
      */
     public function remove($data) : void
     {

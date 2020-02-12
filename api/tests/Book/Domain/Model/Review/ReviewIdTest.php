@@ -16,9 +16,6 @@ final class ReviewIdTest extends TestCase
         self::assertSame('4e27f920-0862-4da7-9da3-6fb812040e3a', $reviewId->toString());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testItThrowsExceptionOnInvalidUuid() : void
     {
         $this->expectException(InvalidArgumentException::class);
