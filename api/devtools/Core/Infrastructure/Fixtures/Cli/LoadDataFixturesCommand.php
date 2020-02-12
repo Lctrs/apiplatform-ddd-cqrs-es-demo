@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Infrastructure\Fixtures\Cli;
 
 use Fidry\AliceDataFixtures\LoaderInterface;
+use Generator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -52,17 +53,17 @@ final class LoadDataFixturesCommand extends Command
             throw new \InvalidArgumentException('Argument "path" must be a string.');
         }
 
-        $fixturesFiles = $this->resolvePath($path);
-
-        $this->loader->load($fixturesFiles);
+        $this->loader->load(iterator_to_array($this->resolvePath($path)));
 
         return 0;
     }
 
     /**
-     * @return string[]
+     * @return Generator|string[]
+     *
+     * @psalm-return Generator<string>
      */
-    private function resolvePath(string $path) : array
+    private function resolvePath(string $path) : Generator
     {
         if (! file_exists($path)) {
             throw new InvalidArgumentException(sprintf('Directory "%s" does not exist.', $path));
@@ -72,14 +73,16 @@ final class LoadDataFixturesCommand extends Command
             throw new InvalidArgumentException(sprintf('"%s" is not a directory.', $path));
         }
 
-        return iterator_to_array(
-            Finder::create()
+        /** @psalm-var \IteratorAggregate<\SplFileInfo> $files */
+        $files = Finder::create()
                 ->files()
                 ->in($path)
                 ->name('*.yaml')
                 ->name('*.php')
-                ->name('*.json')
-                ->getIterator()
-        );
+                ->name('*.json');
+
+        foreach ($files as $file) {
+            yield $file->getPathname();
+        }
     }
 }

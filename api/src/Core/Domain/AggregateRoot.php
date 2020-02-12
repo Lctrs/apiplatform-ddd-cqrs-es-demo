@@ -17,20 +17,22 @@ abstract class AggregateRoot
     {
     }
 
-    public function expectedVersion() : int
+    final public function expectedVersion() : int
     {
         return $this->expectedVersion;
     }
 
-    public function setExpectedVersion(int $version) : void
+    final public function setExpectedVersion(int $version) : void
     {
         $this->expectedVersion = $version;
     }
 
     /**
      * @return iterable|DomainEvent[]
+     *
+     * @psalm-return iterable<DomainEvent>
      */
-    public function popRecordedEvents() : iterable
+    final public function popRecordedEvents() : iterable
     {
         $pendingEvents = $this->recordedEvents;
 
@@ -40,9 +42,11 @@ abstract class AggregateRoot
     }
 
     /**
-     * @param DomainEvent[] $historyEvents
+     * @param iterable|DomainEvent[] $historyEvents
+     *
+     * @psalm-param iterable<DomainEvent> $historyEvents
      */
-    public static function reconstituteFromHistory(iterable $historyEvents) : self
+    final public static function reconstituteFromHistory(iterable $historyEvents) : self
     {
         $instance = new static();
         $instance->replay($historyEvents);
@@ -51,16 +55,18 @@ abstract class AggregateRoot
     }
 
     /**
-     * @param DomainEvent[] $historyEvents
+     * @param iterable|DomainEvent[] $historyEvents
+     *
+     * @psalm-param iterable<DomainEvent> $historyEvents
      */
-    public function replay(iterable $historyEvents) : void
+    final public function replay(iterable $historyEvents) : void
     {
         foreach ($historyEvents as $pastEvent) {
             $this->apply($pastEvent);
         }
     }
 
-    protected function recordThat(DomainEvent $event) : void
+    final protected function recordThat(DomainEvent $event) : void
     {
         $this->recordedEvents[] = $event;
 

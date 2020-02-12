@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="3.8.5@e6ec5fa22a7b9e61670a24d07b3119aff80dcd89">
+  <file src="src/Core/Infrastructure/ApiPlatform/DataPersister/CommandBusPersister.php">
+    <MixedInferredReturnType occurrences="1">
+      <code>persist</code>
+    </MixedInferredReturnType>
+  </file>
+  <file src="src/Core/Infrastructure/Bridge/Prooph/DomainEventTransformer.php">
+    <MixedArgumentTypeCoercion occurrences="1">
+      <code>$payload</code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment occurrences="1">
+      <code>$payload</code>
+    </MixedAssignment>
+  </file>
+  <file src="src/Core/Infrastructure/EventStore/Cli/RunProjections.php">
+    <TooManyTemplateParams occurrences="1"/>
+  </file>
+</files>

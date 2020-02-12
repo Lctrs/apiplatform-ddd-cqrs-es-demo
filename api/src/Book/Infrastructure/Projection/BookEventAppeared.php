@@ -9,16 +9,16 @@ use Amp\Success;
 use App\Book\Domain\Model\Book\Event\BookWasCreated;
 use App\Book\Domain\Model\Book\Event\BookWasDeleted;
 use App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Book;
-use App\Core\Domain\DomainEventTransformer;
+use App\Core\Infrastructure\Bridge\Prooph\DomainEventTransformer;
+use App\Core\Infrastructure\Projection\PersistentSubscriptionSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
-use Prooph\EventStore\Async\EventAppearedOnPersistentSubscription;
 use Prooph\EventStore\Async\EventStorePersistentSubscription;
 use Prooph\EventStore\ResolvedEvent;
 use function assert;
 use function get_class;
 
-final class BookEventAppeared implements EventAppearedOnPersistentSubscription
+final class BookEventAppeared implements PersistentSubscriptionSubscriber
 {
     /** @var EntityManagerInterface */
     private $entityManager;
@@ -29,6 +29,11 @@ final class BookEventAppeared implements EventAppearedOnPersistentSubscription
     {
         $this->entityManager = $entityManager;
         $this->transformer   = $transformer;
+    }
+
+    public static function persistentSubscriptionName() : string
+    {
+        return '$ce-book';
     }
 
     public function __invoke(
@@ -42,9 +47,11 @@ final class BookEventAppeared implements EventAppearedOnPersistentSubscription
             case BookWasCreated::class:
                 assert($event instanceof BookWasCreated);
 
+                $isbn = $event->isbn();
+
                 $this->entityManager->persist(new Book(
                     $event->aggregateId()->toString(),
-                    $event->isbn() === null ? null : $event->isbn()->toString(),
+                    $isbn === null ? null : $isbn->toString(),
                     $event->title()->toString(),
                     $event->description()->toString(),
                     $event->author()->toString(),

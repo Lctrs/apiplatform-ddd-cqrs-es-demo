@@ -9,16 +9,16 @@ use Amp\Success;
 use App\Book\Domain\Model\Review\Event\ReviewWasDeleted;
 use App\Book\Domain\Model\Review\Event\ReviewWasPosted;
 use App\Book\Infrastructure\Projection\Doctrine\Orm\Entity\Review;
-use App\Core\Domain\DomainEventTransformer;
+use App\Core\Infrastructure\Bridge\Prooph\DomainEventTransformer;
+use App\Core\Infrastructure\Projection\PersistentSubscriptionSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
-use Prooph\EventStore\Async\EventAppearedOnPersistentSubscription;
 use Prooph\EventStore\Async\EventStorePersistentSubscription;
 use Prooph\EventStore\ResolvedEvent;
 use function assert;
 use function get_class;
 
-final class ReviewEventAppeared implements EventAppearedOnPersistentSubscription
+final class ReviewEventAppeared implements PersistentSubscriptionSubscriber
 {
     /** @var EntityManagerInterface */
     private $entityManager;
@@ -29,6 +29,11 @@ final class ReviewEventAppeared implements EventAppearedOnPersistentSubscription
     {
         $this->entityManager = $entityManager;
         $this->transformer   = $transformer;
+    }
+
+    public static function persistentSubscriptionName() : string
+    {
+        return '$ce-review';
     }
 
     public function __invoke(
@@ -55,12 +60,15 @@ final class ReviewEventAppeared implements EventAppearedOnPersistentSubscription
             case ReviewWasPosted::class:
                 assert($event instanceof ReviewWasPosted);
 
+                $body   = $event->body();
+                $author = $event->author();
+
                 $this->entityManager->persist(new Review(
                     $event->aggregateId()->toString(),
                     $event->bookId()->toString(),
-                    $event->body() === null ? null : $event->body()->toString(),
+                    $body === null ? null : $body->toString(),
                     $event->rating()->toInt(),
-                    $event->author() === null ? null : $event->author()->toString()
+                    $author === null ? null : $author->toString()
                 ));
                 $this->entityManager->flush();
 

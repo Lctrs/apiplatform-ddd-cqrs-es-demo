@@ -8,19 +8,15 @@ use App\Book\Domain\Model\Book\Book;
 use App\Book\Domain\Model\Book\BookId;
 use App\Book\Domain\Model\Book\BookList;
 use App\Core\Domain\AggregateRepository;
-use App\Core\Domain\DomainEventTransformer;
-use Prooph\EventStore\EventStoreConnection;
+use App\Core\Domain\EventStore;
 use function assert;
 
 final class EventStoreBookList extends AggregateRepository implements BookList
 {
-    public function __construct(
-        EventStoreConnection $eventStoreConnection,
-        DomainEventTransformer $transformer
-    ) {
+    public function __construct(EventStore $eventStore)
+    {
         parent::__construct(
-            $eventStoreConnection,
-            $transformer,
+            $eventStore,
             'book',
             Book::class,
             true

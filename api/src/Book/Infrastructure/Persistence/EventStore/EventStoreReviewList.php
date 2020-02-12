@@ -8,19 +8,15 @@ use App\Book\Domain\Model\Review\Review;
 use App\Book\Domain\Model\Review\ReviewId;
 use App\Book\Domain\Model\Review\ReviewList;
 use App\Core\Domain\AggregateRepository;
-use App\Core\Domain\DomainEventTransformer;
-use Prooph\EventStore\EventStoreConnection;
+use App\Core\Domain\EventStore;
 use function assert;
 
 final class EventStoreReviewList extends AggregateRepository implements ReviewList
 {
-    public function __construct(
-        EventStoreConnection $eventStoreConnection,
-        DomainEventTransformer $transformer
-    ) {
+    public function __construct(EventStore $eventStore)
+    {
         parent::__construct(
-            $eventStoreConnection,
-            $transformer,
+            $eventStore,
             'review',
             Review::class,
             true

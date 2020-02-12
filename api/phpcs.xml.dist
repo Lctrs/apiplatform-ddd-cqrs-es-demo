@@ -16,5 +16,7 @@
     <file>devtools/</file>
     <file>src/</file>
     <file>tests/</file>
+    <exclude-pattern>src/Kernel\.php</exclude-pattern>
+    <exclude-pattern>tests/bootstrap\.php</exclude-pattern>
 
 </ruleset>

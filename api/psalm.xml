@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<psalm
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    errorBaseline="psalm-baseline.xml"
+    resolveFromConfigFile="true"
+    totallyTyped="true"
+>
+    <issueHandlers>
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <directory name="src/*/Infrastructure/EventStore"/>
+            </errorLevel>
+        </InternalMethod>
+        <InternalClass>
+            <errorLevel type="suppress">
+                <directory name="src/*/Infrastructure/EventStore"/>
+            </errorLevel>
+        </InternalClass>
+        <LessSpecificReturnType errorLevel="info"/>
+        <MoreSpecificImplementedParamType>
+            <errorLevel type="suppress">
+                <directory name="src/*/Domain/Model/*/Event"/>
+            </errorLevel>
+        </MoreSpecificImplementedParamType>
+        <PropertyNotSetInConstructor errorLevel="suppress"/>
+    </issueHandlers>
+
+    <plugins>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+    </plugins>
+
+    <projectFiles>
+        <file name="config/services.php"/>
+        <directory name="devtools"/>
+        <directory name="src"/>
+        <directory name="tests"/>
+        <ignoreFiles>
+            <file name="config/bootstrap.php"/>
+            <file name="src/Kernel.php"/>
+            <file name="tests/bootstrap.php"/>
+            <directory name="vendor"/>
+        </ignoreFiles>
+    </projectFiles>
+</psalm>

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Core\Infrastructure\EventStore\Cli;
 
 use Amp\Loop;
+use Prooph\EventStore\Async\EventAppearedOnPersistentSubscription;
 use Prooph\EventStore\Async\EventStoreConnection;
-use Psr\Container\ContainerInterface;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -22,15 +22,19 @@ final class RunProjections extends Command
 
     /** @var EventStoreConnection */
     private $connection;
-    /** @var ContainerInterface */
-    private $locator;
 
-    public function __construct(EventStoreConnection $connection, ContainerInterface $locator)
+    /** @var callable(string $id):?EventAppearedOnPersistentSubscription */
+    private $handlerFactory;
+
+    /**
+     * @param callable(string $id):?EventAppearedOnPersistentSubscription $handlerFactory
+     */
+    public function __construct(EventStoreConnection $connection, callable $handlerFactory)
     {
         parent::__construct();
 
-        $this->connection = $connection;
-        $this->locator    = $locator;
+        $this->connection     = $connection;
+        $this->handlerFactory = $handlerFactory;
     }
 
     protected function configure() : void
@@ -58,15 +62,18 @@ final class RunProjections extends Command
         Assert::string($stream);
         Assert::string($groupName);
 
-        if (! $this->locator->has($stream)) {
+        $factory = $this->handlerFactory;
+
+        $handler = $factory($stream);
+        if ($handler === null) {
             throw new RuntimeException(sprintf('Could not find handler for stream "%s".', $stream));
         }
 
-        Loop::run(function () use ($stream, $groupName) {
+        Loop::run(function () use ($stream, $groupName, $handler) {
             yield $this->connection->connectToPersistentSubscriptionAsync(
                 $stream,
                 $groupName,
-                $this->locator->get($stream)
+                $handler
             );
         });
 
