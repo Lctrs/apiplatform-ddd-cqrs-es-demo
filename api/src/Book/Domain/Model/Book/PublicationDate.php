@@ -10,8 +10,7 @@ use DateTimeZone;
 
 final class PublicationDate
 {
-    /** @var DateTimeImmutable */
-    private $date;
+    private DateTimeImmutable $date;
 
     private function __construct(DateTimeImmutable $date)
     {

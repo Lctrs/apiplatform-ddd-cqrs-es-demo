@@ -8,10 +8,9 @@ use Prooph\EventStore\ExpectedVersion;
 
 abstract class AggregateRoot
 {
-    /** @var int */
-    private $expectedVersion = ExpectedVersion::EMPTY_STREAM;
+    private int $expectedVersion = ExpectedVersion::EMPTY_STREAM;
     /** @var DomainEvent[] */
-    private $recordedEvents = [];
+    private array $recordedEvents = [];
 
     final protected function __construct()
     {

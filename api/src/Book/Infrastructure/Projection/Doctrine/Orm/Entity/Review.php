@@ -16,38 +16,20 @@ class Review
      * @ORM\Id()
      * @ORM\Column(type="guid")
      * @ORM\GeneratedValue(strategy="NONE")
-     *
-     * @var string
      */
-    private $id;
+    private string $id;
 
-    /**
-     * @ORM\Column(type="guid")
-     *
-     * @var string
-     */
-    private $bookId;
+    /** @ORM\Column(type="guid") */
+    private string $bookId;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     *
-     * @var string|null
-     */
-    private $body;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $body;
 
-    /**
-     * @ORM\Column(type="smallint")
-     *
-     * @var int
-     */
-    private $rating;
+    /** @ORM\Column(type="smallint") */
+    private int $rating;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     *
-     * @var string|null
-     */
-    private $author;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $author;
 
     public function __construct(string $id, string $bookId, ?string $body, int $rating, ?string $author)
     {

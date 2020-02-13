@@ -4,7 +4,7 @@
 
 
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
-ARG PHP_VERSION=7.3
+ARG PHP_VERSION=7.4
 ARG NGINX_VERSION=1.17
 ARG VARNISH_VERSION=6.3
 
@@ -31,7 +31,6 @@ RUN set -eux; \
 		zlib-dev \
 	; \
 	\
-	docker-php-ext-configure zip --with-libzip; \
 	docker-php-ext-install -j$(nproc) \
 		intl \
 		pcntl \
@@ -68,8 +67,8 @@ RUN set -eux; \
 		echo 'ping.path = /ping'; \
 	} | tee /usr/local/etc/php-fpm.d/docker-healthcheck.conf
 
-# Workaround to allow using PHPUnit 8 with Symfony 4.3
-ENV SYMFONY_PHPUNIT_VERSION=8.3
+# Workaround to allow using PHPUnit 8 with Symfony 4.4
+ENV SYMFONY_PHPUNIT_VERSION=8.5
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -152,7 +151,7 @@ RUN apk add --no-cache \
 	;
 
 ARG APCU_VERSION=5.1.18
-ARG PROTOBUF_VERSION=3.11.2
+ARG PROTOBUF_VERSION=3.11.3
 ARG EV_VERSION=1.0.8
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -163,7 +162,6 @@ RUN set -eux; \
 		zlib-dev \
 	; \
 	\
-	docker-php-ext-configure zip --with-libzip; \
 	docker-php-ext-install -j$(nproc) \
 		intl \
 		pcntl \
@@ -197,9 +195,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN ln -s $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 COPY docker/php/conf.d/api-platform.prod.ini $PHP_INI_DIR/conf.d/api-platform.ini
-
-# Workaround to allow using PHPUnit 8 with Symfony 4.3
-ENV SYMFONY_PHPUNIT_VERSION=8.3
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1

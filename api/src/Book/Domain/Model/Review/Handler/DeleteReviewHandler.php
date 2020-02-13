@@ -10,8 +10,7 @@ use App\Book\Domain\Model\Review\ReviewList;
 
 final class DeleteReviewHandler
 {
-    /** @var ReviewList */
-    private $reviewList;
+    private ReviewList $reviewList;
 
     public function __construct(ReviewList $reviewList)
     {

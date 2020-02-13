@@ -20,18 +20,12 @@ use function sprintf;
 
 final class Book extends AggregateRoot
 {
-    /** @var BookId */
-    private $id;
-    /** @var Isbn|null */
-    private $isbn;
-    /** @var Title */
-    private $title;
-    /** @var Description */
-    private $description;
-    /** @var Author */
-    private $author;
-    /** @var PublicationDate */
-    private $publicationDate;
+    private BookId $id;
+    private ?Isbn $isbn;
+    private Title $title;
+    private Description $description;
+    private Author $author;
+    private PublicationDate $publicationDate;
 
     public static function create(
         BookId $id,

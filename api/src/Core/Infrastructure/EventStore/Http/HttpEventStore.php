@@ -16,10 +16,8 @@ use Prooph\EventStore\SliceReadStatus;
 
 final class HttpEventStore implements EventStore
 {
-    /** @var EventStoreConnection */
-    private $connection;
-    /** @var DomainEventTransformer */
-    private $transformer;
+    private EventStoreConnection $connection;
+    private DomainEventTransformer $transformer;
 
     public function __construct(EventStoreConnection $connection, DomainEventTransformer $transformer)
     {

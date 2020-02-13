@@ -10,8 +10,7 @@ use Ramsey\Uuid\UuidInterface;
 
 final class ReviewId implements IdentifiesAggregate
 {
-    /** @var UuidInterface */
-    private $uuid;
+    private UuidInterface $uuid;
 
     public static function generate() : self
     {

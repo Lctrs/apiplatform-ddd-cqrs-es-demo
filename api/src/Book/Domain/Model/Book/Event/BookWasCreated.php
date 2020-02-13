@@ -17,20 +17,13 @@ final class BookWasCreated implements DomainEvent
 {
     public const MESSAGE_NAME = 'book-was-created';
 
-    /** @var string|null */
-    private $eventId;
-    /** @var BookId */
-    private $bookId;
-    /** @var Isbn|null */
-    private $isbn;
-    /** @var Title */
-    private $title;
-    /** @var Description */
-    private $description;
-    /** @var Author */
-    private $author;
-    /** @var PublicationDate */
-    private $publicationDate;
+    private ?string $eventId = null;
+    private BookId $bookId;
+    private ?Isbn $isbn;
+    private Title $title;
+    private Description $description;
+    private Author $author;
+    private PublicationDate $publicationDate;
 
     private function __construct(
         BookId $bookId,

@@ -19,7 +19,7 @@ final class DomainEventTransformer
      * @var array<string, string>
      * @psalm-var array<string, class-string<DomainEvent>>
      */
-    private $map;
+    private array $map;
 
     /**
      * @param array<string, string> $map

@@ -9,8 +9,7 @@ use App\Core\Domain\Command;
 
 final class DeleteBook implements Command
 {
-    /** @var BookId */
-    private $bookId;
+    private BookId $bookId;
 
     public function __construct(BookId $bookId)
     {

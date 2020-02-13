@@ -20,11 +20,12 @@ use function sprintf;
 
 final class LoadDataFixturesCommand extends Command
 {
+    // phpcs:disable SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
     /** @var string */
     protected static $defaultName = 'app:fixtures:load';
+    // phpcs:enable
 
-    /** @var LoaderInterface */
-    private $loader;
+    private LoaderInterface $loader;
 
     public function __construct(LoaderInterface $loader)
     {

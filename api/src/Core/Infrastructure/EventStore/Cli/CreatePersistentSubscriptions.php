@@ -20,11 +20,12 @@ use Webmozart\Assert\Assert;
 
 final class CreatePersistentSubscriptions extends Command
 {
+    // phpcs:disable SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
     /** @var string */
     protected static $defaultName = 'app:create-persistent-subscriptions';
+    // phpcs:enable
 
-    /** @var EventStoreConnection */
-    private $connection;
+    private EventStoreConnection $connection;
 
     public function __construct(EventStoreConnection $connection)
     {

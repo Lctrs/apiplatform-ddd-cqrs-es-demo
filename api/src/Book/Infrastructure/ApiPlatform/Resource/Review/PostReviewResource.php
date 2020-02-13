@@ -27,26 +27,17 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 final class PostReviewResource implements Resource
 {
+    /** @Assert\NotBlank() */
+    public string $bookId;
+    public ?string $body;
     /**
-     * @var string
-     * @Assert\NotBlank()
-     */
-    public $bookId;
-    /** @var string|null */
-    public $body;
-    /**
-     * @var int
      * @Assert\NotBlank()
      * @Assert\Range(min=1, max=5)
      */
-    public $rating;
-    /** @var string|null */
-    public $author;
-    /**
-     * @var ReviewId|null
-     * @ApiProperty(identifier=true)
-     */
-    private $id;
+    public int $rating;
+    public ?string $author;
+    /** @ApiProperty(identifier=true) */
+    private ?ReviewId $id;
 
     public function toCommand() : Command
     {

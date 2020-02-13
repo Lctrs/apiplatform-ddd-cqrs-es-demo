@@ -24,11 +24,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class DeleteBookResource implements Resource
 {
     /**
-     * @var string
      * @ApiProperty(identifier=true)
      * @Assert\NotBlank()
      */
-    public $id;
+    public string $id;
 
     public function toCommand() : Command
     {

@@ -14,18 +14,12 @@ use App\Core\Domain\Command;
 
 final class CreateBook implements Command
 {
-    /** @var BookId */
-    private $bookId;
-    /** @var Isbn|null */
-    private $isbn;
-    /** @var Title */
-    private $title;
-    /** @var Description */
-    private $description;
-    /** @var Author */
-    private $author;
-    /** @var PublicationDate */
-    private $publicationDate;
+    private BookId $bookId;
+    private ?Isbn $isbn;
+    private Title $title;
+    private Description $description;
+    private Author $author;
+    private PublicationDate $publicationDate;
 
     public function __construct(
         BookId $bookId,
