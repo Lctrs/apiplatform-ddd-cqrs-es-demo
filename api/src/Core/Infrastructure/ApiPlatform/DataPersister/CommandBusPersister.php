@@ -12,8 +12,7 @@ use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 final class CommandBusPersister implements DataPersisterInterface
 {
-    /** @var MessageBusInterface */
-    private $commandBus;
+    private MessageBusInterface $commandBus;
 
     public function __construct(MessageBusInterface $commandBus)
     {

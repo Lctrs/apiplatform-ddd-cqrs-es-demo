@@ -20,10 +20,8 @@ use function get_class;
 
 final class BookEventAppeared implements PersistentSubscriptionSubscriber
 {
-    /** @var EntityManagerInterface */
-    private $entityManager;
-    /** @var DomainEventTransformer */
-    private $transformer;
+    private EntityManagerInterface $entityManager;
+    private DomainEventTransformer $transformer;
 
     public function __construct(EntityManagerInterface $entityManager, DomainEventTransformer $transformer)
     {

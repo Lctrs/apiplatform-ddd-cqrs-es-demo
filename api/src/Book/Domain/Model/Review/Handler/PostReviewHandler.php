@@ -11,10 +11,8 @@ use App\Book\Domain\Model\Review\ReviewList;
 
 final class PostReviewHandler
 {
-    /** @var BookList */
-    private $bookList;
-    /** @var ReviewList */
-    private $reviewList;
+    private BookList $bookList;
+    private ReviewList $reviewList;
 
     public function __construct(BookList $bookList, ReviewList $reviewList)
     {

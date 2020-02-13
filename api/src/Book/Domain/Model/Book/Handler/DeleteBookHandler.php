@@ -10,8 +10,7 @@ use App\Book\Domain\Model\Book\Exception\BookNotFound;
 
 final class DeleteBookHandler
 {
-    /** @var BookList */
-    private $bookList;
+    private BookList $bookList;
 
     public function __construct(BookList $bookList)
     {

@@ -16,45 +16,23 @@ class Book
      * @ORM\Id()
      * @ORM\Column(type="guid")
      * @ORM\GeneratedValue(strategy="NONE")
-     *
-     * @var string
      */
-    private $id;
+    private string $id;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     *
-     * @var string|null
-     */
-    private $isbn;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $isbn;
 
-    /**
-     * @ORM\Column(type="text")
-     *
-     * @var string
-     */
-    private $title;
+    /** @ORM\Column(type="text") */
+    private string $title;
 
-    /**
-     * @ORM\Column(type="text")
-     *
-     * @var string
-     */
-    private $description;
+    /** @ORM\Column(type="text") */
+    private string $description;
 
-    /**
-     * @ORM\Column(type="text")
-     *
-     * @var string
-     */
-    private $author;
+    /** @ORM\Column(type="text") */
+    private string $author;
 
-    /**
-     * @ORM\Column(type="date_immutable")
-     *
-     * @var DateTimeImmutable
-     */
-    private $publicationDate;
+    /** @ORM\Column(type="date_immutable") */
+    private DateTimeImmutable $publicationDate;
 
     public function __construct(
         string $id,

@@ -9,19 +9,13 @@ namespace App\Core\Domain;
  */
 final class EventStoreLoadResult
 {
-    /**
-     * @var iterable|DomainEvent[]
-     * @psalm-var iterable<DomainEvent>
-     */
-    private $domainEvents;
+    /** @var iterable<DomainEvent> */
+    private iterable $domainEvents;
 
-    /** @var int */
-    private $version;
+    private int $version;
 
     /**
-     * @param iterable|DomainEvent[] $domainEvents
-     *
-     * @psalm-param iterable<DomainEvent> $domainEvents
+     * @param iterable<DomainEvent> $domainEvents
      */
     public function __construct(iterable $domainEvents, int $version)
     {

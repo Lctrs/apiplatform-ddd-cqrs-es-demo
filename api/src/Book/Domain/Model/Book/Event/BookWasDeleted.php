@@ -12,10 +12,8 @@ final class BookWasDeleted implements DomainEvent
 {
     public const MESSAGE_NAME = 'book-was-deleted';
 
-    /** @var string|null */
-    private $eventId;
-    /** @var BookId */
-    private $bookId;
+    private ?string $eventId = null;
+    private BookId $bookId;
 
     private function __construct(BookId $bookId)
     {

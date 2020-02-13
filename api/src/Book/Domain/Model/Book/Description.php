@@ -6,8 +6,7 @@ namespace App\Book\Domain\Model\Book;
 
 final class Description
 {
-    /** @var string */
-    private $value;
+    private string $value;
 
     public function __construct(string $value)
     {

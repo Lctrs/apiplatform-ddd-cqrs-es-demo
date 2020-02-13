@@ -28,37 +28,21 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 final class CreateBookResource implements Resource
 {
+    /** @Assert\Isbn() */
+    public ?string $isbn;
+    /** @Assert\NotBlank() */
+    public string $title;
+    /** @Assert\NotBlank() */
+    public string $description;
+    /** @Assert\NotBlank() */
+    public string $author;
     /**
-     * @var string|null
-     * @Assert\Isbn()
-     */
-    public $isbn;
-    /**
-     * @var string
-     * @Assert\NotBlank()
-     */
-    public $title;
-    /**
-     * @var string
-     * @Assert\NotBlank()
-     */
-    public $description;
-    /**
-     * @var string
-     * @Assert\NotBlank()
-     */
-    public $author;
-    /**
-     * @var string
      * @Assert\NotBlank()
      * @Assert\Date()
      */
-    public $publicationDate;
-    /**
-     * @var BookId|null
-     * @ApiProperty(identifier=true)
-     */
-    private $id;
+    public string $publicationDate;
+    /** @ApiProperty(identifier=true) */
+    private ?BookId $id;
 
     public function toCommand() : Command
     {

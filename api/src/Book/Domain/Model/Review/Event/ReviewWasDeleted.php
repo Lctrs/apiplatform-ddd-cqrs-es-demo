@@ -12,10 +12,8 @@ final class ReviewWasDeleted implements DomainEvent
 {
     public const MESSAGE_NAME = 'review-was-deleted';
 
-    /** @var string|null */
-    private $eventId;
-    /** @var ReviewId */
-    private $reviewId;
+    private ?string $eventId = null;
+    private ReviewId $reviewId;
 
     private function __construct(ReviewId $reviewId)
     {

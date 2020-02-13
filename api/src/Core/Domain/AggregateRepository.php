@@ -6,17 +6,11 @@ namespace App\Core\Domain;
 
 abstract class AggregateRepository
 {
-    /** @var EventStore */
-    protected $eventStore;
-    /** @var string */
-    protected $streamCategory;
-    /**
-     * @var string
-     * @psalm-var class-string<AggregateRoot>
-     */
-    protected $aggregateRootClassName;
-    /** @var bool */
-    protected $optimisticConcurrency;
+    protected EventStore $eventStore;
+    protected string $streamCategory;
+    /** @psalm-var class-string<AggregateRoot> */
+    protected string $aggregateRootClassName;
+    protected bool $optimisticConcurrency;
 
     /**
      * @psalm-param class-string<AggregateRoot> $aggregateRootClassName

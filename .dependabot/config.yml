@@ -11,7 +11,7 @@ update_configs:
       - "Lctrs"
     directory: "/"
     package_manager: "github_actions"
-    update_schedule: "daily"
+    update_schedule: "monthly"
 
   - automerged_updates:
       - match:
@@ -22,7 +22,7 @@ update_configs:
       - "Lctrs"
     directory: "/admin"
     package_manager: "javascript"
-    update_schedule: "live"
+    update_schedule: "monthly"
     version_requirement_updates: "increase_versions"
 
   - automerged_updates:
@@ -111,5 +111,5 @@ update_configs:
       - "Lctrs"
     directory: "/client"
     package_manager: "javascript"
-    update_schedule: "live"
+    update_schedule: "monthly"
     version_requirement_updates: "increase_versions"

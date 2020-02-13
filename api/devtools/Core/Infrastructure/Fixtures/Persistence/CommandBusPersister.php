@@ -13,8 +13,7 @@ final class CommandBusPersister implements PersisterInterface
 {
     use IsAServiceTrait;
 
-    /** @var MessageBusInterface */
-    private $commandBus;
+    private MessageBusInterface $commandBus;
 
     public function __construct(MessageBusInterface $commandBus)
     {

@@ -17,11 +17,12 @@ use function sprintf;
 
 final class RunProjections extends Command
 {
+    // phpcs:disable SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
     /** @var string */
     protected static $defaultName = 'app:run-projections';
+    // phpcs:enable
 
-    /** @var EventStoreConnection */
-    private $connection;
+    private EventStoreConnection $connection;
 
     /** @var callable(string $id):?EventAppearedOnPersistentSubscription */
     private $handlerFactory;

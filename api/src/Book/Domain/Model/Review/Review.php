@@ -16,16 +16,11 @@ use function sprintf;
 
 final class Review extends AggregateRoot
 {
-    /** @var ReviewId */
-    private $id;
-    /** @var BookId */
-    private $bookId;
-    /** @var Body|null */
-    private $body;
-    /** @var Rating */
-    private $rating;
-    /** @var Author|null */
-    private $author;
+    private ReviewId $id;
+    private BookId $bookId;
+    private ?Body $body;
+    private Rating $rating;
+    private ?Author $author;
 
     public static function post(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author) : self
     {

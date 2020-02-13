@@ -16,18 +16,12 @@ final class ReviewWasPosted implements DomainEvent
 {
     public const MESSAGE_NAME = 'review-was-posted';
 
-    /** @var string|null */
-    private $eventId;
-    /** @var ReviewId */
-    private $reviewId;
-    /** @var BookId */
-    private $bookId;
-    /** @var Body|null */
-    private $body;
-    /** @var Rating */
-    private $rating;
-    /** @var Author|null */
-    private $author;
+    private ?string $eventId = null;
+    private ReviewId $reviewId;
+    private BookId $bookId;
+    private ?Body $body;
+    private Rating $rating;
+    private ?Author $author;
 
     private function __construct(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author)
     {

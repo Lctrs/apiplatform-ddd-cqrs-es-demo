@@ -10,8 +10,7 @@ use App\Book\Domain\Model\Book\Command\CreateBook;
 
 final class CreateBookHandler
 {
-    /** @var BookList */
-    private $bookList;
+    private BookList $bookList;
 
     public function __construct(BookList $bookList)
     {
