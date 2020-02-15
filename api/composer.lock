@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1fc4aba73dcdc5e5ffa8cbc5301855da",
+    "content-hash": "b59ea5cb8522a35b204a3e89823f6e24",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7119,16 +7119,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.9.4",
+            "version": "1.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "579bb7356d91f9456ccd505f24ca8b667966a0a7"
+                "reference": "b2c28789e80a97badd14145fda39b545d83ca3ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/579bb7356d91f9456ccd505f24ca8b667966a0a7",
-                "reference": "579bb7356d91f9456ccd505f24ca8b667966a0a7",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/b2c28789e80a97badd14145fda39b545d83ca3ef",
+                "reference": "b2c28789e80a97badd14145fda39b545d83ca3ef",
                 "shasum": ""
             },
             "require": {
@@ -7163,7 +7163,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2019-12-15T19:12:40+00:00"
+            "time": "2020-01-17T21:11:47+00:00"
         },
         {
             "name": "nelmio/alice",
@@ -8315,22 +8315,22 @@
         },
         {
             "name": "psalm/plugin-phpunit",
-            "version": "0.8.1",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/phpunit-psalm-plugin.git",
-                "reference": "021eb5a8c1c735f820a6bfb93b7a63f1d1c2c012"
+                "reference": "496c08f088d9e34e1947bca1de52b32b6571bad3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/phpunit-psalm-plugin/zipball/021eb5a8c1c735f820a6bfb93b7a63f1d1c2c012",
-                "reference": "021eb5a8c1c735f820a6bfb93b7a63f1d1c2c012",
+                "url": "https://api.github.com/repos/psalm/phpunit-psalm-plugin/zipball/496c08f088d9e34e1947bca1de52b32b6571bad3",
+                "reference": "496c08f088d9e34e1947bca1de52b32b6571bad3",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "^1.4",
                 "ocramius/package-versions": "^1.3",
-                "phpunit/phpunit": "^6.0 || ^7.0 || ^8.0",
+                "phpunit/phpunit": "^6.0 || ^7.0 || ^8.0 || ^9.0",
                 "vimeo/psalm": "^3.6.2 || dev-master"
             },
             "require-dev": {
@@ -8368,7 +8368,7 @@
                 }
             ],
             "description": "Psalm plugin for PHPUnit",
-            "time": "2020-01-10T00:31:44+00:00"
+            "time": "2020-02-15T02:43:43+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
