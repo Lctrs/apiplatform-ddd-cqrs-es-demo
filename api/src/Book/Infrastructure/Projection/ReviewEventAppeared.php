@@ -15,7 +15,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
 use Prooph\EventStore\Async\EventStorePersistentSubscription;
 use Prooph\EventStore\ResolvedEvent;
-use function assert;
 use function get_class;
 
 final class ReviewEventAppeared implements PersistentSubscriptionSubscriber
@@ -43,8 +42,6 @@ final class ReviewEventAppeared implements PersistentSubscriptionSubscriber
 
         switch (get_class($event)) {
             case ReviewWasDeleted::class:
-                assert($event instanceof ReviewWasDeleted);
-
                 $review = $this->entityManager->getReference(Review::class, $event->aggregateId()->toString());
 
                 if ($review === null) {
@@ -56,8 +53,6 @@ final class ReviewEventAppeared implements PersistentSubscriptionSubscriber
 
                 break;
             case ReviewWasPosted::class:
-                assert($event instanceof ReviewWasPosted);
-
                 $body   = $event->body();
                 $author = $event->author();
 

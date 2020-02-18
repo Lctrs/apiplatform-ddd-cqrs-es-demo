@@ -75,7 +75,7 @@
         "symfony/stopwatch": "~5.0.4",
         "symfony/web-profiler-bundle": "~5.0.4",
         "theofidry/alice-data-fixtures": "^1.1.2",
-        "vimeo/psalm": "^3.8.5"
+        "vimeo/psalm": "^3.9.0"
     },
     "config": {
         "preferred-install": {
