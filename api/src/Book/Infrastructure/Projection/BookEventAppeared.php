@@ -15,7 +15,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
 use Prooph\EventStore\Async\EventStorePersistentSubscription;
 use Prooph\EventStore\ResolvedEvent;
-use function assert;
 use function get_class;
 
 final class BookEventAppeared implements PersistentSubscriptionSubscriber
@@ -43,8 +42,6 @@ final class BookEventAppeared implements PersistentSubscriptionSubscriber
 
         switch (get_class($event)) {
             case BookWasCreated::class:
-                assert($event instanceof BookWasCreated);
-
                 $isbn = $event->isbn();
 
                 $this->entityManager->persist(new Book(
@@ -59,8 +56,6 @@ final class BookEventAppeared implements PersistentSubscriptionSubscriber
 
                 break;
             case BookWasDeleted::class:
-                assert($event instanceof BookWasDeleted);
-
                 $book = $this->entityManager->getReference(Book::class, $event->aggregateId()->toString());
 
                 if ($book === null) {
