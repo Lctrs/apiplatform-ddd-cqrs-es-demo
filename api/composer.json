@@ -38,7 +38,7 @@
         "symfony/http-client-contracts": "^2.0.1",
         "symfony/http-kernel": "~5.0.5",
         "symfony/messenger": "~5.0.5",
-        "symfony/routing": "~5.0.4",
+        "symfony/routing": "~5.0.5",
         "symfony/serializer": "~5.0.5",
         "symfony/twig-bundle": "~5.0.4",
         "symfony/validator": "~5.0.5",
