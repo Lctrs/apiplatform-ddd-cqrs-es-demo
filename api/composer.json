@@ -64,7 +64,7 @@
         "maglnet/composer-require-checker": "^2.1.0",
         "nelmio/alice": "^3.5.8",
         "phpstan/extension-installer": "^1.0.3",
-        "phpstan/phpstan": "^0.12.11",
+        "phpstan/phpstan": "^0.12.12",
         "phpstan/phpstan-deprecation-rules": "^0.12.2",
         "phpstan/phpstan-doctrine": "^0.12.9",
         "phpstan/phpstan-symfony": "^0.12.4",
