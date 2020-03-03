@@ -21,6 +21,7 @@ services:
       start_period: 30s
     depends_on:
       - db
+      - dev-tls
       - event-store
     environment:
       - EVENT_STORE_URL=http://event-store:2113
@@ -29,6 +30,7 @@ services:
       - ./api/docker/php/conf.d/api-platform.dev.ini/:/usr/local/etc/php/conf.d/api-platform.ini
       # If you don't develop on Linux, comment the following line to not use a bind-mounted host directory instead
       - ./api/var:/srv/api/var:z
+      - dev-certs:/certs:ro,nocopy
 
   api:
     build:
@@ -51,7 +53,7 @@ services:
       - api
       - dev-tls
     volumes:
-      - dev-certs:/certs:ro
+      - dev-certs:/certs:ro,nocopy
     ports:
       - target: 443
         published: 8443
@@ -96,7 +98,7 @@ services:
       - dev-tls
     volumes:
       - ./client:/usr/src/client:z,cached
-      - dev-certs:/usr/src/client/node_modules/webpack-dev-server/ssl:ro
+      - dev-certs:/usr/src/client/node_modules/webpack-dev-server/ssl:ro,nocopy
     ports:
       - target: 3000
         published: 443
@@ -113,7 +115,7 @@ services:
       - dev-tls
     volumes:
       - ./admin:/usr/src/admin:z,cached
-      - dev-certs:/usr/src/admin/node_modules/webpack-dev-server/ssl:ro
+      - dev-certs:/usr/src/admin/node_modules/webpack-dev-server/ssl:ro,nocopy
     ports:
       - target: 3000
         published: 444
@@ -137,6 +139,7 @@ services:
     image: ${PROJECTION_IMAGE:-quay.io/lctrs/projection}
     depends_on:
       - db
+      - dev-tls
       - event-store
     environment:
       - EVENT_STORE_URL=http://event-store:2113
@@ -148,6 +151,7 @@ services:
       - ./api/docker/php/conf.d/api-platform.dev.ini/:/usr/local/etc/php/conf.d/api-platform.ini
       # If you don't develop on Linux, comment the following line to not use a bind-mounted host directory instead
       - ./api/var:/srv/api/var:z
+      - dev-certs:/certs:ro,nocopy
     entrypoint: docker-entrypoint
     command: bin/console app:run-projections -vvv
 
@@ -159,6 +163,7 @@ services:
     image: ${PROJECTION_IMAGE:-quay.io/lctrs/projection}
     depends_on:
       - db
+      - dev-tls
       - event-store
     environment:
       - EVENT_STORE_URL=http://event-store:2113
@@ -170,6 +175,7 @@ services:
       - ./api/docker/php/conf.d/api-platform.dev.ini/:/usr/local/etc/php/conf.d/api-platform.ini
       # If you don't develop on Linux, comment the following line to not use a bind-mounted host directory instead
       - ./api/var:/srv/api/var:z
+      - dev-certs:/certs:ro,nocopy
     entrypoint: docker-entrypoint
     command: bin/console app:run-projections -vvv
 
