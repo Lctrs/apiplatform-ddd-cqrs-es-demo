@@ -24,7 +24,7 @@
         "prooph/event-store-http-client": "^1.0.0-BETA-3",
         "psr/container": "^1.0.0",
         "psr/http-factory": "^1.0.1",
-        "psr/log": "^1.1.2",
+        "psr/log": "^1.1.3",
         "ramsey/uuid": "^3.9.3",
         "symfony/asset": "~5.0.5",
         "symfony/config": "~5.0.5",
