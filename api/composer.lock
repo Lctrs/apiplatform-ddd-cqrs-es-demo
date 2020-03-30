@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c031d3939a6c9765edd00c0a962b319",
+    "content-hash": "a3bd8a23c5c9e3048af2771f95e8366c",
     "packages": [
         {
             "name": "amphp/amp",
@@ -5906,16 +5906,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v5.0.5",
+            "version": "v5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "fb9c52b2fe3a8336b65f85b61dedbcc6c427c37b"
+                "reference": "08f34dc57f8abd0ea5ad88910aa6d193a2180dbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/fb9c52b2fe3a8336b65f85b61dedbcc6c427c37b",
-                "reference": "fb9c52b2fe3a8336b65f85b61dedbcc6c427c37b",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/08f34dc57f8abd0ea5ad88910aa6d193a2180dbf",
+                "reference": "08f34dc57f8abd0ea5ad88910aa6d193a2180dbf",
                 "shasum": ""
             },
             "require": {
@@ -5995,7 +5995,7 @@
             ],
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-29T10:07:09+00:00"
+            "time": "2020-03-23T12:42:46+00:00"
         },
         {
             "name": "symfony/var-dumper",
