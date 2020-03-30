@@ -39,7 +39,7 @@
         "symfony/http-kernel": "~5.0.6",
         "symfony/messenger": "~5.0.6",
         "symfony/routing": "~5.0.5",
-        "symfony/serializer": "~5.0.5",
+        "symfony/serializer": "~5.0.6",
         "symfony/twig-bundle": "~5.0.6",
         "symfony/validator": "~5.0.5",
         "symfony/yaml": "~5.0.5",
