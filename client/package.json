@@ -12,7 +12,7 @@
     "lodash.mapvalues": "^4.6.0",
     "prettier": "^1.14.3",
     "prop-types": "^15.6.2",
-    "react": "^16.13.0",
+    "react": "^16.13.1",
     "react-dom": "^16.13.0",
     "react-redux": "^5.1.0",
     "react-router-dom": "^5.1.2",
