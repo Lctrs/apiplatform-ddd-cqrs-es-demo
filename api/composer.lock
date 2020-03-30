@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ebc73f5c9b91ad1e0c605725056057a0",
+    "content-hash": "6a3ca4b05302c9ab327816c100241cef",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1932,16 +1932,16 @@
         },
         {
             "name": "doctrine/reflection",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/reflection.git",
-                "reference": "b699ecc7f2784d1e49924fd9858cf1078db6b0e2"
+                "reference": "55e71912dfcd824b2fdd16f2d9afe15684cfce79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/reflection/zipball/b699ecc7f2784d1e49924fd9858cf1078db6b0e2",
-                "reference": "b699ecc7f2784d1e49924fd9858cf1078db6b0e2",
+                "url": "https://api.github.com/repos/doctrine/reflection/zipball/55e71912dfcd824b2fdd16f2d9afe15684cfce79",
+                "reference": "55e71912dfcd824b2fdd16f2d9afe15684cfce79",
                 "shasum": ""
             },
             "require": {
@@ -2006,7 +2006,7 @@
                 "reflection",
                 "static"
             ],
-            "time": "2020-03-21T11:34:59+00:00"
+            "time": "2020-03-27T11:06:43+00:00"
         },
         {
             "name": "fig/link-util",
@@ -4109,16 +4109,16 @@
         },
         {
             "name": "symfony/doctrine-bridge",
-            "version": "v5.0.5",
+            "version": "v5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-bridge.git",
-                "reference": "671f9afc0294e1a2fa5661fc5b8e53dd0ec85b7b"
+                "reference": "6bce5676d7c5d1f30052cbe8783ec043e16c39ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/671f9afc0294e1a2fa5661fc5b8e53dd0ec85b7b",
-                "reference": "671f9afc0294e1a2fa5661fc5b8e53dd0ec85b7b",
+                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/6bce5676d7c5d1f30052cbe8783ec043e16c39ac",
+                "reference": "6bce5676d7c5d1f30052cbe8783ec043e16c39ac",
                 "shasum": ""
             },
             "require": {
@@ -4201,7 +4201,7 @@
             ],
             "description": "Symfony Doctrine Bridge",
             "homepage": "https://symfony.com",
-            "time": "2020-02-25T14:24:11+00:00"
+            "time": "2020-03-16T12:10:54+00:00"
         },
         {
             "name": "symfony/dotenv",
