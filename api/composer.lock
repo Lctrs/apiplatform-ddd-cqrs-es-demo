@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a3ca4b05302c9ab327816c100241cef",
+    "content-hash": "2ea26a55569c53a71f55717fbcb4c39d",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4205,7 +4205,7 @@
         },
         {
             "name": "symfony/dotenv",
-            "version": "v5.0.5",
+            "version": "v5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
