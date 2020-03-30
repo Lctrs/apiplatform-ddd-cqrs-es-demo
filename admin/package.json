@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@api-platform/admin": "^2.0.1",
+    "@api-platform/admin": "^2.1.0",
     "@babel/runtime": "7.9.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
