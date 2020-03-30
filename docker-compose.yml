@@ -27,7 +27,7 @@ services:
       - EVENT_STORE_URL=http://event-store:2113
     volumes:
       - ./api:/srv/api:z,cached
-      - ./api/docker/php/conf.d/api-platform.dev.ini/:/usr/local/etc/php/conf.d/api-platform.ini
+      - ./api/docker/php/conf.d/api-platform.dev.ini:/usr/local/etc/php/conf.d/api-platform.ini
       # If you don't develop on Linux, comment the following line to not use a bind-mounted host directory instead
       - ./api/var:/srv/api/var:z
       - dev-certs:/certs:ro,nocopy
@@ -75,7 +75,7 @@ services:
         protocol: tcp
 
   event-store:
-    image: eventstore/eventstore:release-5.0.5
+    image: eventstore/eventstore:release-5.0.7
     ports:
       - target: 1113
         published: 1113
@@ -91,6 +91,7 @@ services:
       cache_from:
         - ${CLIENT_IMAGE:-quay.io/lctrs/client}
     image: ${CLIENT_IMAGE:-quay.io/lctrs/client}
+    tty: true # https://github.com/facebook/create-react-app/issues/8688
     environment:
       - API_PLATFORM_CLIENT_GENERATOR_ENTRYPOINT=http://api
       - API_PLATFORM_CLIENT_GENERATOR_OUTPUT=src
@@ -111,6 +112,7 @@ services:
       cache_from:
         - ${ADMIN_IMAGE:-quay.io/lctrs/admin}
     image: ${ADMIN_IMAGE:-quay.io/lctrs/admin}
+    tty: true # https://github.com/facebook/create-react-app/issues/8688
     depends_on:
       - dev-tls
     volumes:

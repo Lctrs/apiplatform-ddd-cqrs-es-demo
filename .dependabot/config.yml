@@ -3,16 +3,6 @@
 version: 1
 
 update_configs:
-  - default_assignees:
-      - "Lctrs"
-    default_labels:
-      - "dependency"
-    default_reviewers:
-      - "Lctrs"
-    directory: "/"
-    package_manager: "github_actions"
-    update_schedule: "monthly"
-
   - automerged_updates:
       - match:
           dependency_type: "all"
@@ -22,7 +12,7 @@ update_configs:
       - "Lctrs"
     directory: "/admin"
     package_manager: "javascript"
-    update_schedule: "monthly"
+    update_schedule: "live"
     version_requirement_updates: "increase_versions"
 
   - automerged_updates:
@@ -111,5 +101,5 @@ update_configs:
       - "Lctrs"
     directory: "/client"
     package_manager: "javascript"
-    update_schedule: "monthly"
+    update_schedule: "live"
     version_requirement_updates: "increase_versions"
