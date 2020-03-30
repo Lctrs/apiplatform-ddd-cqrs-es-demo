@@ -30,7 +30,7 @@
         "symfony/config": "~5.0.5",
         "symfony/console": "~5.0.6",
         "symfony/dependency-injection": "~5.0.5",
-        "symfony/doctrine-bridge": "~5.0.5",
+        "symfony/doctrine-bridge": "~5.0.6",
         "symfony/dotenv": "~5.0.5",
         "symfony/flex": "^1.6.2",
         "symfony/framework-bundle": "~5.0.5",
