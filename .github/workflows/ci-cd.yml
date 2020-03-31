@@ -135,7 +135,7 @@ jobs:
         run: docker-compose exec -T php vendor/bin/psalm
         
       - name: "Run unit tests with phpunit/phpunit"
-        run: docker-compose exec -T php bin/phpunit
+        run: docker-compose exec -T php vendor/bin/phpunit
 
       - name: Check security vulnerabilities
         run: |
