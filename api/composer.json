@@ -41,7 +41,7 @@
         "symfony/routing": "~5.0.7",
         "symfony/serializer": "~5.0.7",
         "symfony/twig-bundle": "~5.0.7",
-        "symfony/validator": "~5.0.6",
+        "symfony/validator": "~5.0.7",
         "symfony/yaml": "~5.0.7",
         "webmozart/assert": "^1.7.0"
     },
