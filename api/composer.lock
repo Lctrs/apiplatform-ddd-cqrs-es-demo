@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f62b1e1b69bb361ee3fd95ef9d800a33",
+    "content-hash": "2ed96fe6d123bb737ecd6f3bfdc834d5",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4036,16 +4036,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v5.0.6",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "de4aab2d9a8b97859bf5328e1f75a768ca0983ae"
+                "reference": "4e48dc44680d8efa357410c78093a04753196981"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/de4aab2d9a8b97859bf5328e1f75a768ca0983ae",
-                "reference": "de4aab2d9a8b97859bf5328e1f75a768ca0983ae",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/4e48dc44680d8efa357410c78093a04753196981",
+                "reference": "4e48dc44680d8efa357410c78093a04753196981",
                 "shasum": ""
             },
             "require": {
@@ -4105,7 +4105,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-18T08:00:37+00:00"
+            "time": "2020-03-30T11:42:42+00:00"
         },
         {
             "name": "symfony/doctrine-bridge",
