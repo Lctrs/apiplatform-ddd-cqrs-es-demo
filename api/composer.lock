@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb0db7bed77203293a091e0f7943dca7",
+    "content-hash": "8731ffb71c29c904ae3b6872d3f7cb58",
     "packages": [
         {
             "name": "amphp/amp",
@@ -3703,16 +3703,16 @@
         },
         {
             "name": "symfony/asset",
-            "version": "v5.0.6",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",
-                "reference": "1c45fa33e9d25802cefe67b837d1d75d88893f64"
+                "reference": "8872144d5d9f28eec62857400bb437693ef4d082"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/asset/zipball/1c45fa33e9d25802cefe67b837d1d75d88893f64",
-                "reference": "1c45fa33e9d25802cefe67b837d1d75d88893f64",
+                "url": "https://api.github.com/repos/symfony/asset/zipball/8872144d5d9f28eec62857400bb437693ef4d082",
+                "reference": "8872144d5d9f28eec62857400bb437693ef4d082",
                 "shasum": ""
             },
             "require": {
@@ -3755,7 +3755,7 @@
             ],
             "description": "Symfony Asset Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-15T14:33:06+00:00"
+            "time": "2020-03-27T16:56:45+00:00"
         },
         {
             "name": "symfony/cache",
@@ -8315,16 +8315,6 @@
                 "testing",
                 "xunit"
             ],
-            "funding": [
-                {
-                    "url": "https://phpunit.de/donate.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/sebastianbergmann",
-                    "type": "github"
-                }
-            ],
             "time": "2020-03-31T08:52:04+00:00"
         },
         {
@@ -9530,6 +9520,5 @@
         "ext-iconv": "*",
         "ext-pcntl": "*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
