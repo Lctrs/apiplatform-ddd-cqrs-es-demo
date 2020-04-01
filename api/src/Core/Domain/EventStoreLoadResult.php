@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core\Domain;
 
-/**
- * @psalm-immutable
- */
 final class EventStoreLoadResult
 {
     /** @var iterable<DomainEvent> */
