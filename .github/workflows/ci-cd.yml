@@ -150,7 +150,7 @@ jobs:
           curl -fk -H 'Host: localhost' https://docker:8443 # API
 
       - name: Load fixtures
-        run: | # we have to connect to the "docker" hostname because of Docker-in-Docker
+        run: |
           docker-compose exec -T php bin/console app:fixtures:load ./fixtures
           sleep 5
           docker ps | grep -q projection_book
