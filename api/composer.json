@@ -67,7 +67,7 @@
         "phpstan/phpstan": "^0.12.18",
         "phpstan/phpstan-deprecation-rules": "^0.12.2",
         "phpstan/phpstan-doctrine": "^0.12.10",
-        "phpstan/phpstan-symfony": "^0.12.5",
+        "phpstan/phpstan-symfony": "^0.12.6",
         "phpstan/phpstan-webmozart-assert": "^0.12.3",
         "phpunit/phpunit": "^9.1.1",
         "psalm/plugin-phpunit": "^0.10.0",
