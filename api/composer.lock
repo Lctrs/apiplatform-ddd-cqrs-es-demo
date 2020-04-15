@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f31567cc95fbcfbd2f5988ab258ba6fd",
+    "content-hash": "ac2cc1acff4b09dd12557ed9cde29d82",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7863,16 +7863,16 @@
         },
         {
             "name": "phpstan/phpstan-symfony",
-            "version": "0.12.5",
+            "version": "0.12.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-symfony.git",
-                "reference": "063c8289357d42cceba956589bfb8b57b5ac4d40"
+                "reference": "ba69dcd8e57c1a8580bf190e0554bea0fc37fe2f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/063c8289357d42cceba956589bfb8b57b5ac4d40",
-                "reference": "063c8289357d42cceba956589bfb8b57b5ac4d40",
+                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/ba69dcd8e57c1a8580bf190e0554bea0fc37fe2f",
+                "reference": "ba69dcd8e57c1a8580bf190e0554bea0fc37fe2f",
                 "shasum": ""
             },
             "require": {
@@ -7929,7 +7929,7 @@
                 }
             ],
             "description": "Symfony Framework extensions and rules for PHPStan",
-            "time": "2020-04-09T07:41:44+00:00"
+            "time": "2020-04-15T20:26:41+00:00"
         },
         {
             "name": "phpstan/phpstan-webmozart-assert",
