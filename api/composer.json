@@ -43,7 +43,7 @@
         "symfony/twig-bundle": "~5.0.7",
         "symfony/validator": "~5.0.7",
         "symfony/yaml": "~5.0.7",
-        "webmozart/assert": "^1.7.0"
+        "webmozart/assert": "^1.8.0"
     },
     "replace": {
         "paragonie/random_compat": "2.*",
