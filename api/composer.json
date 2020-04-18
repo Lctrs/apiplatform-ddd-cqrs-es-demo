@@ -8,7 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-pcntl": "*",
-        "amphp/amp": "^2.4.1",
+        "amphp/amp": "^2.4.2",
         "api-platform/core": "^2.5.4",
         "doctrine/annotations": "^1.10.1",
         "doctrine/dbal": "^2.10.1",
