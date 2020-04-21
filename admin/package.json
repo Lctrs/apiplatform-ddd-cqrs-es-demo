@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@api-platform/admin": "^2.1.0",
+    "@api-platform/admin": "^2.1.1",
     "@babel/runtime": "^7.9.2",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^9.3.2",
