@@ -60,7 +60,7 @@
     },
     "require-dev": {
         "doctrine/coding-standard": "^7.0.2",
-        "ergebnis/composer-normalize": "^2.3.2",
+        "ergebnis/composer-normalize": "^2.4.0",
         "maglnet/composer-require-checker": "^2.1.0",
         "nelmio/alice": "^3.6.0",
         "phpstan/extension-installer": "^1.0.4",
