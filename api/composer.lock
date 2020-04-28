@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d73b0ca86e80d306bd6d0451d33d1eb",
+    "content-hash": "ced6a7b5b993cf1cbd575261a08c6ae1",
     "packages": [
         {
             "name": "amphp/amp",
@@ -9249,16 +9249,16 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "635bf7fe86b67b0d3903a3013709fe028ac43b59"
+                "reference": "67fc2302ba7ca3d917decea6d3accdbd055398d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/635bf7fe86b67b0d3903a3013709fe028ac43b59",
-                "reference": "635bf7fe86b67b0d3903a3013709fe028ac43b59",
+                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/67fc2302ba7ca3d917decea6d3accdbd055398d1",
+                "reference": "67fc2302ba7ca3d917decea6d3accdbd055398d1",
                 "shasum": ""
             },
             "require": {
@@ -9311,7 +9311,7 @@
             ],
             "description": "Symfony WebProfilerBundle",
             "homepage": "https://symfony.com",
-            "time": "2020-03-27T16:56:45+00:00"
+            "time": "2020-04-28T17:58:55+00:00"
         },
         {
             "name": "theofidry/alice-data-fixtures",
