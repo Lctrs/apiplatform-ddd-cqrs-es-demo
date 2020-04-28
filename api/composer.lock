@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ced6a7b5b993cf1cbd575261a08c6ae1",
+    "content-hash": "4717c32a9ce0cf524e5543629d3c0ec2",
     "packages": [
         {
             "name": "amphp/amp",
@@ -3963,7 +3963,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
