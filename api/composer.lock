@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46d07f69b4955ae1cbe9adc167e33001",
+    "content-hash": "06edf6e042b853f94870c12317bfcef1",
     "packages": [
         {
             "name": "amphp/amp",
@@ -5061,16 +5061,16 @@
         },
         {
             "name": "symfony/messenger",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/messenger.git",
-                "reference": "56bec7d319695f6c284af382d803074262a8f074"
+                "reference": "e608fcd1ef55117c95318ca0b6512a0588a14cf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/messenger/zipball/56bec7d319695f6c284af382d803074262a8f074",
-                "reference": "56bec7d319695f6c284af382d803074262a8f074",
+                "url": "https://api.github.com/repos/symfony/messenger/zipball/e608fcd1ef55117c95318ca0b6512a0588a14cf6",
+                "reference": "e608fcd1ef55117c95318ca0b6512a0588a14cf6",
                 "shasum": ""
             },
             "require": {
@@ -5131,7 +5131,7 @@
             ],
             "description": "Symfony Messenger Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-27T16:56:45+00:00"
+            "time": "2020-04-15T15:59:10+00:00"
         },
         {
             "name": "symfony/mime",
