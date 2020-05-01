@@ -33,6 +33,9 @@ final class ReviewEventAppeared implements PersistentSubscriptionSubscriber
         return '$ce-review';
     }
 
+    /**
+     * @return Promise<null>
+     */
     public function __invoke(
         EventStorePersistentSubscription $subscription,
         ResolvedEvent $resolvedEvent,

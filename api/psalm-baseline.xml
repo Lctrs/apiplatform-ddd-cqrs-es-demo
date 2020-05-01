@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.8.5@e6ec5fa22a7b9e61670a24d07b3119aff80dcd89">
+<files psalm-version="3.10.1@eeed5ecccc10131397f0eb7ee6da810c0be3a7fc">
+  <file src="src/Book/Infrastructure/Projection/BookEventAppeared.php">
+    <TooManyTemplateParams occurrences="1">
+      <code>Promise&lt;null&gt;</code>
+    </TooManyTemplateParams>
+  </file>
+  <file src="src/Book/Infrastructure/Projection/ReviewEventAppeared.php">
+    <TooManyTemplateParams occurrences="1">
+      <code>Promise&lt;null&gt;</code>
+    </TooManyTemplateParams>
+  </file>
   <file src="src/Core/Infrastructure/ApiPlatform/DataPersister/CommandBusPersister.php">
     <MixedInferredReturnType occurrences="1">
       <code>persist</code>
@@ -9,9 +19,6 @@
     <MixedArgumentTypeCoercion occurrences="1">
       <code>$payload</code>
     </MixedArgumentTypeCoercion>
-    <MixedAssignment occurrences="1">
-      <code>$payload</code>
-    </MixedAssignment>
   </file>
   <file src="src/Core/Infrastructure/EventStore/Cli/RunProjections.php">
     <TooManyTemplateParams occurrences="1"/>
