@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.10.1@eeed5ecccc10131397f0eb7ee6da810c0be3a7fc">
-  <file src="src/Book/Infrastructure/Projection/BookEventAppeared.php">
-    <TooManyTemplateParams occurrences="1">
-      <code>Promise&lt;null&gt;</code>
-    </TooManyTemplateParams>
-  </file>
-  <file src="src/Book/Infrastructure/Projection/ReviewEventAppeared.php">
-    <TooManyTemplateParams occurrences="1">
-      <code>Promise&lt;null&gt;</code>
-    </TooManyTemplateParams>
-  </file>
+<files psalm-version="3.11.2@d470903722cfcbc1cd04744c5491d3e6d13ec3d9">
   <file src="src/Core/Infrastructure/ApiPlatform/DataPersister/CommandBusPersister.php">
     <MixedInferredReturnType occurrences="1">
       <code>persist</code>
     </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$handledStamp-&gt;getResult()</code>
+    </MixedReturnStatement>
   </file>
   <file src="src/Core/Infrastructure/Bridge/Prooph/DomainEventTransformer.php">
     <MixedArgumentTypeCoercion occurrences="1">
       <code>$payload</code>
     </MixedArgumentTypeCoercion>
-  </file>
-  <file src="src/Core/Infrastructure/EventStore/Cli/RunProjections.php">
-    <TooManyTemplateParams occurrences="1"/>
   </file>
 </files>
