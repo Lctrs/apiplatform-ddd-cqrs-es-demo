@@ -33,6 +33,9 @@ final class BookEventAppeared implements PersistentSubscriptionSubscriber
         return '$ce-book';
     }
 
+    /**
+     * @return Promise<null>
+     */
     public function __invoke(
         EventStorePersistentSubscription $subscription,
         ResolvedEvent $resolvedEvent,
