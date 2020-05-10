@@ -364,6 +364,9 @@
     "ramsey/uuid": {
         "version": "3.9.2"
     },
+    "sebastian/code-unit": {
+        "version": "1.0.2"
+    },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"
     },
