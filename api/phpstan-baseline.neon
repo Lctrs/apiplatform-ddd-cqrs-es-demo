@@ -1,17 +1,12 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method App\\\\Core\\\\Infrastructure\\\\ApiPlatform\\\\DataPersister\\\\CommandBusPersister\\:\\:supports\\(\\) has parameter \\$data with no typehint specified\\.$#"
+			message: "#^Cannot call method toCommand\\(\\) on resource\\.$#"
 			count: 1
 			path: src/Core/Infrastructure/ApiPlatform/DataPersister/CommandBusPersister.php
 
 		-
-			message: "#^Method App\\\\Core\\\\Infrastructure\\\\ApiPlatform\\\\DataPersister\\\\CommandBusPersister\\:\\:persist\\(\\) has parameter \\$data with no typehint specified\\.$#"
-			count: 1
-			path: src/Core/Infrastructure/ApiPlatform/DataPersister/CommandBusPersister.php
-
-		-
-			message: "#^Method App\\\\Core\\\\Infrastructure\\\\ApiPlatform\\\\DataPersister\\\\CommandBusPersister\\:\\:remove\\(\\) has parameter \\$data with no typehint specified\\.$#"
+			message: "#^Method App\\\\Core\\\\Infrastructure\\\\ApiPlatform\\\\DataPersister\\\\CommandBusPersister\\:\\:persist\\(\\) should return object\\|void but returns resource\\.$#"
 			count: 1
 			path: src/Core/Infrastructure/ApiPlatform/DataPersister/CommandBusPersister.php
 
