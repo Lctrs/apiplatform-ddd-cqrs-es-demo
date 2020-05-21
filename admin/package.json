@@ -7,7 +7,7 @@
     "@babel/runtime": "^7.9.6",
     "@testing-library/jest-dom": "^5.8.0",
     "@testing-library/react": "^10.0.4",
-    "@testing-library/user-event": "^10.3.3",
+    "@testing-library/user-event": "^10.3.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
