@@ -10,7 +10,7 @@
         "ext-pcntl": "*",
         "amphp/amp": "^2.4.4",
         "api-platform/core": "^2.5.5",
-        "doctrine/annotations": "^1.10.2",
+        "doctrine/annotations": "^1.10.3",
         "doctrine/dbal": "^2.10.2",
         "doctrine/doctrine-bundle": "^2.0.8",
         "doctrine/orm": "^2.7.2",
