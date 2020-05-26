@@ -12,7 +12,7 @@
         "api-platform/core": "^2.5.5",
         "doctrine/annotations": "^1.10.3",
         "doctrine/dbal": "^2.10.2",
-        "doctrine/doctrine-bundle": "^2.0.8",
+        "doctrine/doctrine-bundle": "^2.1.0",
         "doctrine/orm": "^2.7.2",
         "guzzlehttp/guzzle": "^6.5.4",
         "nelmio/cors-bundle": "^2.0.1",
