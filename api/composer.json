@@ -32,7 +32,7 @@
         "symfony/dependency-injection": "~5.0.8",
         "symfony/doctrine-bridge": "~5.0.8",
         "symfony/dotenv": "~5.0.8",
-        "symfony/flex": "^1.7.0",
+        "symfony/flex": "^1.7.1",
         "symfony/framework-bundle": "~5.0.8",
         "symfony/http-client": "~5.0.8",
         "symfony/http-client-contracts": "^2.1.1",
