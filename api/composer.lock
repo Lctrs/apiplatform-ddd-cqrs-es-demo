@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30da81f3cf77f5b425d569423c973ac4",
+    "content-hash": "07860c6e997e30a9ac85e02d0602c84d",
     "packages": [
         {
             "name": "amphp/amp",
@@ -3731,20 +3731,20 @@
         },
         {
             "name": "symfony/asset",
-            "version": "v5.0.8",
+            "version": "v5.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",
-                "reference": "be35f49cf2cf1c54de30bc31d2c5ff3c1d880be8"
+                "reference": "aaf4ba865c02f6df999166a0148d56f2b11b11fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/asset/zipball/be35f49cf2cf1c54de30bc31d2c5ff3c1d880be8",
-                "reference": "be35f49cf2cf1c54de30bc31d2c5ff3c1d880be8",
+                "url": "https://api.github.com/repos/symfony/asset/zipball/aaf4ba865c02f6df999166a0148d56f2b11b11fb",
+                "reference": "aaf4ba865c02f6df999166a0148d56f2b11b11fb",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2.5"
+                "php": ">=7.2.5"
             },
             "require-dev": {
                 "symfony/http-foundation": "^4.4|^5.0",
@@ -3783,7 +3783,7 @@
             ],
             "description": "Symfony Asset Component",
             "homepage": "https://symfony.com",
-            "time": "2020-04-12T14:40:17+00:00"
+            "time": "2020-05-30T20:12:43+00:00"
         },
         {
             "name": "symfony/cache",
