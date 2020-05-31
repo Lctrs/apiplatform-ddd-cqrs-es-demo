@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee2abdf512be0f2530a9360dc266c102",
+    "content-hash": "340187fcc303fe1969543b4869b16b39",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4183,22 +4183,22 @@
         },
         {
             "name": "symfony/doctrine-bridge",
-            "version": "v5.0.8",
+            "version": "v5.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-bridge.git",
-                "reference": "013f4ce1a10c6aad81c4ad14466e49d802417f4f"
+                "reference": "0cceaf05876c757a1b754614656dae503f7de488"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/013f4ce1a10c6aad81c4ad14466e49d802417f4f",
-                "reference": "013f4ce1a10c6aad81c4ad14466e49d802417f4f",
+                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/0cceaf05876c757a1b754614656dae503f7de488",
+                "reference": "0cceaf05876c757a1b754614656dae503f7de488",
                 "shasum": ""
             },
             "require": {
                 "doctrine/event-manager": "~1.0",
                 "doctrine/persistence": "^1.3",
-                "php": "^7.2.5",
+                "php": ">=7.2.5",
                 "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-mbstring": "~1.0",
                 "symfony/service-contracts": "^1.1|^2"
@@ -4275,7 +4275,7 @@
             ],
             "description": "Symfony Doctrine Bridge",
             "homepage": "https://symfony.com",
-            "time": "2020-04-12T16:45:47+00:00"
+            "time": "2020-05-28T09:07:30+00:00"
         },
         {
             "name": "symfony/dotenv",
