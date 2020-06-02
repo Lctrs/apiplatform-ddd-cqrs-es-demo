@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9c0387796711ef421e5a4e5110b6696",
+    "content-hash": "8302b7ce5960191f426cf87231e317c2",
     "packages": [
         {
             "name": "amphp/amp",
@@ -8025,21 +8025,21 @@
         },
         {
             "name": "phpstan/phpstan-webmozart-assert",
-            "version": "0.12.4",
+            "version": "0.12.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-webmozart-assert.git",
-                "reference": "714e7a6b936931790855c8da958153dfb25fc953"
+                "reference": "d1644c76cefeec4cf12c609c75f60b0f11b511d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-webmozart-assert/zipball/714e7a6b936931790855c8da958153dfb25fc953",
-                "reference": "714e7a6b936931790855c8da958153dfb25fc953",
+                "url": "https://api.github.com/repos/phpstan/phpstan-webmozart-assert/zipball/d1644c76cefeec4cf12c609c75f60b0f11b511d7",
+                "reference": "d1644c76cefeec4cf12c609c75f60b0f11b511d7",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1",
-                "phpstan/phpstan": "^0.12.6"
+                "phpstan/phpstan": "^0.12.24"
             },
             "require-dev": {
                 "consistence/coding-standard": "^3.7",
@@ -8074,7 +8074,7 @@
                 "MIT"
             ],
             "description": "PHPStan webmozart/assert extension",
-            "time": "2020-05-04T08:30:18+00:00"
+            "time": "2020-06-02T20:02:11+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
