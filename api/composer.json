@@ -59,7 +59,7 @@
         "symfony/symfony": "*"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^7.0.2",
+        "doctrine/coding-standard": "^8.0.0",
         "ergebnis/composer-normalize": "^2.5.1",
         "maglnet/composer-require-checker": "^2.1.0",
         "nelmio/alice": "^3.7.1",
