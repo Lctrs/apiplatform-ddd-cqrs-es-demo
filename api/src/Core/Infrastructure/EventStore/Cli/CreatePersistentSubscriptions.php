@@ -34,7 +34,7 @@ final class CreatePersistentSubscriptions extends Command
         $this->connection = $connection;
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->addArgument(
@@ -51,7 +51,7 @@ final class CreatePersistentSubscriptions extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : ?int
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         $stream    = $input->getArgument('stream');
         $groupName = $input->getArgument('group-name');
@@ -94,7 +94,7 @@ final class CreatePersistentSubscriptions extends Command
         string $stream,
         string $groupName,
         PersistentSubscriptionSettings $settings
-    ) : void {
+    ): void {
         try {
             $result = $this->connection->updatePersistentSubscription(
                 $stream,

@@ -8,17 +8,17 @@ use Prooph\EventStore\EventId;
 
 interface DomainEvent
 {
-    public function eventId() : ?string;
+    public function eventId(): ?string;
 
-    public function eventType() : string;
+    public function eventType(): string;
 
     /**
      * @return array<string, (string|int|bool|float|null)>
      */
-    public function toArray() : array;
+    public function toArray(): array;
 
     /**
      * @param array<string, (string|int|bool|float|null)> $data
      */
-    public static function from(EventId $eventId, array $data) : self;
+    public static function from(EventId $eventId, array $data): self;
 }

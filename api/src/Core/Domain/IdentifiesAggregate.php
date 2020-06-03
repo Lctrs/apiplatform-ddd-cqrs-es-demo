@@ -16,5 +16,5 @@ interface IdentifiesAggregate
      */
     public static function fromString(string $string);
 
-    public function toString() : string;
+    public function toString(): string;
 }

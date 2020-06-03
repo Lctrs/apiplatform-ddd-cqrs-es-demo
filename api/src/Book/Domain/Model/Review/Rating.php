@@ -13,12 +13,12 @@ final class Rating
         $this->value = $value;
     }
 
-    public static function fromInt(int $rating) : self
+    public static function fromInt(int $rating): self
     {
         return new self($rating);
     }
 
-    public function toInt() : int
+    public function toInt(): int
     {
         return $this->value;
     }

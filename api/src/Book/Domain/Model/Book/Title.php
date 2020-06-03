@@ -13,12 +13,12 @@ final class Title
         $this->value = $value;
     }
 
-    public static function fromString(string $title) : self
+    public static function fromString(string $title): self
     {
         return new self($title);
     }
 
-    public function toString() : string
+    public function toString(): string
     {
         return $this->value;
     }

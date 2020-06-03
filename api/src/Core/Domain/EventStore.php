@@ -6,7 +6,7 @@ namespace App\Core\Domain;
 
 interface EventStore
 {
-    public function save(AggregateRoot $aggregateRoot, string $streamCategory, bool $optimisticConcurrency) : void;
+    public function save(AggregateRoot $aggregateRoot, string $streamCategory, bool $optimisticConcurrency): void;
 
-    public function load(string $streamCategory, IdentifiesAggregate $aggregateId) : ?EventStoreLoadResult;
+    public function load(string $streamCategory, IdentifiesAggregate $aggregateId): ?EventStoreLoadResult;
 }

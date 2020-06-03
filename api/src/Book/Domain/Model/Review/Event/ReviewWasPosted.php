@@ -32,42 +32,42 @@ final class ReviewWasPosted implements DomainEvent
         $this->author   = $author;
     }
 
-    public static function with(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author) : self
+    public static function with(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author): self
     {
         return new self($reviewId, $bookId, $body, $rating, $author);
     }
 
-    public function aggregateId() : ReviewId
+    public function aggregateId(): ReviewId
     {
         return $this->reviewId;
     }
 
-    public function bookId() : BookId
+    public function bookId(): BookId
     {
         return $this->bookId;
     }
 
-    public function body() : ?Body
+    public function body(): ?Body
     {
         return $this->body;
     }
 
-    public function rating() : Rating
+    public function rating(): Rating
     {
         return $this->rating;
     }
 
-    public function author() : ?Author
+    public function author(): ?Author
     {
         return $this->author;
     }
 
-    public function eventId() : ?string
+    public function eventId(): ?string
     {
         return $this->eventId;
     }
 
-    public function eventType() : string
+    public function eventType(): string
     {
         return self::MESSAGE_NAME;
     }
@@ -75,7 +75,7 @@ final class ReviewWasPosted implements DomainEvent
     /**
      * @inheritdoc
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'reviewId' => $this->reviewId->toString(),
@@ -89,7 +89,7 @@ final class ReviewWasPosted implements DomainEvent
     /**
      * @param array{reviewId: string, bookId: string, body: string|null, rating: int, author: string|null} $data
      */
-    public static function from(EventId $eventId, array $data) : DomainEvent
+    public static function from(EventId $eventId, array $data): DomainEvent
     {
         $message = new self(
             ReviewId::fromString($data['reviewId']),

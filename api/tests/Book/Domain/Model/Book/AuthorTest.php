@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 final class AuthorTest extends TestCase
 {
-    public function testItCreatesAuthorFromString() : void
+    public function testItCreatesAuthorFromString(): void
     {
         $author = Author::fromString('Homer');
         self::assertSame('Homer', $author->toString());

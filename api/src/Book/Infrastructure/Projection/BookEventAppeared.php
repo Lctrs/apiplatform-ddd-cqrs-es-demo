@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
 use Prooph\EventStore\Async\EventStorePersistentSubscription;
 use Prooph\EventStore\ResolvedEvent;
+
 use function get_class;
 
 final class BookEventAppeared implements PersistentSubscriptionSubscriber
@@ -28,7 +29,7 @@ final class BookEventAppeared implements PersistentSubscriptionSubscriber
         $this->transformer   = $transformer;
     }
 
-    public static function persistentSubscriptionName() : string
+    public static function persistentSubscriptionName(): string
     {
         return '$ce-book';
     }
@@ -40,7 +41,7 @@ final class BookEventAppeared implements PersistentSubscriptionSubscriber
         EventStorePersistentSubscription $subscription,
         ResolvedEvent $resolvedEvent,
         ?int $retryCount = null
-    ) : Promise {
+    ): Promise {
         $event = $this->transformer->toDomainEvent($resolvedEvent);
 
         switch (get_class($event)) {

@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 final class RatingTest extends TestCase
 {
-    public function testItCreatesRatingFromInt() : void
+    public function testItCreatesRatingFromInt(): void
     {
         $rating = Rating::fromInt(1);
         self::assertSame(1, $rating->toInt());

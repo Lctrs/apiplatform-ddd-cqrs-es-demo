@@ -8,5 +8,5 @@ use Prooph\EventStore\Async\EventAppearedOnPersistentSubscription;
 
 interface PersistentSubscriptionSubscriber extends EventAppearedOnPersistentSubscription
 {
-    public static function persistentSubscriptionName() : string;
+    public static function persistentSubscriptionName(): string;
 }

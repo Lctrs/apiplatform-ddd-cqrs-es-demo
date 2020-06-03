@@ -20,22 +20,22 @@ final class ReviewWasDeleted implements DomainEvent
         $this->reviewId = $reviewId;
     }
 
-    public static function with(ReviewId $reviewId) : self
+    public static function with(ReviewId $reviewId): self
     {
         return new self($reviewId);
     }
 
-    public function aggregateId() : ReviewId
+    public function aggregateId(): ReviewId
     {
         return $this->reviewId;
     }
 
-    public function eventId() : ?string
+    public function eventId(): ?string
     {
         return $this->eventId;
     }
 
-    public function eventType() : string
+    public function eventType(): string
     {
         return self::MESSAGE_NAME;
     }
@@ -43,7 +43,7 @@ final class ReviewWasDeleted implements DomainEvent
     /**
      * @inheritdoc
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'reviewId' => $this->reviewId->toString(),
@@ -53,7 +53,7 @@ final class ReviewWasDeleted implements DomainEvent
     /**
      * @param array{reviewId: string} $data
      */
-    public static function from(EventId $eventId, array $data) : DomainEvent
+    public static function from(EventId $eventId, array $data): DomainEvent
     {
         $message = new self(ReviewId::fromString($data['reviewId']));
 

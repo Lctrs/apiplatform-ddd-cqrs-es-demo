@@ -11,6 +11,7 @@ use App\Core\Domain\AggregateRoot;
 use App\Core\Domain\DomainEvent;
 use App\Core\Domain\IdentifiesAggregate;
 use RuntimeException;
+
 use function get_class;
 use function sprintf;
 
@@ -22,7 +23,7 @@ final class Review extends AggregateRoot
     private Rating $rating;
     private ?Author $author;
 
-    public static function post(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author) : self
+    public static function post(ReviewId $reviewId, BookId $bookId, ?Body $body, Rating $rating, ?Author $author): self
     {
         $self = new self();
 
@@ -31,37 +32,37 @@ final class Review extends AggregateRoot
         return $self;
     }
 
-    public function delete() : void
+    public function delete(): void
     {
         $this->recordThat(ReviewWasDeleted::with($this->id));
     }
 
-    public function aggregateId() : IdentifiesAggregate
+    public function aggregateId(): IdentifiesAggregate
     {
         return $this->id;
     }
 
-    public function bookId() : BookId
+    public function bookId(): BookId
     {
         return $this->bookId;
     }
 
-    public function body() : ?Body
+    public function body(): ?Body
     {
         return $this->body;
     }
 
-    public function rating() : Rating
+    public function rating(): Rating
     {
         return $this->rating;
     }
 
-    public function author() : ?Author
+    public function author(): ?Author
     {
         return $this->author;
     }
 
-    protected function apply(DomainEvent $event) : void
+    protected function apply(DomainEvent $event): void
     {
         switch (get_class($event)) {
             case ReviewWasPosted::class:
@@ -78,7 +79,7 @@ final class Review extends AggregateRoot
         }
     }
 
-    private function whenReviewWasPosted(ReviewWasPosted $event) : void
+    private function whenReviewWasPosted(ReviewWasPosted $event): void
     {
         $this->id     = $event->aggregateId();
         $this->bookId = $event->bookId();

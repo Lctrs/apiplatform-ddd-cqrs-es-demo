@@ -9,6 +9,7 @@ use App\Book\Domain\Model\Book\BookId;
 use App\Book\Domain\Model\Book\BookList;
 use App\Core\Domain\AggregateRepository;
 use App\Core\Domain\EventStore;
+
 use function assert;
 
 final class EventStoreBookList extends AggregateRepository implements BookList
@@ -23,12 +24,12 @@ final class EventStoreBookList extends AggregateRepository implements BookList
         );
     }
 
-    public function save(Book $book) : void
+    public function save(Book $book): void
     {
         $this->saveAggregateRoot($book);
     }
 
-    public function get(BookId $bookId) : ?Book
+    public function get(BookId $bookId): ?Book
     {
         $book = $this->getAggregateRoot($bookId);
 

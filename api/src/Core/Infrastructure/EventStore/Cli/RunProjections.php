@@ -13,6 +13,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Webmozart\Assert\Assert;
+
 use function sprintf;
 
 final class RunProjections extends Command
@@ -38,7 +39,7 @@ final class RunProjections extends Command
         $this->handlerFactory = $handlerFactory;
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->addArgument(
@@ -55,7 +56,7 @@ final class RunProjections extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : ?int
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         $stream    = $input->getArgument('stream');
         $groupName = $input->getArgument('group-name');

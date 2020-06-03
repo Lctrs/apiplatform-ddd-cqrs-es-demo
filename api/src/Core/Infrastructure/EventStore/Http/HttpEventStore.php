@@ -25,7 +25,7 @@ final class HttpEventStore implements EventStore
         $this->transformer = $transformer;
     }
 
-    public function save(AggregateRoot $aggregateRoot, string $streamCategory, bool $optimisticConcurrency) : void
+    public function save(AggregateRoot $aggregateRoot, string $streamCategory, bool $optimisticConcurrency): void
     {
         $domainEvents = $aggregateRoot->popRecordedEvents();
 
@@ -58,7 +58,7 @@ final class HttpEventStore implements EventStore
         );
     }
 
-    public function load(string $streamCategory, IdentifiesAggregate $aggregateId) : ?EventStoreLoadResult
+    public function load(string $streamCategory, IdentifiesAggregate $aggregateId): ?EventStoreLoadResult
     {
         $stream = $streamCategory . '-' . $aggregateId->toString();
 

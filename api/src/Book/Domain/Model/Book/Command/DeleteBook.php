@@ -16,7 +16,7 @@ final class DeleteBook implements Command
         $this->bookId = $bookId;
     }
 
-    public function bookId() : BookId
+    public function bookId(): BookId
     {
         return $this->bookId;
     }

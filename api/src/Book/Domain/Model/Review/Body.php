@@ -13,12 +13,12 @@ final class Body
         $this->value = $value;
     }
 
-    public static function fromString(string $body) : self
+    public static function fromString(string $body): self
     {
         return new self($body);
     }
 
-    public function toString() : string
+    public function toString(): string
     {
         return $this->value;
     }
