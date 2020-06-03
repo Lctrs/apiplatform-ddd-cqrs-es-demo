@@ -62,7 +62,7 @@
         "doctrine/coding-standard": "^7.0.2",
         "ergebnis/composer-normalize": "^2.5.1",
         "maglnet/composer-require-checker": "^2.1.0",
-        "nelmio/alice": "^3.7.0",
+        "nelmio/alice": "^3.7.1",
         "phpstan/extension-installer": "^1.0.4",
         "phpstan/phpstan": "^0.12.25",
         "phpstan/phpstan-deprecation-rules": "^0.12.4",
