@@ -17,7 +17,7 @@ final class DeleteBookHandler
         $this->bookList = $bookList;
     }
 
-    public function __invoke(DeleteBook $command) : void
+    public function __invoke(DeleteBook $command): void
     {
         $book = $this->bookList->get($command->bookId());
 

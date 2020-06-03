@@ -13,12 +13,12 @@ final class Author
         $this->value = $value;
     }
 
-    public static function fromString(string $author) : self
+    public static function fromString(string $author): self
     {
         return new self($author);
     }
 
-    public function toString() : string
+    public function toString(): string
     {
         return $this->value;
     }

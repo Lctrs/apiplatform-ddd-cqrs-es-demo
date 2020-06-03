@@ -25,12 +25,12 @@ final class EventStoreLoadResult
      *
      * @psalm-return iterable<DomainEvent>
      */
-    public function domainEvents() : iterable
+    public function domainEvents(): iterable
     {
         return $this->domainEvents;
     }
 
-    public function version() : int
+    public function version(): int
     {
         return $this->version;
     }

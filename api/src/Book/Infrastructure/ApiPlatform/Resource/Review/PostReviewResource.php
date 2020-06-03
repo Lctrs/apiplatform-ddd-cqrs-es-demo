@@ -39,7 +39,7 @@ final class PostReviewResource implements Resource
     /** @ApiProperty(identifier=true) */
     private ?ReviewId $id;
 
-    public function toCommand() : Command
+    public function toCommand(): Command
     {
         return new PostReview(
             $this->id ?? $this->id = ReviewId::generate(),

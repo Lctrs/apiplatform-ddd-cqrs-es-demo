@@ -17,7 +17,7 @@ final class DeleteReviewHandler
         $this->reviewList = $reviewList;
     }
 
-    public function __invoke(DeleteReview $command) : void
+    public function __invoke(DeleteReview $command): void
     {
         $review = $this->reviewList->get($command->reviewId());
 

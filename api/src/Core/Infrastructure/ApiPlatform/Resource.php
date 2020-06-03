@@ -8,5 +8,5 @@ use App\Core\Domain\Command;
 
 interface Resource
 {
-    public function toCommand() : Command;
+    public function toCommand(): Command;
 }

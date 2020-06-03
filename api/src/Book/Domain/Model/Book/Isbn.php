@@ -13,12 +13,12 @@ final class Isbn
         $this->value = $value;
     }
 
-    public static function fromString(string $isbn) : self
+    public static function fromString(string $isbn): self
     {
         return new self($isbn);
     }
 
-    public function toString() : string
+    public function toString(): string
     {
         return $this->value;
     }

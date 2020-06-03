@@ -12,12 +12,12 @@ final class BookId implements IdentifiesAggregate
 {
     private UuidInterface $uuid;
 
-    public static function generate() : self
+    public static function generate(): self
     {
         return new self(Uuid::uuid4());
     }
 
-    public static function fromString(string $string) : self
+    public static function fromString(string $string): self
     {
         return new self(Uuid::fromString($string));
     }
@@ -27,7 +27,7 @@ final class BookId implements IdentifiesAggregate
         $this->uuid = $bookId;
     }
 
-    public function toString() : string
+    public function toString(): string
     {
         return $this->uuid->toString();
     }

@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 final class TitleTest extends TestCase
 {
-    public function testItCreatesTitleFromString() : void
+    public function testItCreatesTitleFromString(): void
     {
         $title = Title::fromString('A title');
         self::assertSame('A title', $title->toString());

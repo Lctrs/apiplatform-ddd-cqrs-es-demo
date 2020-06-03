@@ -48,46 +48,46 @@ final class BookWasCreated implements DomainEvent
         Description $description,
         Author $author,
         PublicationDate $publicationDate
-    ) : self {
+    ): self {
         return new self($bookId, $isbn, $title, $description, $author, $publicationDate);
     }
 
-    public function aggregateId() : BookId
+    public function aggregateId(): BookId
     {
         return $this->bookId;
     }
 
-    public function isbn() : ?Isbn
+    public function isbn(): ?Isbn
     {
         return $this->isbn;
     }
 
-    public function title() : Title
+    public function title(): Title
     {
         return $this->title;
     }
 
-    public function description() : Description
+    public function description(): Description
     {
         return $this->description;
     }
 
-    public function author() : Author
+    public function author(): Author
     {
         return $this->author;
     }
 
-    public function publicationDate() : PublicationDate
+    public function publicationDate(): PublicationDate
     {
         return $this->publicationDate;
     }
 
-    public function eventId() : ?string
+    public function eventId(): ?string
     {
         return $this->eventId;
     }
 
-    public function eventType() : string
+    public function eventType(): string
     {
         return self::MESSAGE_NAME;
     }
@@ -95,7 +95,7 @@ final class BookWasCreated implements DomainEvent
     /**
      * @inheritdoc
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'bookId' => $this->bookId->toString(),
@@ -110,7 +110,7 @@ final class BookWasCreated implements DomainEvent
     /**
      * @param array{bookId: string, isbn: string|null, title: string, description: string, author: string, publicationDate: string} $data
      */
-    public static function from(EventId $eventId, array $data) : DomainEvent
+    public static function from(EventId $eventId, array $data): DomainEvent
     {
         $message = new self(
             BookId::fromString($data['bookId']),

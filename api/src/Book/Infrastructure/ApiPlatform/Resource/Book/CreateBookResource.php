@@ -44,7 +44,7 @@ final class CreateBookResource implements Resource
     /** @ApiProperty(identifier=true) */
     private ?BookId $id;
 
-    public function toCommand() : Command
+    public function toCommand(): Command
     {
         return new CreateBook(
             $this->id ?? $this->id = BookId::generate(),

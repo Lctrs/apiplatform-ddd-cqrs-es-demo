@@ -9,6 +9,7 @@ use App\Book\Domain\Model\Review\ReviewId;
 use App\Book\Domain\Model\Review\ReviewList;
 use App\Core\Domain\AggregateRepository;
 use App\Core\Domain\EventStore;
+
 use function assert;
 
 final class EventStoreReviewList extends AggregateRepository implements ReviewList
@@ -23,12 +24,12 @@ final class EventStoreReviewList extends AggregateRepository implements ReviewLi
         );
     }
 
-    public function save(Review $review) : void
+    public function save(Review $review): void
     {
         $this->saveAggregateRoot($review);
     }
 
-    public function get(ReviewId $reviewId) : ?Review
+    public function get(ReviewId $reviewId): ?Review
     {
         $review = $this->getAggregateRoot($reviewId);
 

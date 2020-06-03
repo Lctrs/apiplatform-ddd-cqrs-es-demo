@@ -27,7 +27,7 @@ abstract class AggregateRepository
         $this->optimisticConcurrency  = $useOptimisticConcurrencyByDefault;
     }
 
-    public function saveAggregateRoot(AggregateRoot $aggregateRoot) : void
+    public function saveAggregateRoot(AggregateRoot $aggregateRoot): void
     {
         $this->eventStore->save($aggregateRoot, $this->streamCategory, $this->optimisticConcurrency);
     }
@@ -35,7 +35,7 @@ abstract class AggregateRepository
     /**
      * Returns null if no stream events can be found for aggregate root otherwise the reconstituted aggregate root
      */
-    public function getAggregateRoot(IdentifiesAggregate $aggregateId) : ?AggregateRoot
+    public function getAggregateRoot(IdentifiesAggregate $aggregateId): ?AggregateRoot
     {
         $result = $this->eventStore->load($this->streamCategory, $aggregateId);
         if ($result === null) {

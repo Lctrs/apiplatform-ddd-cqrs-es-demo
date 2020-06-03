@@ -10,6 +10,7 @@ use Prooph\EventStore\EventId;
 use Prooph\EventStore\ResolvedEvent;
 use Prooph\EventStore\Util\Json;
 use RuntimeException;
+
 use function assert;
 use function is_array;
 
@@ -31,7 +32,7 @@ final class DomainEventTransformer
         $this->map = $map;
     }
 
-    public function toEventData(DomainEvent $event) : EventData
+    public function toEventData(DomainEvent $event): EventData
     {
         $eventId = $event->eventId();
         if ($eventId === null) {
@@ -51,7 +52,7 @@ final class DomainEventTransformer
     /**
      * @throws RuntimeException
      */
-    public function toDomainEvent(ResolvedEvent $event) : DomainEvent
+    public function toDomainEvent(ResolvedEvent $event): DomainEvent
     {
         $event = $event->event();
 

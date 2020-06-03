@@ -20,22 +20,22 @@ final class BookWasDeleted implements DomainEvent
         $this->bookId = $bookId;
     }
 
-    public static function with(BookId $bookId) : self
+    public static function with(BookId $bookId): self
     {
         return new self($bookId);
     }
 
-    public function aggregateId() : BookId
+    public function aggregateId(): BookId
     {
         return $this->bookId;
     }
 
-    public function eventId() : ?string
+    public function eventId(): ?string
     {
         return $this->eventId;
     }
 
-    public function eventType() : string
+    public function eventType(): string
     {
         return self::MESSAGE_NAME;
     }
@@ -43,7 +43,7 @@ final class BookWasDeleted implements DomainEvent
     /**
      * @inheritdoc
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'bookId' => $this->bookId->toString(),
@@ -53,7 +53,7 @@ final class BookWasDeleted implements DomainEvent
     /**
      * @param array{bookId:string} $data
      */
-    public static function from(EventId $eventId, array $data) : DomainEvent
+    public static function from(EventId $eventId, array $data): DomainEvent
     {
         $message = new self(BookId::fromString($data['bookId']));
 

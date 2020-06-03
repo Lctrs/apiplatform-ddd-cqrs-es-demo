@@ -6,12 +6,15 @@ namespace App\Core\Infrastructure\Fixtures\Cli;
 
 use Fidry\AliceDataFixtures\LoaderInterface;
 use Generator;
+use IteratorAggregate;
+use SplFileInfo;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
+
 use function file_exists;
 use function is_dir;
 use function is_string;
@@ -34,7 +37,7 @@ final class LoadDataFixturesCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setName(self::$defaultName)
@@ -46,7 +49,7 @@ final class LoadDataFixturesCommand extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : ?int
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         $path = $input->getArgument('path');
 
@@ -64,7 +67,7 @@ final class LoadDataFixturesCommand extends Command
      *
      * @psalm-return Generator<string>
      */
-    private function resolvePath(string $path) : Generator
+    private function resolvePath(string $path): Generator
     {
         if (! file_exists($path)) {
             throw new InvalidArgumentException(sprintf('Directory "%s" does not exist.', $path));
@@ -74,7 +77,7 @@ final class LoadDataFixturesCommand extends Command
             throw new InvalidArgumentException(sprintf('"%s" is not a directory.', $path));
         }
 
-        /** @psalm-var \IteratorAggregate<\SplFileInfo> $files */
+        /** @psalm-var IteratorAggregate<SplFileInfo> $files */
         $files = Finder::create()
                 ->files()
                 ->in($path)

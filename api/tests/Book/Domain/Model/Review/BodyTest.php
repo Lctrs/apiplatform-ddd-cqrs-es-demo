@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 final class BodyTest extends TestCase
 {
-    public function testItCreatesBodyFromString() : void
+    public function testItCreatesBodyFromString(): void
     {
         $body = Body::fromString('A body');
         self::assertSame('A body', $body->toString());
