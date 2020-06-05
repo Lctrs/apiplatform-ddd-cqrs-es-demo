@@ -69,7 +69,7 @@
         "phpstan/phpstan-doctrine": "^0.12.13",
         "phpstan/phpstan-symfony": "^0.12.6",
         "phpstan/phpstan-webmozart-assert": "^0.12.5",
-        "phpunit/phpunit": "^9.1.5",
+        "phpunit/phpunit": "^9.2.1",
         "psalm/plugin-phpunit": "^0.10.1",
         "symfony/finder": "~5.0.4",
         "symfony/stopwatch": "~5.0.9",
