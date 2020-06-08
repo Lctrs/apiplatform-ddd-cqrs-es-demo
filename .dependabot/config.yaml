@@ -3,30 +3,21 @@
 version: 1
 
 update_configs:
-  - automerged_updates:
-      - match:
-          dependency_type: "all"
+  - commit_message:
+      include_scope: true
+      prefix: "Build"
     default_labels:
       - "dependency"
-    default_reviewers:
-      - "Lctrs"
     directory: "/admin"
     package_manager: "javascript"
     update_schedule: "live"
     version_requirement_updates: "increase_versions"
 
-  - automerged_updates:
-      - match:
-          dependency_type: "development"
-      - match:
-          dependency_type: "production"
-          update_type: "semver:patch"
-    default_assignees:
-      - "Lctrs"
+  - commit_message:
+      include_scope: true
+      prefix: "Build"
     default_labels:
       - "dependency"
-    default_reviewers:
-      - "Lctrs"
     directory: "/api"
     package_manager: "php:composer"
     update_schedule: "live"
@@ -90,15 +81,11 @@ update_configs:
           dependency_name: "symfony/web-profiler-bundle"
           version_requirement: ">= 5.2.0"
 
-  - automerged_updates:
-      - match:
-          dependency_type: "all"
-    default_assignees:
-      - "Lctrs"
+  - commit_message:
+      include_scope: true
+      prefix: "Build"
     default_labels:
       - "dependency"
-    default_reviewers:
-      - "Lctrs"
     directory: "/client"
     package_manager: "javascript"
     update_schedule: "live"

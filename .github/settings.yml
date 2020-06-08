@@ -16,11 +16,7 @@ branches:
         contexts:
           - "CI/CD / Docker build/test/deploy (Docker 19.03)"
         strict: false
-      restrictions:
-        apps:
-          - "dependabot-preview"
-        teams: []
-        users: []
+      restrictions: null
 
 # https://developer.github.com/v3/issues/labels/#create-a-label
 # https://developer.github.com/v3/issues/labels/#update-a-label
@@ -36,6 +32,10 @@ labels:
 
   - name: "enhancement"
     color: "0e8a16"
+    description: ""
+
+  - name: "merge"
+    color: "6f42c1"
     description: ""
 
   - name: "question"
@@ -56,7 +56,9 @@ repository:
   allow_merge_commit: true
   allow_rebase_merge: false
   allow_squash_merge: false
+  archived: false
   default_branch: "master"
+  delete_branch_on_merge: true
   description: ""
   has_downloads: true
   has_issues: true
