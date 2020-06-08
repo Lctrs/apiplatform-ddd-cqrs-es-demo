@@ -38,8 +38,8 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symfony\Component\HttpClient\Psr18Client;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-use function Symfony\Component\DependencyInjection\Loader\Configurator\inline;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\ref;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\inline_service;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_locator;
 
 return static function (ContainerConfigurator $container): void {
@@ -54,15 +54,15 @@ return static function (ContainerConfigurator $container): void {
 
     $services
         ->set(ConnectionSettingsBuilder::class)
-        ->call('useCustomLogger', [ref(LoggerInterface::class)])
+        ->call('useCustomLogger', [service(LoggerInterface::class)])
         ->call('enableVerboseLogging');
     $services
         ->set(AsyncEventStoreConnection::class)
         ->factory([AsyncEventStoreConnectionFactory::class, 'createFromConnectionString'])
         ->args([
             '%env(resolve:EVENT_STORE_ASYNC_DSN)%',
-            inline(ConnectionSettings::class)
-                ->factory([ref(ConnectionSettingsBuilder::class), 'build']),
+            inline_service(ConnectionSettings::class)
+                ->factory([service(ConnectionSettingsBuilder::class), 'build']),
         ])
         ->call('connectAsync');
 
@@ -70,16 +70,16 @@ return static function (ContainerConfigurator $container): void {
         ->set(EventStoreConnection::class)
         ->factory([EventStoreConnectionFactory::class, 'create'])
         ->args([
-            inline(ConnectionSettings::class)
+            inline_service(ConnectionSettings::class)
                 ->factory([ConnectionString::class, 'getConnectionSettings'])
                 ->args(['%env(resolve:EVENT_STORE_DSN)%']),
-            inline(Psr18Client::class)
+            inline_service(Psr18Client::class)
                 ->args([
-                    ref(HttpClientInterface::class),
-                    ref(ResponseFactoryInterface::class),
-                    ref(StreamFactoryInterface::class),
+                    service(HttpClientInterface::class),
+                    service(ResponseFactoryInterface::class),
+                    service(StreamFactoryInterface::class),
                 ]),
-            ref(RequestFactory::class),
+            service(RequestFactory::class),
         ]);
 
     $services
@@ -94,72 +94,72 @@ return static function (ContainerConfigurator $container): void {
     $services
         ->set(HttpEventStore::class)
         ->args([
-            ref(EventStoreConnection::class),
-            ref(DomainEventTransformer::class),
+            service(EventStoreConnection::class),
+            service(DomainEventTransformer::class),
         ]);
     $services->alias(EventStore::class, HttpEventStore::class);
 
     $services
         ->set(EventStoreBookList::class)
         ->args([
-            ref(HttpEventStore::class),
+            service(HttpEventStore::class),
         ]);
     $services->alias(BookList::class, EventStoreBookList::class);
 
     $services
         ->set(CreateBookHandler::class)
         ->args([
-            ref(BookList::class),
+            service(BookList::class),
         ])
         ->tag('messenger.message_handler');
     $services
         ->set(DeleteBookHandler::class)
         ->args([
-            ref(BookList::class),
+            service(BookList::class),
         ])
         ->tag('messenger.message_handler');
 
     $services
         ->set(EventStoreReviewList::class)
         ->args([
-            ref(HttpEventStore::class),
+            service(HttpEventStore::class),
         ]);
     $services->alias(ReviewList::class, EventStoreReviewList::class);
 
     $services
         ->set(DeleteReviewHandler::class)
-        ->args([ref(ReviewList::class)])
+        ->args([service(ReviewList::class)])
         ->tag('messenger.message_handler');
     $services
         ->set(PostReviewHandler::class)
         ->args([
-            ref(BookList::class),
-            ref(ReviewList::class),
+            service(BookList::class),
+            service(ReviewList::class),
         ])
         ->tag('messenger.message_handler');
 
     $services
         ->set(BookEventAppeared::class)
         ->args([
-            ref(EntityManagerInterface::class),
-            ref(DomainEventTransformer::class),
+            service(EntityManagerInterface::class),
+            service(DomainEventTransformer::class),
         ]);
     $services
         ->set(ReviewEventAppeared::class)
         ->args([
-            ref(EntityManagerInterface::class),
-            ref(DomainEventTransformer::class),
+            service(EntityManagerInterface::class),
+            service(DomainEventTransformer::class),
         ]);
 
     $services
         ->set(CreatePersistentSubscriptions::class)
         ->args([
-            ref(EventStoreConnection::class),
+            service(EventStoreConnection::class),
         ]);
     $services
         ->set(RunProjections::class)
         ->args([
-            ref(AsyncEventStoreConnection::class),
+            service(AsyncEventStoreConnection::class),
             tagged_locator('app.persistent_subscription_subscriber', null, 'persistentSubscriptionName'),
         ]);
 };

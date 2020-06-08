@@ -26,23 +26,23 @@
         "psr/http-factory": "^1.0.1",
         "psr/log": "^1.1.3",
         "ramsey/uuid": "^3.9.3",
-        "symfony/asset": "~5.0.9",
-        "symfony/config": "~5.0.9",
-        "symfony/console": "~5.0.9",
-        "symfony/dependency-injection": "~5.0.9",
-        "symfony/doctrine-bridge": "~5.0.9",
-        "symfony/dotenv": "~5.0.9",
+        "symfony/asset": "~5.1.0",
+        "symfony/config": "~5.1.0",
+        "symfony/console": "~5.1.0",
+        "symfony/dependency-injection": "~5.1.0",
+        "symfony/doctrine-bridge": "~5.1.0",
+        "symfony/dotenv": "~5.1.0",
         "symfony/flex": "^1.7.1",
-        "symfony/framework-bundle": "~5.0.9",
-        "symfony/http-client": "~5.0.9",
+        "symfony/framework-bundle": "~5.1.0",
+        "symfony/http-client": "~5.1.0",
         "symfony/http-client-contracts": "^2.1.2",
-        "symfony/http-kernel": "~5.0.9",
-        "symfony/messenger": "~5.0.9",
-        "symfony/routing": "~5.0.9",
-        "symfony/serializer": "~5.0.9",
-        "symfony/twig-bundle": "~5.0.9",
-        "symfony/validator": "~5.0.9",
-        "symfony/yaml": "~5.0.9",
+        "symfony/http-kernel": "~5.1.0",
+        "symfony/messenger": "~5.1.0",
+        "symfony/routing": "~5.1.0",
+        "symfony/serializer": "~5.1.0",
+        "symfony/twig-bundle": "~5.1.0",
+        "symfony/validator": "~5.1.0",
+        "symfony/yaml": "~5.1.0",
         "webmozart/assert": "^1.8.0"
     },
     "replace": {
@@ -53,7 +53,8 @@
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php71": "*",
         "symfony/polyfill-php72": "*",
-        "symfony/polyfill-php73": "*"
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -71,9 +72,9 @@
         "phpstan/phpstan-webmozart-assert": "^0.12.6",
         "phpunit/phpunit": "^9.2.2",
         "psalm/plugin-phpunit": "^0.10.1",
-        "symfony/finder": "~5.0.4",
-        "symfony/stopwatch": "~5.0.9",
-        "symfony/web-profiler-bundle": "~5.0.9",
+        "symfony/finder": "~5.1.0",
+        "symfony/stopwatch": "~5.1.0",
+        "symfony/web-profiler-bundle": "~5.1.0",
         "theofidry/alice-data-fixtures": "^1.1.2",
         "vimeo/psalm": "^3.11.5"
     },
@@ -86,7 +87,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.0.*"
+            "require": "5.1.*"
         }
     },
     "autoload": {
