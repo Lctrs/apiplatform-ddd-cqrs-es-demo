@@ -6,7 +6,7 @@
     "@api-platform/admin": "^2.2.1",
     "@babel/runtime": "^7.10.2",
     "@testing-library/jest-dom": "^5.9.0",
-    "@testing-library/react": "^10.2.0",
+    "@testing-library/react": "^10.2.1",
     "@testing-library/user-event": "^11.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
