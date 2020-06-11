@@ -1,0 +1,109 @@
+# https://help.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+
+update_configs:
+  - commit-message:
+      include: "scope"
+      prefix: "Build"
+    directory: "/admin"
+    labels:
+      - "dependency"
+    open-pull-requests-limit: 10
+    package-ecosystem: "npm"
+    schedule:
+      interval: "daily"
+    versioning-strategy: "increase"
+
+  - commit-message:
+      include: "scope"
+      prefix: "Build"
+    directory: "/api"
+    labels:
+      - "dependency"
+    open-pull-requests-limit: 10
+    package-ecosystem: "composer"
+    schedule:
+      interval: "daily"
+    versioning-strategy: "increase"
+    ignore:
+      - dependency-name: "symfony/asset"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/config"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/console"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/dependency-injection"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/doctrine-bridge"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/dotenv"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/framework-bundle"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/http-client"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/http-kernel"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/messenger"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/routing"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/serializer"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/twig-bundle"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/validator"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/yaml"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/finder"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/phpunit-bridge"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/stopwatch"
+        versions:
+          - ">= 5.2.0"
+      - dependency-name: "symfony/web-profiler-bundle"
+        versions:
+          - ">= 5.2.0"
+
+  - commit-message:
+      include: "scope"
+      prefix: "Build"
+    directory: "/client"
+    labels:
+      - "dependency"
+    open-pull-requests-limit: 10
+    package-ecosystem: "npm"
+    schedule:
+      interval: "daily"
+    versioning-strategy: "increase"
+
+  - commit-message:
+      include: "scope"
+      prefix: "Build"
+    directory: "/"
+    labels:
+      - "dependency"
+    open-pull-requests-limit: 10
+    package-ecosystem: "github-actions"
+    schedule:
+      interval: "daily"
