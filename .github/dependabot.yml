@@ -2,7 +2,7 @@
 
 version: 2
 
-update_configs:
+updates:
   - commit-message:
       include: "scope"
       prefix: "Build"
