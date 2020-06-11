@@ -169,7 +169,7 @@ jobs:
         github.event.action == 'reopened' ||
         github.event.action == 'synchronize'
       ) && (
-        github.actor == 'dependabot-preview[bot]' ||
+        github.actor == 'dependabot[bot]' ||
         (github.actor == 'Lctrs' && contains(github.event.pull_request.labels.*.name, 'merge'))
       )
     steps:
