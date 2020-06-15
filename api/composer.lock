@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36a9adfbdc834bf2fb919b9e92ef92af",
+    "content-hash": "31d69fdde9b505c111631592cfd65ffd",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4248,16 +4248,16 @@
         },
         {
             "name": "symfony/doctrine-bridge",
-            "version": "v5.1.0",
+            "version": "v5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-bridge.git",
-                "reference": "e88cfe6333eca0afe08965b14598be60f9fc3d53"
+                "reference": "997377af37ae96565bf2aea127fb2b6285cd0d51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/e88cfe6333eca0afe08965b14598be60f9fc3d53",
-                "reference": "e88cfe6333eca0afe08965b14598be60f9fc3d53",
+                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/997377af37ae96565bf2aea127fb2b6285cd0d51",
+                "reference": "997377af37ae96565bf2aea127fb2b6285cd0d51",
                 "shasum": ""
             },
             "require": {
@@ -4343,7 +4343,7 @@
             ],
             "description": "Symfony Doctrine Bridge",
             "homepage": "https://symfony.com",
-            "time": "2020-05-28T09:10:22+00:00"
+            "time": "2020-06-09T14:15:34+00:00"
         },
         {
             "name": "symfony/doctrine-messenger",
