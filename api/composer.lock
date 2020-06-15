@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd61465415a62fbfd4d113627120c251",
+    "content-hash": "b4d9329a096603eec3e10a2dd7769331",
     "packages": [
         {
             "name": "amphp/amp",
@@ -6210,7 +6210,7 @@
         },
         {
             "name": "symfony/twig-bridge",
-            "version": "v5.1.0",
+            "version": "v5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bridge.git",
@@ -6312,7 +6312,7 @@
         },
         {
             "name": "symfony/twig-bundle",
-            "version": "v5.1.0",
+            "version": "v5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bundle.git",
