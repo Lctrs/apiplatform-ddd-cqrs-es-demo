@@ -12,7 +12,7 @@ updates:
     open-pull-requests-limit: 10
     package-ecosystem: "npm"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     versioning-strategy: "increase"
 
   - commit-message:
@@ -21,10 +21,10 @@ updates:
     directory: "/api"
     labels:
       - "dependency"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 20
     package-ecosystem: "composer"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     versioning-strategy: "increase"
     ignore:
       - dependency-name: "symfony/asset"
@@ -94,7 +94,7 @@ updates:
     open-pull-requests-limit: 10
     package-ecosystem: "npm"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     versioning-strategy: "increase"
 
   - commit-message:
@@ -106,4 +106,4 @@ updates:
     open-pull-requests-limit: 10
     package-ecosystem: "github-actions"
     schedule:
-      interval: "daily"
+      interval: "monthly"
