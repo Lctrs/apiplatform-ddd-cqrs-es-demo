@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13121fa3135fa805ee61ad263d28dac2",
+    "content-hash": "5030383e5dd1c6cee331fe6de6e2e4d1",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4933,7 +4933,7 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v5.1.1",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
