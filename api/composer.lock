@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "040d1b6eced8877a7e08c09e3bef3f4d",
+    "content-hash": "14242475dc2d3b0c7612b0484b880d59",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4127,7 +4127,7 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v5.1.1",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
