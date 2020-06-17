@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "037dca1de08a2dda52e949782f8608c9",
+    "content-hash": "c2148b02972c5af753ff95da134adc3e",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4248,7 +4248,7 @@
         },
         {
             "name": "symfony/doctrine-bridge",
-            "version": "v5.1.1",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-bridge.git",
