@@ -40,7 +40,7 @@
         "symfony/messenger": "~5.1.2",
         "symfony/routing": "~5.1.1",
         "symfony/serializer": "~5.1.2",
-        "symfony/twig-bundle": "~5.1.1",
+        "symfony/twig-bundle": "~5.1.2",
         "symfony/validator": "~5.1.2",
         "symfony/yaml": "~5.1.2",
         "webmozart/assert": "^1.9.0"
