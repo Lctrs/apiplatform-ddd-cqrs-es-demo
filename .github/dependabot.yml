@@ -5,7 +5,7 @@ version: 2
 updates:
   - commit-message:
       include: "scope"
-      prefix: "admin"
+      prefix: "yarn"
     directory: "/admin"
     labels:
       - "dependency"
@@ -17,7 +17,7 @@ updates:
 
   - commit-message:
       include: "scope"
-      prefix: "api"
+      prefix: "composer"
     directory: "/api"
     labels:
       - "dependency"
@@ -87,7 +87,7 @@ updates:
 
   - commit-message:
       include: "scope"
-      prefix: "client"
+      prefix: "yarn"
     directory: "/client"
     labels:
       - "dependency"
