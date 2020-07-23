@@ -66,7 +66,7 @@
         "nelmio/alice": "^3.7.1",
         "phpstan/extension-installer": "^1.0.4",
         "phpstan/phpstan": "^0.12.32",
-        "phpstan/phpstan-deprecation-rules": "^0.12.4",
+        "phpstan/phpstan-deprecation-rules": "^0.12.5",
         "phpstan/phpstan-doctrine": "^0.12.17",
         "phpstan/phpstan-symfony": "^0.12.6",
         "phpstan/phpstan-webmozart-assert": "^0.12.7",
