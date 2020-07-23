@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7c7508dcc883e13a1143c368f261c07",
+    "content-hash": "c23bfff813f8a61014906ae53a1a0fcc",
     "packages": [
         {
             "name": "amphp/amp",
@@ -9264,25 +9264,25 @@
         },
         {
             "name": "phpstan/phpstan-webmozart-assert",
-            "version": "0.12.6",
+            "version": "0.12.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-webmozart-assert.git",
-                "reference": "86b102cd19eeacc3b7b3d26a057555cc7cff67b9"
+                "reference": "afaf96ddd69133fc7a1ed527039eaca39454c4d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-webmozart-assert/zipball/86b102cd19eeacc3b7b3d26a057555cc7cff67b9",
-                "reference": "86b102cd19eeacc3b7b3d26a057555cc7cff67b9",
+                "url": "https://api.github.com/repos/phpstan/phpstan-webmozart-assert/zipball/afaf96ddd69133fc7a1ed527039eaca39454c4d8",
+                "reference": "afaf96ddd69133fc7a1ed527039eaca39454c4d8",
                 "shasum": ""
             },
             "require": {
-                "php": "~7.1",
+                "php": "^7.1 || ^8.0",
                 "phpstan/phpstan": "^0.12.24"
             },
             "require-dev": {
                 "consistence/coding-standard": "^3.7",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "ergebnis/composer-normalize": "^2.0.2",
                 "jakub-onderka/php-parallel-lint": "^1.0",
                 "phing/phing": "^2.16.0",
@@ -9313,7 +9313,7 @@
                 "MIT"
             ],
             "description": "PHPStan webmozart/assert extension",
-            "time": "2020-06-06T18:10:56+00:00"
+            "time": "2020-07-21T14:55:38+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
