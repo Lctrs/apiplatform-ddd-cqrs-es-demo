@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d34c084af998b0e91a96034244e4190",
+    "content-hash": "d316076ddf70a5408fd318533168ebf6",
     "packages": [
         {
             "name": "amphp/amp",
@@ -10772,16 +10772,16 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v5.1.2",
+            "version": "v5.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "25d892ab4927e7df32b0e8dce23cc7a1d4a3bd1c"
+                "reference": "6d32d311d9d599830f57a2fe6bb6e38970150acd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/25d892ab4927e7df32b0e8dce23cc7a1d4a3bd1c",
-                "reference": "25d892ab4927e7df32b0e8dce23cc7a1d4a3bd1c",
+                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/6d32d311d9d599830f57a2fe6bb6e38970150acd",
+                "reference": "6d32d311d9d599830f57a2fe6bb6e38970150acd",
                 "shasum": ""
             },
             "require": {
@@ -10847,7 +10847,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-09T11:33:28+00:00"
+            "time": "2020-07-23T08:36:24+00:00"
         },
         {
             "name": "theofidry/alice-data-fixtures",
