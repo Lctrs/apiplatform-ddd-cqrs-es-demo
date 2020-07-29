@@ -39,6 +39,12 @@ final class PostReviewResource implements Resource
     /** @ApiProperty(identifier=true) */
     private ?ReviewId $id;
 
+    public function __construct()
+    {
+        $this->body   = null;
+        $this->author = null;
+    }
+
     public function toCommand(): Command
     {
         return new PostReview(

@@ -44,6 +44,11 @@ final class CreateBookResource implements Resource
     /** @ApiProperty(identifier=true) */
     private ?BookId $id;
 
+    public function __construct()
+    {
+        $this->isbn = null;
+    }
+
     public function toCommand(): Command
     {
         return new CreateBook(
