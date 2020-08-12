@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@api-platform/admin@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@api-platform/admin/-/admin-2.2.1.tgz#77a98a3759bb594644fb1b7e064bbe526700aa9c"
-  integrity sha512-irg0uWSG4EBqmCZ3uDNHqn1Q/WPzrWkLLyZRIhcfM8Lhb0R9ejOF+14K/CnD/KWYEObDkmzu7nxakJ/v9ZqyEA==
+"@api-platform/admin@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@api-platform/admin/-/admin-2.2.2.tgz#53d36f18d337a22046efab95fbc6207725a95771"
+  integrity sha512-gHEMaL5VJXBHR8LY89qgRiJxv5ZsqRudQyN6W6jwTCWOmna1xxhBhkONSu+I5gdVmV7VMypcVMgeZnNMVWVWQg==
   dependencies:
     "@api-platform/api-doc-parser" "^0.9.1"
     history "^4.7.2"
