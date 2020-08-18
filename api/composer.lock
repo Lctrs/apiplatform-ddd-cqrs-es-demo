@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f6651322ca18294fe7b25cf807e90a2",
+    "content-hash": "c9f31941ba20ca9d723ac99e91adcdba",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7932,16 +7932,16 @@
         },
         {
             "name": "ergebnis/composer-normalize",
-            "version": "2.6.1",
+            "version": "2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ergebnis/composer-normalize.git",
-                "reference": "6a8595060dd34b6373ecf7e8d7da56d97a6e0dfa"
+                "reference": "d697f180813561f2ea138e85f7b0b2c558ebc00e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ergebnis/composer-normalize/zipball/6a8595060dd34b6373ecf7e8d7da56d97a6e0dfa",
-                "reference": "6a8595060dd34b6373ecf7e8d7da56d97a6e0dfa",
+                "url": "https://api.github.com/repos/ergebnis/composer-normalize/zipball/d697f180813561f2ea138e85f7b0b2c558ebc00e",
+                "reference": "d697f180813561f2ea138e85f7b0b2c558ebc00e",
                 "shasum": ""
             },
             "require": {
@@ -7954,17 +7954,17 @@
             },
             "require-dev": {
                 "composer/composer": "^1.10.8 || ^2.0.0",
-                "composer/package-versions-deprecated": "^1.8.1",
-                "ergebnis/phpstan-rules": "~0.15.0",
-                "ergebnis/test-util": "~1.0.0",
+                "composer/package-versions-deprecated": "^1.10.99",
+                "ergebnis/phpstan-rules": "~0.15.1",
+                "ergebnis/test-util": "^1.0.0",
                 "jangregor/phpstan-prophecy": "~0.8.0",
                 "phpstan/extension-installer": "^1.0.4",
-                "phpstan/phpstan": "~0.12.32",
-                "phpstan/phpstan-deprecation-rules": "~0.12.4",
-                "phpstan/phpstan-phpunit": "~0.12.11",
-                "phpstan/phpstan-strict-rules": "~0.12.2",
+                "phpstan/phpstan": "~0.12.37",
+                "phpstan/phpstan-deprecation-rules": "~0.12.5",
+                "phpstan/phpstan-phpunit": "~0.12.16",
+                "phpstan/phpstan-strict-rules": "~0.12.4",
                 "phpunit/phpunit": "^7.5.20",
-                "symfony/filesystem": "^4.4.9"
+                "symfony/filesystem": "^4.4.11"
             },
             "type": "composer-plugin",
             "extra": {
@@ -7995,27 +7995,11 @@
             ],
             "funding": [
                 {
-                    "url": "https://cottonbureau.com/people/andreas-moller",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://paypal.me/localheinz",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.amazon.de/hz/wishlist/ls/2NCHMSJ4BC1OW",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.buymeacoffee.com/localheinz",
-                    "type": "custom"
-                },
-                {
                     "url": "https://github.com/localheinz",
                     "type": "github"
                 }
             ],
-            "time": "2020-07-06T06:52:50+00:00"
+            "time": "2020-08-17T08:57:07+00:00"
         },
         {
             "name": "ergebnis/json-normalizer",
@@ -9704,6 +9688,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-06-27T06:36:25+00:00"
         },
         {
