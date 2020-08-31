@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "39753836e2f6bedee40463544a68d459",
+    "content-hash": "7898dfdc212c60d90cf396f0379391d0",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4394,16 +4394,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v5.1.3",
+            "version": "v5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "c45c3f26d2ae7c5239e5ad420b0c2717dbbc0bcb"
+                "reference": "52e8a8a63f9e6ba56e83be076fd48cc309191e10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/c45c3f26d2ae7c5239e5ad420b0c2717dbbc0bcb",
-                "reference": "c45c3f26d2ae7c5239e5ad420b0c2717dbbc0bcb",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/52e8a8a63f9e6ba56e83be076fd48cc309191e10",
+                "reference": "52e8a8a63f9e6ba56e83be076fd48cc309191e10",
                 "shasum": ""
             },
             "require": {
@@ -4479,7 +4479,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-23T08:36:24+00:00"
+            "time": "2020-08-26T09:10:33+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
