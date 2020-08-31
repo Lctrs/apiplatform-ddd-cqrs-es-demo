@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19efcea8de7ab88c3b0c74ca2fd64d82",
+    "content-hash": "6262defa6ce7d3615062016c0edfb3ac",
     "packages": [
         {
             "name": "amphp/amp",
@@ -5377,16 +5377,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v5.1.3",
+            "version": "v5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "050dc633a598bdadbd49449500c87e30dabe5c58"
+                "reference": "edf00ab1692aa2ad19ba87e58273c825b9f39c93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/050dc633a598bdadbd49449500c87e30dabe5c58",
-                "reference": "050dc633a598bdadbd49449500c87e30dabe5c58",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/edf00ab1692aa2ad19ba87e58273c825b9f39c93",
+                "reference": "edf00ab1692aa2ad19ba87e58273c825b9f39c93",
                 "shasum": ""
             },
             "require": {
@@ -5459,7 +5459,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-06T13:23:11+00:00"
+            "time": "2020-08-30T07:26:18+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
