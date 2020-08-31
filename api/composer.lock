@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed7baefea60f287f749a38981138cfe0",
+    "content-hash": "a70045f536f0f99758f48250be661101",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4547,16 +4547,16 @@
         },
         {
             "name": "symfony/doctrine-bridge",
-            "version": "v5.1.3",
+            "version": "v5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-bridge.git",
-                "reference": "e88743167c3edc667f809f9b3558954bde1fbd89"
+                "reference": "31cb4cfe6b9452cc1916022e995a08de4005299a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/e88743167c3edc667f809f9b3558954bde1fbd89",
-                "reference": "e88743167c3edc667f809f9b3558954bde1fbd89",
+                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/31cb4cfe6b9452cc1916022e995a08de4005299a",
+                "reference": "31cb4cfe6b9452cc1916022e995a08de4005299a",
                 "shasum": ""
             },
             "require": {
@@ -4585,7 +4585,7 @@
                 "doctrine/cache": "~1.6",
                 "doctrine/collections": "~1.0",
                 "doctrine/data-fixtures": "^1.1",
-                "doctrine/dbal": "~2.4",
+                "doctrine/dbal": "~2.4|^3.0",
                 "doctrine/orm": "^2.6.3",
                 "doctrine/reflection": "~1.0",
                 "symfony/cache": "^5.1",
@@ -4657,7 +4657,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-23T16:55:47+00:00"
+            "time": "2020-08-21T17:19:47+00:00"
         },
         {
             "name": "symfony/doctrine-messenger",
