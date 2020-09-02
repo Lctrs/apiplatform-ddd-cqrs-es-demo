@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f83eacb547e92de235d5c62706c4281f",
+    "content-hash": "5aeaf8a3c38065724359e6676e00acde",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4807,7 +4807,7 @@
         },
         {
             "name": "symfony/error-handler",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/error-handler.git",
@@ -4878,7 +4878,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -5538,7 +5538,7 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
@@ -5613,16 +5613,16 @@
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "f829c240113986b60fda425c2533142e88efd7c4"
+                "reference": "3e32676e6cb5d2081c91a56783471ff8a7f7110b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/f829c240113986b60fda425c2533142e88efd7c4",
-                "reference": "f829c240113986b60fda425c2533142e88efd7c4",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/3e32676e6cb5d2081c91a56783471ff8a7f7110b",
+                "reference": "3e32676e6cb5d2081c91a56783471ff8a7f7110b",
                 "shasum": ""
             },
             "require": {
@@ -5722,7 +5722,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-31T06:18:12+00:00"
+            "time": "2020-09-02T08:15:18+00:00"
         },
         {
             "name": "symfony/messenger",
@@ -7114,7 +7114,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
