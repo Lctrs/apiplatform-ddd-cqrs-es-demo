@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57d7233bcadd9e964af96aa2031da85a",
+    "content-hash": "818feba1e3431d1790afd23800b61ae3",
     "packages": [
         {
             "name": "amphp/amp",
@@ -3910,7 +3910,7 @@
         },
         {
             "name": "symfony/amqp-messenger",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/amqp-messenger.git",
@@ -4661,7 +4661,7 @@
         },
         {
             "name": "symfony/doctrine-messenger",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-messenger.git",
@@ -5726,7 +5726,7 @@
         },
         {
             "name": "symfony/messenger",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/messenger.git",
@@ -6305,7 +6305,7 @@
         },
         {
             "name": "symfony/redis-messenger",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/redis-messenger.git",
