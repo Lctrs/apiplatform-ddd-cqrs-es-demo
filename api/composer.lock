@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5aeaf8a3c38065724359e6676e00acde",
+    "content-hash": "79d2a7a8a86a9213226008cad6c00330",
     "packages": [
         {
             "name": "amphp/amp",
@@ -6373,7 +6373,7 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
