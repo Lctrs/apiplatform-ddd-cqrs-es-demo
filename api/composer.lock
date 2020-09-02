@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e2edd0ded4169a3745b103a0bbcb728",
+    "content-hash": "039d0524dcad5a6bd778646220be2e2d",
     "packages": [
         {
             "name": "amphp/amp",
@@ -10776,7 +10776,7 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
