@@ -73,7 +73,7 @@
         "phpunit/phpunit": "^9.3.8",
         "psalm/plugin-phpunit": "^0.12.1",
         "symfony/finder": "~5.1.0",
-        "symfony/stopwatch": "~5.1.4",
+        "symfony/stopwatch": "~5.1.5",
         "symfony/web-profiler-bundle": "~5.1.5",
         "theofidry/alice-data-fixtures": "^1.2.1",
         "vimeo/psalm": "^3.15"
