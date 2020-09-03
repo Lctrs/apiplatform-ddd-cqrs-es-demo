@@ -42,7 +42,7 @@
         "symfony/serializer": "~5.1.5",
         "symfony/twig-bundle": "~5.1.5",
         "symfony/validator": "~5.1.4",
-        "symfony/yaml": "~5.1.4",
+        "symfony/yaml": "~5.1.5",
         "webmozart/assert": "^1.9.1"
     },
     "replace": {

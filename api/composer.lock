@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0a7d6bf87f9b2c9bf83fcc62823d214",
+    "content-hash": "fb2dd427c9c726229d7ff79bc22ab3aa",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7368,7 +7368,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
