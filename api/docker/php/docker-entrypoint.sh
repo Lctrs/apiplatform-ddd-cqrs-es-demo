@@ -27,18 +27,38 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 	fi
 
 	echo "Waiting for db to be ready..."
-	until bin/console doctrine:query:sql "SELECT 1" > /dev/null 2>&1; do
+	ATTEMPTS_LEFT_TO_REACH_DATABASE=60
+	until [ $ATTEMPTS_LEFT_TO_REACH_DATABASE -eq 0 ] || bin/console doctrine:query:sql "SELECT 1" > /dev/null 2>&1; do
 		sleep 1
+		ATTEMPTS_LEFT_TO_REACH_DATABASE=$((ATTEMPTS_LEFT_TO_REACH_DATABASE-1))
+		echo "Still waiting for db to be ready... Or maybe the db is not reachable. $ATTEMPTS_LEFT_TO_REACH_DATABASE attempts left"
 	done
+
+	if [ $ATTEMPTS_LEFT_TO_REACH_DATABASE -eq 0 ]; then
+		echo "The db is not up or not reachable"
+		exit 1
+	else
+	   echo "The db is now ready and reachable"
+	fi
+
+	echo "Waiting for event-store to be ready..."
+	ATTEMPTS_LEFT_TO_REACH_EVENT_STORE=60
+	until [ $ATTEMPTS_LEFT_TO_REACH_EVENT_STORE -eq 0 ] || curl -sf $EVENT_STORE_URL/stats > /dev/null 2>&1; do
+		sleep 1
+		ATTEMPTS_LEFT_TO_REACH_EVENT_STORE=$((ATTEMPTS_LEFT_TO_REACH_EVENT_STORE-1))
+		echo "Still waiting for event-store to be ready... Or maybe the event-store is not reachable. $ATTEMPTS_LEFT_TO_REACH_EVENT_STORE attempts left"
+	done
+
+	if [ $ATTEMPTS_LEFT_TO_REACH_EVENT_STORE -eq 0 ]; then
+		echo "The event-store is not up or not reachable"
+		exit 1
+	else
+	   echo "The event-store is now ready and reachable"
+	fi
 
 	if  [ "$APP_ENV" != 'prod' ] && [ "$1" = 'php-fpm' ]; then
 	    bin/console doctrine:schema:update --force --no-interaction
 	fi
-
-	echo "Waiting for event-store to be ready..."
-	until curl -sf $EVENT_STORE_URL/stats > /dev/null 2>&1; do
-		sleep 1
-	done
 
 	if [ -n "$STREAM" ]; then
 		curl -sSf -X POST "$EVENT_STORE_URL/projection/\$by_category/command/enable" -H "accept:application/json" -H "Content-Length:0" -u "$EVENT_STORE_CREDENTIALS" > /dev/null
