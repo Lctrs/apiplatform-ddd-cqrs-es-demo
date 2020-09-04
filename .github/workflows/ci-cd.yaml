@@ -9,7 +9,7 @@ on:
       - "**"
 
 env:
-  DOCKER_BUILDX_VERSION: '0.4.1'
+  DOCKER_BUILDX_VERSION: '0.4.2'
   DOCKER_COMPOSE_VERSION: '1.26.0'
   DOCKER_REGISTRY: quay.io
 
