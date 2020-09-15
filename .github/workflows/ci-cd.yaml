@@ -9,8 +9,9 @@ on:
       - "**"
 
 env:
-  DOCKER_BUILDX_VERSION: '0.4.2'
+  DOCKER_BUILDX_VERSION: 'v0.4.2'
   DOCKER_COMPOSE_VERSION: '1.27.1'
+  DOCKER_CONTEXT_NAME: 'api-platform'
   DOCKER_REGISTRY: quay.io
 
 jobs:
@@ -63,11 +64,14 @@ jobs:
             curl \
             jq
 
+      - name: "Create Docker context"
+        run: "docker context create ${{ env.DOCKER_CONTEXT_NAME }}"
+
       - name: Install Docker Buildx
-        run: |
-          mkdir -p ~/.docker/cli-plugins
-          curl -fsSL -o ~/.docker/cli-plugins/docker-buildx "https://github.com/docker/buildx/releases/download/v${DOCKER_BUILDX_VERSION}/buildx-v${DOCKER_BUILDX_VERSION}.linux-amd64"
-          chmod +x ~/.docker/cli-plugins/docker-buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          endpoint: "${{ env.DOCKER_CONTEXT_NAME }}"
+          version: "${{ env.DOCKER_BUILDX_VERSION }}"
 
       - name: Install Docker Compose
         run: |
