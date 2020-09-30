@@ -67,7 +67,7 @@
         "phpstan/extension-installer": "^1.0.5",
         "phpstan/phpstan": "^0.12.42",
         "phpstan/phpstan-deprecation-rules": "^0.12.5",
-        "phpstan/phpstan-doctrine": "^0.12.19",
+        "phpstan/phpstan-doctrine": "^0.12.20",
         "phpstan/phpstan-symfony": "^0.12.7",
         "phpstan/phpstan-webmozart-assert": "^0.12.7",
         "phpunit/phpunit": "^9.3.10",

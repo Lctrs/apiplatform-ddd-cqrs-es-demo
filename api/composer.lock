@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67dd30c15521247a4d915b145cad9605",
+    "content-hash": "dfb7cb308faa15b9f34830617c051088",
     "packages": [
         {
             "name": "amphp/amp",
@@ -9100,16 +9100,16 @@
         },
         {
             "name": "phpstan/phpstan-doctrine",
-            "version": "0.12.19",
+            "version": "0.12.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-doctrine.git",
-                "reference": "78376cbf68e0c30c2ff16d6e38f3acf1fdd386b4"
+                "reference": "207a6aedf0ca95c57fb041f3b3c82bcb6e66ad27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/78376cbf68e0c30c2ff16d6e38f3acf1fdd386b4",
-                "reference": "78376cbf68e0c30c2ff16d6e38f3acf1fdd386b4",
+                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/207a6aedf0ca95c57fb041f3b3c82bcb6e66ad27",
+                "reference": "207a6aedf0ca95c57fb041f3b3c82bcb6e66ad27",
                 "shasum": ""
             },
             "require": {
@@ -9162,7 +9162,7 @@
                 "MIT"
             ],
             "description": "Doctrine extensions for PHPStan",
-            "time": "2020-07-21T14:46:27+00:00"
+            "time": "2020-09-25T13:34:35+00:00"
         },
         {
             "name": "phpstan/phpstan-symfony",
