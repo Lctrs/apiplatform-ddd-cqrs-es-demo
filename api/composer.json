@@ -11,7 +11,7 @@
         "amphp/amp": "^2.5.0",
         "api-platform/core": "^2.5.7",
         "doctrine/annotations": "^1.10.4",
-        "doctrine/dbal": "^2.10.4",
+        "doctrine/dbal": "^2.11.1",
         "doctrine/doctrine-bundle": "^2.1.2",
         "doctrine/orm": "^2.7.3",
         "guzzlehttp/guzzle": "^7.0.1",
