@@ -71,7 +71,7 @@
         "phpstan/phpstan-symfony": "^0.12.7",
         "phpstan/phpstan-webmozart-assert": "^0.12.7",
         "phpunit/phpunit": "^9.3.10",
-        "psalm/plugin-phpunit": "^0.12.1",
+        "psalm/plugin-phpunit": "^0.12.2",
         "symfony/finder": "~5.1.0",
         "symfony/stopwatch": "~5.1.5",
         "symfony/web-profiler-bundle": "~5.1.6",
