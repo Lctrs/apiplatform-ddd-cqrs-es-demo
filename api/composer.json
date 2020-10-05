@@ -36,7 +36,7 @@
         "symfony/framework-bundle": "~5.1.5",
         "symfony/http-client": "~5.1.6",
         "symfony/http-client-contracts": "^2.2.0",
-        "symfony/http-kernel": "~5.1.6",
+        "symfony/http-kernel": "~5.1.7",
         "symfony/messenger": "~5.1.6",
         "symfony/routing": "~5.1.6",
         "symfony/serializer": "~5.1.6",
