@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fe340c97be830531f9457f4002e6a41",
+    "content-hash": "7e5c8baadc624a310401b223ba2f2901",
     "packages": [
         {
             "name": "amphp/amp",
@@ -10764,7 +10764,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v5.1.6",
+            "version": "v5.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
