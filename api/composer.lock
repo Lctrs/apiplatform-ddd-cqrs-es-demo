@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a2fd047b0cec8281525b220fb626587a",
+    "content-hash": "5fe340c97be830531f9457f4002e6a41",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7022,7 +7022,7 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v5.1.6",
+            "version": "v5.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
