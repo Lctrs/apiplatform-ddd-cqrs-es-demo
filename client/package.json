@@ -6,7 +6,7 @@
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
-    "@testing-library/user-event": "^12.1.7",
+    "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.5.2",
     "connected-react-router": "^6.8.0",
     "lodash.get": "^4.4.2",
