@@ -10,7 +10,7 @@ updates:
     labels:
       - "dependency"
     open-pull-requests-limit: 10
-    package-ecosystem: "npm"
+    #package-ecosystem: "npm"
     schedule:
       interval: "monthly"
     versioning-strategy: "increase"
@@ -22,7 +22,7 @@ updates:
     labels:
       - "dependency"
     open-pull-requests-limit: 20
-    package-ecosystem: "composer"
+    #package-ecosystem: "composer"
     schedule:
       interval: "monthly"
     versioning-strategy: "increase"
@@ -92,7 +92,7 @@ updates:
     labels:
       - "dependency"
     open-pull-requests-limit: 10
-    package-ecosystem: "npm"
+    #package-ecosystem: "npm"
     schedule:
       interval: "monthly"
     versioning-strategy: "increase"
@@ -104,6 +104,6 @@ updates:
     labels:
       - "dependency"
     open-pull-requests-limit: 10
-    package-ecosystem: "github-actions"
+    #package-ecosystem: "github-actions"
     schedule:
       interval: "monthly"
