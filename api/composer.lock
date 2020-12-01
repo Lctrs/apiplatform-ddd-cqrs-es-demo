@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3d44124e7ebe12b9e0a7e24528f3e03",
+    "content-hash": "6a7af00f1e26e69b04ecf33e5b76960a",
     "packages": [
         {
             "name": "amphp/amp",
@@ -10640,16 +10640,16 @@
         },
         {
             "name": "theofidry/alice-data-fixtures",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theofidry/AliceDataFixtures.git",
-                "reference": "f2c9e5432c9e0a61f2d4d6440c295a412951945e"
+                "reference": "51e0e6dfbc191226feb1cbf90f8ab6ba98c99c97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theofidry/AliceDataFixtures/zipball/f2c9e5432c9e0a61f2d4d6440c295a412951945e",
-                "reference": "f2c9e5432c9e0a61f2d4d6440c295a412951945e",
+                "url": "https://api.github.com/repos/theofidry/AliceDataFixtures/zipball/51e0e6dfbc191226feb1cbf90f8ab6ba98c99c97",
+                "reference": "51e0e6dfbc191226feb1cbf90f8ab6ba98c99c97",
                 "shasum": ""
             },
             "require": {
@@ -10723,7 +10723,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-08T13:41:37+00:00"
+            "time": "2020-11-29T19:28:35+00:00"
         },
         {
             "name": "theseer/tokenizer",
