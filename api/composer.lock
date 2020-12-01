@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c7f69b291e28dc39277c494300cc0b2",
+    "content-hash": "1127499d11920985ddbb8c35c7d207ae",
     "packages": [
         {
             "name": "amphp/amp",
@@ -6260,16 +6260,16 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v5.1.8",
+            "version": "v5.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "20d3c6c58c41344a427488c0d2902bfbfbe17ddb"
+                "reference": "5bc62ff6cd4678363ae19a633667fd318b1a72f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/20d3c6c58c41344a427488c0d2902bfbfbe17ddb",
-                "reference": "20d3c6c58c41344a427488c0d2902bfbfbe17ddb",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/5bc62ff6cd4678363ae19a633667fd318b1a72f7",
+                "reference": "5bc62ff6cd4678363ae19a633667fd318b1a72f7",
                 "shasum": ""
             },
             "require": {
@@ -6348,7 +6348,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-24T12:01:57+00:00"
+            "time": "2020-11-27T05:53:16+00:00"
         },
         {
             "name": "symfony/service-contracts",
