@@ -8,9 +8,8 @@ abstract class AggregateRepository
 {
     protected EventStore $eventStore;
     protected string $streamCategory;
-    /** @psalm-var class-string<AggregateRoot> */
+    /** @var class-string<AggregateRoot> */
     protected string $aggregateRootClassName;
-    protected bool $optimisticConcurrency;
 
     /**
      * @psalm-param class-string<AggregateRoot> $aggregateRootClassName
@@ -18,18 +17,16 @@ abstract class AggregateRepository
     public function __construct(
         EventStore $eventStore,
         string $streamCategory,
-        string $aggregateRootClassName,
-        bool $useOptimisticConcurrencyByDefault = true
+        string $aggregateRootClassName
     ) {
         $this->eventStore             = $eventStore;
         $this->streamCategory         = $streamCategory;
         $this->aggregateRootClassName = $aggregateRootClassName;
-        $this->optimisticConcurrency  = $useOptimisticConcurrencyByDefault;
     }
 
     public function saveAggregateRoot(AggregateRoot $aggregateRoot): void
     {
-        $this->eventStore->save($aggregateRoot, $this->streamCategory, $this->optimisticConcurrency);
+        $this->eventStore->save($aggregateRoot, $this->streamCategory);
     }
 
     /**

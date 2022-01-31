@@ -12,7 +12,6 @@ use App\Core\Domain\DomainEvent;
 use App\Core\Domain\IdentifiesAggregate;
 use RuntimeException;
 
-use function get_class;
 use function sprintf;
 
 final class Review extends AggregateRoot
@@ -64,7 +63,7 @@ final class Review extends AggregateRoot
 
     protected function apply(DomainEvent $event): void
     {
-        switch (get_class($event)) {
+        switch ($event::class) {
             case ReviewWasPosted::class:
                 $this->whenReviewWasPosted($event);
                 break;
@@ -73,7 +72,7 @@ final class Review extends AggregateRoot
             default:
                 throw new RuntimeException(sprintf(
                     'Missing event "%s" handler method for aggregate root "%s".',
-                    get_class($event),
+                    $event::class,
                     static::class
                 ));
         }

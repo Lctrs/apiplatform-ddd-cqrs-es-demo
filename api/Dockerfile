@@ -3,14 +3,8 @@
 # https://docs.docker.com/compose/compose-file/#target
 
 
-# https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
-ARG PHP_VERSION=7.4
-ARG NGINX_VERSION=1.17
-ARG VARNISH_VERSION=6.4
-
-
 # "php" stage
-FROM php:${PHP_VERSION}-fpm-alpine AS api_platform_php
+FROM docker.io/php:8.0.13-fpm-alpine3.14@sha256:0be684d6a506b4fda4b087bf356f394fb855a3a851449041cf06c4817321113e AS api_platform_php
 
 # persistent / runtime deps
 RUN apk add --no-cache \
@@ -19,9 +13,14 @@ RUN apk add --no-cache \
 		file \
 		gettext \
 		git \
+		gnu-libiconv \
 	;
 
-ARG APCU_VERSION=5.1.18
+# install gnu-libiconv and set LD_PRELOAD env to make iconv work fully on Alpine image.
+# see https://github.com/docker-library/php/issues/240#issuecomment-763112749
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so
+
+ARG APCU_VERSION=5.1.21
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
@@ -31,9 +30,9 @@ RUN set -eux; \
 		zlib-dev \
 	; \
 	\
+	docker-php-ext-configure zip; \
 	docker-php-ext-install -j$(nproc) \
 		intl \
-		pcntl \
 		pdo_pgsql \
 		zip \
 	; \
@@ -56,23 +55,20 @@ RUN set -eux; \
 	\
 	apk del .build-deps
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+###> recipes ###
+###< recipes ###
+
+COPY --from=docker.io/composer:2.1.12@sha256:2011c9be58ab38fd6dbc9a7403b5974bd3f5d2cc3febfdcbdc96385ed64ca9d1 /usr/bin/composer /usr/bin/composer
 
 RUN ln -s $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 COPY docker/php/conf.d/api-platform.prod.ini $PHP_INI_DIR/conf.d/api-platform.ini
 
-RUN set -eux; \
-	{ \
-		echo '[www]'; \
-		echo 'ping.path = /ping'; \
-	} | tee /usr/local/etc/php-fpm.d/docker-healthcheck.conf
+COPY docker/php/php-fpm.d/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+
+VOLUME /var/run/php
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
-# install Symfony Flex globally to speed up download of Composer packages (parallelized prefetching)
-RUN set -eux; \
-	composer global require "symfony/flex" --prefer-dist --no-progress --no-suggest --classmap-authoritative; \
-	composer clear-cache
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 WORKDIR /srv/api
@@ -83,23 +79,21 @@ ARG APP_ENV=prod
 # prevent the reinstallation of vendors at every changes in the source code
 COPY composer.json composer.lock symfony.lock ./
 RUN set -eux; \
-	composer install --prefer-dist --no-dev --no-scripts --no-progress --no-suggest; \
+	composer install --prefer-dist --no-dev --no-scripts --no-progress; \
 	composer clear-cache
 
-# do not use .env files in production
-COPY .env ./
-RUN composer dump-env prod; \
-	rm .env
-
 # copy only specifically what we need
+COPY .env ./
 COPY bin bin/
 COPY config config/
 COPY public public/
 COPY src src/
+COPY templates templates/
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
 	composer dump-autoload --classmap-authoritative --no-dev; \
+	composer dump-env prod; \
 	composer run-script --no-dev post-install-cmd; \
 	chmod +x bin/console; sync
 VOLUME /srv/api/var
@@ -112,126 +106,26 @@ HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
 COPY docker/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
 
+ENV SYMFONY_PHPUNIT_VERSION=9
+
 ENTRYPOINT ["docker-entrypoint"]
 CMD ["php-fpm"]
 
-
-# "nginx" stage
+# "caddy" stage
 # depends on the "php" stage above
-FROM nginx:${NGINX_VERSION}-alpine AS api_platform_nginx
+FROM docker.io/caddy:2.4.6-builder-alpine@sha256:06dc49e3dbb79ad5d4db093ea4acdc41cf4634b0f40574c946530e9fe483ade3 AS api_platform_caddy_builder
 
-COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+# install Mercure and Vulcain modules
+RUN xcaddy build \
+    --with github.com/dunglas/mercure \
+    --with github.com/dunglas/mercure/caddy \
+    --with github.com/dunglas/vulcain \
+    --with github.com/dunglas/vulcain/caddy
 
-WORKDIR /srv/api/public
-
-COPY --from=api_platform_php /srv/api/public ./
-
-
-# "varnish" stage
-# does not depend on any of the above stages, but placed here to keep everything in one Dockerfile
-FROM varnish:${VARNISH_VERSION} AS api_platform_varnish
-
-COPY docker/varnish/conf/default.vcl /etc/varnish/default.vcl
-
-CMD ["varnishd", "-F", "-f", "/etc/varnish/default.vcl", "-p", "http_resp_hdr_len=65536", "-p", "http_resp_size=98304"]
-
-
-# "projection" stage
-FROM php:${PHP_VERSION}-cli-alpine AS api_platform_projection
-
-# persistent / runtime deps
-RUN apk add --no-cache \
-		acl \
-		file \
-		gettext \
-		git \
-	;
-
-ARG APCU_VERSION=5.1.18
-ARG PROTOBUF_VERSION=3.11.3
-ARG EV_VERSION=1.0.8
-RUN set -eux; \
-	apk add --no-cache --virtual .build-deps \
-		$PHPIZE_DEPS \
-		icu-dev \
-		libzip-dev \
-		postgresql-dev \
-		zlib-dev \
-	; \
-	\
-	docker-php-ext-install -j$(nproc) \
-		intl \
-		pcntl \
-		pdo_pgsql \
-		zip \
-	; \
-	pecl install \
-		apcu-${APCU_VERSION} \
-		ev-${EV_VERSION} \
-		protobuf-${PROTOBUF_VERSION} \
-	; \
-	pecl clear-cache; \
-	docker-php-ext-enable \
-		apcu \
-		ev \
-		opcache \
-		protobuf \
-	; \
-	\
-	runDeps="$( \
-		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
-			| tr ',' '\n' \
-			| sort -u \
-			| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
-	)"; \
-	apk add --no-cache --virtual .api-phpexts-rundeps $runDeps; \
-	\
-	apk del .build-deps
-
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-RUN ln -s $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
-COPY docker/php/conf.d/api-platform.prod.ini $PHP_INI_DIR/conf.d/api-platform.ini
-
-# https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
-ENV COMPOSER_ALLOW_SUPERUSER=1
-# install Symfony Flex globally to speed up download of Composer packages (parallelized prefetching)
-RUN set -eux; \
-	composer global require "symfony/flex" --prefer-dist --no-progress --no-suggest --classmap-authoritative; \
-	composer clear-cache
-ENV PATH="${PATH}:/root/.composer/vendor/bin"
+FROM docker.io/caddy:2.4.6@sha256:7da0f90273e1961d9c38d26809f84d4ef3cdc9b4fc330a9cab22015d7c9e8228 AS api_platform_caddy
 
 WORKDIR /srv/api
 
-# build for production
-ARG APP_ENV=prod
-
-# prevent the reinstallation of vendors at every changes in the source code
-COPY composer.json composer.lock symfony.lock ./
-RUN set -eux; \
-	composer install --prefer-dist --no-dev --no-scripts --no-progress --no-suggest; \
-	composer clear-cache
-
-# do not use .env files in production
-COPY .env ./
-RUN composer dump-env prod; \
-	rm .env
-
-# copy only specifically what we need
-COPY bin bin/
-COPY config config/
-COPY public public/
-COPY src src/
-
-RUN set -eux; \
-	mkdir -p var/cache var/log; \
-	composer dump-autoload --classmap-authoritative --no-dev; \
-	composer run-script --no-dev post-install-cmd; \
-	chmod +x bin/console; sync
-VOLUME /srv/api/var
-
-COPY docker/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
-RUN chmod +x /usr/local/bin/docker-entrypoint
-
-ENTRYPOINT ["docker-entrypoint"]
-CMD ["php", "-a"]
+COPY --from=api_platform_caddy_builder /usr/bin/caddy /usr/bin/caddy
+COPY --from=api_platform_php /srv/api/public public/
+COPY docker/caddy/Caddyfile /etc/caddy/Caddyfile

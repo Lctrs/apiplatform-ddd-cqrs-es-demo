@@ -25,7 +25,7 @@ final class HttpEventStore implements EventStore
         $this->transformer = $transformer;
     }
 
-    public function save(AggregateRoot $aggregateRoot, string $streamCategory, bool $optimisticConcurrency): void
+    public function save(AggregateRoot $aggregateRoot, string $streamCategory): void
     {
         $domainEvents = $aggregateRoot->popRecordedEvents();
 
@@ -43,7 +43,7 @@ final class HttpEventStore implements EventStore
         }
 
         $expectedVersion = $optimisticConcurrency
-            ? $aggregateRoot->expectedVersion()
+            ? $aggregateRoot->version()
             : ExpectedVersion::ANY;
 
         $writeResult = $this->connection
@@ -53,7 +53,7 @@ final class HttpEventStore implements EventStore
                 $eventData
             );
 
-        $aggregateRoot->setExpectedVersion(
+        $aggregateRoot->setVersion(
             $writeResult->nextExpectedVersion()
         );
     }

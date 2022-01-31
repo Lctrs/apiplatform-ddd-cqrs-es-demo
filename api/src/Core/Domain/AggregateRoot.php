@@ -4,46 +4,32 @@ declare(strict_types=1);
 
 namespace App\Core\Domain;
 
-use Prooph\EventStore\ExpectedVersion;
 
 abstract class AggregateRoot
 {
-    private int $expectedVersion = ExpectedVersion::EMPTY_STREAM;
-    /** @var DomainEvent[] */
+    private int $version = 0;
+
+    /** @var list<DomainEvent> */
     private array $recordedEvents = [];
 
     final protected function __construct()
     {
     }
 
-    final public function expectedVersion(): int
-    {
-        return $this->expectedVersion;
-    }
-
-    final public function setExpectedVersion(int $version): void
-    {
-        $this->expectedVersion = $version;
-    }
-
     /**
-     * @return iterable|DomainEvent[]
-     *
-     * @psalm-return iterable<DomainEvent>
+     * @return list<DomainEvent>
      */
-    final public function popRecordedEvents(): iterable
+    final public function popRecordedEvents(): array
     {
-        $pendingEvents = $this->recordedEvents;
-
-        $this->recordedEvents = [];
-
-        return $pendingEvents;
+        try {
+            return $this->recordedEvents;
+        } finally {
+            $this->recordedEvents = [];
+        }
     }
 
     /**
-     * @param iterable|DomainEvent[] $historyEvents
-     *
-     * @psalm-param iterable<DomainEvent> $historyEvents
+     * @param iterable<DomainEvent> $historyEvents
      */
     final public static function reconstituteFromHistory(iterable $historyEvents): self
     {
@@ -54,9 +40,7 @@ abstract class AggregateRoot
     }
 
     /**
-     * @param iterable|DomainEvent[] $historyEvents
-     *
-     * @psalm-param iterable<DomainEvent> $historyEvents
+     * @param iterable<DomainEvent> $historyEvents
      */
     final public function replay(iterable $historyEvents): void
     {
@@ -67,7 +51,9 @@ abstract class AggregateRoot
 
     final protected function recordThat(DomainEvent $event): void
     {
-        $this->recordedEvents[] = $event;
+        ++$this->version;
+
+        $this->recordedEvents[] = $event->withVersion($this->version);
 
         $this->apply($event);
     }

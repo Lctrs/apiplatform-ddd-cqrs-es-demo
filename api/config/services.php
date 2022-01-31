@@ -17,92 +17,38 @@ use App\Book\Infrastructure\Persistence\EventStore\EventStoreReviewList;
 use App\Book\Infrastructure\Projection\BookEventAppeared;
 use App\Book\Infrastructure\Projection\ReviewEventAppeared;
 use App\Core\Domain\EventStore;
-use App\Core\Infrastructure\Bridge\Prooph\DomainEventTransformer;
-use App\Core\Infrastructure\EventStore\Cli\CreatePersistentSubscriptions;
-use App\Core\Infrastructure\EventStore\Cli\RunProjections;
-use App\Core\Infrastructure\EventStore\Http\HttpEventStore;
-use App\Core\Infrastructure\Projection\PersistentSubscriptionSubscriber;
+use App\Core\Infrastructure\Prooph\EventStore\DomainEventTransformer;
+use App\Core\Infrastructure\Prooph\EventStore\EventStoreUsingProoph;
+use App\Greeting\Domain\Model\Event\SomeoneHasBeenGreeted;
 use Doctrine\ORM\EntityManagerInterface;
-use Http\Message\RequestFactory;
-use Prooph\EventStore\Async\EventStoreConnection as AsyncEventStoreConnection;
-use Prooph\EventStore\EventStoreConnection;
-use Prooph\EventStoreClient\ConnectionSettingsBuilder;
-use Prooph\EventStoreClient\EventStoreConnectionFactory as AsyncEventStoreConnectionFactory;
-use Prooph\EventStoreHttpClient\ConnectionSettings;
-use Prooph\EventStoreHttpClient\ConnectionString;
-use Prooph\EventStoreHttpClient\EventStoreConnectionFactory;
-use Psr\Http\Message\ResponseFactoryInterface;
-use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Log\LoggerInterface;
+use Prooph\EventStore\EventStore as ProophEventStore;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\HttpClient\Psr18Client;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-use function Symfony\Component\DependencyInjection\Loader\Configurator\inline_service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_locator;
 
 return static function (ContainerConfigurator $container): void {
     $services = $container->services();
-    $services
-        ->defaults()
-        ->autoconfigure();
-
-    $services
-        ->instanceof(PersistentSubscriptionSubscriber::class)
-        ->tag('app.persistent_subscription_subscriber');
-
-    $services
-        ->set(ConnectionSettingsBuilder::class)
-        ->call('useCustomLogger', [service(LoggerInterface::class)])
-        ->call('enableVerboseLogging');
-    $services
-        ->set(AsyncEventStoreConnection::class)
-        ->factory([AsyncEventStoreConnectionFactory::class, 'createFromConnectionString'])
-        ->args([
-            '%env(resolve:EVENT_STORE_ASYNC_DSN)%',
-            inline_service(ConnectionSettings::class)
-                ->factory([service(ConnectionSettingsBuilder::class), 'build']),
-        ])
-        ->call('connectAsync');
-
-    $services
-        ->set(EventStoreConnection::class)
-        ->factory([EventStoreConnectionFactory::class, 'create'])
-        ->args([
-            inline_service(ConnectionSettings::class)
-                ->factory([ConnectionString::class, 'getConnectionSettings'])
-                ->args(['%env(resolve:EVENT_STORE_DSN)%']),
-            inline_service(Psr18Client::class)
-                ->args([
-                    service(HttpClientInterface::class),
-                    service(ResponseFactoryInterface::class),
-                    service(StreamFactoryInterface::class),
-                ]),
-            service(RequestFactory::class),
-        ]);
 
     $services
         ->set(DomainEventTransformer::class)
-        ->arg(0, [
-            BookWasCreated::MESSAGE_NAME => BookWasCreated::class,
-            BookWasDeleted::MESSAGE_NAME => BookWasDeleted::class,
-            ReviewWasDeleted::MESSAGE_NAME => ReviewWasDeleted::class,
-            ReviewWasPosted::MESSAGE_NAME => ReviewWasPosted::class,
+        ->args([
+            [
+                SomeoneHasBeenGreeted::MESSAGE_NAME => SomeoneHasBeenGreeted::class,
+            ],
         ]);
 
     $services
-        ->set(HttpEventStore::class)
+        ->set(EventStoreUsingProoph::class)
         ->args([
-            service(EventStoreConnection::class),
+            service(ProophEventStore::class),
             service(DomainEventTransformer::class),
         ]);
-    $services->alias(EventStore::class, HttpEventStore::class);
+    $services->alias(EventStore::class, EventStoreUsingProoph::class);
 
     $services
         ->set(EventStoreBookList::class)
         ->args([
-            service(HttpEventStore::class),
+            service(EventStore::class),
         ]);
     $services->alias(BookList::class, EventStoreBookList::class);
 
@@ -122,7 +68,7 @@ return static function (ContainerConfigurator $container): void {
     $services
         ->set(EventStoreReviewList::class)
         ->args([
-            service(HttpEventStore::class),
+            service(EventStore::class),
         ]);
     $services->alias(ReviewList::class, EventStoreReviewList::class);
 
@@ -149,17 +95,5 @@ return static function (ContainerConfigurator $container): void {
         ->args([
             service(EntityManagerInterface::class),
             service(DomainEventTransformer::class),
-        ]);
-
-    $services
-        ->set(CreatePersistentSubscriptions::class)
-        ->args([
-            service(EventStoreConnection::class),
-        ]);
-    $services
-        ->set(RunProjections::class)
-        ->args([
-            service(AsyncEventStoreConnection::class),
-            tagged_locator('app.persistent_subscription_subscriber', null, 'persistentSubscriptionName'),
         ]);
 };

@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.11.2@d470903722cfcbc1cd04744c5491d3e6d13ec3d9">
-  <file src="src/Core/Infrastructure/ApiPlatform/DataPersister/CommandBusPersister.php">
-    <MixedInferredReturnType occurrences="1">
-      <code>persist</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$handledStamp-&gt;getResult()</code>
-    </MixedReturnStatement>
-  </file>
-  <file src="src/Core/Infrastructure/Bridge/Prooph/DomainEventTransformer.php">
-    <MixedArgumentTypeCoercion occurrences="1">
-      <code>$payload</code>
-    </MixedArgumentTypeCoercion>
+<files psalm-version="4.9.3@4c262932602b9bbab5020863d1eb22d49de0dbf4">
+  <file src="src/ParserBuilder.php">
+    <InvalidArgument occurrences="8">
+      <code>$group($expr)</code>
+      <code>$term</code>
+      <code>static fn (Expression $expression): Group =&gt; new Group($expression)</code>
+    </InvalidArgument>
   </file>
 </files>

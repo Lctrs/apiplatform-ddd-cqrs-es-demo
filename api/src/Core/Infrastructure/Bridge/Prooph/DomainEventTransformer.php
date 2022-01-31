@@ -5,10 +5,6 @@ declare(strict_types=1);
 namespace App\Core\Infrastructure\Bridge\Prooph;
 
 use App\Core\Domain\DomainEvent;
-use Prooph\EventStore\EventData;
-use Prooph\EventStore\EventId;
-use Prooph\EventStore\ResolvedEvent;
-use Prooph\EventStore\Util\Json;
 use RuntimeException;
 
 use function assert;
@@ -16,15 +12,11 @@ use function is_array;
 
 final class DomainEventTransformer
 {
-    /**
-     * @var array<string, string>
-     * @psalm-var array<string, class-string<DomainEvent>>
-     */
+    /** @var array<string, class-string<DomainEvent>> */
     private array $map;
 
     /**
      * @param array<string, string> $map
-     *
      * @psalm-param array<string, class-string<DomainEvent>> $map
      */
     public function __construct(array $map)

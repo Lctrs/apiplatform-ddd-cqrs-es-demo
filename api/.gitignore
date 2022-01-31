@@ -1,4 +1,5 @@
-/docker/db/data
+/.build/
+/docker/database/data
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -9,12 +10,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-###> squizlabs/php_codesniffer ###
-/.phpcs-cache
-/phpcs.xml
-###< squizlabs/php_codesniffer ###
-###> phpunit/phpunit ###
-/phpunit.xml
+###> symfony/phpunit-bridge ###
 .phpunit.result.cache
-###< phpunit/phpunit ###
+/phpunit.xml
+###< symfony/phpunit-bridge ###

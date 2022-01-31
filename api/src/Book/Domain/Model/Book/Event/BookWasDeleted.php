@@ -6,6 +6,7 @@ namespace App\Book\Domain\Model\Book\Event;
 
 use App\Book\Domain\Model\Book\BookId;
 use App\Core\Domain\DomainEvent;
+use DateTimeImmutable;
 use Prooph\EventStore\EventId;
 
 final class BookWasDeleted implements DomainEvent
@@ -13,11 +14,13 @@ final class BookWasDeleted implements DomainEvent
     public const MESSAGE_NAME = 'book-was-deleted';
 
     private ?string $eventId = null;
+    private DateTimeImmutable $occurredOn;
     private BookId $bookId;
 
     private function __construct(BookId $bookId)
     {
-        $this->bookId = $bookId;
+        $this->occurredOn = new DateTimeImmutable();
+        $this->bookId     = $bookId;
     }
 
     public static function with(BookId $bookId): self
@@ -38,6 +41,11 @@ final class BookWasDeleted implements DomainEvent
     public function eventType(): string
     {
         return self::MESSAGE_NAME;
+    }
+
+    public function occurredOn(): DateTimeImmutable
+    {
+        return $this->occurredOn;
     }
 
     /**

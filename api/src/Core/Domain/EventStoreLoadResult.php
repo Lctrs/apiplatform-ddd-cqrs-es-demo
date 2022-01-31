@@ -21,9 +21,7 @@ final class EventStoreLoadResult
     }
 
     /**
-     * @return iterable|DomainEvent[]
-     *
-     * @psalm-return iterable<DomainEvent>
+     * @return iterable<DomainEvent>
      */
     public function domainEvents(): iterable
     {

@@ -1,0 +1,51 @@
+# https://help.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+
+updates:
+  - commit-message:
+      include: "scope"
+      prefix: "composer"
+    directory: "/api"
+    labels:
+      - "dependency"
+    open-pull-requests-limit: 10
+    package-ecosystem: "composer"
+    schedule:
+      interval: "daily"
+    versioning-strategy: "increase"
+
+  - commit-message:
+      include: "scope"
+      prefix: "docker"
+    directory: "/api"
+    labels:
+      - "dependency"
+    open-pull-requests-limit: 10
+    package-ecosystem: "docker"
+    schedule:
+      interval: "daily"
+    versioning-strategy: "increase"
+
+  - commit-message:
+      include: "scope"
+      prefix: "docker"
+    directory: "/pwa"
+    labels:
+      - "dependency"
+    open-pull-requests-limit: 10
+    package-ecosystem: "docker"
+    schedule:
+      interval: "daily"
+    versioning-strategy: "increase"
+
+  - commit-message:
+      include: "scope"
+      prefix: "github-actions"
+    directory: "/"
+    labels:
+      - "dependency"
+    open-pull-requests-limit: 0
+    package-ecosystem: "github-actions"
+    schedule:
+      interval: "daily"

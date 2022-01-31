@@ -3,44 +3,27 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    cacheDirectory=".build/psalm"
     errorBaseline="psalm-baseline.xml"
+    errorLevel="1"
+    findUnusedVariablesAndParams="true"
     resolveFromConfigFile="true"
-    totallyTyped="true"
+    strictBinaryOperands="true"
 >
-    <issueHandlers>
-        <InternalMethod>
-            <errorLevel type="suppress">
-                <directory name="src/*/Infrastructure/EventStore"/>
-            </errorLevel>
-        </InternalMethod>
-        <InternalClass>
-            <errorLevel type="suppress">
-                <directory name="src/*/Infrastructure/EventStore"/>
-            </errorLevel>
-        </InternalClass>
-        <LessSpecificReturnType errorLevel="info"/>
-        <MoreSpecificImplementedParamType>
-            <errorLevel type="suppress">
-                <directory name="src/*/Domain/Model/*/Event"/>
-            </errorLevel>
-        </MoreSpecificImplementedParamType>
-        <PropertyNotSetInConstructor errorLevel="suppress"/>
-    </issueHandlers>
-
     <plugins>
-        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin" />
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
+            <containerXml>var/cache/test/App_KernelTestDebugContainer.xml</containerXml>
+        </pluginClass>
     </plugins>
 
     <projectFiles>
-        <file name="config/services.php"/>
-        <directory name="devtools"/>
-        <directory name="src"/>
-        <directory name="tests"/>
+        <directory name="config/" />
+        <directory name="src/" />
+        <directory name="tests/" />
         <ignoreFiles>
-            <file name="config/bootstrap.php"/>
-            <file name="src/Kernel.php"/>
-            <file name="tests/bootstrap.php"/>
-            <directory name="vendor"/>
+            <directory name="var/" />
+            <directory name="vendor/" />
         </ignoreFiles>
     </projectFiles>
 </psalm>

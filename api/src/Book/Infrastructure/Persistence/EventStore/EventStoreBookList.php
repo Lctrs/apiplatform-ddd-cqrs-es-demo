@@ -19,8 +19,7 @@ final class EventStoreBookList extends AggregateRepository implements BookList
         parent::__construct(
             $eventStore,
             'book',
-            Book::class,
-            true
+            Book::class
         );
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -13,16 +15,17 @@ class Kernel extends BaseKernel
 
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        $container->import('../config/{packages}/*.yaml');
-        $container->import('../config/{packages}/'.$this->environment.'/*.yaml');
-        $container->import('../config/{services}.php');
-        $container->import('../config/{services}_'.$this->environment.'.yaml');
+        $container->import('../config/{packages}/*.php');
+        $container->import('../config/{packages}/' . $this->environment . '/*.php');
+
+        $container->import('../config/services.php');
     }
 
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $routes->import('../config/{routes}/'.$this->environment.'/*.yaml');
-        $routes->import('../config/{routes}/*.yaml');
-        $routes->import('../config/{routes}.yaml');
+        $routes->import('../config/{routes}/' . $this->environment . '/*.php');
+        $routes->import('../config/{routes}/*.php');
+
+        $routes->import('../config/routes.php');
     }
 }

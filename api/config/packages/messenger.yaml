@@ -1,4 +1,0 @@
-framework:
-    messenger:
-        buses:
-            command.bus: null

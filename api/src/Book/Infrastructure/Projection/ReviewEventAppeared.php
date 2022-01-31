@@ -16,8 +16,6 @@ use LogicException;
 use Prooph\EventStore\Async\EventStorePersistentSubscription;
 use Prooph\EventStore\ResolvedEvent;
 
-use function get_class;
-
 final class ReviewEventAppeared implements PersistentSubscriptionSubscriber
 {
     private EntityManagerInterface $entityManager;
@@ -44,7 +42,7 @@ final class ReviewEventAppeared implements PersistentSubscriptionSubscriber
     ): Promise {
         $event = $this->transformer->toDomainEvent($resolvedEvent);
 
-        switch (get_class($event)) {
+        switch ($event::class) {
             case ReviewWasDeleted::class:
                 $review = $this->entityManager->getReference(Review::class, $event->aggregateId()->toString());
 
@@ -71,7 +69,7 @@ final class ReviewEventAppeared implements PersistentSubscriptionSubscriber
 
                 break;
             default:
-                throw new LogicException('Unknown event class "' . get_class($event) . '"');
+                throw new LogicException('Unknown event class "' . $event::class . '"');
         }
 
         return new Success();

@@ -1,12 +1,27 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot call method toCommand\\(\\) on resource\\.$#"
+			message: "#^Parameter \\#1 \\$other of method Parsica\\\\Parsica\\\\Parser\\<Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Group\\>\\:\\:or\\(\\) expects Parsica\\\\Parsica\\\\Parser\\<Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Group\\>, Parsica\\\\Parsica\\\\Parser\\<null\\> given\\.$#"
 			count: 1
-			path: src/Core/Infrastructure/ApiPlatform/DataPersister/CommandBusPersister.php
+			path: src/ParserBuilder.php
 
 		-
-			message: "#^Method App\\\\Core\\\\Infrastructure\\\\ApiPlatform\\\\DataPersister\\\\CommandBusPersister\\:\\:persist\\(\\) should return object\\|void but returns resource\\.$#"
+			message: "#^Parameter \\#1 \\$other of method Parsica\\\\Parsica\\\\Parser\\<null\\>\\:\\:or\\(\\) expects Parsica\\\\Parsica\\\\Parser\\<null\\>, Parsica\\\\Parsica\\\\Parser\\<Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Group\\> given\\.$#"
 			count: 1
-			path: src/Core/Infrastructure/ApiPlatform/DataPersister/CommandBusPersister.php
+			path: src/ParserBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$term of function Parsica\\\\Parsica\\\\Expression\\\\expression expects Parsica\\\\Parsica\\\\Parser\\<Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Group\\|null\\>, Parsica\\\\Parsica\\\\Parser\\<Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Group\\>\\|Parsica\\\\Parsica\\\\Parser\\<null\\> given\\.$#"
+			count: 1
+			path: src/ParserBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$transform of method Parsica\\\\Parsica\\\\Parser\\<null\\>\\:\\:map\\(\\) expects callable\\(null\\)\\: Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Function_\\\\Parsed, Closure\\(array\\)\\: Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Function_\\\\Parsed given\\.$#"
+			count: 1
+			path: src/ParserBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$transform of method Parsica\\\\Parsica\\\\Parser\\<null\\>\\:\\:map\\(\\) expects callable\\(null\\)\\: Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Group, Closure\\(Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Expression\\)\\: Lctrs\\\\Parsica\\\\Math\\\\Expression\\\\Group given\\.$#"
+			count: 1
+			path: src/ParserBuilder.php
 

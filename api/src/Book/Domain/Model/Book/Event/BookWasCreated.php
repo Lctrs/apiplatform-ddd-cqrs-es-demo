@@ -11,13 +11,14 @@ use App\Book\Domain\Model\Book\Isbn;
 use App\Book\Domain\Model\Book\PublicationDate;
 use App\Book\Domain\Model\Book\Title;
 use App\Core\Domain\DomainEvent;
-use Prooph\EventStore\EventId;
+use DateTimeImmutable;
 
 final class BookWasCreated implements DomainEvent
 {
     public const MESSAGE_NAME = 'book-was-created';
 
     private ?string $eventId = null;
+    private DateTimeImmutable $occurredOn;
     private BookId $bookId;
     private ?Isbn $isbn;
     private Title $title;
@@ -33,6 +34,7 @@ final class BookWasCreated implements DomainEvent
         Author $author,
         PublicationDate $publicationDate
     ) {
+        $this->occurredOn      = new DateTimeImmutable();
         $this->bookId          = $bookId;
         $this->isbn            = $isbn;
         $this->title           = $title;
@@ -90,6 +92,11 @@ final class BookWasCreated implements DomainEvent
     public function eventType(): string
     {
         return self::MESSAGE_NAME;
+    }
+
+    public function occurredOn(): DateTimeImmutable
+    {
+        return $this->occurredOn;
     }
 
     /**

@@ -18,11 +18,10 @@
 .env.*.local
 .env.local
 .env.local.php
-.phpcs-cache
 bin/*
 !bin/console
-build/
-docker/db/data/
+/.build/
+docker/database/data/
 public/bundles/
 var/
 vendor/

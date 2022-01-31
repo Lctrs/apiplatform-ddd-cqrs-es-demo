@@ -9,12 +9,9 @@ interface IdentifiesAggregate
     /**
      * @return static
      */
-    public static function generate();
+    public static function generate(): static;
 
-    /**
-     * @return static
-     */
-    public static function fromString(string $string);
+    public static function fromString(string $string): static;
 
     public function toString(): string;
 }

@@ -1,5 +1,0 @@
-framework:
-    serializer:
-        mapping:
-            paths:
-                - '%kernel.project_dir%/src/Book/Infrastructure/Serialization/Symfony'
